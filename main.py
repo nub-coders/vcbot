@@ -1,0 +1,564 @@
+import sys
+import time
+import certifi
+import pymongo
+from pyrogram import Client
+from telethon import TelegramClient, events, Button, types, errors
+from pyrogram.errors.exceptions.unauthorized_401 import SessionPasswordNeeded
+from pyrogram.raw.functions.phone import CreateGroupCall
+from pyrogram.errors.exceptions.bad_request_400 import PasswordHashInvalid
+from pyrogram.errors.exceptions.bad_request_400 import PhoneCodeInvalid
+from pyrogram.errors.exceptions import AuthKeyDuplicated
+from pyrogram.errors.exceptions import AuthKeyUnregistered
+from pyrogram.errors.exceptions import SessionRevoked,ChatForwardsRestricted
+from pyrogram.errors.exceptions import PeerFlood,UserRestricted,FileReferenceExpired
+from pyrogram.errors.exceptions import UserDeactivatedBan
+from pyrogram.errors.exceptions import PeerIdInvalid
+from pyrogram.errors.exceptions import UserDeactivated
+from pytgcalls import idle, PyTgCalls
+from pytgcalls.types import MediaStream
+mongo_client = pymongo.MongoClient('mongodb://brock34543:CIjLxjh5fl4B2aWF@undefined/?replicaSet=atlas-bvx6zl-shard-0&ssl=true&authSource=admin',tlsCAFile=certifi.where())
+db = mongo_client['voice']  #Replace 'your_database_name' with your actual database name
+user_sessions = db['user_sessions']
+from datetime import datetime
+clients = {}  # Dictionary to store client objects
+import os
+StartTime = time.time()
+from config import *
+bot = TelegramClient(None, API_ID, API_HASH)
+bot.start(bot_token=BOT_TOKEN)
+
+songs_client = {}
+ggg=os.getcwd()
+conversations = {}
+
+
+
+async def get_readable_time(seconds: int) -> str:
+    count = 0
+    up_time = ""
+    time_list = []
+    time_suffix_list = ["s", "m", "h", "days"]
+
+    while count < 4:
+        count += 1
+        remainder, result = divmod(seconds, 60) if count < 3 else divmod(seconds, 24)
+        if seconds == 0 and remainder == 0:
+            break
+        time_list.append(int(result))
+        seconds = int(remainder)
+
+    for x in range(len(time_list)):
+        time_list[x] = str(time_list[x]) + time_suffix_list[x]
+    if len(time_list) == 4:
+        up_time += time_list.pop() + ", "
+
+    time_list.reverse()
+    up_time += ":".join(time_list)
+
+    return up_time
+
+
+# Command handler for /ping
+@bot.on(events.NewMessage(pattern='/ping'))
+async def ping_command(event):
+    # Calculate uptime
+    uptime = await get_readable_time((time.time() - StartTime))
+    start = datetime.now()
+
+    # Simulate progress bar
+    xx = await event.reply("**0% ▒▒▒▒▒▒▒▒▒▒**")
+    await xx.edit("**20% ██▒▒▒▒▒▒▒▒**")
+    await xx.edit("**40% ████▒▒▒▒▒▒**")
+    await xx.edit("**60% ██████▒▒▒▒**")
+    await xx.edit("**80% ████████▒▒**")
+    await xx.edit("**100% ██████████**")
+
+    # Calculate the duration
+    end = datetime.now()
+    duration = (end - start).microseconds / 1000
+
+    # Send the final message with ping and uptime information
+    await xx.edit(
+        f"❏ **PONG!! 🏓**\n"
+        f"├• **Pinger** - `{duration:.2f}ms`\n"
+        f"├• **Uptime -** `{uptime}`\n"
+        f"└• **Owner :** [{(await bot.get_me()).first_name}](tg://user?id={(await bot.get_me()).id})"
+    )
+
+# Add this handler to the bot
+
+@bot.on(events.NewMessage(
+    incoming=True,
+    outgoing=False,
+    func=lambda x: x.is_private, pattern="/login"))
+async def start(event):
+    client = None
+    sender = event.sender_id
+
+    # Check if user already exists
+    existing_user = user_sessions.find_one({"user_id": sender})
+    if existing_user:
+        await event.respond("😊 You're already logged in! If you want to log out, just use /logout. Have a great time! 🌟\nWe believe, you actually don't need this option")
+        return
+
+    try:
+        async with bot.conversation(sender, timeout=300) as don:
+            conversations[sender] = don
+            conv = conversations[sender]
+            '''event = await conv.wait_event(events.NewMessage(from_users=sender, func=lambda x: x.is_private, outgoing=False))
+            if event.raw_text.startswith('/'):
+                return
+            API_ID = event.text.strip()
+            await event.respond("📲 Awesome! Now, could you please share your **api_hash**? We're almost there! 🚀")
+
+            event = await conv.wait_event(events.NewMessage(from_users=sender, func=lambda x: x.is_private, outgoing=False))
+            if not event.raw_text:
+                return
+            if event.raw_text.startswith('/'):
+                return
+            API_HASH = event.text.strip()'''
+
+            # Ask user to share phone number using a button
+            button = Button.request_phone(text="📞 Share phone number")
+            mess = await event.respond("📞 We're so close! Please share your **phone number** by clicking the button below. We're here to help! 💬", buttons=button)
+
+            event = await conv.wait_event(events.NewMessage(from_users=sender, func=lambda x: x.is_private, outgoing=False))
+            if event.raw_text.startswith('/'):
+                await mess.delete()
+                return
+            if isinstance(event.media, types.MessageMediaContact):
+                await mess.delete()
+                phone_number = event.media.phone_number
+                try:
+                    clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, in_memory=True)
+                    client = clients.get(sender)
+                    await client.connect()
+                    sent_code = await client.send_code(phone_number)
+                    phone_code_hash = sent_code.phone_code_hash
+                    print(f"Code sent to {phone_number}.")
+
+                    await event.respond("🔢 Please enter the **code** in spaces like this example below:\n3 6 6 4 7\n\nDue to Telegram's anti-forward login, you need to provide the code in spaces. We're almost there! 🌈")
+                    for i in range(5):
+                        event = await conv.wait_event(events.NewMessage(from_users=sender, func=lambda x: x.is_private, outgoing=False))
+                        if event.raw_text.startswith('/'):
+                            return
+                        text = event.text
+                        code = text.replace(' ', "")
+
+                        try:
+                            await client.sign_in(phone_number, phone_code_hash, code)
+                            await event.respond(
+                                "🎉 Woohoo! Login successful! You now have access to all the amazing features. Enjoy! 🌟\n\n"
+                                "🚨 **Important Rules and Guidelines** 🚨\n\n"
+                                "1. ❌ **No Spamming**: Please do not use the bot to send spam messages. This can lead to your account being restricted or banned.\n"
+                                "2. 📵 **Respect Copyrights**: Do not use this bot to download or distribute copyrighted materials. Doing so is against the law and can result in serious consequences.\n"
+                                "3. ⚠️ **Your Responsibility**: If anything happens to your account as a result of misuse, this bot is not responsible. Use it wisely and responsibly.\n\n"
+                                "By using this bot, you agree to these terms. Let's keep things fun and safe! 😊"
+                            )
+                            string_session = await client.export_session_string()
+                            user_sessions.update_one(
+                                {"user_id": sender},
+                                {"$set": {"string_session": string_session}},
+                                upsert=True
+                            )
+                            await client.disconnect()
+                            return await run_client(sender)
+                        except PhoneCodeInvalid:
+                            await event.respond("❌ Oh no! That OTP was incorrect. Please try sending again the right OTP. You've got this! 💪")
+                            continue
+                        except SessionPasswordNeeded:
+                            await event.respond("🔐 We need your **2FA password** to proceed. Please enter your 2FA password. We're almost there! 💫")
+                            for i in range(5):
+                                event = await conv.wait_event(events.NewMessage(from_users=sender, func=lambda x: x.is_private, outgoing=False))
+                                if event.raw_text.startswith('/'):
+                                    return
+                                password = event.text.strip()
+                                try:
+                                    await client.check_password(password)
+                                    await event.respond(
+                                        "🎉 Yay! Login successful! You can now explore all the features. Have fun! 🎈\n\n"
+                                        "🚨 **Important Rules and Guidelines** 🚨\n\n"
+                                        "1. ❌ **No Spamming**: Please do not use the bot to send spam messages. This can lead to your account being restricted or banned.\n"
+                                        "2. 📵 **Respect Copyrights**: Do not use this bot to download or distribute copyrighted materials. Doing so is against the law and can result in serious consequences.\n"
+                                        "3. ⚠️ **Your Responsibility**: If anything happens to your account as a result of misuse, this bot is not responsible. Use it wisely and responsibly.\n\n"
+                                        "By using this bot, you agree to these terms. Let's keep things fun and safe! 😊"
+                                    )
+                                    string_session = await client.export_session_string()
+                                    user_sessions.update_one(
+                                        {"user_id": sender},
+                                        {"$set": {"string_session": string_session}},
+                                        upsert=True
+                                    )
+                                    await client.disconnect()
+                                    return await run_client(sender)
+                                except PasswordHashInvalid as e:
+                                    await event.respond("❌ Incorrect 2FA password. Please try sending right password again. We believe in you! 🌟")
+                                    continue
+                                except Exception as e:
+                                    return await event.respond(f"⚠️ Something went wrong during login: {e}. Please try again. We're here to help! 🛠️")
+                            return event.respond("❌ Incorrect 2FA password. Please try again later with /login. Don't give up! 💪")
+                except Exception as e:
+                    await event.respond(f"⚠️ Error sending code: {e}. Please try again. We're here for you! 🤗")
+    except Exception as e:
+        print(e)
+
+from telethon import events
+
+@bot.on(events.NewMessage(
+    incoming=True,
+    outgoing=False,func=lambda x: x.is_private,pattern="/logout"))
+async def logout(event):
+    sender = event.sender_id
+    client = clients.get(sender)
+
+    # Check if user exists
+    user_data = user_sessions.find_one({"user_id": sender})
+    if user_data:
+        string_session = user_data.get("string_session")
+        # Ask for confirmation
+        await event.respond("We hate to see you go! Are you sure you want to logout? If yes, type '`LOGOUT`' and send.")
+
+        @bot.on(events.NewMessage(from_users=sender, outgoing=False))
+        async def handle_confirmation(message):
+            if message.raw_text.startswith('/'):
+                return
+            if message.raw_text.strip().upper() == 'LOGOUT':
+                # Remove session from MongoDB
+                user_sessions.delete_one({"user_id": sender})
+                await event.respond("You've been logged out successfully! We always welcome you back anytime.")
+                bot.remove_event_handler(handle_confirmation)
+                if os.path.exists(f"user{sender}.session"):
+                    os.remove(f"user{sender}.session")
+                    await event.respond("Your session file has been deleted. We hope to see you again soon!")
+                await client.log_out()
+            else:
+                await event.respond("Logout cancelled. We're glad you're staying with us!")
+                bot.remove_event_handler(handle_confirmation)
+    else:
+        await event.respond("Your session was not found in the database. Please use /login to log in.")
+
+@bot.on(events.NewMessage(pattern='/start'))
+async def start_command(event):
+    start_message = """
+    **👋 Welcome to the Voice Chat Management Bot!**
+
+    This bot helps you manage voice chats, handle user logins, and more. Below is a list of commands you can use:
+
+    **Commands:**
+
+    **/login** - Start the login process to connect your Telegram account.
+
+    **/logout** - Log out of your session.
+
+    **/join <number_of_clients> <group_invite_link_or_username>** - Makes the specified number of clients join the voice chat in the given group.
+
+    **/leave <number_of_clients> <group_invite_link_or_username>** - Makes the specified number of clients leave the voice chat in the given group.
+
+    **/activers** - Display a list of all active clients with their Telegram user IDs and names.
+
+    **/start** - Shows this message with all available commands.
+
+    **Rules & Guidelines:**
+
+    🚨 **Important Rules and Guidelines** 🚨
+
+    1. ❌ **No Spamming**: Please do not use the bot to send spam messages. This can lead to your account being restricted or banned.
+    2. 📵 **Respect Copyrights**: Do not use this bot to download or distribute copyrighted materials. Doing so is against the law and can result in serious consequences.
+    3. ⚠️ **Your Responsibility**: If anything happens to your account as a result of misuse, this bot is not responsible. Use it wisely and responsibly.
+
+    By using this bot, you agree to these terms. Let's keep things fun and safe! 😊
+
+    **Have fun and feel free to explore the bot's features! 🚀**
+    """
+
+    await event.reply(start_message)
+
+# Add this handler to the bot
+
+@bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+async def leave_voice_chat(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+
+    # Extract the number of clients and group identifier (could be an invite link or a chat ID)
+    num_clients_to_leave = int(event.pattern_match.group(1))
+    group_identifier = event.pattern_match.group(2)
+
+    left_users = 0
+
+    for sender in list(songs_client.keys()):
+        call_py = songs_client.get(sender)
+        client = clients.get(sender)
+        try:
+            # Check if the group identifier is a number (chat ID)
+            if group_identifier.isdigit():
+                chat_id = int(group_identifier)
+            else:
+                # If not a number, assume it's an invite link or username and get chat details
+                chat = await client.get_chat(group_identifier)
+                chat_id = chat.id
+
+            # Leave the voice chat
+            await call_py.leave_call(chat_id)
+            left_users += 1
+            print(f"{client} left the voice chat.")
+        except Exception as e:
+            print(e)
+
+        # Break if we've left the required number of clients
+        if left_users >= num_clients_to_leave:
+            break
+
+    await event.reply(f"Left {left_users} clients from the voice chat.")
+
+
+
+@bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+async def leave_voice_chat(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+
+    # Extract the number of clients and group identifier (could be an invite link or a chat ID)
+    num_clients_to_leave = int(event.pattern_match.group(1))
+    group_identifier = event.pattern_match.group(2)
+
+    left_users = 0
+
+    for sender in list(songs_client.keys()):
+        client = clients.get(sender)
+        try:
+            # Check if the group identifier is a number (chat ID)
+            if group_identifier.isdigit():
+                chat_id = int(group_identifier)
+            else:
+                # If not a number, assume it's an invite link or username and get chat details
+                chat = await client.get_chat(group_identifier)
+                chat_id = chat.id
+
+            # Leave the voice chat
+            await client.leave_chat(chat_id)
+            left_users += 1
+            print(f"{client} left the chat.")
+        except Exception as e:
+            print(e)
+
+        # Break if we've left the required number of clients
+        if left_users >= num_clients_to_leave:
+            break
+
+    await event.reply(f"Left {left_users} clients from the chat.")
+
+
+@bot.on(events.NewMessage(pattern=r'/vote (\d) (\d+) (\d+) (.+)'))
+async def vote_on_poll(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+    poll_index = int(event.pattern_match.group(1))   # The poll option index
+    num_clients_to_vote = int(event.pattern_match.group(2))  # Number of clients to vote
+    message_id = int(event.pattern_match.group(3))       # The message URL containing the poll)
+    join_url = event.pattern_match.group(4)          # The group/channel join URL
+    if poll_index < 0 or poll_index > 9:
+       return await event.reply("Invalid poll index. Please provide a number between 0 and 9.")
+    voted_users = 0
+    for sender in list(songs_client.keys()):
+        client = clients.get(sender)
+        try:
+             chat = await client.join_chat(join_url)
+        except Exception as e:
+             chat = await client.get_chat(join_url)
+        try:
+                    await client.vote_poll(chat.id, message_id, poll_index)
+                    voted_users += 1
+                    await event.reply(f"Client {sender} successfully voted for option {poll_index + 1}.")
+                    if voted_users >= num_clients_to_vote:
+                        break
+        except Exception as e:
+                    await event.reply(f"Client {sender} failed to vote on the poll: {e}")
+    if voted_users < num_clients_to_vote:
+            await event.reply(f"Only {voted_users} out of {num_clients_to_vote} clients successfully voted.")
+    else:
+            await event.reply(f"All {num_clients_to_vote} clients successfully voted.")
+    
+
+from telethon import events
+
+@bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+async def join_voice_chat(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+
+    # Extract the number of clients and group invite link from the command
+    num_clients_to_join = int(event.pattern_match.group(1))
+    group_invite_link = event.pattern_match.group(2)
+
+    joined_users = 0
+
+    for sender in list(songs_client.keys()):
+        call_py = songs_client.get(sender)
+        client = clients.get(sender)
+        try:
+            # Join the chat using the invite link
+            try:
+                chat = await client.join_chat(group_invite_link)
+            except:
+                chat = await client.get_chat(group_invite_link)
+
+            # Join the voice chat
+            audio_file = 'input.webm'
+            await call_py.play(
+                chat.id)
+            joined_users += 1
+            print(f"{client} joined the voice chat.")
+        except Exception as e:
+            await event.respond(f"Error joining with {sender}: {e}")
+
+        # Break if we've joined the required number of clients
+        if joined_users >= num_clients_to_join:
+            break
+
+    await event.reply(f"Joined {joined_users} clients to the voice chat.")
+# Start the bot
+@bot.on(events.NewMessage(pattern='^/reboot$'))
+async def reboot_handler(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin by comparing their user ID with the ones in /home/u219967/Work/Work/Work/zipper//home/u219967/W$
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id in admin_ids:
+                await event.respond("Admin command received. Stopping the bot...")
+                sys.exit(0)  # Raise a system exit exception to stop the entire code
+            else:
+                await event.respond("You are not authorized to use this command.")
+    else:
+        await event.respond("Admin file not found. Please contact the bot admin.")
+
+@bot.on(events.NewMessage(pattern='/activers'))
+async def handler(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+
+    user_ids = list(songs_client.keys())
+
+    # Count the active clients
+    num_active_clients = len(user_ids)
+
+    # Build the message with mentions
+    message = f"Active client user IDs:\n"
+    for client_id in user_ids:
+        # Get the user's first and last name using get_input_entity
+        try:
+            user = await bot.get_entity(client_id)
+            first_name = user.first_name
+            last_name = user.last_name if user.last_name else ''
+            full_name = f"{first_name} {last_name}".strip()
+        except Exception as e:
+            print(f"Error getting user details: {e}")
+            full_name = "Unknown"  # Handle errors by setting name to "Unknown"
+
+        message += f"[{full_name}](tg://user?id={client_id}) - {client_id}\n"
+
+    message += f"\nNumber of active clients: {num_active_clients}"
+
+    # Send the message
+    await event.reply(message)  # Send to the chat where the command was issued
+                    # Store user's phone number
+# Define client outside of any function scope
+async def run_client(sender):
+
+
+    # Check if the sender's session exists
+    user_data = user_sessions.find_one({"user_id": sender})
+    if user_data:
+        string_session = user_data.get("string_session")
+
+        # Initialize the client with the retrieved data
+        clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, session_string=string_session, in_memory=True)
+        client = clients.get(sender)
+        songs_client[sender]=PyTgCalls(client)
+        call_py= songs_client.get(sender)
+        await call_py.start()
+    else:
+        print("User session not found.")
+
+async def run_all_client():
+    user_ids = user_sessions.distinct("user_id")
+    for user_id in user_ids:
+        user_data = user_sessions.find_one({"user_id": user_id})
+        if user_data:
+            string_session = user_data.get("string_session")
+
+            # Initialize the client with the retrieved data
+            clients[user_id]  = Client(f"user_{user_id}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, workers=1, session_string=string_session, in_memory=True)
+            client = clients.get(user_id)
+            songs_client[user_id]=PyTgCalls(client)
+            call_py= songs_client.get(user_id)
+            try:
+                auth=await client.connect()
+                if not auth:
+                    print("Client is not authorized. Please authorize first.")
+                    user_sessions.delete_one({"user_id": user_id})
+                    continue
+                await client.disconnect()
+                await call_py.start()
+                #await client.send_message('nub_userbot','/start')
+                print("Handlers added successfully.")
+                #try:
+                   #await client.join_chat("nub_coder_s")
+                   #await client.join_chat("nub_coders_updates")
+
+                #except:
+                   #pass
+                # Add your additional logic here if needed
+            except Exception as e:
+                try:
+                   admin_file = f"{ggg}/admin.txt"
+                   if os.path.exists(admin_file):
+                       with open(admin_file, "r") as file:
+                          admin_ids = [int(line.strip()) for line in file.readlines()]
+                          for admin_id  in admin_ids:
+                             await bot.send_message(admin_id,f"Error starting client for user {user_id}: {e}")
+                except:
+                   pass
+                user_sessions.delete_one({"user_id": user_id})
+                songs_client.pop(user_id)
+bot.loop.run_until_complete(run_all_client())
+bot.run_until_disconnected()

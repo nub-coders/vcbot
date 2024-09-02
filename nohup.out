@@ -1,0 +1,237 @@
+Requirement already satisfied: pip in ./venv/lib/python3.12/site-packages (24.2)
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 12))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 20))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-nyzo4yq0
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-nyzo4yq0
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit 7e41628ff523b3fe373b0981a5db441358980dab
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: yt_dlp in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 1)) (2024.8.6)
+Requirement already satisfied: uvloop in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 2)) (0.20.0)
+Requirement already satisfied: lottie in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 3)) (0.7.0)
+Requirement already satisfied: telegraph in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 4)) (2.2.0)
+Requirement already satisfied: pytz in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 5)) (2024.1)
+Requirement already satisfied: pymediainfo in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 6)) (6.1.0)
+Requirement already satisfied: Pillow in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 7)) (10.4.0)
+Requirement already satisfied: py-tgcalls in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 8)) (2.0.2)
+Requirement already satisfied: cryptg in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 9)) (0.4.0)
+Requirement already satisfied: Telethon in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 13)) (1.36.0)
+Requirement already satisfied: TgCrypto in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 14)) (1.2.5)
+Requirement already satisfied: pymongo in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 15)) (4.8.0)
+Requirement already satisfied: requests in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 16)) (2.32.3)
+Requirement already satisfied: lxml in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 18)) (5.3.0)
+Requirement already satisfied: fake_useragent in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 19)) (1.5.1)
+Requirement already satisfied: opencv-python-headless in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 22)) (4.10.0.84)
+Requirement already satisfied: python-ffmpeg in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 23)) (2.0.12)
+Requirement already satisfied: ffmpeg in ./venv/lib/python3.12/site-packages (from -r requirements.txt (line 24)) (1.4)
+Requirement already satisfied: brotli in ./venv/lib/python3.12/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 20)) (1.1.0)
+Requirement already satisfied: certifi in ./venv/lib/python3.12/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 20)) (2024.8.30)
+Requirement already satisfied: mutagen in ./venv/lib/python3.12/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 20)) (1.47.0)
+Requirement already satisfied: pycryptodomex in ./venv/lib/python3.12/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 20)) (3.20.0)
+Requirement already satisfied: urllib3<3,>=1.26.17 in ./venv/lib/python3.12/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 20)) (2.2.2)
+Requirement already satisfied: websockets>=13.0 in ./venv/lib/python3.12/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 20)) (13.0.1)
+Requirement already satisfied: aiohttp>=3.9.3 in ./venv/lib/python3.12/site-packages (from py-tgcalls->-r requirements.txt (line 8)) (3.10.5)
+Requirement already satisfied: ntgcalls>=1.2.0 in ./venv/lib/python3.12/site-packages (from py-tgcalls->-r requirements.txt (line 8)) (1.2.1)
+Requirement already satisfied: psutil in ./venv/lib/python3.12/site-packages (from py-tgcalls->-r requirements.txt (line 8)) (6.0.0)
+Requirement already satisfied: screeninfo in ./venv/lib/python3.12/site-packages (from py-tgcalls->-r requirements.txt (line 8)) (0.8.1)
+Requirement already satisfied: deprecation in ./venv/lib/python3.12/site-packages (from py-tgcalls->-r requirements.txt (line 8)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in ./venv/lib/python3.12/site-packages (from Pyrogram==2.1.27->-r requirements.txt (line 12)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in ./venv/lib/python3.12/site-packages (from Pyrogram==2.1.27->-r requirements.txt (line 12)) (1.7.1)
+Requirement already satisfied: rsa in ./venv/lib/python3.12/site-packages (from Telethon->-r requirements.txt (line 13)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in ./venv/lib/python3.12/site-packages (from pymongo->-r requirements.txt (line 15)) (2.6.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./venv/lib/python3.12/site-packages (from requests->-r requirements.txt (line 16)) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.12/site-packages (from requests->-r requirements.txt (line 16)) (3.8)
+Requirement already satisfied: numpy>=1.21.2 in ./venv/lib/python3.12/site-packages (from opencv-python-headless->-r requirements.txt (line 22)) (2.1.0)
+Requirement already satisfied: pyee in ./venv/lib/python3.12/site-packages (from python-ffmpeg->-r requirements.txt (line 23)) (12.0.0)
+Requirement already satisfied: typing-extensions in ./venv/lib/python3.12/site-packages (from python-ffmpeg->-r requirements.txt (line 23)) (4.12.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./venv/lib/python3.12/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 8)) (2.4.0)
+Requirement already satisfied: aiosignal>=1.1.2 in ./venv/lib/python3.12/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 8)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./venv/lib/python3.12/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 8)) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./venv/lib/python3.12/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 8)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./venv/lib/python3.12/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 8)) (6.0.5)
+Requirement already satisfied: yarl<2.0,>=1.0 in ./venv/lib/python3.12/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 8)) (1.9.7)
+Requirement already satisfied: packaging in ./venv/lib/python3.12/site-packages (from deprecation->py-tgcalls->-r requirements.txt (line 8)) (24.1)
+Requirement already satisfied: pyasn1>=0.1.3 in ./venv/lib/python3.12/site-packages (from rsa->Telethon->-r requirements.txt (line 13)) (0.6.0)
+Starting zipper.py...
+/home/ubuntu/project-/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project-/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project-/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+PyTgCalls v2.0.2 powered by NTgCalls v1.2.1, Copyright (C) 2021-2024 Laky-64 <https://github.com/Laky-64>
+Licensed under the terms of the GNU Lesser General Public License v3 or later (LGPLv3+)
+
+[93mUpdate Available!
+New PyTgCalls v2.0.3b2 is now available!
+[0m
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x78df04937cb0> joined the voice chat.
+<pyrogram.client.Client object at 0x78df0c77bbf0> joined the voice chat.
+<pyrogram.client.Client object at 0x78df035d1b50> joined the voice chat.
+<pyrogram.client.Client object at 0x78df035d17f0> joined the voice chat.
+<pyrogram.client.Client object at 0x78df035d3a40> joined the voice chat.
+<pyrogram.client.Client object at 0x78defab00530> joined the voice chat.
+<pyrogram.client.Client object at 0x78defab02cc0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defab249b0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defab267b0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defab3c260> joined the voice chat.
+<pyrogram.client.Client object at 0x78defab3e300> joined the voice chat.
+<pyrogram.client.Client object at 0x78defab3f320> joined the voice chat.
+<pyrogram.client.Client object at 0x78defab4cbf0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defab4ecf0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defab6c260> joined the voice chat.
+<pyrogram.client.Client object at 0x78defab6df70> joined the voice chat.
+<pyrogram.client.Client object at 0x78defab6eed0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defab85130> joined the voice chat.
+<pyrogram.client.Client object at 0x78defab86a20> joined the voice chat.
+<pyrogram.client.Client object at 0x78defaba0140> joined the voice chat.
+<pyrogram.client.Client object at 0x78defaba1640> joined the voice chat.
+<pyrogram.client.Client object at 0x78defaba30e0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defaba98b0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defabaac30> joined the voice chat.
+<pyrogram.client.Client object at 0x78defaba20c0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defabce840> joined the voice chat.
+<pyrogram.client.Client object at 0x78defabf0320> joined the voice chat.
+<pyrogram.client.Client object at 0x78defabf20c0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defaa08140> joined the voice chat.
+<pyrogram.client.Client object at 0x78defabcc470> joined the voice chat.
+<pyrogram.client.Client object at 0x78defaa21fa0> joined the voice chat.
+<pyrogram.client.Client object at 0x78df03fbaab0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defaae8aa0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa934fb0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa9671a0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa985190> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa9a5580> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa9bc410> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa9bdf10> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa9c8b30> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa9ca5a0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa9ddac0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa9f0b90> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa9f24b0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa528410> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa553590> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa563860> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa56ca40> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa592840> joined the voice chat.
+<pyrogram.client.Client object at 0x78defaa2ddf0> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa5a6f30> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa5c8890> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa5cb830> joined the voice chat.
+<pyrogram.client.Client object at 0x78defaa2e510> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa5db350> joined the voice chat.
+<pyrogram.client.Client object at 0x78defa5908c0> joined the voice chat.
+<pyrogram.client.Client object at 0x78def8f01070> joined the voice chat.
+<pyrogram.client.Client object at 0x78def8f1e420> joined the voice chat.
+<pyrogram.client.Client object at 0x78def8f3d040> joined the voice chat.
+<pyrogram.client.Client object at 0x78def8f4d1f0> joined the voice chat.
+<pyrogram.client.Client object at 0x78def8f7b590> joined the voice chat.
+<pyrogram.client.Client object at 0x78def8f97c80> joined the voice chat.
+<pyrogram.client.Client object at 0x78def8fb67b0> joined the voice chat.
+<pyrogram.client.Client object at 0x78def8fd4dd0> joined the voice chat.
+<pyrogram.client.Client object at 0x78def8fd7380> joined the voice chat.
+<pyrogram.client.Client object at 0x78def8ff4ef0> joined the voice chat.
+<pyrogram.client.Client object at 0x78def8516240> joined the voice chat.
+<pyrogram.client.Client object at 0x78def8525b80> joined the voice chat.
+<pyrogram.client.Client object at 0x78def85f2ba0> joined the voice chat.
+<pyrogram.client.Client object at 0x78def8400ad0> joined the voice chat.
+<pyrogram.client.Client object at 0x78def8403bc0> joined the voice chat.
+<pyrogram.client.Client object at 0x78def8575b80> joined the voice chat.
+<pyrogram.client.Client object at 0x78def841d730> joined the voice chat.
+<pyrogram.client.Client object at 0x78def8452720> joined the voice chat.
