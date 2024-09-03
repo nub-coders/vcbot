@@ -1,3 +1,4 @@
+import asyncio
 import sys
 import time
 import certifi
@@ -27,7 +28,7 @@ StartTime = time.time()
 from config import *
 bot = TelegramClient(None, API_ID, API_HASH)
 bot.start(bot_token=BOT_TOKEN)
-
+import pytgcalls
 songs_client = {}
 ggg=os.getcwd()
 conversations = {}
@@ -435,8 +436,11 @@ async def join_voice_chat(event):
             # Join the voice chat
             audio_file = 'input.webm'
             await call_py.play(
-                chat.id)
+            chat.id)
+            await call_py.mute_stream(chat.id)
+            await asyncio.sleep(1)
             joined_users += 1
+            #except pytgcalls.exceptions.UnMuteNeeded:
             print(f"{client} joined the voice chat.")
         except Exception as e:
             await event.respond(f"Error joining with {sender}: {e}")

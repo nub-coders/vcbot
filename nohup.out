@@ -2293,3 +2293,2044 @@ Traceback (most recent call last):
   File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
     raise ConnectionError("Client has not been started yet")
 ConnectionError: Client has not been started yet
+./bot2.sh: line 28: 48134 Killed                  nohup python3 main.py
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-1446' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-1542' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-1659' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-1789' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-1916' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-2053' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-2206' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-2343' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-2499' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-2674' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-2946' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-3107' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-3285' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-3510' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-3670' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-3840' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-4009' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-4177' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-4425' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-4655' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+PyTgCalls v2.0.2 powered by NTgCalls v1.2.1, Copyright (C) 2021-2024 Laky-64 <https://github.com/Laky-64>
+Licensed under the terms of the GNU Lesser General Public License v3 or later (LGPLv3+)
+
+[93mUpdate Available!
+New PyTgCalls v2.0.3b2 is now available!
+[0m
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x766d87a4e270> joined the voice chat.
+<pyrogram.client.Client object at 0x766d87ac6db0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f861e0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f85e20> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f87e60> joined the voice chat.
+<pyrogram.client.Client object at 0x766d7b90b1d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d87a4e270> joined the voice chat.
+<pyrogram.client.Client object at 0x766d87ac6db0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f861e0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f85e20> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc64b0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f87e60> joined the voice chat.
+<pyrogram.client.Client object at 0x766d7b90b1d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc64b0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc79b0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc79b0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fed400> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fed400> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fef1d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fef1d0> joined the voice chat.
+Code sent to 19342849524.
+Code sent to 15405051900.
+Code sent to 212675078099.
+Code sent to 212675227750.
+Code sent to 212675554972.
+Code sent to 212675566242.
+Code sent to 212675256759.
+Code sent to 963962632499.
+Code sent to 963980885343.
+Code sent to 963936462683.
+Code sent to 963956381015.
+Code sent to 12544747360.
+Code sent to 13095687088.
+Code sent to 13478961504.
+Code sent to 12283328328.
+Code sent to 12197584474.
+Code sent to 201273104352.
+Code sent to 19035523122.
+Code sent to 14747550741.
+Code sent to 13654986219.
+<pyrogram.client.Client object at 0x766d87a4e270> joined the voice chat.
+<pyrogram.client.Client object at 0x766d87ac6db0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f861e0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f85e20> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f87e60> joined the voice chat.
+<pyrogram.client.Client object at 0x766d7b90b1d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc64b0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc79b0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fed400> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fef1d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d7b90acf0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22e70> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e13560> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e83cb0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22ff0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e30380> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e18ec0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e47ec0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e46e10> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e25ac0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e426f0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e82690> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e3e3c0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e23b60> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74ea5610> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74ea4ad0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e335f0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e31b20> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e40fe0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74effb00> joined the voice chat.
+<pyrogram.client.Client object at 0x766d87a4e270> left the voice chat.
+<pyrogram.client.Client object at 0x766d87ac6db0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74f861e0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74f85e20> left the voice chat.
+<pyrogram.client.Client object at 0x766d74f87e60> left the voice chat.
+<pyrogram.client.Client object at 0x766d7b90b1d0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74fc64b0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74fc79b0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74fed400> left the voice chat.
+<pyrogram.client.Client object at 0x766d74fef1d0> left the voice chat.
+<pyrogram.client.Client object at 0x766d7b90acf0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e22e70> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e13560> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e83cb0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e22ff0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e30380> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e18ec0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e47ec0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e46e10> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e25ac0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e426f0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e82690> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e3e3c0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e23b60> left the voice chat.
+<pyrogram.client.Client object at 0x766d74ea5610> left the voice chat.
+<pyrogram.client.Client object at 0x766d74ea4ad0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e335f0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e31b20> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e40fe0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74effb00> left the voice chat.
+<pyrogram.client.Client object at 0x766d87a4e270> joined the voice chat.
+<pyrogram.client.Client object at 0x766d87ac6db0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f861e0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f85e20> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f87e60> joined the voice chat.
+<pyrogram.client.Client object at 0x766d7b90b1d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc64b0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc79b0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fed400> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fef1d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d7b90acf0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22e70> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e13560> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e83cb0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22ff0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e30380> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e18ec0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e47ec0> joined the voice chat.
+Task exception was never retrieved
+future: <Task finished name='Task-13030' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-13257' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-13535' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-13777' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-13998' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-14215' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-14443' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-14666' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-15028' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-16333' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+<pyrogram.client.Client object at 0x766d74e46e10> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e25ac0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e426f0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e82690> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e3e3c0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e23b60> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74ea5610> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74ea4ad0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e335f0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e31b20> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e40fe0> joined the voice chat.
+Code sent to 201279259117.
+Code sent to 14632750472.
+Code sent to 436504407025443.
+Code sent to 37122283641.
+Code sent to 37122212572.
+Code sent to 19852685526.
+Code sent to 12708610663.
+Code sent to 201151006976.
+Code sent to 201151167692.
+Code sent to 212691059196.
+<pyrogram.client.Client object at 0x766d87a4e270> joined the voice chat.
+<pyrogram.client.Client object at 0x766d87ac6db0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f861e0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f85e20> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f87e60> joined the voice chat.
+<pyrogram.client.Client object at 0x766d7b90b1d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc64b0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc79b0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fed400> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fef1d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d7b90acf0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22e70> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e13560> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e83cb0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22ff0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e30380> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e18ec0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e47ec0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e46e10> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e25ac0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e426f0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e82690> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e3e3c0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e23b60> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74ea5610> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74ea4ad0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e335f0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e31b20> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e40fe0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74effb00> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22cf0> joined the voice chat.
+<pyrogram.client.Client object at 0x766cfff31dc0> joined the voice chat.
+<pyrogram.client.Client object at 0x766cfff1b860> joined the voice chat.
+<pyrogram.client.Client object at 0x766d503a66c0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74efd8e0> joined the voice chat.
+<pyrogram.client.Client object at 0x766cfff047d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d503bc4a0> joined the voice chat.
+<pyrogram.client.Client object at 0x766cfff6fb90> joined the voice chat.
+<pyrogram.client.Client object at 0x766d503ed3a0> joined the voice chat.
+<pyrogram.client.Client object at 0x766cfff9acf0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d87a4e270> joined the voice chat.
+<pyrogram.client.Client object at 0x766d87ac6db0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f861e0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f85e20> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f87e60> joined the voice chat.
+<pyrogram.client.Client object at 0x766d7b90b1d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc64b0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc79b0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fed400> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fef1d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d7b90acf0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22e70> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e13560> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e83cb0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22ff0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e30380> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e18ec0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e47ec0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e46e10> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e25ac0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e426f0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e82690> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e3e3c0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e23b60> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74ea5610> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74ea4ad0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e335f0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e31b20> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e40fe0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74effb00> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22cf0> joined the voice chat.
+<pyrogram.client.Client object at 0x766cfff31dc0> joined the voice chat.
+<pyrogram.client.Client object at 0x766cfff1b860> joined the voice chat.
+<pyrogram.client.Client object at 0x766d503a66c0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74efd8e0> joined the voice chat.
+<pyrogram.client.Client object at 0x766cfff047d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d503bc4a0> joined the voice chat.
+<pyrogram.client.Client object at 0x766cfff6fb90> joined the voice chat.
+<pyrogram.client.Client object at 0x766d503ed3a0> joined the voice chat.
+<pyrogram.client.Client object at 0x766cfff9acf0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d87a4e270> left the voice chat.
+<pyrogram.client.Client object at 0x766d87ac6db0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74f861e0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74f85e20> left the voice chat.
+<pyrogram.client.Client object at 0x766d74f87e60> left the voice chat.
+<pyrogram.client.Client object at 0x766d7b90b1d0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74fc64b0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74fc79b0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74fed400> left the voice chat.
+<pyrogram.client.Client object at 0x766d74fef1d0> left the voice chat.
+<pyrogram.client.Client object at 0x766d7b90acf0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e22e70> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e13560> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e83cb0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e22ff0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e30380> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e18ec0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e47ec0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e46e10> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e25ac0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e426f0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e82690> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e3e3c0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e23b60> left the voice chat.
+<pyrogram.client.Client object at 0x766d74ea5610> left the voice chat.
+<pyrogram.client.Client object at 0x766d74ea4ad0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e335f0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e31b20> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e40fe0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74effb00> left the voice chat.
+<pyrogram.client.Client object at 0x766d87a4e270> joined the voice chat.
+<pyrogram.client.Client object at 0x766d87ac6db0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f861e0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f85e20> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f87e60> joined the voice chat.
+<pyrogram.client.Client object at 0x766d7b90b1d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc64b0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc79b0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fed400> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fef1d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d7b90acf0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22e70> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e13560> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e83cb0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22ff0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e30380> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e18ec0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e47ec0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d87a4e270> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e46e10> joined the voice chat.
+<pyrogram.client.Client object at 0x766d87ac6db0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e25ac0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f861e0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74f85e20> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e426f0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f87e60> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e82690> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e3e3c0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d7b90b1d0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e23b60> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc64b0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74ea5610> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74ea4ad0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc79b0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74fed400> left the voice chat.
+<pyrogram.client.Client object at 0x766d74fef1d0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e335f0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d7b90acf0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e31b20> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22e70> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e13560> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e40fe0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74effb00> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22cf0> joined the voice chat.
+<pyrogram.client.Client object at 0x766cfff31dc0> joined the voice chat.
+<pyrogram.client.Client object at 0x766cfff1b860> joined the voice chat.
+<pyrogram.client.Client object at 0x766d503a66c0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74efd8e0> joined the voice chat.
+<pyrogram.client.Client object at 0x766cfff047d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d503bc4a0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e83cb0> left the voice chat.
+<pyrogram.client.Client object at 0x766cfff6fb90> joined the voice chat.
+<pyrogram.client.Client object at 0x766d503ed3a0> joined the voice chat.
+<pyrogram.client.Client object at 0x766cfff9acf0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22ff0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e30380> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e18ec0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e47ec0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e46e10> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e25ac0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e426f0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e82690> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e3e3c0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e23b60> left the voice chat.
+<pyrogram.client.Client object at 0x766d74ea5610> left the voice chat.
+<pyrogram.client.Client object at 0x766d74ea4ad0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e335f0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e31b20> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e40fe0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74effb00> left the voice chat.
+<pyrogram.client.Client object at 0x766d74e22cf0> left the voice chat.
+<pyrogram.client.Client object at 0x766cfff31dc0> left the voice chat.
+<pyrogram.client.Client object at 0x766cfff1b860> left the voice chat.
+<pyrogram.client.Client object at 0x766d503a66c0> left the voice chat.
+<pyrogram.client.Client object at 0x766d74efd8e0> left the voice chat.
+<pyrogram.client.Client object at 0x766cfff047d0> left the voice chat.
+<pyrogram.client.Client object at 0x766d503bc4a0> left the voice chat.
+<pyrogram.client.Client object at 0x766cfff6fb90> left the voice chat.
+<pyrogram.client.Client object at 0x766d503ed3a0> left the voice chat.
+<pyrogram.client.Client object at 0x766cfff9acf0> left the voice chat.
+<pyrogram.client.Client object at 0x766d87a4e270> joined the voice chat.
+<pyrogram.client.Client object at 0x766d87ac6db0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f861e0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f85e20> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74f87e60> joined the voice chat.
+<pyrogram.client.Client object at 0x766d7b90b1d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc64b0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fc79b0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fed400> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74fef1d0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d7b90acf0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22e70> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e13560> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e83cb0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e22ff0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e30380> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e18ec0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e47ec0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e46e10> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e25ac0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e426f0> joined the voice chat.
+Task exception was never retrieved
+future: <Task finished name='Task-26190' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-26419' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-26786' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-29800' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-30068' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-30318' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-30589' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+<pyrogram.client.Client object at 0x766d74e82690> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e3e3c0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e23b60> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74ea5610> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74ea4ad0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e335f0> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e31b20> joined the voice chat.
+<pyrogram.client.Client object at 0x766d74e40fe0> joined the voice chat.
+Code sent to 212656084617.
+Code sent to 212656189174.
+Code sent to 212656040079.
+Code sent to 212656039817.
+Code sent to 212781124860.
+Code sent to 212781124861.
+Code sent to 212781124862.
+Task exception was never retrieved
+future: <Task finished name='Task-54809' coro=<UpdateMethods._dispatch_update() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/updates.py:521> exception=SystemExit(0)>
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 564, in <module>
+    except:
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/updates.py", line 96, in run_until_disconnected
+    return self.loop.run_until_complete(self._run_until_disconnected())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 674, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 641, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 1987, in _run_once
+    handle._run()
+  File "/usr/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/updates.py", line 570, in _dispatch_update
+    await callback(event)
+  File "/home/ubuntu/project2/main.py", line 461, in reboot_handler
+    if os.path.exists(admin_file):
+                ^^^^^^^^^^^
+SystemExit: 0
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+PyTgCalls v2.0.2 powered by NTgCalls v1.2.1, Copyright (C) 2021-2024 Laky-64 <https://github.com/Laky-64>
+Licensed under the terms of the GNU Lesser General Public License v3 or later (LGPLv3+)
+
+[93mUpdate Available!
+New PyTgCalls v2.0.3b2 is now available!
+[0m
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Task exception was never retrieved
+future: <Task finished name='Task-3025' coro=<UpdateMethods._dispatch_update() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/updates.py:521> exception=SystemExit(0)>
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 569, in <module>
+    bot.run_until_disconnected()
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/updates.py", line 96, in run_until_disconnected
+    return self.loop.run_until_complete(self._run_until_disconnected())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 674, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 641, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 1987, in _run_once
+    handle._run()
+  File "/usr/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/updates.py", line 570, in _dispatch_update
+    await callback(event)
+  File "/home/ubuntu/project2/main.py", line 466, in reboot_handler
+    sys.exit(0)  # Raise a system exit exception to stop the entire code
+    ^^^^^^^^^^^
+SystemExit: 0
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+[user_6704162026] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6741684718] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6743939124] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6771905179] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6792983024] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6858272791] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6893517202] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6900316980] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6979177515] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6982007921] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7116753152] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7122473129] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7159735667] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+Task exception was never retrieved
+future: <Task finished name='Task-7024' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+PyTgCalls v2.0.2 powered by NTgCalls v1.2.1, Copyright (C) 2021-2024 Laky-64 <https://github.com/Laky-64>
+Licensed under the terms of the GNU Lesser General Public License v3 or later (LGPLv3+)
+
+[93mUpdate Available!
+New PyTgCalls v2.0.3b2 is now available!
+[0m
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x7aa19797bbf0> joined the voice chat.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x7aa18c7c1a30> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180985ca0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180985b20> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809872f0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809c8d10> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ca660> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809cb380> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ed790> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa187378dd0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180809100> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18080a990> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18080bcb0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180821a90> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180823440> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ca240> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18082a570> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18082b5f0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180822f90> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18084f740> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18086d580> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18086f8c0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18088da30> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18088f560> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180899eb0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18089bdd0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180808e30> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808b3680> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808c9130> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808994c0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18088ede0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808e59d0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808e76b0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808f87a0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808faa80> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180710710> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180712060> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180713a70> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18082a2a0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808b0770> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808b1520> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180745cd0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180747800> joined the voice chat.
+Code sent to 212625929510.
+<pyrogram.client.Client object at 0x7aa19797bbf0> left the voice chat.
+<pyrogram.client.Client object at 0x7aa18c7c1a30> left the voice chat.
+<pyrogram.client.Client object at 0x7aa180985ca0> left the voice chat.
+<pyrogram.client.Client object at 0x7aa180985b20> left the voice chat.
+<pyrogram.client.Client object at 0x7aa1809872f0> left the voice chat.
+<pyrogram.client.Client object at 0x7aa1809c8d10> left the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ca660> left the voice chat.
+<pyrogram.client.Client object at 0x7aa1809cb380> left the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ed790> left the voice chat.
+<pyrogram.client.Client object at 0x7aa187378dd0> left the voice chat.
+<pyrogram.client.Client object at 0x7aa180809100> left the voice chat.
+<pyrogram.client.Client object at 0x7aa18080a990> left the voice chat.
+<pyrogram.client.Client object at 0x7aa18080bcb0> left the voice chat.
+<pyrogram.client.Client object at 0x7aa180821a90> left the voice chat.
+<pyrogram.client.Client object at 0x7aa180823440> left the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ca240> left the voice chat.
+<pyrogram.client.Client object at 0x7aa18082a570> left the voice chat.
+<pyrogram.client.Client object at 0x7aa18082b5f0> left the voice chat.
+<pyrogram.client.Client object at 0x7aa180822f90> left the voice chat.
+<pyrogram.client.Client object at 0x7aa18084f740> left the voice chat.
+<pyrogram.client.Client object at 0x7aa18086d580> left the voice chat.
+<pyrogram.client.Client object at 0x7aa18086f8c0> left the voice chat.
+<pyrogram.client.Client object at 0x7aa18088da30> left the voice chat.
+<pyrogram.client.Client object at 0x7aa18088f560> left the voice chat.
+<pyrogram.client.Client object at 0x7aa180899eb0> left the voice chat.
+<pyrogram.client.Client object at 0x7aa18089bdd0> left the voice chat.
+<pyrogram.client.Client object at 0x7aa180808e30> left the voice chat.
+<pyrogram.client.Client object at 0x7aa1808b3680> left the voice chat.
+<pyrogram.client.Client object at 0x7aa1808c9130> left the voice chat.
+<pyrogram.client.Client object at 0x7aa1808994c0> left the voice chat.
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+[user_5572561723] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5639715120] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5645573801] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5655687891] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5684161435] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5744707842] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5757855079] Waiting for 4 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5815074802] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5949211653] Waiting for 4 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5954763970] Waiting for 4 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5991969068] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6000570482] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6010427275] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6026932252] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6030533986] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6040489315] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6075158612] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6076474757] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6081330620] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6083817572] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6093167817] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6164633385] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6269018442] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6277005254] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6287758730] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6579779286] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6581498655] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6622671959] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6661219107] Waiting for 4 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6704162026] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6741684718] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6743939124] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6771905179] Waiting for 4 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6792983024] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6858272791] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6893517202] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6900316980] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6979177515] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6982007921] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7116753152] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7122473129] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7159735667] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7334610244] Waiting for 4 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7334610244] Waiting for 4 seconds before continuing (required by "channels.GetFullChannel")
+[user_7456558219] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7512064795] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7541297469] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6647936773] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6661219107] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6704162026] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6741684718] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6743939124] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6771905179] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6792983024] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6858272791] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6893517202] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6900316980] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6979177515] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6982007921] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7116753152] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7122473129] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7122473129] Waiting for 3 seconds before continuing (required by "channels.GetFullChannel")
+[user_7159735667] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7334610244] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7456558219] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7512064795] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7541297469] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6647936773] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5572561723] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5639715120] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5645573801] Waiting for 4 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5655687891] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5684161435] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5744707842] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5757855079] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+The userbot is not in a call
+<pyrogram.client.Client object at 0x7aa19797bbf0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18c7c1a30> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180985ca0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180985b20> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809872f0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809c8d10> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ca660> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809cb380> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ed790> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa187378dd0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180809100> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18080a990> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18080bcb0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180821a90> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180823440> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ca240> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18082a570> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18082b5f0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180822f90> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18084f740> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18086d580> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18086f8c0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18088da30> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18088f560> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180899eb0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18089bdd0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180808e30> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808b3680> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808c9130> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808994c0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18088ede0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808e59d0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808e76b0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808f87a0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808faa80> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180710710> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180712060> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180713a70> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18082a2a0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808b0770> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808b1520> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180745cd0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180747800> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1807611f0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa19797bbf0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18c7c1a30> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180985ca0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180763830> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180985b20> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809872f0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809c8d10> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ca660> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809cb380> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ed790> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa187378dd0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180778ad0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180809100> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18080a990> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18080bcb0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180821a90> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180823440> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ca240> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18082a570> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18082b5f0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180822f90> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18077b500> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18084f740> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18086d580> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18086f8c0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18088da30> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18088f560> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180899eb0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18089bdd0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa10a16fcb0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180808e30> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808b3680> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808c9130> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808994c0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18088ede0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808e59d0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808e76b0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808f87a0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808faa80> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180710710> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180712060> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180713a70> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18082a2a0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808b0770> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808b1520> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180745cd0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180747800> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1807611f0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180763830> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180778ad0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18077b500> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa10a16fcb0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa19797bbf0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18c7c1a30> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180985ca0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180985b20> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809872f0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809c8d10> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ca660> joined the voice chat.
+[user_5815074802] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5949211653] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5954763970] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_5991969068] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6000570482] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6010427275] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6026932252] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6030533986] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6040489315] Waiting for 4 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6075158612] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6076474757] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6081330620] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6083817572] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6093167817] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6164633385] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6269018442] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6277005254] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6287758730] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6579779286] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6581498655] Waiting for 4 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6622671959] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6661219107] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6704162026] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6741684718] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6743939124] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6771905179] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6792983024] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6858272791] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6893517202] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6900316980] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6979177515] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6982007921] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7116753152] Waiting for 4 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7122473129] Waiting for 4 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7159735667] Waiting for 6 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7334610244] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7456558219] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7512064795] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+[user_7541297469] Waiting for 4 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6647936773] Waiting for 5 seconds before continuing (required by "phone.JoinGroupCall")
+<pyrogram.client.Client object at 0x7aa1809cb380> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ed790> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa187378dd0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180809100> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18080a990> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18080bcb0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180821a90> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180823440> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ca240> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18082a570> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18082b5f0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180822f90> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18084f740> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18086d580> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18086f8c0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18088da30> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18088f560> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180899eb0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18089bdd0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180808e30> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808b3680> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808c9130> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808994c0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18088ede0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808e59d0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808e76b0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808f87a0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808faa80> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180710710> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180712060> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180713a70> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18082a2a0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808b0770> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808b1520> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180745cd0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180747800> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1807611f0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180763830> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180778ad0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18077b500> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa10a16fcb0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa19797bbf0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18c7c1a30> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180985ca0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180985b20> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809872f0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809c8d10> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ca660> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809cb380> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ed790> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa187378dd0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180809100> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18080a990> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18080bcb0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180821a90> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180823440> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1809ca240> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18082a570> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18082b5f0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180822f90> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18084f740> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18086d580> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18086f8c0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18088da30> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18088f560> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180899eb0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18089bdd0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180808e30> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808b3680> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808c9130> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808994c0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18088ede0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808e59d0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808e76b0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808f87a0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808faa80> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180710710> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180712060> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180713a70> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18082a2a0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808b0770> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1808b1520> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180745cd0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180747800> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa1807611f0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180763830> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa180778ad0> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa18077b500> joined the voice chat.
+<pyrogram.client.Client object at 0x7aa10a16fcb0> joined the voice chat.
+Task exception was never retrieved
+future: <Task finished name='Task-71097' coro=<UpdateMethods._dispatch_update() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/updates.py:521> exception=SystemExit(0)>
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 569, in <module>
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/updates.py", line 96, in run_until_disconnected
+    return self.loop.run_until_complete(self._run_until_disconnected())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 674, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 641, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 1987, in _run_once
+    handle._run()
+  File "/usr/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/updates.py", line 570, in _dispatch_update
+    await callback(event)
+  File "/home/ubuntu/project2/main.py", line 466, in reboot_handler
+    await event.respond("Admin file not found. Please contact the bot admin.")
+            ^^^^^^^^^^^
+SystemExit: 0
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+  File "/home/ubuntu/project2/main.py", line 440
+    except pytgcalls.exceptions.UnMuteNeeded:
+    ^^^^^^
+SyntaxError: invalid syntax
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+  File "/home/ubuntu/project2/main.py", line 440
+    except pytgcalls.exceptions.UnMuteNeeded:
+    ^^^^^^
+SyntaxError: invalid syntax
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+  File "/home/ubuntu/project2/main.py", line 440
+    except pytgcalls.exceptions.UnMuteNeeded:
+    ^^^^^^
+SyntaxError: invalid syntax
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+  File "/home/ubuntu/project2/main.py", line 440
+    except pytgcalls.exceptions.UnMuteNeeded:
+    ^^^^^^
+SyntaxError: invalid syntax
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Task exception was never retrieved
+future: <Task finished name='Task-2907' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+PyTgCalls v2.0.2 powered by NTgCalls v1.2.1, Copyright (C) 2021-2024 Laky-64 <https://github.com/Laky-64>
+Licensed under the terms of the GNU Lesser General Public License v3 or later (LGPLv3+)
+
+[93mUpdate Available!
+New PyTgCalls v2.0.3b2 is now available!
+[0m
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x791f70daff50> joined the voice chat.
+Code sent to 963946455099.
+<pyrogram.client.Client object at 0x791f70daff50> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daf050> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946240> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9472c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9473b0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64500890> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64502600> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64503b00> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64525760> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64527020> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645388f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453a180> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453b110> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946d20> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64556bd0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64568320> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64569a60> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70dafe60> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64588800> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6458a3f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6458be30> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a1310> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a38f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645548c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645c3140> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a34d0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645c2cc0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645e85f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a2690> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645ebb30> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daff50> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daf050> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946240> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9472c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9473b0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64500890> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64502600> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64503b00> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64525760> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64527020> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645388f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453a180> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453b110> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946d20> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daff50> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daf050> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946240> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9472c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9473b0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64500890> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64502600> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64503b00> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64525760> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64527020> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645388f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453a180> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453b110> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946d20> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64556bd0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64568320> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64569a60> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70dafe60> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64588800> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6458a3f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6458be30> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a1310> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a38f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645548c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645c3140> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a34d0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645c2cc0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645e85f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a2690> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daff50> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daf050> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946240> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9472c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9473b0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64500890> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64502600> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64503b00> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64525760> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64527020> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645388f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453a180> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453b110> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946d20> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64556bd0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64568320> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64569a60> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70dafe60> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64588800> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6458a3f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6458be30> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a1310> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a38f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645548c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645c3140> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a34d0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645c2cc0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645e85f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a2690> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daff50> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daf050> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946240> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9472c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9473b0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64500890> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64502600> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64503b00> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64525760> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64527020> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645388f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453a180> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453b110> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946d20> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64556bd0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64568320> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64569a60> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70dafe60> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64588800> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6458a3f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6458be30> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a1310> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a38f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645548c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645c3140> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a34d0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645c2cc0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645e85f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a2690> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645ebb30> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daff50> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daf050> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946240> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9472c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9473b0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64500890> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64502600> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64503b00> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64525760> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64527020> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645388f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453a180> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453b110> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946d20> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64556bd0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64568320> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64569a60> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70dafe60> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64588800> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6458a3f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6458be30> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a1310> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a38f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645548c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645c3140> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a34d0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645c2cc0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645e85f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a2690> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645ebb30> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daff50> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daf050> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946240> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9472c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9473b0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64500890> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64502600> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64503b00> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64525760> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64527020> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645388f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453a180> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453b110> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946d20> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64556bd0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64568320> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64569a60> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70dafe60> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64588800> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6458a3f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6458be30> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a1310> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a38f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645548c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645c3140> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a34d0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645c2cc0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645e85f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a2690> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645ebb30> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daff50> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daf050> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946240> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9472c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9473b0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64500890> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64502600> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64503b00> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64525760> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64527020> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645388f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453a180> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453b110> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946d20> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64556bd0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64568320> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64569a60> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70dafe60> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64588800> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6458a3f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6458be30> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a1310> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a38f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645548c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645c3140> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a34d0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645c2cc0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645e85f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a2690> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daff50> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daf050> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946240> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9472c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9473b0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64500890> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64502600> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64503b00> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64525760> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64527020> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645388f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453a180> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453b110> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946d20> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64556bd0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64568320> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64569a60> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70dafe60> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64588800> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6458a3f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6458be30> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a1310> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a38f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645548c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645c3140> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a34d0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645c2cc0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645e85f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645a2690> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645ebb30> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daff50> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daf050> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946240> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9472c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9473b0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64500890> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64502600> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64503b00> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64525760> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64527020> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645388f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453a180> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453b110> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946d20> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daff50> joined the voice chat.
+<pyrogram.client.Client object at 0x791f70daf050> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946240> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9472c0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d9473b0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64500890> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64502600> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64503b00> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64525760> joined the voice chat.
+<pyrogram.client.Client object at 0x791f64527020> joined the voice chat.
+<pyrogram.client.Client object at 0x791f645388f0> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453a180> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6453b110> joined the voice chat.
+<pyrogram.client.Client object at 0x791f6d946d20> joined the voice chat.
+Task exception was never retrieved
+future: <Task finished name='Task-45463' coro=<UpdateMethods._dispatch_update() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/updates.py:521> exception=SystemExit(0)>
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 565, in <module>
+    user_sessions.delete_one({"user_id": user_id})
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/updates.py", line 96, in run_until_disconnected
+    return self.loop.run_until_complete(self._run_until_disconnected())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 674, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 641, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 1987, in _run_once
+    handle._run()
+  File "/usr/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/updates.py", line 570, in _dispatch_update
+    await callback(event)
+  File "/home/ubuntu/project2/main.py", line 462, in reboot_handler
+    admin_ids = [int(line.strip()) for line in file.readlines()]
+        ^^^^^^^^^^^
+SystemExit: 0
+Starting zipper.py...
+/home/ubuntu/project2/main.py:280: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:325: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:408: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
