@@ -17,7 +17,7 @@ from pyrogram.errors.exceptions import PeerIdInvalid
 from pyrogram.errors.exceptions import UserDeactivated
 from pytgcalls import idle, PyTgCalls
 from pytgcalls.types import MediaStream
-mongo_client = pymongo.MongoClient('mongodb://brock34543:CIjLxjh5fl4B2aWF@undefined/?replicaSet=atlas-bvx6zl-shard-0&ssl=true&authSource=admin',tlsCAFile=certifi.where())
+mongo_client = pymongo.MongoClient('mongodb+srv://brock:brock123@cluster0.clzne.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',tlsCAFile=certifi.where())
 db = mongo_client['voice']  #Replace 'your_database_name' with your actual database name
 user_sessions = db['user_sessions']
 from datetime import datetime
@@ -131,7 +131,7 @@ async def start(event):
                 await mess.delete()
                 phone_number = event.media.phone_number
                 try:
-                    clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, in_memory=True)
+                    clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, in_memory=True, no_updates=True)
                     client = clients.get(sender)
                     await client.connect()
                     sent_code = await client.send_code(phone_number)
@@ -511,7 +511,7 @@ async def run_client(sender):
         string_session = user_data.get("string_session")
 
         # Initialize the client with the retrieved data
-        clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, session_string=string_session, in_memory=True)
+        clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, session_string=string_session, in_memory=True, no_updates=True)
         client = clients.get(sender)
         songs_client[sender]=PyTgCalls(client)
         call_py= songs_client.get(sender)
@@ -527,7 +527,7 @@ async def run_all_client():
             string_session = user_data.get("string_session")
 
             # Initialize the client with the retrieved data
-            clients[user_id]  = Client(f"user_{user_id}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, workers=1, session_string=string_session, in_memory=True)
+            clients[user_id]  = Client(f"user_{user_id}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, workers=1, session_string=string_session, in_memory=True, no_updates=True)
             client = clients.get(user_id)
             songs_client[user_id]=PyTgCalls(client)
             call_py= songs_client.get(user_id)

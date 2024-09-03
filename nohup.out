@@ -235,3 +235,2061 @@ Handlers added successfully.
 <pyrogram.client.Client object at 0x78def8575b80> joined the voice chat.
 <pyrogram.client.Client object at 0x78def841d730> joined the voice chat.
 <pyrogram.client.Client object at 0x78def8452720> joined the voice chat.
+Requirement already satisfied: pip in /home/ubuntu/project-/venv/lib/python3.12/site-packages (24.2)
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 12))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 20))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-eq2u09f9
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-eq2u09f9
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit 7e41628ff523b3fe373b0981a5db441358980dab
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: yt_dlp in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 1)) (2024.8.6)
+Requirement already satisfied: uvloop in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 2)) (0.20.0)
+Requirement already satisfied: lottie in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 3)) (0.7.0)
+Requirement already satisfied: telegraph in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 4)) (2.2.0)
+Requirement already satisfied: pytz in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 5)) (2024.1)
+Requirement already satisfied: pymediainfo in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 6)) (6.1.0)
+Requirement already satisfied: Pillow in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 7)) (10.4.0)
+Requirement already satisfied: py-tgcalls in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 8)) (2.0.2)
+Requirement already satisfied: cryptg in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 9)) (0.4.0)
+Requirement already satisfied: Telethon in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 13)) (1.36.0)
+Requirement already satisfied: TgCrypto in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 14)) (1.2.5)
+Requirement already satisfied: pymongo in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 15)) (4.8.0)
+Requirement already satisfied: requests in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 16)) (2.32.3)
+Requirement already satisfied: lxml in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 18)) (5.3.0)
+Requirement already satisfied: fake_useragent in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 19)) (1.5.1)
+Requirement already satisfied: opencv-python-headless in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 22)) (4.10.0.84)
+Requirement already satisfied: python-ffmpeg in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 23)) (2.0.12)
+Requirement already satisfied: ffmpeg in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from -r requirements.txt (line 24)) (1.4)
+Requirement already satisfied: brotli in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 20)) (1.1.0)
+Requirement already satisfied: certifi in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 20)) (2024.8.30)
+Requirement already satisfied: mutagen in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 20)) (1.47.0)
+Requirement already satisfied: pycryptodomex in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 20)) (3.20.0)
+Requirement already satisfied: urllib3<3,>=1.26.17 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 20)) (2.2.2)
+Requirement already satisfied: websockets>=13.0 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 20)) (13.0.1)
+Requirement already satisfied: aiohttp>=3.9.3 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from py-tgcalls->-r requirements.txt (line 8)) (3.10.5)
+Requirement already satisfied: ntgcalls>=1.2.0 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from py-tgcalls->-r requirements.txt (line 8)) (1.2.1)
+Requirement already satisfied: psutil in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from py-tgcalls->-r requirements.txt (line 8)) (6.0.0)
+Requirement already satisfied: screeninfo in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from py-tgcalls->-r requirements.txt (line 8)) (0.8.1)
+Requirement already satisfied: deprecation in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from py-tgcalls->-r requirements.txt (line 8)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from Pyrogram==2.1.27->-r requirements.txt (line 12)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from Pyrogram==2.1.27->-r requirements.txt (line 12)) (1.7.1)
+Requirement already satisfied: rsa in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from Telethon->-r requirements.txt (line 13)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from pymongo->-r requirements.txt (line 15)) (2.6.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from requests->-r requirements.txt (line 16)) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from requests->-r requirements.txt (line 16)) (3.8)
+Requirement already satisfied: numpy>=1.21.2 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from opencv-python-headless->-r requirements.txt (line 22)) (2.1.0)
+Requirement already satisfied: pyee in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from python-ffmpeg->-r requirements.txt (line 23)) (12.0.0)
+Requirement already satisfied: typing-extensions in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from python-ffmpeg->-r requirements.txt (line 23)) (4.12.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 8)) (2.4.0)
+Requirement already satisfied: aiosignal>=1.1.2 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 8)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 8)) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 8)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 8)) (6.0.5)
+Requirement already satisfied: yarl<2.0,>=1.0 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 8)) (1.9.7)
+Requirement already satisfied: packaging in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from deprecation->py-tgcalls->-r requirements.txt (line 8)) (24.1)
+Requirement already satisfied: pyasn1>=0.1.3 in /home/ubuntu/project-/venv/lib/python3.12/site-packages (from rsa->Telethon->-r requirements.txt (line 13)) (0.6.0)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 563, in <module>
+    bot.loop.run_until_complete(run_all_client())
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project2/main.py", line 523, in run_all_client
+    user_ids = user_sessions.distinct("user_id")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/collection.py", line 3027, in distinct
+    return self._retryable_non_cursor_read(_cmd, session, operation=_Op.DISTINCT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/collection.py", line 1910, in _retryable_non_cursor_read
+    return client._retryable_read(func, self._read_preference_for(s), s, operation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1540, in _retryable_read
+    return self._retry_internal(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/_csot.py", line 108, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1507, in _retry_internal
+    ).run()
+      ^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2353, in run
+    return self._read() if self._is_read else self._write()
+           ^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2483, in _read
+    self._server = self._get_server()
+                   ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2439, in _get_server
+    return self._client._select_server(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1322, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 368, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 346, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 253, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 303, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: undefined:27017: [Errno -3] Temporary failure in name resolution (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66d604c7b25f7c4bf7d76b14, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('undefined', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('undefined:27017: [Errno -3] Temporary failure in name resolution (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 563, in <module>
+    bot.loop.run_until_complete(run_all_client())
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project2/main.py", line 523, in run_all_client
+    user_ids = user_sessions.distinct("user_id")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/collection.py", line 3027, in distinct
+    return self._retryable_non_cursor_read(_cmd, session, operation=_Op.DISTINCT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/collection.py", line 1910, in _retryable_non_cursor_read
+    return client._retryable_read(func, self._read_preference_for(s), s, operation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1540, in _retryable_read
+    return self._retry_internal(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/_csot.py", line 108, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1507, in _retry_internal
+    ).run()
+      ^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2353, in run
+    return self._read() if self._is_read else self._write()
+           ^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2483, in _read
+    self._server = self._get_server()
+                   ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2439, in _get_server
+    return self._client._select_server(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1322, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 368, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 346, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 253, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 303, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: undefined:27017: [Errno -3] Temporary failure in name resolution (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66d60503b7e34a49a833c8b3, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('undefined', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('undefined:27017: [Errno -3] Temporary failure in name resolution (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 563, in <module>
+    bot.loop.run_until_complete(run_all_client())
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project2/main.py", line 523, in run_all_client
+    user_ids = user_sessions.distinct("user_id")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/collection.py", line 3027, in distinct
+    return self._retryable_non_cursor_read(_cmd, session, operation=_Op.DISTINCT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/collection.py", line 1910, in _retryable_non_cursor_read
+    return client._retryable_read(func, self._read_preference_for(s), s, operation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1540, in _retryable_read
+    return self._retry_internal(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/_csot.py", line 108, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1507, in _retry_internal
+    ).run()
+      ^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2353, in run
+    return self._read() if self._is_read else self._write()
+           ^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2483, in _read
+    self._server = self._get_server()
+                   ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2439, in _get_server
+    return self._client._select_server(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1322, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 368, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 346, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 253, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 303, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: undefined:27017: [Errno -3] Temporary failure in name resolution (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66d6053f8423278ac7238b70, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('undefined', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('undefined:27017: [Errno -3] Temporary failure in name resolution (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 563, in <module>
+    bot.loop.run_until_complete(run_all_client())
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project2/main.py", line 523, in run_all_client
+    user_ids = user_sessions.distinct("user_id")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/collection.py", line 3027, in distinct
+    return self._retryable_non_cursor_read(_cmd, session, operation=_Op.DISTINCT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/collection.py", line 1910, in _retryable_non_cursor_read
+    return client._retryable_read(func, self._read_preference_for(s), s, operation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1540, in _retryable_read
+    return self._retry_internal(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/_csot.py", line 108, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1507, in _retry_internal
+    ).run()
+      ^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2353, in run
+    return self._read() if self._is_read else self._write()
+           ^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2483, in _read
+    self._server = self._get_server()
+                   ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2439, in _get_server
+    return self._client._select_server(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1322, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 368, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 346, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 253, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 303, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: undefined:27017: [Errno -3] Temporary failure in name resolution (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66d6057b37745becef7dcd23, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('undefined', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('undefined:27017: [Errno -3] Temporary failure in name resolution (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 563, in <module>
+    bot.loop.run_until_complete(run_all_client())
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project2/main.py", line 523, in run_all_client
+    user_ids = user_sessions.distinct("user_id")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/collection.py", line 3027, in distinct
+    return self._retryable_non_cursor_read(_cmd, session, operation=_Op.DISTINCT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/collection.py", line 1910, in _retryable_non_cursor_read
+    return client._retryable_read(func, self._read_preference_for(s), s, operation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1540, in _retryable_read
+    return self._retry_internal(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/_csot.py", line 108, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1507, in _retry_internal
+    ).run()
+      ^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2353, in run
+    return self._read() if self._is_read else self._write()
+           ^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2483, in _read
+    self._server = self._get_server()
+                   ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2439, in _get_server
+    return self._client._select_server(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1322, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 368, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 346, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 253, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 303, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: undefined:27017: [Errno -3] Temporary failure in name resolution (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66d605b7655cef1ee8431d6b, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('undefined', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('undefined:27017: [Errno -3] Temporary failure in name resolution (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 563, in <module>
+    bot.loop.run_until_complete(run_all_client())
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project2/main.py", line 523, in run_all_client
+    user_ids = user_sessions.distinct("user_id")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/collection.py", line 3027, in distinct
+    return self._retryable_non_cursor_read(_cmd, session, operation=_Op.DISTINCT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/collection.py", line 1910, in _retryable_non_cursor_read
+    return client._retryable_read(func, self._read_preference_for(s), s, operation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1540, in _retryable_read
+    return self._retry_internal(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/_csot.py", line 108, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1507, in _retry_internal
+    ).run()
+      ^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2353, in run
+    return self._read() if self._is_read else self._write()
+           ^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2483, in _read
+    self._server = self._get_server()
+                   ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2439, in _get_server
+    return self._client._select_server(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1322, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 368, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 346, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 253, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 303, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: undefined:27017: [Errno -3] Temporary failure in name resolution (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66d605f36c72748ca306ed45, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('undefined', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('undefined:27017: [Errno -3] Temporary failure in name resolution (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 563, in <module>
+    bot.loop.run_until_complete(run_all_client())
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project2/main.py", line 523, in run_all_client
+    user_ids = user_sessions.distinct("user_id")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/collection.py", line 3027, in distinct
+    return self._retryable_non_cursor_read(_cmd, session, operation=_Op.DISTINCT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/collection.py", line 1910, in _retryable_non_cursor_read
+    return client._retryable_read(func, self._read_preference_for(s), s, operation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1540, in _retryable_read
+    return self._retry_internal(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/_csot.py", line 108, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1507, in _retry_internal
+    ).run()
+      ^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2353, in run
+    return self._read() if self._is_read else self._write()
+           ^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2483, in _read
+    self._server = self._get_server()
+                   ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2439, in _get_server
+    return self._client._select_server(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1322, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 368, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 346, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 253, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 303, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: undefined:27017: [Errno -3] Temporary failure in name resolution (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66d6062f2b7d4921263d7e0a, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('undefined', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('undefined:27017: [Errno -3] Temporary failure in name resolution (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 563, in <module>
+    bot.loop.run_until_complete(run_all_client())
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project2/main.py", line 523, in run_all_client
+    user_ids = user_sessions.distinct("user_id")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/collection.py", line 3027, in distinct
+    return self._retryable_non_cursor_read(_cmd, session, operation=_Op.DISTINCT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/collection.py", line 1910, in _retryable_non_cursor_read
+    return client._retryable_read(func, self._read_preference_for(s), s, operation)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1540, in _retryable_read
+    return self._retry_internal(
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/_csot.py", line 108, in csot_wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1507, in _retry_internal
+    ).run()
+      ^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2353, in run
+    return self._read() if self._is_read else self._write()
+           ^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2483, in _read
+    self._server = self._get_server()
+                   ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 2439, in _get_server
+    return self._client._select_server(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/mongo_client.py", line 1322, in _select_server
+    server = topology.select_server(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 368, in select_server
+    server = self._select_server(
+             ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 346, in _select_server
+    servers = self.select_servers(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 253, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pymongo/topology.py", line 303, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: undefined:27017: [Errno -3] Temporary failure in name resolution (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 66d6066b86c2a098649fd83e, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('undefined', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('undefined:27017: [Errno -3] Temporary failure in name resolution (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 3121 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 3062 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 3001 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 2941 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 2882 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 2821 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 2760 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 2702 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 2641 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 2581 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 2522 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 2461 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 2401 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 2341 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 2281 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 2222 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 2161 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 2101 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 2041 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1981 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1921 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1861 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1800 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1740 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1681 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1622 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1561 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1501 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1441 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1381 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1321 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1262 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1201 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1141 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1081 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 1021 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 962 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 901 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 841 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 781 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 721 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 662 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 601 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 541 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 481 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 421 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 361 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 301 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 241 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 181 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 121 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Traceback (most recent call last):
+  File "/home/ubuntu/project2/main.py", line 29, in <module>
+    bot.start(bot_token=BOT_TOKEN)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 128, in start
+    else self.loop.run_until_complete(coro)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 177, in _start
+    await self.sign_in(bot_token=bot_token)
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/auth.py", line 357, in sign_in
+    result = await self(request)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/telethon/client/users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.FloodWaitError: A wait of 61 seconds is required (caused by ImportBotAuthorizationRequest)
+Starting zipper.py...
+/home/ubuntu/project2/main.py:279: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+/home/ubuntu/project2/main.py:324: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+/home/ubuntu/project2/main.py:407: SyntaxWarning: invalid escape sequence '\d'
+  @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+Task exception was never retrieved
+future: <Task finished name='Task-95' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Task exception was never retrieved
+future: <Task finished name='Task-21397' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Task exception was never retrieved
+future: <Task finished name='Task-21574' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Task exception was never retrieved
+future: <Task finished name='Task-21670' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Task exception was never retrieved
+future: <Task finished name='Task-21814' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Task exception was never retrieved
+future: <Task finished name='Task-21932' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Task exception was never retrieved
+future: <Task finished name='Task-22049' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Task exception was never retrieved
+future: <Task finished name='Task-22207' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Task exception was never retrieved
+future: <Task finished name='Task-22339' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Task exception was never retrieved
+future: <Task finished name='Task-22668' coro=<Client.handle_updates() done, defined at /home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/project-/venv/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
