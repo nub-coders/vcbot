@@ -1,3 +1,4 @@
+certifi
 pyromod
 yt_dlp
 uvloop

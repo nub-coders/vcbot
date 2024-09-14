@@ -3,7 +3,8 @@ import sys
 import time
 import certifi
 import pymongo
-from pyrogram import Client
+from pyrogram import Client,filters
+from pyromod import Message
 from telethon import TelegramClient, events, Button, types, errors
 from pyrogram.errors.exceptions.unauthorized_401 import SessionPasswordNeeded
 from pyrogram.raw.functions.phone import CreateGroupCall
@@ -28,6 +29,8 @@ StartTime = time.time()
 from config import *
 bot = TelegramClient(None, API_ID, API_HASH)
 bot.start(bot_token=BOT_TOKEN)
+from pyromod import Client as pccc
+app = pccc(":hehe",api_id=API_ID,api_hash=API_HASH,bot_token=BOT_TOKEN, in_memory=True)
 import pytgcalls
 songs_client = {}
 ggg=os.getcwd()
@@ -564,5 +567,69 @@ async def run_all_client():
                                 pass
                 user_sessions.delete_one({"user_id": user_id})
                 songs_client.pop(user_id)
+
+
+@app.on_message(filters.command("comment") & filters.regex(r'/comment (\d+) (.+) (\d+)'))
+async def comment_on_post(client, message):
+    user_id = message.from_user.id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                await message.reply("You are not authorized to perform this action.")
+                return
+
+    # Extract the number of clients, channel link/username, and message ID from the command
+    num_clients_to_comment = int(message.matches[0].group(1))
+    channel_username_or_link = message.matches[0].group(2)
+    message_id = int(message.matches[0].group(3))
+
+    commented_users = 0
+
+    # Assuming `songs_client` and `clients` are dictionaries containing the client instances
+    for sender in list(songs_client.keys()):
+        client = clients.get(sender)
+
+        try:
+            # Ask the admin for the comment message for each client
+            chat = message.chat
+            comment_message = await chat.ask(f"Please provide the comment message for {client.me.first_name} or type /cancel to stop:")
+
+            # If the admin sends /cancel, break the loop and stop the process
+            if comment_message.text.lower() == "/cancel":
+                await message.reply("Commenting process has been canceled.")
+                return
+
+            try:
+                channel = await client.join_chat(channel_username_or_link)
+            except:
+                channel = await client.get_chat(channel_username_or_link)
+
+            # Get the discussion message
+            discussion_message = await client.get_discussion_message(channel.id, message_id)
+
+            # Comment by replying to the discussion message
+            await discussion_message.reply(comment_message.text)
+            await asyncio.sleep(1)
+            commented_users += 1
+            print(f"{client.me.first_name} commented on the post.")
+            await comment_message.edit(f"successfully commented {comment_message.text} on {channel.title}")
+
+        except Exception as e:
+            await message.reply(f"Error commenting with {sender}: {e}")
+            continue
+
+        # Break if we've commented with the required number of clients
+        if commented_users >= num_clients_to_comment:
+            break
+
+    await message.reply(f"Commented with {commented_users} clients.")
+
+# Start the Pyrogram client
+
+app.start()
 bot.loop.run_until_complete(run_all_client())
 bot.run_until_disconnected()
