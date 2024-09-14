@@ -618,7 +618,7 @@ async def comment_on_post(client, message):
     # Initialize or reset the admin's comment list
     admin_comments[user_id] = []
 
-    await message.reply("Please send the comments one by one before 60 seconds. Type /done when you are finished or /cancel to cancel.")
+    await message.reply("Please send the comments one by one. Type /done when you are finished or /cancel to cancel.")
 
     try:
         # Wait for messages from the admin within a timeout of 60 seconds
@@ -635,7 +635,7 @@ async def comment_on_post(client, message):
             else:
                 # Store the comment in the dictionary for this admin
                 admin_comments[user_id].append(comment_message.text)
-                await message.reply(f"Added comment: {comment_message.text}")
+                await comment_message.reply(f"Added comment: {comment_message.text}")
 
     except asyncio.TimeoutError:
         await message.reply("Timeout reached.")
@@ -664,10 +664,9 @@ async def comment_on_post(client, message):
 
             # Comment by replying to the discussion message
             await discussion_message.reply(comment)
-            await asyncio.sleep(1)
+            await asyncio.sleep(30)
             commented_users += 1
             print(f"{client.me.first_name} commented on the post.")
-            await message.reply(f"Successfully commented '{comment}' on {channel.title}")
 
         except Exception as e:
             await message.reply(f"Error commenting with {sender}: {e}")
