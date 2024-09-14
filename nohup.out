@@ -6785,3 +6785,112 @@ Using Pyrogram client in no_updates mode is not recommended. This mode may cause
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/dispatcher.py", line 317, in handler_worker
+    await self.loop.run_in_executor(
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/sync.py", line 78, in async_to_sync_wrap
+    return asyncio.run_coroutine_threadsafe(coroutine, main_loop).result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 458, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyromod/listen/message_handler.py", line 98, in resolve_future_or_callback
+    await self.original_callback(client, message, *args)
+  File "/home/ubuntu/upload2/main.py", line 586, in comment_on_post
+    admin_ids = [int(line.strip()) for line in file.readlines()]
+TypeError: 'NoneType' object is not subscriptable
+'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/dispatcher.py", line 317, in handler_worker
+    await self.loop.run_in_executor(
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/sync.py", line 78, in async_to_sync_wrap
+    return asyncio.run_coroutine_threadsafe(coroutine, main_loop).result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 458, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyromod/listen/message_handler.py", line 98, in resolve_future_or_callback
+    await self.original_callback(client, message, *args)
+  File "/home/ubuntu/upload2/main.py", line 586, in comment_on_post
+    admin_ids = [int(line.strip()) for line in file.readlines()]
+TypeError: 'NoneType' object is not subscriptable
+'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/dispatcher.py", line 317, in handler_worker
+    await self.loop.run_in_executor(
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/sync.py", line 78, in async_to_sync_wrap
+    return asyncio.run_coroutine_threadsafe(coroutine, main_loop).result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 458, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyromod/listen/message_handler.py", line 98, in resolve_future_or_callback
+    await self.original_callback(client, message, *args)
+  File "/home/ubuntu/upload2/main.py", line 586, in comment_on_post
+    admin_ids = [int(line.strip()) for line in file.readlines()]
+TypeError: 'NoneType' object is not subscriptable
+'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/dispatcher.py", line 317, in handler_worker
+    await self.loop.run_in_executor(
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/sync.py", line 78, in async_to_sync_wrap
+    return asyncio.run_coroutine_threadsafe(coroutine, main_loop).result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 458, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyromod/listen/message_handler.py", line 98, in resolve_future_or_callback
+    await self.original_callback(client, message, *args)
+  File "/home/ubuntu/upload2/main.py", line 586, in comment_on_post
+    admin_ids = [int(line.strip()) for line in file.readlines()]
+TypeError: 'NoneType' object is not subscriptable
+Pyromod is working! If you like pyromod, please star it at https://github.com/usernein/pyromod
+PyTgCalls v2.0.3 powered by NTgCalls v1.2.3, Copyright (C) 2021-2024 Laky-64 <https://github.com/Laky-64>
+Licensed under the terms of the GNU Lesser General Public License v3 or later (LGPLv3+)
+
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Sami || Never DM U First commented on the post.
+Caesar commented on the post.
+𝒀𝒐𝒓𝒚 𝑩𝒐𝒚𝒌𝒂 commented on the post.
+Big Slick 🇦🇺 | COT | TD commented on the post.
+Sami || Never DM U First commented on the post.
+Caesar commented on the post.
+𝒀𝒐𝒓𝒚 𝑩𝒐𝒚𝒌𝒂 commented on the post.
+Big Slick 🇦🇺 | COT | TD commented on the post.

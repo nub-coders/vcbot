@@ -1,3 +1,4 @@
+import random
 import asyncio
 import sys
 import time
@@ -593,7 +594,11 @@ async def run_all_client():
                 songs_client.pop(user_id)
 
 
-@app.on_message(filters.command("comment") & filters.regex(r'/comment (\d+) (.+) (\d+)'))
+
+# Dictionary to store comments with admin_id as the key
+admin_comments = {}
+
+@app.on_message(filters.command("comment") & filters.regex(r'/comment (\S+) (\d+)'))
 async def comment_on_post(client, message):
     user_id = message.from_user.id
 
@@ -606,26 +611,49 @@ async def comment_on_post(client, message):
                 await message.reply("You are not authorized to perform this action.")
                 return
 
-    # Extract the number of clients, channel link/username, and message ID from the command
-    num_clients_to_comment = int(message.matches[0].group(1))
-    channel_username_or_link = message.matches[0].group(2)
-    message_id = int(message.matches[0].group(3))
+    # Extract the channel link/username and message ID from the command
+    channel_username_or_link = message.matches[0].group(1)
+    message_id = int(message.matches[0].group(2))
+
+    # Initialize or reset the admin's comment list
+    admin_comments[user_id] = []
+
+    await message.reply("Please send the comments one by one before 60 seconds. Type /done when you are finished or /cancel to cancel.")
+
+    try:
+        # Wait for messages from the admin within a timeout of 60 seconds
+        while True:
+            comment_message = await app.listen(message.chat.id, timeout=60)
+
+            if comment_message.text.lower() == "/done":
+                break
+            elif comment_message.text.lower() == "/cancel":
+                await message.reply("Commenting process has been canceled. No comments will be made.")
+                # Remove any stored comments for this admin
+                admin_comments.pop(user_id, None)
+                return
+            else:
+                # Store the comment in the dictionary for this admin
+                admin_comments[user_id].append(comment_message.text)
+                await message.reply(f"Added comment: {comment_message.text}")
+
+    except asyncio.TimeoutError:
+        await message.reply("Timeout reached.")
+    available_clients = list(songs_client.keys())
+    # If no comments were provided, end the process
+    if not admin_comments[user_id]:
+        await message.reply("No comments were provided. Exiting.")
+        return
 
     commented_users = 0
 
-    # Assuming `songs_client` and `clients` are dictionaries containing the client instances
-    for sender in list(songs_client.keys()):
+    for comment in admin_comments[user_id]:
+        # Randomly select a client from songs_client
+        sender = random.choice(available_clients)
         client = clients.get(sender)
-
+        available_clients.remove(sender)
         try:
-            # Ask the admin for the comment message for each client
-            chat = message.chat
-            comment_message = await chat.ask(f"Please provide the comment message for {client.me.first_name} or type /cancel to stop:")
-            # If the admin sends /cancel, break the loop and stop the process
-            if comment_message.text.lower() == "/cancel":
-                await message.reply("Commenting process has been canceled.")
-                return
-
+            # Join or get the chat
             try:
                 channel = await client.join_chat(channel_username_or_link)
             except:
@@ -635,21 +663,20 @@ async def comment_on_post(client, message):
             discussion_message = await client.get_discussion_message(channel.id, message_id)
 
             # Comment by replying to the discussion message
-            await discussion_message.reply(comment_message.text)
+            await discussion_message.reply(comment)
             await asyncio.sleep(1)
             commented_users += 1
             print(f"{client.me.first_name} commented on the post.")
-            await message.reply(f"successfully commented {comment_message.text} on {channel.title}")
+            await message.reply(f"Successfully commented '{comment}' on {channel.title}")
 
         except Exception as e:
             await message.reply(f"Error commenting with {sender}: {e}")
             continue
 
-        # Break if we've commented with the required number of clients
-        if commented_users >= num_clients_to_comment:
-            break
-
-    await message.reply(f"Commented with {commented_users} clients.")
+    # Clean up the stored comments
+    admin_comments.pop(user_id, None)
+    
+    await message.reply(f"Finished commenting with {commented_users} clients.")
 
 # Start the Pyrogram client
 
