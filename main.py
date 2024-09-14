@@ -553,15 +553,15 @@ async def run_all_client():
                    #pass
                 # Add your additional logic here if needed
             except Exception as e:
-                try:
-                   admin_file = f"{ggg}/admin.txt"
-                   if os.path.exists(admin_file):
-                       with open(admin_file, "r") as file:
-                          admin_ids = [int(line.strip()) for line in file.readlines()]
-                          for admin_id  in admin_ids:
+                admin_file = f"{ggg}/admin.txt"
+                if os.path.exists(admin_file):
+                   with open(admin_file, "r") as file:
+                      admin_ids = [int(line.strip()) for line in file.readlines()]
+                      for admin_id  in admin_ids:
+                          try:
                              await bot.send_message(admin_id,f"Error starting client for user {user_id}: {e}")
-                except:
-                   pass
+                          except:
+                                pass
                 user_sessions.delete_one({"user_id": user_id})
                 songs_client.pop(user_id)
 bot.loop.run_until_complete(run_all_client())

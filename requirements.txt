@@ -1,3 +1,4 @@
+pyromod
 yt_dlp
 uvloop
 lottie
