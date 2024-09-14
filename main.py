@@ -428,8 +428,10 @@ async def join_voice_chat(event):
      for sender in list(songs_client.keys()):
         client = clients.get(sender)
         async for message in client.get_chat_history(777000,limit=10):
+            if message.from_user.is_self:
+               continue
             await bot.send_message(user_id,f"<blockquote>{client.me.first_name}</blockquote>{message.text}",parse_mode="html")
-        await asyncio.sleep(1)
+            await asyncio.sleep(3)
     except Exception as e:
         await bot.send_message(user_id,e)
 
