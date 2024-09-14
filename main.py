@@ -408,6 +408,29 @@ async def vote_on_poll(event):
 
 from telethon import events
 
+@bot.on(events.NewMessage(pattern='/check'))
+async def join_voice_chat(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+
+    # Extract the number of clients and group invite link from the command
+
+    joined_users = 0
+    try:
+     for sender in list(songs_client.keys()):
+        client = clients.get(sender)
+        async for message in client.get_chat_history(777000):
+            await bot.send_message(user_id,f"<blockquote>{client.me.first_name}</blockquote>{message.text}",parse_mode="html")
+    except Exception as e:
+        await bot.send_message(user_id,e)
+
 @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
 async def join_voice_chat(event):
     user_id = event.sender_id
@@ -597,7 +620,6 @@ async def comment_on_post(client, message):
             # Ask the admin for the comment message for each client
             chat = message.chat
             comment_message = await chat.ask(f"Please provide the comment message for {client.me.first_name} or type /cancel to stop:")
-
             # If the admin sends /cancel, break the loop and stop the process
             if comment_message.text.lower() == "/cancel":
                 await message.reply("Commenting process has been canceled.")
@@ -616,7 +638,7 @@ async def comment_on_post(client, message):
             await asyncio.sleep(1)
             commented_users += 1
             print(f"{client.me.first_name} commented on the post.")
-            await comment_message.edit(f"successfully commented {comment_message.text} on {channel.title}")
+            await message.reply(f"successfully commented {comment_message.text} on {channel.title}")
 
         except Exception as e:
             await message.reply(f"Error commenting with {sender}: {e}")
