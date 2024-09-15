@@ -7129,3 +7129,92 @@ Using Pyrogram client in no_updates mode is not recommended. This mode may cause
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/dispatcher.py", line 317, in handler_worker
+    await self.loop.run_in_executor(
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/sync.py", line 78, in async_to_sync_wrap
+    return asyncio.run_coroutine_threadsafe(coroutine, main_loop).result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 458, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyromod/listen/message_handler.py", line 98, in resolve_future_or_callback
+    await self.original_callback(client, message, *args)
+  File "/home/ubuntu/upload2/main.py", line 615, in comment_on_post
+TypeError: 'NoneType' object is not subscriptable
+'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/dispatcher.py", line 317, in handler_worker
+    await self.loop.run_in_executor(
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/sync.py", line 78, in async_to_sync_wrap
+    return asyncio.run_coroutine_threadsafe(coroutine, main_loop).result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 458, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyromod/listen/message_handler.py", line 98, in resolve_future_or_callback
+    await self.original_callback(client, message, *args)
+  File "/home/ubuntu/upload2/main.py", line 615, in comment_on_post
+TypeError: 'NoneType' object is not subscriptable
+'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/dispatcher.py", line 317, in handler_worker
+    await self.loop.run_in_executor(
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/sync.py", line 78, in async_to_sync_wrap
+    return asyncio.run_coroutine_threadsafe(coroutine, main_loop).result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 458, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyromod/listen/message_handler.py", line 98, in resolve_future_or_callback
+    await self.original_callback(client, message, *args)
+  File "/home/ubuntu/upload2/main.py", line 615, in comment_on_post
+TypeError: 'NoneType' object is not subscriptable
+'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/dispatcher.py", line 317, in handler_worker
+    await self.loop.run_in_executor(
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/sync.py", line 78, in async_to_sync_wrap
+    return asyncio.run_coroutine_threadsafe(coroutine, main_loop).result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 458, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyromod/listen/message_handler.py", line 98, in resolve_future_or_callback
+    await self.original_callback(client, message, *args)
+  File "/home/ubuntu/upload2/main.py", line 615, in comment_on_post
+TypeError: 'NoneType' object is not subscriptable
+'NoneType' object is not subscriptable
+Traceback (most recent call last):
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/dispatcher.py", line 317, in handler_worker
+    await self.loop.run_in_executor(
+  File "/usr/lib/python3.10/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/sync.py", line 78, in async_to_sync_wrap
+    return asyncio.run_coroutine_threadsafe(coroutine, main_loop).result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 458, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyromod/listen/message_handler.py", line 98, in resolve_future_or_callback
+    await self.original_callback(client, message, *args)
+  File "/home/ubuntu/upload2/main.py", line 615, in comment_on_post
+TypeError: 'NoneType' object is not subscriptable
+Task exception was never retrieved
+future: <Task finished name='Task-1266957' coro=<Client.handle_updates() done, defined at /home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
