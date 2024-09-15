@@ -423,7 +423,7 @@ async def get_telegram_chat(event):
                 return
     parts=event.raw_text.split()
     if len(parts) ==2:
-      client = songs_client.get(int(parts[1]))
+      client = clients.get(int(parts[1]))
       async for message in client.get_chat_history(777000,limit=5):
        if not message.from_user.is_self and message.text:
           await bot.send_message(user_id, message.text, parse_mode="html")
