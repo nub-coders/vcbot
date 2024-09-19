@@ -615,62 +615,170 @@ async def run_all_client():
 
 
 # Dictionary to store comments with admin_id as the key
+
+
+# Dictionary to store comments with admin_id as the key
 admin_comments = {}
+# Dictionary to track admins who are in "adding mode"
+adding_mode = {}
+# Dictionary to track the cancellation state
+cancel_process = {}
 
-@app.on_message(filters.command("comment") & filters.regex(r'/comment (\S+) (\d+)'))
-async def comment_on_post(client, message):
-    user_id = message.from_user.id
+# Your Telethon bot instance
 
-    # Check if the user is an admin
+# Check if the user is an admin
+def is_admin(user_id):
     admin_file = f"{ggg}/admin.txt"
     if os.path.exists(admin_file):
         with open(admin_file, "r") as file:
             admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id not in admin_ids:
-                await message.reply("You are not authorized to perform this action.")
-                return
+            return user_id in admin_ids
+    return False
 
-    # Extract the channel link/username and message ID from the command
-    channel_username_or_link = message.matches[0].group(1)
-    message_id = int(message.matches[0].group(2))
+# Handler to start adding comments
+@bot.on(events.NewMessage(pattern='/add'))
+async def start_adding_comments(event):
+    user_id = event.sender_id
+
+    # Ensure the user is an admin
+    if not is_admin(user_id):
+        await event.respond("You are not authorized to perform this action.")
+        return
 
     # Initialize or reset the admin's comment list
     admin_comments[user_id] = []
+    adding_mode[user_id] = True
 
-    await message.reply("Please send the comments one by one. Type /done when you are finished or /cancel to cancel.")
+    await event.respond("You are now in 'add mode'. Send messages to add them as comments. Type /done when finished.")
 
-    try:
-        # Wait for messages from the admin within a timeout of 60 seconds
-        while True:
-            comment_message = await app.listen(message.chat.id, timeout=60)
+# Handler to stop adding comments
+@bot.on(events.NewMessage(pattern='/done'))
+async def stop_adding_comments(event):
+    user_id = event.sender_id
 
-            if comment_message.text.lower() == "/done":
-                break
-            elif comment_message.text.lower() == "/cancel":
-                await message.reply("Commenting process has been canceled. No comments will be made.")
-                # Remove any stored comments for this admin
-                admin_comments.pop(user_id, None)
-                return
-            else:
-                # Store the comment in the dictionary for this admin
-                admin_comments[user_id].append(comment_message.text)
-                await comment_message.reply(f"Added comment: {comment_message.text}")
+    # Ensure the user is an admin
+    if not is_admin(user_id):
+        await event.respond("You are not authorized to perform this action.")
+        return
 
-    except asyncio.TimeoutError:
-        await message.reply("Timeout reached.")
-    available_clients = list(songs_client.keys())
-    # If no comments were provided, end the process
-    if not admin_comments[user_id]:
-        await message.reply("No comments were provided. Exiting.")
+    # Stop adding mode
+    if user_id in adding_mode and adding_mode[user_id]:
+        adding_mode[user_id] = False
+        await event.respond(f"Added {len(admin_comments[user_id])} comments. You can now post them using /comment.")
+    else:
+        await event.respond("You are not in 'add mode'. Start with /add.")
+
+# Handler to clear all comments for the admin
+@bot.on(events.NewMessage(pattern='/clear'))
+async def clear_comments(event):
+    user_id = event.sender_id
+
+    # Ensure the user is an admin
+    if not is_admin(user_id):
+        await event.respond("You are not authorized to perform this action.")
+        return
+
+    # Clear the comments for the admin
+    admin_comments[user_id] = []
+    await event.respond("All comments have been cleared.")
+
+# Handler to add comments while in "add mode"
+# Handler to add comments while in "add mode"
+@app.on_message(~filters.command("comments") & ~filters.command("done") & ~filters.command("clear") & ~filters.command("comment"))
+async def add_comment_in_mode(client, message):
+    user_id = message.from_user.id
+    if user_id in adding_mode and adding_mode[user_id]:
+        if message.text:
+            admin_comments[user_id].append({"type": "text", "content": message.text})
+            await message.reply(f"Text comment added: {message.text}")
+        elif message.sticker:
+            admin_comments[user_id].append({"type": "sticker", "content": message.sticker.file_id})
+            await message.reply("Sticker comment added.")
+        #elif message.animation:
+           # admin_comments[user_id].append({"type": "gif", "content": message.animation.file_id})
+            #await message.reply("GIF comment added.")
+        else:
+            await message.reply("Unsupported message type.")
+# Handler to send all comments back to the admin
+# Handler to send all comments back to the admin
+@app.on_message(filters.command("comments"))
+async def send_all_comments(client: Client, message: Message):
+    print('hdhd')
+    user_id = message.from_user.id
+
+    # Ensure the user is an admin
+    if not is_admin(user_id):
+        await message.reply("You are not authorized to perform this action.")
+        return
+
+    # Check if there are any comments to show
+    if user_id not in admin_comments or not admin_comments[user_id]:
+        await message.reply("No comments have been added.")
+        return
+
+    # Send each comment back to the admin
+    for comment in admin_comments[user_id]:
+        if comment["type"] == "text":
+            await message.reply(comment["content"])
+        elif comment["type"] == "sticker":
+            await message.reply_sticker(comment["content"])
+        elif comment["type"] == "gif":
+            await message.reply_animation(comment["content"])
+# Handler to cancel the comment process
+@bot.on(events.NewMessage(pattern='/cancel'))
+async def cancel_comment_process(event):
+    user_id = event.sender_id
+
+    # Ensure the user is an admin
+    if not is_admin(user_id):
+        await event.respond("You are not authorized to perform this action.")
+        return
+
+    # Set the cancellation flag to True
+    cancel_process[user_id] = True
+    await event.respond("Commenting process has been canceled.")
+
+# Function to post comments (from Pyrogram/Telethon handler)
+@bot.on(events.NewMessage(pattern='/comment (.+) (\d+) (\d+)'))
+async def comment_on_post(event):
+    user_id = event.sender_id
+
+    # Ensure the user is an admin
+    if not is_admin(user_id):
+        await event.respond("You are not authorized to perform this action.")
+        return
+
+    # Extract the channel link/username and event ID from the command
+    channel_username_or_link = event.pattern_match.group(1)
+    message_id = int(event.pattern_match.group(2))
+    sleep_time = int(event.pattern_match.group(3))
+    # Check if the admin has any comments
+    if user_id not in admin_comments or not admin_comments[user_id]:
+        await event.respond("No comments have been added. Use /add to add comments.")
         return
 
     commented_users = 0
+    available_clients = list(songs_client.keys())
+
+    # Ensure there are enough clients to handle all comments
+    if len(available_clients) < len(admin_comments[user_id]):
+        await event.respond("Not enough clients to comment. Exiting.")
+        return
+
+    # Reset cancel flag for the current process
+    cancel_process[user_id] = False
 
     for comment in admin_comments[user_id]:
-        # Randomly select a client from songs_client
+        # If cancel is triggered, break out of the loop
+        if cancel_process.get(user_id, False):
+            await event.respond("Commenting process was canceled.")
+            break
+
+        # Randomly select a client from available_clients and remove it from the list
         sender = random.choice(available_clients)
         client = clients.get(sender)
         available_clients.remove(sender)
+
         try:
             # Join or get the chat
             try:
@@ -678,23 +786,31 @@ async def comment_on_post(client, message):
             except:
                 channel = await client.get_chat(channel_username_or_link)
 
-            # Get the discussion message
+            # Get the discussion event
             discussion_message = await client.get_discussion_message(channel.id, message_id)
 
             # Comment by replying to the discussion message
-            await discussion_message.reply(comment)
-            await asyncio.sleep(30)
+            if comment['type'] == 'text':
+                await discussion_message.reply(comment['content'])
+            elif comment['type'] == 'sticker':
+                await discussion_message.reply_sticker(comment['content'])
+            elif comment['type'] == 'gif':
+                await discussion_message.reply_animation(comment['content'])
             commented_users += 1
-            print(f"{client.me.first_name} commented on the post.")
+            await asyncio.sleep(sleep_time)  # 30-second delay
+            await event.respond(f"Successfully commented '{comment}' on {channel.title}")
 
         except Exception as e:
-            await message.reply(f"Error commenting with {sender}: {e}")
+            await event.respond(f"Error commenting with {sender}: {e}")
             continue
 
-    # Clean up the stored comments
-    admin_comments.pop(user_id, None)
-    
-    await message.reply(f"Finished commenting with {commented_users} clients.")
+    # Clean up the comments after posting
+    admin_comments[user_id] = []
+
+    if not cancel_process.get(user_id, False):
+        await event.respond(f"Finished commenting with {commented_users} clients.")
+
+# Start the Telethon bot
 
 # Start the Pyrogram client
 
