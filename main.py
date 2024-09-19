@@ -1,3 +1,4 @@
+import os
 import random
 import asyncio
 import sys
@@ -680,6 +681,9 @@ async def clear_comments(event):
 
     # Clear the comments for the admin
     admin_comments[user_id] = []
+    user_path='downloads'
+    if os.path.exists(user_path):
+        shutil.rmtree(user_path,ignore_errors=True)
     await event.respond("All comments have been cleared.")
 
 # Handler to add comments while in "add mode"
@@ -694,9 +698,10 @@ async def add_comment_in_mode(client, message):
         elif message.sticker:
             admin_comments[user_id].append({"type": "sticker", "content": message.sticker.file_id})
             await message.reply("Sticker comment added.")
-        #elif message.animation:
-           # admin_comments[user_id].append({"type": "gif", "content": message.animation.file_id})
-            #await message.reply("GIF comment added.")
+        elif message.animation:
+           file_path = await message.download()
+           admin_comments[user_id].append({"type": "gif", "content": file_path})
+           await message.reply("GIF comment added.")
         else:
             await message.reply("Unsupported message type.")
 # Handler to send all comments back to the admin
@@ -736,6 +741,9 @@ async def cancel_comment_process(event):
 
     # Set the cancellation flag to True
     cancel_process[user_id] = True
+    user_path='downloads'
+    if os.path.exists(user_path):
+        shutil.rmtree(user_path,ignore_errors=True)
     await event.respond("Commenting process has been canceled.")
 
 # Function to post comments (from Pyrogram/Telethon handler)
@@ -796,6 +804,7 @@ async def comment_on_post(event):
                 await discussion_message.reply_sticker(comment['content'])
             elif comment['type'] == 'gif':
                 await discussion_message.reply_animation(comment['content'])
+                os.remove(comment['content'])
             commented_users += 1
             await asyncio.sleep(sleep_time)  # 30-second delay
             await event.respond(f"Successfully commented '{comment}' on {channel.title}")
