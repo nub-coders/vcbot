@@ -688,7 +688,7 @@ async def clear_comments(event):
 
 # Handler to add comments while in "add mode"
 # Handler to add comments while in "add mode"
-@app.on_message(~filters.command("comments") & ~filters.command("done") & ~filters.command("clear") & ~filters.command("comment"))
+@app.on_message(~filters.command("comments") & ~filters.command("done") & ~filters.command("clear") & ~filters.command("comment") & ~filters.command("add"))
 async def add_comment_in_mode(client, message):
     user_id = message.from_user.id
     if user_id in adding_mode and adding_mode[user_id]:
