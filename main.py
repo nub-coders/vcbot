@@ -246,41 +246,30 @@ async def logout(event):
 
 @bot.on(events.NewMessage(pattern='/start'))
 async def start_command(event):
-    start_message = """
-    **👋 Welcome to the Voice Chat Management Bot!**
+    user_id = event.sender_id
+    response = (
+        "Welcome! Here are the commands you can use:\n\n"
+        "1. **/login** - Log in to the bot as a client.\n"
+        "   Usage: `/login`\n\n"
+        "2. **/logout** - Log out from the bot.\n"
+        "   Usage: `/logout`\n\n"
+        "3. **/activers** - Show the list of active clients in the bot.\n"
+        "   Usage: `/activers`\n\n"
+        "4. **/add** - Start adding comments.\n"
+        "5. **/done** - Stop adding comments.\n"
+        "6. **/clear** - Clear all comments.\n"
+        "7. **/comments** - Show all added comments.\n"
+        "8. **/comment <channel> <message_id> <delay>** - Post comments to a channel.\n"
+        "9. **/ping** - Check the bot's ping and uptime.\n"
+        "10. **/vote <index> <num_clients> <message_id> <join_url> <delay>** - Vote on a poll with multiple clients.\n"
+        "11. **/bvote <index> <num_clients> <message_id> <join_url> <delay>** - Vote on a button poll.\n"
+        "12. **/leave <num_clients> <group_identifier>** - Leave a voice chat.\n"
+        "13. **/join <num_clients> <group_invite_link>** - Join a voice chat.\n"
+        "14. **/reboot** - Restart the bot.\n"
+        "15. **/cancel** - Cancel the current commenting process.\n"
+    )
+    await event.respond(response)
 
-    This bot helps you manage voice chats, handle user logins, and more. Below is a list of commands you can use:
-
-    **Commands:**
-
-    **/login** - Start the login process to connect your Telegram account.
-
-    **/logout** - Log out of your session.
-
-    **/join <number_of_clients> <group_invite_link_or_username>** - Makes the specified number of clients join the voice chat in the given group.
-
-    **/leave <number_of_clients> <group_invite_link_or_username>** - Makes the specified number of clients leave the voice chat in the given group.
-
-    **/activers** - Display a list of all active clients with their Telegram user IDs and names.
-
-    **/start** - Shows this message with all available commands.
-
-    **Rules & Guidelines:**
-
-    🚨 **Important Rules and Guidelines** 🚨
-
-    1. ❌ **No Spamming**: Please do not use the bot to send spam messages. This can lead to your account being restricted or banned.
-    2. 📵 **Respect Copyrights**: Do not use this bot to download or distribute copyrighted materials. Doing so is against the law and can result in serious consequences.
-    3. ⚠️ **Your Responsibility**: If anything happens to your account as a result of misuse, this bot is not responsible. Use it wisely and responsibly.
-
-    By using this bot, you agree to these terms. Let's keep things fun and safe! 😊
-
-    **Have fun and feel free to explore the bot's features! 🚀**
-    """
-
-    await event.reply(start_message)
-
-# Add this handler to the bot
 
 @bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
 async def leave_voice_chat(event):
@@ -385,6 +374,7 @@ async def vote_on_poll(event):
     num_clients_to_vote = int(event.pattern_match.group(2))  # Number of clients to vote
     message_id = int(event.pattern_match.group(3))       # The message URL containing the poll)
     join_url = event.pattern_match.group(4)          # The group/channel join URL
+    sleep_time = int(event.pattern_match.group(5))
     if poll_index < 0 or poll_index > 9:
        return await event.reply("Invalid poll index. Please provide a number between 0 and 9.")
     voted_users = 0
@@ -396,8 +386,10 @@ async def vote_on_poll(event):
              chat = await client.get_chat(join_url)
         try:
                     await client.vote_poll(chat.id, message_id, poll_index)
+                    await client.read_chat_history(chat.id,message_id)
                     voted_users += 1
                     await event.reply(f"Client {sender} successfully voted for option {poll_index + 1}.")
+                    await asyncio.sleep(sleep_time)
                     if voted_users >= num_clients_to_vote:
                         break
         except Exception as e:
@@ -747,7 +739,7 @@ async def cancel_comment_process(event):
     await event.respond("Commenting process has been canceled.")
 
 # Function to post comments (from Pyrogram/Telethon handler)
-@bot.on(events.NewMessage(pattern=r'/bvote (\d+) (\d+) (\d+) (.+)'))
+@bot.on(events.NewMessage(pattern=r'/bvote (\d+) (\d+) (\d+) (.+) (\d+)'))
 async def vote_on_button(event):
     user_id = event.sender_id
 
@@ -762,6 +754,7 @@ async def vote_on_button(event):
     num_clients_to_vote = int(event.pattern_match.group(2))  # Number of clients to vote
     message_id = int(event.pattern_match.group(3))       # The message URL containing the poll)
     join_url = event.pattern_match.group(4)          # The group/channel join URL
+    sleep_time = int(event.pattern_match.group(5))
     voted_users = 0
     for sender in list(songs_client.keys()):
         client = clients.get(sender)
@@ -771,9 +764,11 @@ async def vote_on_button(event):
              chat = await client.get_chat(join_url)
         try:
                     dessage = await client.get_messages(chat.id,message_id)
+                    await client.read_chat_history(chat.id,message_id)
                     await dessage.click(poll_index)
                     voted_users += 1
                     await event.reply(f"Client {sender} successfully clickd for option {poll_index +1}.")
+                    await asyncio.sleep(sleep_time)
                     if voted_users >= num_clients_to_vote:
                         break
         except Exception as e:
@@ -833,6 +828,7 @@ async def comment_on_post(event):
 
             # Get the discussion event
             discussion_message = await client.get_discussion_message(channel.id, message_id)
+            await client.read_chat_history(channel.id,message_id)
 
             # Comment by replying to the discussion message
             if comment['type'] == 'text':
