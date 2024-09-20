@@ -261,12 +261,13 @@ async def start_command(event):
         "7. **/comments** - Show all added comments.\n"
         "8. **/comment <channel> <message_id> <delay>** - Post comments to a channel.\n"
         "9. **/ping** - Check the bot's ping and uptime.\n"
-        "10. **/vote <index> <num_clients> <message_id> <join_url> <delay>** - Vote on a poll with multiple clients.\n"
-        "11. **/bvote <index> <num_clients> <message_id> <join_url> <delay>** - Vote on a button poll.\n"
-        "12. **/leave <num_clients> <group_identifier>** - Leave a voice chat.\n"
-        "13. **/join <num_clients> <group_invite_link>** - Join a voice chat.\n"
-        "14. **/reboot** - Restart the bot.\n"
-        "15. **/cancel** - Cancel the current commenting process.\n"
+	"10. **/vote <index> <num_of_clients> <message_id> <join_url_or_username> <delay>** - Vote on a poll with multiple clients.\n"
+        "11. **/bvote <index> <num_of_clients> <message_id> <join_url_or_username> <delay>** - Vote on a button poll.\n"
+        "12. **/leave <num_of_clients> <group_or_channel_invite_link_or_username_or_user_id>** - Leave a voice chat.\n"
+        "13. **/join <num_clients> <group_or_channel_invite_link_or_username>** - Join a voice chat.\n"
+        "4. **/left <num_of_clients> <group_or_channel_invite_link_or_username_or_user_id>** - left the group/channel.\n"
+        "15. **/reboot** - Restart the bot.\n"
+        "16. **/cancel** - Cancel the current commenting process.\n"
     )
     await event.respond(response)
 
