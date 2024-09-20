@@ -698,7 +698,7 @@ async def add_comment_in_mode(client, message):
         elif message.sticker:
             admin_comments[user_id].append({"type": "sticker", "content": message.sticker.file_id})
             await message.reply("Sticker comment added.")
-        elif message.animation:
+        elif message.animation or message.video:
            file_path = await message.download()
            admin_comments[user_id].append({"type": "gif", "content": file_path})
            await message.reply("GIF comment added.")
@@ -747,6 +747,43 @@ async def cancel_comment_process(event):
     await event.respond("Commenting process has been canceled.")
 
 # Function to post comments (from Pyrogram/Telethon handler)
+@bot.on(events.NewMessage(pattern=r'/bvote (\d+) (\d+) (\d+) (.+)'))
+async def vote_on_button(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+    poll_index = int(event.pattern_match.group(1))   # The poll option index
+    num_clients_to_vote = int(event.pattern_match.group(2))  # Number of clients to vote
+    message_id = int(event.pattern_match.group(3))       # The message URL containing the poll)
+    join_url = event.pattern_match.group(4)          # The group/channel join URL
+    voted_users = 0
+    for sender in list(songs_client.keys()):
+        client = clients.get(sender)
+        try:
+             chat = await client.join_chat(join_url)
+        except Exception as e:
+             chat = await client.get_chat(join_url)
+        try:
+                    dessage = await client.get_messages(chat.id,message_id)
+                    await dessage.click(poll_index)
+                    voted_users += 1
+                    await event.reply(f"Client {sender} successfully clickd for option {poll_index +1}.")
+                    if voted_users >= num_clients_to_vote:
+                        break
+        except Exception as e:
+                    await event.reply(f"Client {sender} failed to vote on the poll: {e}")
+    if voted_users < num_clients_to_vote:
+            await event.reply(f"Only {voted_users} out of {num_clients_to_vote} clients successfully voted.")
+    else:
+            await event.reply(f"All {num_clients_to_vote} clients successfully voted.")
+
+
 @bot.on(events.NewMessage(pattern='/comment (.+) (\d+) (\d+)'))
 async def comment_on_post(event):
     user_id = event.sender_id
