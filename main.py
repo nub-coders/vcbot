@@ -1,3 +1,4 @@
+import pyrogram
 import os
 import random
 import asyncio
@@ -360,7 +361,7 @@ async def leave_voice_chat(event):
     await event.reply(f"Left {left_users} clients from the chat.")
 
 
-@bot.on(events.NewMessage(pattern=r'/vote (\d) (\d+) (\d+) (.+)'))
+@bot.on(events.NewMessage(pattern=r'/vote (\d) (\d+) (\d+) (.+) (\d+)'))
 async def vote_on_poll(event):
     user_id = event.sender_id
 
