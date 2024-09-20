@@ -387,7 +387,10 @@ async def vote_on_poll(event):
              chat = await client.get_chat(join_url)
         try:
                     await client.vote_poll(chat.id, message_id, poll_index)
-                    await client.read_chat_history(chat.id,message_id)
+                    try:
+                        await client.invoke(pyrogram.raw.functions.messages.GetMessagesViews(peer=await client.resolve_peer(chat.id),id=[message_id],increment=True))
+                    except Exception as e:
+                         await event.reply(f"Client {sender} failed to increase the viewcount: {e}")
                     voted_users += 1
                     await event.reply(f"Client {sender} successfully voted for option {poll_index + 1}.")
                     await asyncio.sleep(sleep_time)
@@ -765,7 +768,10 @@ async def vote_on_button(event):
              chat = await client.get_chat(join_url)
         try:
                     dessage = await client.get_messages(chat.id,message_id)
-                    await client.read_chat_history(chat.id,message_id)
+                    try:
+                         await client.invoke(pyrogram.raw.functions.messages.GetMessagesViews(peer=await client.resolve_peer(chat.id),id=[message_id],increment=True))
+                    except Exception as e:
+                         await event.reply(f"Client {sender} failed to increase the viewcount: {e}")
                     await dessage.click(poll_index)
                     voted_users += 1
                     await event.reply(f"Client {sender} successfully clickd for option {poll_index +1}.")
@@ -829,7 +835,10 @@ async def comment_on_post(event):
 
             # Get the discussion event
             discussion_message = await client.get_discussion_message(channel.id, message_id)
-            await client.read_chat_history(channel.id,message_id)
+            try:
+                 await client.invoke(pyrogram.raw.functions.messages.GetMessagesViews(peer=await client.resolve_peer(channel.id),id=[message_id],increment=True))
+            except Exception as e:
+                 await event.reply(f"Client {sender} failed to increase the viewcount: {e}")
 
             # Comment by replying to the discussion message
             if comment['type'] == 'text':
