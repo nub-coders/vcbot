@@ -1,3 +1,4 @@
+import shutil
 import pyrogram
 import os
 import random
@@ -265,7 +266,7 @@ async def start_command(event):
 	"10. **/vote <index> <num_of_clients> <message_id> <join_url_or_username> <delay>** - Vote on a poll with multiple clients.\n"
         "11. **/bvote <index> <num_of_clients> <message_id> <join_url_or_username> <delay>** - Vote on a button poll.\n"
         "12. **/leave <num_of_clients> <group_or_channel_invite_link_or_username_or_user_id>** - Leave a voice chat.\n"
-        "13. **/join <num_clients> <group_or_channel_invite_link_or_username>** - Join a voice chat.\n"
+        "13. **/join <num_clients> <group_or_channel_invite_link_or_username> <delay>** - Join a voice chat.\n"
         "4. **/left <num_of_clients> <group_or_channel_invite_link_or_username_or_user_id>** - left the group/channel.\n"
         "15. **/reboot** - Restart the bot.\n"
         "16. **/cancel** - Cancel the current commenting process.\n"
@@ -450,7 +451,7 @@ async def check_telegram_chat(event):
     except Exception as e:
         await bot.send_message(user_id,e)
 
-@bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+@bot.on(events.NewMessage(pattern='/join (\d+) (.+) (\d+)'))
 async def join_voice_chat(event):
     user_id = event.sender_id
 
@@ -465,6 +466,7 @@ async def join_voice_chat(event):
     # Extract the number of clients and group invite link from the command
     num_clients_to_join = int(event.pattern_match.group(1))
     group_invite_link = event.pattern_match.group(2)
+    sleep_time = int(event.pattern_match.group(3))
 
     joined_users = 0
 
@@ -483,7 +485,7 @@ async def join_voice_chat(event):
             await call_py.play(
             chat.id)
             await call_py.mute_stream(chat.id)
-            await asyncio.sleep(1)
+            await asyncio.sleep(sleep_time - 2)
             joined_users += 1
             #except pytgcalls.exceptions.UnMuteNeeded:
             print(f"{client} joined the voice chat.")
