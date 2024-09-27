@@ -18404,3 +18404,1853 @@ Using Pyrogram client in no_updates mode is not recommended. This mode may cause
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+The virtual environment was not created successfully because ensurepip is not
+available.  On Debian/Ubuntu systems, you need to install the python3-venv
+package using the following command.
+
+    apt install python3.10-venv
+
+You may need to use sudo with that command.  After installing the python3-venv
+package, recreate your virtual environment.
+
+Failing command: /home/ubuntu/upload2/venv/bin/python3
+
+Requirement already satisfied: pip in ./venv/lib/python3.10/site-packages (24.2)
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 14))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 22))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-owtbsc7y
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-owtbsc7y
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit fa2be9a7c63babede07480151363e54eee5702bd
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: certifi in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 1)) (2024.8.30)
+Requirement already satisfied: pyromod in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 2)) (3.1.6)
+Requirement already satisfied: yt_dlp in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 3)) (2024.8.6)
+Requirement already satisfied: uvloop in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 4)) (0.20.0)
+Requirement already satisfied: lottie in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 5)) (0.7.0)
+Requirement already satisfied: telegraph in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 6)) (2.2.0)
+Requirement already satisfied: pytz in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 7)) (2024.2)
+Requirement already satisfied: pymediainfo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 8)) (6.1.0)
+Requirement already satisfied: Pillow in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 9)) (10.4.0)
+Requirement already satisfied: py-tgcalls in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 10)) (2.0.3)
+Requirement already satisfied: cryptg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 11)) (0.4.0)
+Requirement already satisfied: Telethon in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 15)) (1.36.0)
+Requirement already satisfied: TgCrypto in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 16)) (1.2.5)
+Requirement already satisfied: pymongo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 17)) (4.8.0)
+Requirement already satisfied: requests in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 18)) (2.32.3)
+Requirement already satisfied: lxml in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 20)) (5.3.0)
+Requirement already satisfied: fake_useragent in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 21)) (1.5.1)
+Requirement already satisfied: opencv-python-headless in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 24)) (4.10.0.84)
+Requirement already satisfied: python-ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 25)) (2.0.12)
+Requirement already satisfied: ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 26)) (1.4)
+Requirement already satisfied: brotli in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.1.0)
+Requirement already satisfied: mutagen in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.47.0)
+Requirement already satisfied: pycryptodomex in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (3.20.0)
+Requirement already satisfied: urllib3<3,>=1.26.17 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (2.2.3)
+Requirement already satisfied: websockets>=13.0 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (13.0.1)
+Requirement already satisfied: aiohttp>=3.9.3 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (3.10.5)
+Requirement already satisfied: ntgcalls>=1.2.2 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (1.2.3)
+Requirement already satisfied: psutil in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (6.0.0)
+Requirement already satisfied: screeninfo in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (0.8.1)
+Requirement already satisfied: deprecation in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.7.1)
+Requirement already satisfied: rsa in ./venv/lib/python3.10/site-packages (from Telethon->-r requirements.txt (line 15)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in ./venv/lib/python3.10/site-packages (from pymongo->-r requirements.txt (line 17)) (2.6.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.9)
+Requirement already satisfied: numpy>=1.21.2 in ./venv/lib/python3.10/site-packages (from opencv-python-headless->-r requirements.txt (line 24)) (2.1.1)
+Requirement already satisfied: pyee in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (12.0.0)
+Requirement already satisfied: typing-extensions in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (4.12.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (2.4.0)
+Requirement already satisfied: aiosignal>=1.1.2 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (6.1.0)
+Requirement already satisfied: yarl<2.0,>=1.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.11.1)
+Requirement already satisfied: async-timeout<5.0,>=4.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (4.0.3)
+Requirement already satisfied: packaging in ./venv/lib/python3.10/site-packages (from deprecation->py-tgcalls->-r requirements.txt (line 10)) (24.1)
+Requirement already satisfied: pyasn1>=0.1.3 in ./venv/lib/python3.10/site-packages (from rsa->Telethon->-r requirements.txt (line 15)) (0.6.1)
+The virtual environment was not created successfully because ensurepip is not
+available.  On Debian/Ubuntu systems, you need to install the python3-venv
+package using the following command.
+
+    apt install python3.10-venv
+
+You may need to use sudo with that command.  After installing the python3-venv
+package, recreate your virtual environment.
+
+Failing command: /home/ubuntu/upload2/venv/bin/python3
+
+Requirement already satisfied: pip in ./venv/lib/python3.10/site-packages (24.2)
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 14))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 22))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-pm4lxkcy
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-pm4lxkcy
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit fa2be9a7c63babede07480151363e54eee5702bd
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: certifi in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 1)) (2024.8.30)
+Requirement already satisfied: pyromod in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 2)) (3.1.6)
+Requirement already satisfied: yt_dlp in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 3)) (2024.8.6)
+Requirement already satisfied: uvloop in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 4)) (0.20.0)
+Requirement already satisfied: lottie in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 5)) (0.7.0)
+Requirement already satisfied: telegraph in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 6)) (2.2.0)
+Requirement already satisfied: pytz in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 7)) (2024.2)
+Requirement already satisfied: pymediainfo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 8)) (6.1.0)
+Requirement already satisfied: Pillow in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 9)) (10.4.0)
+Requirement already satisfied: py-tgcalls in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 10)) (2.0.3)
+Requirement already satisfied: cryptg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 11)) (0.4.0)
+Requirement already satisfied: Telethon in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 15)) (1.36.0)
+Requirement already satisfied: TgCrypto in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 16)) (1.2.5)
+Requirement already satisfied: pymongo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 17)) (4.8.0)
+Requirement already satisfied: requests in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 18)) (2.32.3)
+Requirement already satisfied: lxml in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 20)) (5.3.0)
+Requirement already satisfied: fake_useragent in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 21)) (1.5.1)
+Requirement already satisfied: opencv-python-headless in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 24)) (4.10.0.84)
+Requirement already satisfied: python-ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 25)) (2.0.12)
+Requirement already satisfied: ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 26)) (1.4)
+Requirement already satisfied: brotli in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.1.0)
+Requirement already satisfied: mutagen in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.47.0)
+Requirement already satisfied: pycryptodomex in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (3.20.0)
+Requirement already satisfied: urllib3<3,>=1.26.17 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (2.2.3)
+Requirement already satisfied: websockets>=13.0 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (13.0.1)
+Requirement already satisfied: aiohttp>=3.9.3 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (3.10.5)
+Requirement already satisfied: ntgcalls>=1.2.2 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (1.2.3)
+Requirement already satisfied: psutil in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (6.0.0)
+Requirement already satisfied: screeninfo in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (0.8.1)
+Requirement already satisfied: deprecation in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.7.1)
+Requirement already satisfied: rsa in ./venv/lib/python3.10/site-packages (from Telethon->-r requirements.txt (line 15)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in ./venv/lib/python3.10/site-packages (from pymongo->-r requirements.txt (line 17)) (2.6.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.9)
+Requirement already satisfied: numpy>=1.21.2 in ./venv/lib/python3.10/site-packages (from opencv-python-headless->-r requirements.txt (line 24)) (2.1.1)
+Requirement already satisfied: pyee in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (12.0.0)
+Requirement already satisfied: typing-extensions in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (4.12.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (2.4.0)
+Requirement already satisfied: aiosignal>=1.1.2 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (6.1.0)
+Requirement already satisfied: yarl<2.0,>=1.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.11.1)
+Requirement already satisfied: async-timeout<5.0,>=4.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (4.0.3)
+Requirement already satisfied: packaging in ./venv/lib/python3.10/site-packages (from deprecation->py-tgcalls->-r requirements.txt (line 10)) (24.1)
+Requirement already satisfied: pyasn1>=0.1.3 in ./venv/lib/python3.10/site-packages (from rsa->Telethon->-r requirements.txt (line 15)) (0.6.1)
+Starting zipper.py...
+  File "/home/ubuntu/upload2/main.py", line 758
+    if user_id not in admin_ids:[A
+                                ^
+SyntaxError: '[' was never closed
+The virtual environment was not created successfully because ensurepip is not
+available.  On Debian/Ubuntu systems, you need to install the python3-venv
+package using the following command.
+
+    apt install python3.10-venv
+
+You may need to use sudo with that command.  After installing the python3-venv
+package, recreate your virtual environment.
+
+Failing command: /home/ubuntu/upload2/venv/bin/python3
+
+Requirement already satisfied: pip in ./venv/lib/python3.10/site-packages (24.2)
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 14))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 22))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-c23zf5ce
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-c23zf5ce
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit fa2be9a7c63babede07480151363e54eee5702bd
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: certifi in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 1)) (2024.8.30)
+Requirement already satisfied: pyromod in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 2)) (3.1.6)
+Requirement already satisfied: yt_dlp in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 3)) (2024.8.6)
+Requirement already satisfied: uvloop in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 4)) (0.20.0)
+Requirement already satisfied: lottie in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 5)) (0.7.0)
+Requirement already satisfied: telegraph in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 6)) (2.2.0)
+Requirement already satisfied: pytz in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 7)) (2024.2)
+Requirement already satisfied: pymediainfo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 8)) (6.1.0)
+Requirement already satisfied: Pillow in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 9)) (10.4.0)
+Requirement already satisfied: py-tgcalls in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 10)) (2.0.3)
+Requirement already satisfied: cryptg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 11)) (0.4.0)
+Requirement already satisfied: Telethon in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 15)) (1.36.0)
+Requirement already satisfied: TgCrypto in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 16)) (1.2.5)
+Requirement already satisfied: pymongo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 17)) (4.8.0)
+Requirement already satisfied: requests in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 18)) (2.32.3)
+Requirement already satisfied: lxml in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 20)) (5.3.0)
+Requirement already satisfied: fake_useragent in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 21)) (1.5.1)
+Requirement already satisfied: opencv-python-headless in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 24)) (4.10.0.84)
+Requirement already satisfied: python-ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 25)) (2.0.12)
+Requirement already satisfied: ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 26)) (1.4)
+Requirement already satisfied: brotli in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.1.0)
+Requirement already satisfied: mutagen in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.47.0)
+Requirement already satisfied: pycryptodomex in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (3.20.0)
+Requirement already satisfied: urllib3<3,>=1.26.17 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (2.2.3)
+Requirement already satisfied: websockets>=13.0 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (13.0.1)
+Requirement already satisfied: aiohttp>=3.9.3 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (3.10.5)
+Requirement already satisfied: ntgcalls>=1.2.2 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (1.2.3)
+Requirement already satisfied: psutil in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (6.0.0)
+Requirement already satisfied: screeninfo in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (0.8.1)
+Requirement already satisfied: deprecation in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.7.1)
+Requirement already satisfied: rsa in ./venv/lib/python3.10/site-packages (from Telethon->-r requirements.txt (line 15)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in ./venv/lib/python3.10/site-packages (from pymongo->-r requirements.txt (line 17)) (2.6.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.9)
+Requirement already satisfied: numpy>=1.21.2 in ./venv/lib/python3.10/site-packages (from opencv-python-headless->-r requirements.txt (line 24)) (2.1.1)
+Requirement already satisfied: pyee in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (12.0.0)
+Requirement already satisfied: typing-extensions in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (4.12.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (2.4.0)
+Requirement already satisfied: aiosignal>=1.1.2 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (6.1.0)
+Requirement already satisfied: yarl<2.0,>=1.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.11.1)
+Requirement already satisfied: async-timeout<5.0,>=4.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (4.0.3)
+Requirement already satisfied: packaging in ./venv/lib/python3.10/site-packages (from deprecation->py-tgcalls->-r requirements.txt (line 10)) (24.1)
+Requirement already satisfied: pyasn1>=0.1.3 in ./venv/lib/python3.10/site-packages (from rsa->Telethon->-r requirements.txt (line 15)) (0.6.1)
+Starting zipper.py...
+  File "/home/ubuntu/upload2/main.py", line 758
+    if user_id not in admin_ids:[A
+                                ^
+SyntaxError: '[' was never closed
+The virtual environment was not created successfully because ensurepip is not
+available.  On Debian/Ubuntu systems, you need to install the python3-venv
+package using the following command.
+
+    apt install python3.10-venv
+
+You may need to use sudo with that command.  After installing the python3-venv
+package, recreate your virtual environment.
+
+Failing command: /home/ubuntu/upload2/venv/bin/python3
+
+Requirement already satisfied: pip in ./venv/lib/python3.10/site-packages (24.2)
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 14))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 22))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-tg00sy53
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-tg00sy53
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit fa2be9a7c63babede07480151363e54eee5702bd
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: certifi in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 1)) (2024.8.30)
+Requirement already satisfied: pyromod in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 2)) (3.1.6)
+Requirement already satisfied: yt_dlp in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 3)) (2024.8.6)
+Requirement already satisfied: uvloop in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 4)) (0.20.0)
+Requirement already satisfied: lottie in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 5)) (0.7.0)
+Requirement already satisfied: telegraph in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 6)) (2.2.0)
+Requirement already satisfied: pytz in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 7)) (2024.2)
+Requirement already satisfied: pymediainfo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 8)) (6.1.0)
+Requirement already satisfied: Pillow in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 9)) (10.4.0)
+Requirement already satisfied: py-tgcalls in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 10)) (2.0.3)
+Requirement already satisfied: cryptg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 11)) (0.4.0)
+Requirement already satisfied: Telethon in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 15)) (1.36.0)
+Requirement already satisfied: TgCrypto in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 16)) (1.2.5)
+Requirement already satisfied: pymongo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 17)) (4.8.0)
+Requirement already satisfied: requests in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 18)) (2.32.3)
+Requirement already satisfied: lxml in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 20)) (5.3.0)
+Requirement already satisfied: fake_useragent in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 21)) (1.5.1)
+Requirement already satisfied: opencv-python-headless in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 24)) (4.10.0.84)
+Requirement already satisfied: python-ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 25)) (2.0.12)
+Requirement already satisfied: ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 26)) (1.4)
+Requirement already satisfied: brotli in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.1.0)
+Requirement already satisfied: mutagen in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.47.0)
+Requirement already satisfied: pycryptodomex in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (3.20.0)
+Requirement already satisfied: urllib3<3,>=1.26.17 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (2.2.3)
+Requirement already satisfied: websockets>=13.0 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (13.0.1)
+Requirement already satisfied: aiohttp>=3.9.3 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (3.10.5)
+Requirement already satisfied: ntgcalls>=1.2.2 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (1.2.3)
+Requirement already satisfied: psutil in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (6.0.0)
+Requirement already satisfied: screeninfo in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (0.8.1)
+Requirement already satisfied: deprecation in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.7.1)
+Requirement already satisfied: rsa in ./venv/lib/python3.10/site-packages (from Telethon->-r requirements.txt (line 15)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in ./venv/lib/python3.10/site-packages (from pymongo->-r requirements.txt (line 17)) (2.6.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.9)
+Requirement already satisfied: numpy>=1.21.2 in ./venv/lib/python3.10/site-packages (from opencv-python-headless->-r requirements.txt (line 24)) (2.1.1)
+Requirement already satisfied: pyee in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (12.0.0)
+Requirement already satisfied: typing-extensions in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (4.12.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (2.4.0)
+Requirement already satisfied: aiosignal>=1.1.2 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (6.1.0)
+Requirement already satisfied: yarl<2.0,>=1.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.11.1)
+Requirement already satisfied: async-timeout<5.0,>=4.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (4.0.3)
+Requirement already satisfied: packaging in ./venv/lib/python3.10/site-packages (from deprecation->py-tgcalls->-r requirements.txt (line 10)) (24.1)
+Requirement already satisfied: pyasn1>=0.1.3 in ./venv/lib/python3.10/site-packages (from rsa->Telethon->-r requirements.txt (line 15)) (0.6.1)
+Starting zipper.py...
+  File "/home/ubuntu/upload2/main.py", line 758
+    if user_id not in admin_ids:[A
+                                ^
+SyntaxError: '[' was never closed
+The virtual environment was not created successfully because ensurepip is not
+available.  On Debian/Ubuntu systems, you need to install the python3-venv
+package using the following command.
+
+    apt install python3.10-venv
+
+You may need to use sudo with that command.  After installing the python3-venv
+package, recreate your virtual environment.
+
+Failing command: /home/ubuntu/upload2/venv/bin/python3
+
+Requirement already satisfied: pip in ./venv/lib/python3.10/site-packages (24.2)
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 14))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 22))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-fp_iahx9
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-fp_iahx9
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit fa2be9a7c63babede07480151363e54eee5702bd
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: certifi in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 1)) (2024.8.30)
+Requirement already satisfied: pyromod in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 2)) (3.1.6)
+Requirement already satisfied: yt_dlp in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 3)) (2024.8.6)
+Requirement already satisfied: uvloop in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 4)) (0.20.0)
+Requirement already satisfied: lottie in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 5)) (0.7.0)
+Requirement already satisfied: telegraph in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 6)) (2.2.0)
+Requirement already satisfied: pytz in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 7)) (2024.2)
+Requirement already satisfied: pymediainfo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 8)) (6.1.0)
+Requirement already satisfied: Pillow in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 9)) (10.4.0)
+Requirement already satisfied: py-tgcalls in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 10)) (2.0.3)
+Requirement already satisfied: cryptg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 11)) (0.4.0)
+Requirement already satisfied: Telethon in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 15)) (1.36.0)
+Requirement already satisfied: TgCrypto in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 16)) (1.2.5)
+Requirement already satisfied: pymongo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 17)) (4.8.0)
+Requirement already satisfied: requests in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 18)) (2.32.3)
+Requirement already satisfied: lxml in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 20)) (5.3.0)
+Requirement already satisfied: fake_useragent in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 21)) (1.5.1)
+Requirement already satisfied: opencv-python-headless in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 24)) (4.10.0.84)
+Requirement already satisfied: python-ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 25)) (2.0.12)
+Requirement already satisfied: ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 26)) (1.4)
+Requirement already satisfied: brotli in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.1.0)
+Requirement already satisfied: mutagen in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.47.0)
+Requirement already satisfied: pycryptodomex in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (3.20.0)
+Requirement already satisfied: urllib3<3,>=1.26.17 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (2.2.3)
+Requirement already satisfied: websockets>=13.0 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (13.0.1)
+Requirement already satisfied: aiohttp>=3.9.3 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (3.10.5)
+Requirement already satisfied: ntgcalls>=1.2.2 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (1.2.3)
+Requirement already satisfied: psutil in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (6.0.0)
+Requirement already satisfied: screeninfo in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (0.8.1)
+Requirement already satisfied: deprecation in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.7.1)
+Requirement already satisfied: rsa in ./venv/lib/python3.10/site-packages (from Telethon->-r requirements.txt (line 15)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in ./venv/lib/python3.10/site-packages (from pymongo->-r requirements.txt (line 17)) (2.6.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.9)
+Requirement already satisfied: numpy>=1.21.2 in ./venv/lib/python3.10/site-packages (from opencv-python-headless->-r requirements.txt (line 24)) (2.1.1)
+Requirement already satisfied: pyee in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (12.0.0)
+Requirement already satisfied: typing-extensions in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (4.12.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (2.4.0)
+Requirement already satisfied: aiosignal>=1.1.2 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (6.1.0)
+Requirement already satisfied: yarl<2.0,>=1.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.11.1)
+Requirement already satisfied: async-timeout<5.0,>=4.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (4.0.3)
+Requirement already satisfied: packaging in ./venv/lib/python3.10/site-packages (from deprecation->py-tgcalls->-r requirements.txt (line 10)) (24.1)
+Requirement already satisfied: pyasn1>=0.1.3 in ./venv/lib/python3.10/site-packages (from rsa->Telethon->-r requirements.txt (line 15)) (0.6.1)
+Starting zipper.py...
+  File "/home/ubuntu/upload2/main.py", line 758
+    if user_id not in admin_ids:[A
+                                ^
+SyntaxError: '[' was never closed
+The virtual environment was not created successfully because ensurepip is not
+available.  On Debian/Ubuntu systems, you need to install the python3-venv
+package using the following command.
+
+    apt install python3.10-venv
+
+You may need to use sudo with that command.  After installing the python3-venv
+package, recreate your virtual environment.
+
+Failing command: /home/ubuntu/upload2/venv/bin/python3
+
+Requirement already satisfied: pip in ./venv/lib/python3.10/site-packages (24.2)
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 14))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 22))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-ncx91qqu
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-ncx91qqu
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit fa2be9a7c63babede07480151363e54eee5702bd
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: certifi in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 1)) (2024.8.30)
+Requirement already satisfied: pyromod in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 2)) (3.1.6)
+Requirement already satisfied: yt_dlp in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 3)) (2024.8.6)
+Requirement already satisfied: uvloop in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 4)) (0.20.0)
+Requirement already satisfied: lottie in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 5)) (0.7.0)
+Requirement already satisfied: telegraph in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 6)) (2.2.0)
+Requirement already satisfied: pytz in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 7)) (2024.2)
+Requirement already satisfied: pymediainfo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 8)) (6.1.0)
+Requirement already satisfied: Pillow in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 9)) (10.4.0)
+Requirement already satisfied: py-tgcalls in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 10)) (2.0.3)
+Requirement already satisfied: cryptg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 11)) (0.4.0)
+Requirement already satisfied: Telethon in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 15)) (1.36.0)
+Requirement already satisfied: TgCrypto in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 16)) (1.2.5)
+Requirement already satisfied: pymongo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 17)) (4.8.0)
+Requirement already satisfied: requests in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 18)) (2.32.3)
+Requirement already satisfied: lxml in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 20)) (5.3.0)
+Requirement already satisfied: fake_useragent in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 21)) (1.5.1)
+Requirement already satisfied: opencv-python-headless in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 24)) (4.10.0.84)
+Requirement already satisfied: python-ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 25)) (2.0.12)
+Requirement already satisfied: ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 26)) (1.4)
+Requirement already satisfied: brotli in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.1.0)
+Requirement already satisfied: mutagen in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.47.0)
+Requirement already satisfied: pycryptodomex in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (3.20.0)
+Requirement already satisfied: urllib3<3,>=1.26.17 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (2.2.3)
+Requirement already satisfied: websockets>=13.0 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (13.0.1)
+Requirement already satisfied: aiohttp>=3.9.3 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (3.10.5)
+Requirement already satisfied: ntgcalls>=1.2.2 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (1.2.3)
+Requirement already satisfied: psutil in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (6.0.0)
+Requirement already satisfied: screeninfo in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (0.8.1)
+Requirement already satisfied: deprecation in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.7.1)
+Requirement already satisfied: rsa in ./venv/lib/python3.10/site-packages (from Telethon->-r requirements.txt (line 15)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in ./venv/lib/python3.10/site-packages (from pymongo->-r requirements.txt (line 17)) (2.6.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.9)
+Requirement already satisfied: numpy>=1.21.2 in ./venv/lib/python3.10/site-packages (from opencv-python-headless->-r requirements.txt (line 24)) (2.1.1)
+Requirement already satisfied: pyee in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (12.0.0)
+Requirement already satisfied: typing-extensions in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (4.12.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (2.4.0)
+Requirement already satisfied: aiosignal>=1.1.2 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (6.1.0)
+Requirement already satisfied: yarl<2.0,>=1.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.11.1)
+Requirement already satisfied: async-timeout<5.0,>=4.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (4.0.3)
+Requirement already satisfied: packaging in ./venv/lib/python3.10/site-packages (from deprecation->py-tgcalls->-r requirements.txt (line 10)) (24.1)
+Requirement already satisfied: pyasn1>=0.1.3 in ./venv/lib/python3.10/site-packages (from rsa->Telethon->-r requirements.txt (line 15)) (0.6.1)
+Starting zipper.py...
+  File "/home/ubuntu/upload2/main.py", line 758
+    if user_id not in admin_ids:[A
+                                ^
+SyntaxError: '[' was never closed
+The virtual environment was not created successfully because ensurepip is not
+available.  On Debian/Ubuntu systems, you need to install the python3-venv
+package using the following command.
+
+    apt install python3.10-venv
+
+You may need to use sudo with that command.  After installing the python3-venv
+package, recreate your virtual environment.
+
+Failing command: /home/ubuntu/upload2/venv/bin/python3
+
+Requirement already satisfied: pip in ./venv/lib/python3.10/site-packages (24.2)
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 14))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 22))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-u7biihcf
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-u7biihcf
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit fa2be9a7c63babede07480151363e54eee5702bd
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: certifi in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 1)) (2024.8.30)
+Requirement already satisfied: pyromod in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 2)) (3.1.6)
+Requirement already satisfied: yt_dlp in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 3)) (2024.8.6)
+Requirement already satisfied: uvloop in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 4)) (0.20.0)
+Requirement already satisfied: lottie in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 5)) (0.7.0)
+Requirement already satisfied: telegraph in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 6)) (2.2.0)
+Requirement already satisfied: pytz in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 7)) (2024.2)
+Requirement already satisfied: pymediainfo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 8)) (6.1.0)
+Requirement already satisfied: Pillow in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 9)) (10.4.0)
+Requirement already satisfied: py-tgcalls in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 10)) (2.0.3)
+Requirement already satisfied: cryptg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 11)) (0.4.0)
+Requirement already satisfied: Telethon in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 15)) (1.36.0)
+Requirement already satisfied: TgCrypto in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 16)) (1.2.5)
+Requirement already satisfied: pymongo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 17)) (4.8.0)
+Requirement already satisfied: requests in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 18)) (2.32.3)
+Requirement already satisfied: lxml in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 20)) (5.3.0)
+Requirement already satisfied: fake_useragent in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 21)) (1.5.1)
+Requirement already satisfied: opencv-python-headless in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 24)) (4.10.0.84)
+Requirement already satisfied: python-ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 25)) (2.0.12)
+Requirement already satisfied: ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 26)) (1.4)
+Requirement already satisfied: brotli in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.1.0)
+Requirement already satisfied: mutagen in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.47.0)
+Requirement already satisfied: pycryptodomex in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (3.20.0)
+Requirement already satisfied: urllib3<3,>=1.26.17 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (2.2.3)
+Requirement already satisfied: websockets>=13.0 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (13.0.1)
+Requirement already satisfied: aiohttp>=3.9.3 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (3.10.5)
+Requirement already satisfied: ntgcalls>=1.2.2 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (1.2.3)
+Requirement already satisfied: psutil in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (6.0.0)
+Requirement already satisfied: screeninfo in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (0.8.1)
+Requirement already satisfied: deprecation in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.7.1)
+Requirement already satisfied: rsa in ./venv/lib/python3.10/site-packages (from Telethon->-r requirements.txt (line 15)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in ./venv/lib/python3.10/site-packages (from pymongo->-r requirements.txt (line 17)) (2.6.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.9)
+Requirement already satisfied: numpy>=1.21.2 in ./venv/lib/python3.10/site-packages (from opencv-python-headless->-r requirements.txt (line 24)) (2.1.1)
+Requirement already satisfied: pyee in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (12.0.0)
+Requirement already satisfied: typing-extensions in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (4.12.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (2.4.0)
+Requirement already satisfied: aiosignal>=1.1.2 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (6.1.0)
+Requirement already satisfied: yarl<2.0,>=1.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.11.1)
+Requirement already satisfied: async-timeout<5.0,>=4.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (4.0.3)
+Requirement already satisfied: packaging in ./venv/lib/python3.10/site-packages (from deprecation->py-tgcalls->-r requirements.txt (line 10)) (24.1)
+Requirement already satisfied: pyasn1>=0.1.3 in ./venv/lib/python3.10/site-packages (from rsa->Telethon->-r requirements.txt (line 15)) (0.6.1)
+Starting zipper.py...
+  File "/home/ubuntu/upload2/main.py", line 758
+    if user_id not in admin_ids:[A
+                                ^
+SyntaxError: '[' was never closed
+The virtual environment was not created successfully because ensurepip is not
+available.  On Debian/Ubuntu systems, you need to install the python3-venv
+package using the following command.
+
+    apt install python3.10-venv
+
+You may need to use sudo with that command.  After installing the python3-venv
+package, recreate your virtual environment.
+
+Failing command: /home/ubuntu/upload2/venv/bin/python3
+
+Requirement already satisfied: pip in ./venv/lib/python3.10/site-packages (24.2)
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 14))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 22))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-cpciegvg
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-cpciegvg
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit fa2be9a7c63babede07480151363e54eee5702bd
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: certifi in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 1)) (2024.8.30)
+Requirement already satisfied: pyromod in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 2)) (3.1.6)
+Requirement already satisfied: yt_dlp in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 3)) (2024.8.6)
+Requirement already satisfied: uvloop in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 4)) (0.20.0)
+Requirement already satisfied: lottie in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 5)) (0.7.0)
+Requirement already satisfied: telegraph in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 6)) (2.2.0)
+Requirement already satisfied: pytz in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 7)) (2024.2)
+Requirement already satisfied: pymediainfo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 8)) (6.1.0)
+Requirement already satisfied: Pillow in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 9)) (10.4.0)
+Requirement already satisfied: py-tgcalls in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 10)) (2.0.3)
+Requirement already satisfied: cryptg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 11)) (0.4.0)
+Requirement already satisfied: Telethon in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 15)) (1.36.0)
+Requirement already satisfied: TgCrypto in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 16)) (1.2.5)
+Requirement already satisfied: pymongo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 17)) (4.8.0)
+Requirement already satisfied: requests in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 18)) (2.32.3)
+Requirement already satisfied: lxml in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 20)) (5.3.0)
+Requirement already satisfied: fake_useragent in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 21)) (1.5.1)
+Requirement already satisfied: opencv-python-headless in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 24)) (4.10.0.84)
+Requirement already satisfied: python-ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 25)) (2.0.12)
+Requirement already satisfied: ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 26)) (1.4)
+Requirement already satisfied: brotli in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.1.0)
+Requirement already satisfied: mutagen in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.47.0)
+Requirement already satisfied: pycryptodomex in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (3.20.0)
+Requirement already satisfied: urllib3<3,>=1.26.17 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (2.2.3)
+Requirement already satisfied: websockets>=13.0 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (13.0.1)
+Requirement already satisfied: aiohttp>=3.9.3 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (3.10.5)
+Requirement already satisfied: ntgcalls>=1.2.2 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (1.2.3)
+Requirement already satisfied: psutil in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (6.0.0)
+Requirement already satisfied: screeninfo in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (0.8.1)
+Requirement already satisfied: deprecation in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.7.1)
+Requirement already satisfied: rsa in ./venv/lib/python3.10/site-packages (from Telethon->-r requirements.txt (line 15)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in ./venv/lib/python3.10/site-packages (from pymongo->-r requirements.txt (line 17)) (2.6.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.9)
+Requirement already satisfied: numpy>=1.21.2 in ./venv/lib/python3.10/site-packages (from opencv-python-headless->-r requirements.txt (line 24)) (2.1.1)
+Requirement already satisfied: pyee in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (12.0.0)
+Requirement already satisfied: typing-extensions in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (4.12.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (2.4.0)
+Requirement already satisfied: aiosignal>=1.1.2 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (6.1.0)
+Requirement already satisfied: yarl<2.0,>=1.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.11.1)
+Requirement already satisfied: async-timeout<5.0,>=4.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (4.0.3)
+Requirement already satisfied: packaging in ./venv/lib/python3.10/site-packages (from deprecation->py-tgcalls->-r requirements.txt (line 10)) (24.1)
+Requirement already satisfied: pyasn1>=0.1.3 in ./venv/lib/python3.10/site-packages (from rsa->Telethon->-r requirements.txt (line 15)) (0.6.1)
+Starting zipper.py...
+  File "/home/ubuntu/upload2/main.py", line 758
+    if user_id not in admin_ids:[A
+                                ^
+SyntaxError: '[' was never closed
+Requirement already satisfied: pip in ./venv/lib/python3.10/site-packages (24.2)
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 14))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 22))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-mfxxilvi
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-mfxxilvi
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit fa2be9a7c63babede07480151363e54eee5702bd
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: certifi in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 1)) (2024.8.30)
+Requirement already satisfied: pyromod in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 2)) (3.1.6)
+Requirement already satisfied: yt_dlp in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 3)) (2024.8.6)
+Requirement already satisfied: uvloop in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 4)) (0.20.0)
+Requirement already satisfied: lottie in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 5)) (0.7.0)
+Requirement already satisfied: telegraph in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 6)) (2.2.0)
+Requirement already satisfied: pytz in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 7)) (2024.2)
+Requirement already satisfied: pymediainfo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 8)) (6.1.0)
+Requirement already satisfied: Pillow in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 9)) (10.4.0)
+Requirement already satisfied: py-tgcalls in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 10)) (2.0.3)
+Requirement already satisfied: cryptg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 11)) (0.4.0)
+Requirement already satisfied: Telethon in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 15)) (1.36.0)
+Requirement already satisfied: TgCrypto in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 16)) (1.2.5)
+Requirement already satisfied: pymongo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 17)) (4.8.0)
+Requirement already satisfied: requests in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 18)) (2.32.3)
+Requirement already satisfied: lxml in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 20)) (5.3.0)
+Requirement already satisfied: fake_useragent in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 21)) (1.5.1)
+Requirement already satisfied: opencv-python-headless in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 24)) (4.10.0.84)
+Requirement already satisfied: python-ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 25)) (2.0.12)
+Requirement already satisfied: ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 26)) (1.4)
+Requirement already satisfied: brotli in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.1.0)
+Requirement already satisfied: mutagen in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.47.0)
+Requirement already satisfied: pycryptodomex in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (3.20.0)
+Requirement already satisfied: urllib3<3,>=1.26.17 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (2.2.3)
+Requirement already satisfied: websockets>=13.0 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (13.0.1)
+Requirement already satisfied: aiohttp>=3.9.3 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (3.10.5)
+Requirement already satisfied: ntgcalls>=1.2.2 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (1.2.3)
+Requirement already satisfied: psutil in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (6.0.0)
+Requirement already satisfied: screeninfo in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (0.8.1)
+Requirement already satisfied: deprecation in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.7.1)
+Requirement already satisfied: rsa in ./venv/lib/python3.10/site-packages (from Telethon->-r requirements.txt (line 15)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in ./venv/lib/python3.10/site-packages (from pymongo->-r requirements.txt (line 17)) (2.6.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.9)
+Requirement already satisfied: numpy>=1.21.2 in ./venv/lib/python3.10/site-packages (from opencv-python-headless->-r requirements.txt (line 24)) (2.1.1)
+Requirement already satisfied: pyee in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (12.0.0)
+Requirement already satisfied: typing-extensions in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (4.12.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (2.4.0)
+Requirement already satisfied: aiosignal>=1.1.2 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (6.1.0)
+Requirement already satisfied: yarl<2.0,>=1.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.11.1)
+Requirement already satisfied: async-timeout<5.0,>=4.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (4.0.3)
+Requirement already satisfied: packaging in ./venv/lib/python3.10/site-packages (from deprecation->py-tgcalls->-r requirements.txt (line 10)) (24.1)
+Requirement already satisfied: pyasn1>=0.1.3 in ./venv/lib/python3.10/site-packages (from rsa->Telethon->-r requirements.txt (line 15)) (0.6.1)
+Starting zipper.py...
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Pyromod is working! If you like pyromod, please star it at https://github.com/usernein/pyromod
+PyTgCalls v2.0.3 powered by NTgCalls v1.2.3, Copyright (C) 2021-2024 Laky-64 <https://github.com/Laky-64>
+Licensed under the terms of the GNU Lesser General Public License v3 or later (LGPLv3+)
+
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Requirement already satisfied: pip in ./venv/lib/python3.10/site-packages (24.2)
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 14))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 22))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-zu_1v_ai
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-zu_1v_ai
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit fa2be9a7c63babede07480151363e54eee5702bd
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: certifi in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 1)) (2024.8.30)
+Requirement already satisfied: pyromod in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 2)) (3.1.6)
+Requirement already satisfied: yt_dlp in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 3)) (2024.8.6)
+Requirement already satisfied: uvloop in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 4)) (0.20.0)
+Requirement already satisfied: lottie in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 5)) (0.7.0)
+Requirement already satisfied: telegraph in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 6)) (2.2.0)
+Requirement already satisfied: pytz in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 7)) (2024.2)
+Requirement already satisfied: pymediainfo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 8)) (6.1.0)
+Requirement already satisfied: Pillow in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 9)) (10.4.0)
+Requirement already satisfied: py-tgcalls in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 10)) (2.0.3)
+Requirement already satisfied: cryptg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 11)) (0.4.0)
+Requirement already satisfied: Telethon in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 15)) (1.36.0)
+Requirement already satisfied: TgCrypto in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 16)) (1.2.5)
+Requirement already satisfied: pymongo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 17)) (4.8.0)
+Requirement already satisfied: requests in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 18)) (2.32.3)
+Requirement already satisfied: lxml in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 20)) (5.3.0)
+Requirement already satisfied: fake_useragent in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 21)) (1.5.1)
+Requirement already satisfied: opencv-python-headless in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 24)) (4.10.0.84)
+Requirement already satisfied: python-ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 25)) (2.0.12)
+Requirement already satisfied: ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 26)) (1.4)
+Requirement already satisfied: brotli in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.1.0)
+Requirement already satisfied: mutagen in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.47.0)
+Requirement already satisfied: pycryptodomex in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (3.20.0)
+Requirement already satisfied: urllib3<3,>=1.26.17 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (2.2.3)
+Requirement already satisfied: websockets>=13.0 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (13.0.1)
+Requirement already satisfied: aiohttp>=3.9.3 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (3.10.5)
+Requirement already satisfied: ntgcalls>=1.2.2 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (1.2.3)
+Requirement already satisfied: psutil in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (6.0.0)
+Requirement already satisfied: screeninfo in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (0.8.1)
+Requirement already satisfied: deprecation in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.7.1)
+Requirement already satisfied: rsa in ./venv/lib/python3.10/site-packages (from Telethon->-r requirements.txt (line 15)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in ./venv/lib/python3.10/site-packages (from pymongo->-r requirements.txt (line 17)) (2.6.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.9)
+Requirement already satisfied: numpy>=1.21.2 in ./venv/lib/python3.10/site-packages (from opencv-python-headless->-r requirements.txt (line 24)) (2.1.1)
+Requirement already satisfied: pyee in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (12.0.0)
+Requirement already satisfied: typing-extensions in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (4.12.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (2.4.0)
+Requirement already satisfied: aiosignal>=1.1.2 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (6.1.0)
+Requirement already satisfied: yarl<2.0,>=1.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.11.1)
+Requirement already satisfied: async-timeout<5.0,>=4.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (4.0.3)
+Requirement already satisfied: packaging in ./venv/lib/python3.10/site-packages (from deprecation->py-tgcalls->-r requirements.txt (line 10)) (24.1)
+Requirement already satisfied: pyasn1>=0.1.3 in ./venv/lib/python3.10/site-packages (from rsa->Telethon->-r requirements.txt (line 15)) (0.6.1)
+Starting zipper.py...
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Pyromod is working! If you like pyromod, please star it at https://github.com/usernein/pyromod
+PyTgCalls v2.0.3 powered by NTgCalls v1.2.3, Copyright (C) 2021-2024 Laky-64 <https://github.com/Laky-64>
+Licensed under the terms of the GNU Lesser General Public License v3 or later (LGPLv3+)
+
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Requirement already satisfied: pip in ./venv/lib/python3.10/site-packages (24.2)
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 14))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 22))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-v5tizq0u
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-v5tizq0u
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit fa2be9a7c63babede07480151363e54eee5702bd
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: certifi in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 1)) (2024.8.30)
+Requirement already satisfied: pyromod in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 2)) (3.1.6)
+Requirement already satisfied: yt_dlp in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 3)) (2024.8.6)
+Requirement already satisfied: uvloop in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 4)) (0.20.0)
+Requirement already satisfied: lottie in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 5)) (0.7.0)
+Requirement already satisfied: telegraph in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 6)) (2.2.0)
+Requirement already satisfied: pytz in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 7)) (2024.2)
+Requirement already satisfied: pymediainfo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 8)) (6.1.0)
+Requirement already satisfied: Pillow in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 9)) (10.4.0)
+Requirement already satisfied: py-tgcalls in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 10)) (2.0.3)
+Requirement already satisfied: cryptg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 11)) (0.4.0)
+Requirement already satisfied: Telethon in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 15)) (1.36.0)
+Requirement already satisfied: TgCrypto in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 16)) (1.2.5)
+Requirement already satisfied: pymongo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 17)) (4.8.0)
+Requirement already satisfied: requests in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 18)) (2.32.3)
+Requirement already satisfied: lxml in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 20)) (5.3.0)
+Requirement already satisfied: fake_useragent in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 21)) (1.5.1)
+Requirement already satisfied: opencv-python-headless in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 24)) (4.10.0.84)
+Requirement already satisfied: python-ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 25)) (2.0.12)
+Requirement already satisfied: ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 26)) (1.4)
+Requirement already satisfied: brotli in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.1.0)
+Requirement already satisfied: mutagen in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.47.0)
+Requirement already satisfied: pycryptodomex in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (3.20.0)
+Requirement already satisfied: urllib3<3,>=1.26.17 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (2.2.3)
+Requirement already satisfied: websockets>=13.0 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (13.0.1)
+Requirement already satisfied: aiohttp>=3.9.3 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (3.10.5)
+Requirement already satisfied: ntgcalls>=1.2.2 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (1.2.3)
+Requirement already satisfied: psutil in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (6.0.0)
+Requirement already satisfied: screeninfo in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (0.8.1)
+Requirement already satisfied: deprecation in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.7.1)
+Requirement already satisfied: rsa in ./venv/lib/python3.10/site-packages (from Telethon->-r requirements.txt (line 15)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in ./venv/lib/python3.10/site-packages (from pymongo->-r requirements.txt (line 17)) (2.6.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.9)
+Requirement already satisfied: numpy>=1.21.2 in ./venv/lib/python3.10/site-packages (from opencv-python-headless->-r requirements.txt (line 24)) (2.1.1)
+Requirement already satisfied: pyee in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (12.0.0)
+Requirement already satisfied: typing-extensions in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (4.12.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (2.4.0)
+Requirement already satisfied: aiosignal>=1.1.2 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (6.1.0)
+Requirement already satisfied: yarl<2.0,>=1.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.11.1)
+Requirement already satisfied: async-timeout<5.0,>=4.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (4.0.3)
+Requirement already satisfied: packaging in ./venv/lib/python3.10/site-packages (from deprecation->py-tgcalls->-r requirements.txt (line 10)) (24.1)
+Requirement already satisfied: pyasn1>=0.1.3 in ./venv/lib/python3.10/site-packages (from rsa->Telethon->-r requirements.txt (line 15)) (0.6.1)
+Starting zipper.py...
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+[user_5991969068] Waiting for 3 seconds before continuing (required by "phone.JoinGroupCall")
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Pyromod is working! If you like pyromod, please star it at https://github.com/usernein/pyromod
+PyTgCalls v2.0.3 powered by NTgCalls v1.2.3, Copyright (C) 2021-2024 Laky-64 <https://github.com/Laky-64>
+Licensed under the terms of the GNU Lesser General Public License v3 or later (LGPLv3+)
+
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd82d57e0> joined the voice chat.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd82d52d0> joined the voice chat.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd4a220b0> joined the voice chat.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd4a22800> joined the voice chat.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd4079240> joined the voice chat.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd407b3a0> joined the voice chat.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd409cfd0> joined the voice chat.
+Handlers added successfully.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd409f160> joined the voice chat.
+Handlers added successfully.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd40b0850> joined the voice chat.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd40b2140> joined the voice chat.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd40cc220> joined the voice chat.
+Handlers added successfully.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd40cd660> joined the voice chat.
+Handlers added successfully.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd40cf550> joined the voice chat.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd40ddbd0> joined the voice chat.
+Handlers added successfully.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd40dffa0> joined the voice chat.
+Handlers added successfully.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd40f1480> joined the voice chat.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd40f32e0> joined the voice chat.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd4109720> joined the voice chat.
+Handlers added successfully.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd410b2b0> joined the voice chat.
+Handlers added successfully.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd40f3850> joined the voice chat.
+Handlers added successfully.
+<pyrogram.client.Client object at 0x721fd412bdc0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4715660> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4717c10> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4725d20> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4727af0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb473ded0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb473f220> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4759810> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb475ba30> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb476dfc0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb476fca0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4791a20> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4793d30> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47a5b40> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47a7d30> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47b65c0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47c89d0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47ca8f0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47e0250> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47e2d70> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb45fc6a0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb45ff220> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd82d57e0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd82d52d0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4a220b0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4a22800> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4079240> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd407b3a0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd409cfd0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd409f160> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40b0850> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40b2140> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cc220> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cd660> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cf550> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40ddbd0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40dffa0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f1480> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f32e0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4109720> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd410b2b0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f3850> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd412bdc0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4715660> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4717c10> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4725d20> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4727af0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb473ded0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb473f220> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4759810> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb475ba30> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb476dfc0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb476fca0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4791a20> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4793d30> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47a5b40> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47a7d30> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47b65c0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47c89d0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47ca8f0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47e0250> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47e2d70> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb45fc6a0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb45ff220> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4619360> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb461a170> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb463b880> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4662a40> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4661de0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb467b760> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb468c760> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb468f5e0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb46a9f30> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb46c0c40> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb46c2e90> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb46d5f90> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb46f08b0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb46f3370> joined the voice chat.
+<pyrogram.client.Client object at 0x721f307044f0> joined the voice chat.
+<pyrogram.client.Client object at 0x721f30707760> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb46f2920> joined the voice chat.
+<pyrogram.client.Client object at 0x721f307300a0> joined the voice chat.
+<pyrogram.client.Client object at 0x721f30730910> joined the voice chat.
+<pyrogram.client.Client object at 0x721f30743070> joined the voice chat.
+<pyrogram.client.Client object at 0x721f30743880> joined the voice chat.
+<pyrogram.client.Client object at 0x721f30768d60> joined the voice chat.
+<pyrogram.client.Client object at 0x721f3075bcd0> joined the voice chat.
+<pyrogram.client.Client object at 0x721f30786230> joined the voice chat.
+<pyrogram.client.Client object at 0x721f30787a90> joined the voice chat.
+<pyrogram.client.Client object at 0x721f307861a0> joined the voice chat.
+<pyrogram.client.Client object at 0x721f307a22f0> joined the voice chat.
+<pyrogram.client.Client object at 0x721f307b38b0> joined the voice chat.
+<pyrogram.client.Client object at 0x721f307d3b20> joined the voice chat.
+<pyrogram.client.Client object at 0x721f307d39d0> joined the voice chat.
+<pyrogram.client.Client object at 0x721f307e1b40> joined the voice chat.
+<pyrogram.client.Client object at 0x721f3075a200> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd82d57e0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd82d52d0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4a220b0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4a22800> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4079240> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd407b3a0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd409cfd0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd409f160> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40b0850> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40b2140> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cc220> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cd660> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cf550> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40ddbd0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40dffa0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f1480> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f32e0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4109720> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd410b2b0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f3850> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd412bdc0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4715660> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4717c10> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4725d20> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4727af0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb473ded0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb473f220> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4759810> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb475ba30> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb476dfc0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb476fca0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4791a20> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4793d30> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47a5b40> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47a7d30> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47b65c0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47c89d0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47ca8f0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47e0250> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb47e2d70> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb45fc6a0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb45ff220> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4619360> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb461a170> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb463b880> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4662a40> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4661de0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb467b760> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb468c760> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb468f5e0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb46a9f30> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb46c0c40> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb46c2e90> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb46d5f90> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb46f08b0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb46f3370> joined the voice chat.
+<pyrogram.client.Client object at 0x721f307044f0> joined the voice chat.
+<pyrogram.client.Client object at 0x721f30707760> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb46f2920> joined the voice chat.
+<pyrogram.client.Client object at 0x721f307300a0> joined the voice chat.
+<pyrogram.client.Client object at 0x721f30730910> joined the voice chat.
+<pyrogram.client.Client object at 0x721f30743070> joined the voice chat.
+<pyrogram.client.Client object at 0x721f30743880> joined the voice chat.
+<pyrogram.client.Client object at 0x721f30768d60> joined the voice chat.
+<pyrogram.client.Client object at 0x721f3075bcd0> joined the voice chat.
+<pyrogram.client.Client object at 0x721f30786230> joined the voice chat.
+<pyrogram.client.Client object at 0x721f30787a90> joined the voice chat.
+<pyrogram.client.Client object at 0x721f307861a0> joined the voice chat.
+<pyrogram.client.Client object at 0x721f307a22f0> joined the voice chat.
+<pyrogram.client.Client object at 0x721f307b38b0> joined the voice chat.
+<pyrogram.client.Client object at 0x721f307d3b20> joined the voice chat.
+<pyrogram.client.Client object at 0x721f307d39d0> joined the voice chat.
+<pyrogram.client.Client object at 0x721f307e1b40> joined the voice chat.
+<pyrogram.client.Client object at 0x721f3075a200> joined the voice chat.
+Task exception was never retrieved
+future: <Task finished name='Task-1429933' coro=<Client.handle_updates() done, defined at /home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/client.py:596> exception=ConnectionError('Client has not been started yet')>
+Traceback (most recent call last):
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/client.py", line 673, in handle_updates
+    diff = await self.invoke(
+  File "/home/ubuntu/upload2/venv/lib/python3.10/site-packages/pyrogram/methods/advanced/invoke.py", line 76, in invoke
+    raise ConnectionError("Client has not been started yet")
+ConnectionError: Client has not been started yet
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+[user_5447892434] Waiting for 3 seconds before continuing (required by "channels.GetFullChannel")
+[user_6026932252] Waiting for 3 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6081330620] Waiting for 3 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6083817572] Waiting for 3 seconds before continuing (required by "channels.GetFullChannel")
+[user_6279092504] Waiting for 3 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6528731398] Waiting for 3 seconds before continuing (required by "phone.JoinGroupCall")
+[user_6607459073] Waiting for 3 seconds before continuing (required by "channels.GetFullChannel")
+[user_6741684718] Waiting for 3 seconds before continuing (required by "channels.GetFullChannel")
+Code sent to 213665447629.
+<pyrogram.client.Client object at 0x721fd82d57e0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd82d52d0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4a220b0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4a22800> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4079240> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd407b3a0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd409cfd0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd409f160> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40b0850> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40b2140> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cc220> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cd660> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cf550> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40ddbd0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40dffa0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f1480> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f32e0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4109720> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd410b2b0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f3850> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd412bdc0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4715660> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4717c10> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4725d20> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4727af0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb473ded0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb473f220> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4759810> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd82d57e0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd82d52d0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4a220b0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4a22800> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4079240> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd407b3a0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd409cfd0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd409f160> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40b0850> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40b2140> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cc220> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cd660> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cf550> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40ddbd0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40dffa0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f1480> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f32e0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4109720> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd410b2b0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f3850> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd412bdc0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4715660> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4717c10> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4725d20> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4727af0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb473ded0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb473f220> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4759810> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd82d57e0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd82d52d0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4a220b0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4a22800> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4079240> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd407b3a0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd409cfd0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd409f160> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40b0850> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40b2140> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cc220> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cd660> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cf550> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40ddbd0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40dffa0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f1480> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f32e0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4109720> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd410b2b0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f3850> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd412bdc0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4715660> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4717c10> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4725d20> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4727af0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb473ded0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb473f220> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4759810> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd82d57e0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd82d52d0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4a220b0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4a22800> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4079240> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd407b3a0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd409cfd0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd409f160> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40b0850> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40b2140> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cc220> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cd660> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40cf550> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40ddbd0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40dffa0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f1480> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f32e0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd4109720> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd410b2b0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd40f3850> joined the voice chat.
+<pyrogram.client.Client object at 0x721fd412bdc0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4715660> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4717c10> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4725d20> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4727af0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb473ded0> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb473f220> joined the voice chat.
+<pyrogram.client.Client object at 0x721fb4759810> joined the voice chat.
+Requirement already satisfied: pip in ./venv/lib/python3.10/site-packages (24.2)
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 14))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 22))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-eov1q2mp
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-eov1q2mp
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit eabb4680fdb09ba1f48d174a700a2e3b43f82add
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: certifi in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 1)) (2024.8.30)
+Requirement already satisfied: pyromod in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 2)) (3.1.6)
+Requirement already satisfied: yt_dlp in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 3)) (2024.8.6)
+Requirement already satisfied: uvloop in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 4)) (0.20.0)
+Requirement already satisfied: lottie in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 5)) (0.7.0)
+Requirement already satisfied: telegraph in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 6)) (2.2.0)
+Requirement already satisfied: pytz in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 7)) (2024.2)
+Requirement already satisfied: pymediainfo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 8)) (6.1.0)
+Requirement already satisfied: Pillow in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 9)) (10.4.0)
+Requirement already satisfied: py-tgcalls in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 10)) (2.0.3)
+Requirement already satisfied: cryptg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 11)) (0.4.0)
+Requirement already satisfied: Telethon in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 15)) (1.36.0)
+Requirement already satisfied: TgCrypto in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 16)) (1.2.5)
+Requirement already satisfied: pymongo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 17)) (4.8.0)
+Requirement already satisfied: requests in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 18)) (2.32.3)
+Requirement already satisfied: lxml in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 20)) (5.3.0)
+Requirement already satisfied: fake_useragent in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 21)) (1.5.1)
+Requirement already satisfied: opencv-python-headless in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 24)) (4.10.0.84)
+Requirement already satisfied: python-ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 25)) (2.0.12)
+Requirement already satisfied: ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 26)) (1.4)
+Requirement already satisfied: brotli in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.1.0)
+Requirement already satisfied: mutagen in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.47.0)
+Requirement already satisfied: pycryptodomex in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (3.20.0)
+Requirement already satisfied: urllib3<3,>=1.26.17 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (2.2.3)
+Requirement already satisfied: websockets>=13.0 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (13.0.1)
+Requirement already satisfied: aiohttp>=3.9.3 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (3.10.5)
+Requirement already satisfied: ntgcalls>=1.2.2 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (1.2.3)
+Requirement already satisfied: psutil in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (6.0.0)
+Requirement already satisfied: screeninfo in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (0.8.1)
+Requirement already satisfied: deprecation in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.7.1)
+Requirement already satisfied: rsa in ./venv/lib/python3.10/site-packages (from Telethon->-r requirements.txt (line 15)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in ./venv/lib/python3.10/site-packages (from pymongo->-r requirements.txt (line 17)) (2.6.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.9)
+Requirement already satisfied: numpy>=1.21.2 in ./venv/lib/python3.10/site-packages (from opencv-python-headless->-r requirements.txt (line 24)) (2.1.1)
+Requirement already satisfied: pyee in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (12.0.0)
+Requirement already satisfied: typing-extensions in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (4.12.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (2.4.0)
+Requirement already satisfied: aiosignal>=1.1.2 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (6.1.0)
+Requirement already satisfied: yarl<2.0,>=1.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.11.1)
+Requirement already satisfied: async-timeout<5.0,>=4.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (4.0.3)
+Requirement already satisfied: packaging in ./venv/lib/python3.10/site-packages (from deprecation->py-tgcalls->-r requirements.txt (line 10)) (24.1)
+Requirement already satisfied: pyasn1>=0.1.3 in ./venv/lib/python3.10/site-packages (from rsa->Telethon->-r requirements.txt (line 15)) (0.6.1)
+Requirement already satisfied: pip in ./venv/lib/python3.10/site-packages (24.2)
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 14))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 22))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-gz0bodie
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-gz0bodie
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit eabb4680fdb09ba1f48d174a700a2e3b43f82add
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: certifi in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 1)) (2024.8.30)
+Requirement already satisfied: pyromod in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 2)) (3.1.6)
+Requirement already satisfied: yt_dlp in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 3)) (2024.8.6)
+Requirement already satisfied: uvloop in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 4)) (0.20.0)
+Requirement already satisfied: lottie in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 5)) (0.7.0)
+Requirement already satisfied: telegraph in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 6)) (2.2.0)
+Requirement already satisfied: pytz in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 7)) (2024.2)
+Requirement already satisfied: pymediainfo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 8)) (6.1.0)
+Requirement already satisfied: Pillow in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 9)) (10.4.0)
+Requirement already satisfied: py-tgcalls in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 10)) (2.0.3)
+Requirement already satisfied: cryptg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 11)) (0.4.0)
+Requirement already satisfied: Telethon in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 15)) (1.36.0)
+Requirement already satisfied: TgCrypto in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 16)) (1.2.5)
+Requirement already satisfied: pymongo in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 17)) (4.8.0)
+Requirement already satisfied: requests in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 18)) (2.32.3)
+Requirement already satisfied: lxml in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 20)) (5.3.0)
+Requirement already satisfied: fake_useragent in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 21)) (1.5.1)
+Requirement already satisfied: opencv-python-headless in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 24)) (4.10.0.84)
+Requirement already satisfied: python-ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 25)) (2.0.12)
+Requirement already satisfied: ffmpeg in ./venv/lib/python3.10/site-packages (from -r requirements.txt (line 26)) (1.4)
+Requirement already satisfied: brotli in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.1.0)
+Requirement already satisfied: mutagen in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (1.47.0)
+Requirement already satisfied: pycryptodomex in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (3.20.0)
+Requirement already satisfied: urllib3<3,>=1.26.17 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (2.2.3)
+Requirement already satisfied: websockets>=13.0 in ./venv/lib/python3.10/site-packages (from yt-dlp==2024.8.6->-r requirements.txt (line 22)) (13.0.1)
+Requirement already satisfied: aiohttp>=3.9.3 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (3.10.5)
+Requirement already satisfied: ntgcalls>=1.2.2 in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (1.2.3)
+Requirement already satisfied: psutil in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (6.0.0)
+Requirement already satisfied: screeninfo in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (0.8.1)
+Requirement already satisfied: deprecation in ./venv/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in ./venv/lib/python3.10/site-packages (from Pyrogram==2.1.28->-r requirements.txt (line 14)) (1.7.1)
+Requirement already satisfied: rsa in ./venv/lib/python3.10/site-packages (from Telethon->-r requirements.txt (line 15)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in ./venv/lib/python3.10/site-packages (from pymongo->-r requirements.txt (line 17)) (2.6.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in ./venv/lib/python3.10/site-packages (from requests->-r requirements.txt (line 18)) (3.9)
+Requirement already satisfied: numpy>=1.21.2 in ./venv/lib/python3.10/site-packages (from opencv-python-headless->-r requirements.txt (line 24)) (2.1.1)
+Requirement already satisfied: pyee in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (12.0.0)
+Requirement already satisfied: typing-extensions in ./venv/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (4.12.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (2.4.0)
+Requirement already satisfied: aiosignal>=1.1.2 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (24.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (6.1.0)
+Requirement already satisfied: yarl<2.0,>=1.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.11.1)
+Requirement already satisfied: async-timeout<5.0,>=4.0 in ./venv/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (4.0.3)
+Requirement already satisfied: packaging in ./venv/lib/python3.10/site-packages (from deprecation->py-tgcalls->-r requirements.txt (line 10)) (24.1)
+Requirement already satisfied: pyasn1>=0.1.3 in ./venv/lib/python3.10/site-packages (from rsa->Telethon->-r requirements.txt (line 15)) (0.6.1)
+Starting zipper.py...
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.

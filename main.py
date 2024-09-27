@@ -485,7 +485,7 @@ async def join_voice_chat(event):
             await call_py.play(
             chat.id)
             await call_py.mute_stream(chat.id)
-            await asyncio.sleep(sleep_time - 2)
+            await asyncio.sleep(sleep_time)
             joined_users += 1
             #except pytgcalls.exceptions.UnMuteNeeded:
             print(f"{client} joined the voice chat.")
@@ -549,8 +549,11 @@ async def handler(event):
 
     message += f"\nNumber of active clients: {num_active_clients}"
 
+    max_length = 4000
+    for i in range(0, len(message), max_length):
+        chunk = message[i:i + max_length]
+        await event.reply(chunk)
     # Send the message
-    await event.reply(message)  # Send to the chat where the command was issued
                     # Store user's phone number
 # Define client outside of any function scope
 async def run_client(sender):
