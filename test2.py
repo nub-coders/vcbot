@@ -52,7 +52,7 @@ def find_random_words(filename, start_letter, word_length, include_letter=None):
         word for word in words
         if word.startswith(start_letter) and
            (not include_letter or include_letter in word) and
-           len(word) == word_length
+           len(word) == word_length and re.match("^[A-Za-z]+$", word)
     ]
     print(f"Debug: Filtered words: {filtered_words}")
 

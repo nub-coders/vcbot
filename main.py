@@ -482,11 +482,11 @@ async def join_voice_chat(event):
 
             # Join the voice chat
             audio_file = 'input.webm'
+            joined_users += 1
             await call_py.play(
             chat.id)
             await call_py.mute_stream(chat.id)
             await asyncio.sleep(sleep_time)
-            joined_users += 1
             #except pytgcalls.exceptions.UnMuteNeeded:
             print(f"{client} joined the voice chat.")
         except Exception as e:
