@@ -17,6 +17,7 @@ from pyrogram.errors import FloodWait
 import asyncio
 import random
 import re
+from pyromod import listen
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from pyrogram.raw.types import MessageEntityTextUrl, MessageEntityMentionName
@@ -53,13 +54,13 @@ def find_random_words(filename, start_letter, word_length, include_letter=None):
            (not include_letter or include_letter in word) and
            len(word) == word_length
     ]
+    print(f"Debug: Filtered words: {filtered_words}")
 
     if not filtered_words:
         return None
 
-    # Return a random word
-    return random.choice(filtered_words)
-
+    return filtered_words
+used_words = {}
 # Listen to messages from the specific user @on9wordchainbot in a group context
 @app.on_message(filters.user("on9wordchainbot") & filters.group)
 async def wordchain_listener(client, message: Message):
@@ -106,14 +107,42 @@ async def wordchain_listener(client, message: Message):
                     return
 
                 # Find a random word based on the criteria
-                random_word = find_random_words("words.txt", start_letter, word_length, include_letter)
-
-                if random_word:
-                    await message.reply(random_word)
-                    print(f"Debug: Reply sent with word: {random_word}")
-                else:
+                filtered_words = find_random_words("words.txt", start_letter, word_length, include_letter)
+                if not filtered_words:
+                    await message.reply(f"@{client.me.username} No suitable word found.")
                     print("Debug: No suitable word found.")
-                    pass
+                    return
+
+                # Initialize chat ID and used word list if not exists
+                chat_id = message.chat.id
+                if chat_id not in used_words:
+                    used_words[chat_id] = []
+
+                # Select a random word that has not been used in this chat
+                for attempt in range(10):
+                    random_word = None
+                    for _ in range(10):  # Try up to 10 times to find an unused word
+                      random_word = random.choice(filtered_words)
+                      if random_word not in used_words[chat_id]:
+                        break
+                      random_word = None
+
+                    if random_word:
+                        await asyncio.sleep(2)
+                        used_words[chat_id].append(random_word)
+                        await message.reply(random_word)
+                        print(f"Debug: Reply sent with word: {random_word}")
+                    else:
+                       used_words[chat_id].append(random_word)
+                       print("Debug: No suitable word found.")
+                       pass
+                    try:
+                        response = await client.listen(chat_id=message.chat.id, user_id=message.from_user.id, timeout=3)
+                        if response.text:
+                            return
+                    except Exception as e:
+                        print(e)
+                        pass
         except Exception as e:
             print(f"Error processing message: {e}")
 
