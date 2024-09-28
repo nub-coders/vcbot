@@ -128,7 +128,7 @@ async def wordchain_listener(client, message: Message):
                       random_word = None
 
                     if random_word:
-                        await asyncio.sleep(2)
+                        await asyncio.sleep(4)
                         used_words[chat_id].append(random_word)
                         await message.reply(random_word)
                         print(f"Debug: Reply sent with word: {random_word}")
