@@ -52,7 +52,7 @@ def find_random_words(filename, start_letter, word_length, include_letter=None):
         word for word in words
         if word.startswith(start_letter) and
            (not include_letter or include_letter in word) and
-           len(word) == word_length and re.match("^[A-Za-z]+$", word)
+           len(word) >= word_length and re.match("^[A-Za-z]+$", word)
     ]
     print(f"Debug: Filtered words: {filtered_words}")
 
@@ -109,7 +109,6 @@ async def wordchain_listener(client, message: Message):
                 # Find a random word based on the criteria
                 filtered_words = find_random_words("words.txt", start_letter, word_length, include_letter)
                 if not filtered_words:
-                    await message.reply(f"@{client.me.username} No suitable word found.")
                     print("Debug: No suitable word found.")
                     return
 
@@ -119,7 +118,7 @@ async def wordchain_listener(client, message: Message):
                     used_words[chat_id] = []
 
                 # Select a random word that has not been used in this chat
-                for attempt in range(10):
+                for attempt in range(5):
                     random_word = None
                     for _ in range(10):  # Try up to 10 times to find an unused word
                       random_word = random.choice(filtered_words)
@@ -128,29 +127,28 @@ async def wordchain_listener(client, message: Message):
                       random_word = None
 
                     if random_word:
-                        await asyncio.sleep(4)
                         used_words[chat_id].append(random_word)
+                        await client.send_chat_action(chat_id, enums.ChatAction.TYPING)
+                        await asyncio.sleep(2)
                         await message.reply(random_word)
                         print(f"Debug: Reply sent with word: {random_word}")
                     else:
                        used_words[chat_id].append(random_word)
                        print("Debug: No suitable word found.")
                        pass
-                    try:
-                        response = await client.listen(chat_id=message.chat.id, user_id=message.from_user.id, timeout=3)
-                        if response.text:
-                            return
-                    except Exception as e:
-                        print(e)
-                        pass
+                    await asyncio.sleep(2)
+                    async for world in client.search_messages(chat_id,from_user="on9wordchainbot", limit=3):
+                       if f"{random_word} is not" in world.text.lower() or f"{random_word} has been used." in world.text.lower():
+                           continue
+                    return
         except Exception as e:
             print(f"Error processing message: {e}")
 
 # Listen to messages from the specific user @fuckk_uh_deeply in a group context
-@app.on_message(filters.user("fuckk_uh_deeply") & filters.group)
+@app.on_message(filters.user("fuckk_uh_deeply") & filters.group & filters.command("game",prefixes="."))
 async def forward_message(client, message: Message):
     # Forward the same message to the group
-    await message.forward(message.chat.id)
+    await client.send_message(message.chat.id, '/join')
 
 # Run the client
 app.run()
