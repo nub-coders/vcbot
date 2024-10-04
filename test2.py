@@ -52,7 +52,7 @@ def find_random_words(filename, start_letter, word_length, include_letter=None):
         word for word in words
         if word.startswith(start_letter) and
            (not include_letter or include_letter in word) and
-           len(word) >= word_length and re.match("^[A-Za-z]+$", word)
+           len(word) >= word_length and re.match("^[A-Za-z]+$", word) and len(word) >3
     ]
 
     if not filtered_words:
