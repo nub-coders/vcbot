@@ -319,7 +319,7 @@ async def leave_voice_chat(event):
 
 
 
-@bot.on(events.NewMessage(pattern='/report (\d+) (\d+)'))
+@bot.on(events.NewMessage(pattern='/report (\d+) (.+)'))
 async def leave_voice_chat(event):
     user_id = event.sender_id
 
