@@ -319,6 +319,44 @@ async def leave_voice_chat(event):
 
 
 
+@bot.on(events.NewMessage(pattern='/report (\d+) (\d+)'))
+async def leave_voice_chat(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+
+    # Extract the number of clients and group identifier (could be an invite link or a chat ID)
+    num_clients_to_leave = int(event.pattern_match.group(1))
+    group_identifier = event.pattern_match.group(2)
+
+    left_users = 0
+
+    for sender in list(songs_client.keys()):
+        client = clients.get(sender)
+        try:
+            peer=(client.resolve_peer(group_identifier))
+            message = "This user is violating Telegram's Terms of Service."
+            # Leave the voice chat
+            reason = types.InputReportReasonChildAbuse()
+            result = client.invoke(functions.account.ReportPeer(peer=peer, reason=reason, message=message))
+            left_users += 1
+            print(f"{client} reported the {group_identifier}.")
+        except Exception as e:
+            print(e)
+
+        # Break if we've left the required number of clients
+        if left_users >= num_clients_to_leave:
+            break
+
+    await event.reply(f"{left_users} clients reported the {group_identifier}.")
+
+
 @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
 async def leave_voice_chat(event):
     user_id = event.sender_id
