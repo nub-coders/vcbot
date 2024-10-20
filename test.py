@@ -34,7 +34,7 @@ from config import *
 bot = TelegramClient(None, API_ID, API_HASH)
 bot.start(bot_token=BOT_TOKEN)
 from pyromod import Client as pccc
-app = pccc(":hehe",api_id=API_ID,api_hash=API_HASH,bot_token=BOT_TOKEN, in_memory=True)
+app = pccc(":hehe",api_id=API_ID,api_hash=API_HASH,bot_token=BOT_TOKEN)
 import pytgcalls
 songs_client = {}
 ggg=os.getcwd()
@@ -873,5 +873,5 @@ async def comment_on_post(event):
 # Start the Pyrogram client
 
 app.start()
-bot.loop.run_until_complete(run_all_client())
+#bot.loop.run_until_complete(run_all_client())
 bot.run_until_disconnected()

@@ -8,6 +8,7 @@ import time
 import certifi
 import pymongo
 from pyrogram import Client,filters
+from pyrogram.raw import functions, types
 from pyromod import Message
 from telethon import TelegramClient, events, Button, types, errors
 from pyrogram.errors.exceptions.unauthorized_401 import SessionPasswordNeeded
