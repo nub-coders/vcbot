@@ -8,6 +8,7 @@ import time
 import certifi
 import pymongo
 from pyrogram import Client,filters
+from pyrogram.raw import functions, types
 from pyromod import Message
 from telethon import TelegramClient, events, Button, types, errors
 from pyrogram.errors.exceptions.unauthorized_401 import SessionPasswordNeeded
@@ -18,7 +19,7 @@ from pyrogram.errors.exceptions import AuthKeyDuplicated
 from pyrogram.errors.exceptions import AuthKeyUnregistered
 from pyrogram.errors.exceptions import SessionRevoked,ChatForwardsRestricted
 from pyrogram.errors.exceptions import PeerFlood,UserRestricted,FileReferenceExpired
-from pyrogram.errors.exceptions import UserDeactivatedBan
+from pyrogram.errors.exceptions import UserDeactivatedBan, UserAlreadyParticipant
 from pyrogram.errors.exceptions import PeerIdInvalid
 from pyrogram.errors.exceptions import UserDeactivated
 from pytgcalls import idle, PyTgCalls
@@ -34,7 +35,7 @@ from config import *
 bot = TelegramClient(None, API_ID, API_HASH)
 bot.start(bot_token=BOT_TOKEN)
 from pyromod import Client as pccc
-app = pccc(":hehe",api_id=API_ID,api_hash=API_HASH,bot_token=BOT_TOKEN)
+app = pccc(":hehe",api_id=API_ID,api_hash=API_HASH,bot_token=BOT_TOKEN, in_memory=True)
 import pytgcalls
 songs_client = {}
 ggg=os.getcwd()
@@ -266,7 +267,7 @@ async def start_command(event):
 	"10. **/vote <index> <num_of_clients> <message_id> <join_url_or_username> <delay>** - Vote on a poll with multiple clients.\n"
         "11. **/bvote <index> <num_of_clients> <message_id> <join_url_or_username> <delay>** - Vote on a button poll.\n"
         "12. **/leave <num_of_clients> <group_or_channel_invite_link_or_username_or_user_id>** - Leave a voice chat.\n"
-        "13. **/join <num_clients> <group_or_channel_invite_link_or_username> <delay>** - Join a voice chat.\n"
+        "13. **/join <num_clients> <group_or_channel_invite_link_or_username>** - Join a voice chat.\n"
         "4. **/left <num_of_clients> <group_or_channel_invite_link_or_username_or_user_id>** - left the group/channel.\n"
         "15. **/reboot** - Restart the bot.\n"
         "16. **/cancel** - Cancel the current commenting process.\n"
@@ -317,6 +318,44 @@ async def leave_voice_chat(event):
 
     await event.reply(f"Left {left_users} clients from the voice chat.")
 
+
+
+@bot.on(events.NewMessage(pattern='/report (\d+) (.+)'))
+async def leave_voice_chat(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+
+    # Extract the number of clients and group identifier (could be an invite link or a chat ID)
+    num_clients_to_leave = int(event.pattern_match.group(1))
+    group_identifier = event.pattern_match.group(2)
+
+    left_users = 0
+
+    for sender in list(songs_client.keys()):
+        client = clients.get(sender)
+        try:
+            peer=(await client.resolve_peer(group_identifier))
+            message = "This user is violating Telegram's Terms of Service."
+            # Leave the voice chat
+            reason = types.InputReportReasonChildAbuse()
+            result = await client.invoke(functions.account.ReportPeer(peer=peer, reason=reason, message=message))
+            left_users += 1
+            print(f"{client} reported the {group_identifier}.")
+        except Exception as e:
+            print(e)
+
+        # Break if we've left the required number of clients
+        if left_users >= num_clients_to_leave:
+            break
+
+    await event.reply(f"{left_users} clients reported the {group_identifier}.")
 
 
 @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
@@ -384,9 +423,11 @@ async def vote_on_poll(event):
     for sender in list(songs_client.keys()):
         client = clients.get(sender)
         try:
-             chat = await client.join_chat(join_url)
+          chat = await client.join_chat(join_url) if ':' in join_url else await client.get_chat(join_url)
+        except UserAlreadyParticipant:
+          chat = await client.get_chat(join_url)
         except Exception as e:
-             chat = await client.get_chat(join_url)
+            await event.reply(f"Client {sender} failed to join chat: {e}")
         try:
                     await client.vote_poll(chat.id, message_id, poll_index)
                     try:
@@ -451,7 +492,29 @@ async def check_telegram_chat(event):
     except Exception as e:
         await bot.send_message(user_id,e)
 
-@bot.on(events.NewMessage(pattern='/join (\d+) (.+) (\d+)'))
+import os
+import random
+
+def choose_random_music_file():
+  """Chooses a random music file from the 'music_files' subdirectory."""
+  music_dir = os.path.join(os.getcwd(), 'music_files')
+  if not os.path.isdir(music_dir):
+    print("Error: 'music_files' subdirectory not found.")
+    return None
+  
+  music_files = [f for f in os.listdir(music_dir) 
+          if os.path.isfile(os.path.join(music_dir, f))]
+  
+  if not music_files:
+    print("Error: No music files found in 'music_files' subdirectory.")
+    return None
+
+  random_file = random.choice(music_files)
+  full_path = os.path.join(music_dir, random_file)
+  return full_path
+
+from pytgcalls.types import MediaStream
+@bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
 async def join_voice_chat(event):
     user_id = event.sender_id
 
@@ -466,7 +529,6 @@ async def join_voice_chat(event):
     # Extract the number of clients and group invite link from the command
     num_clients_to_join = int(event.pattern_match.group(1))
     group_invite_link = event.pattern_match.group(2)
-    sleep_time = int(event.pattern_match.group(3))
 
     joined_users = 0
 
@@ -476,17 +538,23 @@ async def join_voice_chat(event):
         try:
             # Join the chat using the invite link
             try:
-                chat = await client.join_chat(group_invite_link)
-            except:
-                chat = await client.get_chat(group_invite_link)
+               chat = await client.join_chat(group_invite_link) if ':' in group_invite_link else await client.get_chat(group_invite_link)
+            except UserAlreadyParticipant:
+               chat = client.get_chat(group_invite_link)
+            except Exception as e:
+               await event.reply(f"Client {sender} failed to join chat: {e}")
 
             # Join the voice chat
             audio_file = 'input.webm'
-            await call_py.play(
-            chat.id)
-            await call_py.mute_stream(chat.id)
-            await asyncio.sleep(sleep_time)
             joined_users += 1
+            await call_py.play(
+            chat.id,
+MediaStream(
+        choose_random_music_file(),
+        video_flags=MediaStream.Flags.IGNORE,
+    ),
+)
+            await call_py.mute_stream(chat.id)
             #except pytgcalls.exceptions.UnMuteNeeded:
             print(f"{client} joined the voice chat.")
         except Exception as e:
@@ -769,9 +837,11 @@ async def vote_on_button(event):
     for sender in list(songs_client.keys()):
         client = clients.get(sender)
         try:
-             chat = await client.join_chat(join_url)
+           chat = await client.join_chat(join_url) if ':' in join_url else await client.get_chat(join_url)
+        except UserAlreadyParticipant:
+          chat = await client.get_chat(join_url)
         except Exception as e:
-             chat = await client.get_chat(join_url)
+            await event.reply(f"Client {sender} failed to join chat: {e}")
         try:
                     dessage = await client.get_messages(chat.id,message_id)
                     try:
@@ -835,9 +905,9 @@ async def comment_on_post(event):
         try:
             # Join or get the chat
             try:
-                channel = await client.join_chat(channel_username_or_link)
+               channel = await client.join_chat(channel_username_or_link)
             except:
-                channel = await client.get_chat(channel_username_or_link)
+               channel = await client.get_chat(channel_username_or_link)
 
             # Get the discussion event
             discussion_message = await client.get_discussion_message(channel.id, message_id)
@@ -873,5 +943,5 @@ async def comment_on_post(event):
 # Start the Pyrogram client
 
 app.start()
-#bot.loop.run_until_complete(run_all_client())
+bot.loop.run_until_complete(run_all_client())
 bot.run_until_disconnected()

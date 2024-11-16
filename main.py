@@ -1,3 +1,4 @@
+from pytgcalls import filters as fl
 import shutil
 import pyrogram
 import os
@@ -19,7 +20,7 @@ from pyrogram.errors.exceptions import AuthKeyDuplicated
 from pyrogram.errors.exceptions import AuthKeyUnregistered
 from pyrogram.errors.exceptions import SessionRevoked,ChatForwardsRestricted
 from pyrogram.errors.exceptions import PeerFlood,UserRestricted,FileReferenceExpired
-from pyrogram.errors.exceptions import UserDeactivatedBan
+from pyrogram.errors.exceptions import UserDeactivatedBan, UserAlreadyParticipant
 from pyrogram.errors.exceptions import PeerIdInvalid
 from pyrogram.errors.exceptions import UserDeactivated
 from pytgcalls import idle, PyTgCalls
@@ -358,6 +359,55 @@ async def leave_voice_chat(event):
     await event.reply(f"{left_users} clients reported the {group_identifier}.")
 
 
+@bot.on(events.NewMessage(pattern=r'/bview (\d+) (.+)'))
+async def increment_views(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+
+    num_clients_to_view = int(event.pattern_match.group(1))  # Number of clients to increment views
+    join_url = event.pattern_match.group(2)
+    viewed_users = 0
+
+    for sender in list(songs_client.keys()):
+        client = clients.get(sender)
+        try:
+            # Join or get chat
+            try:
+                chat = await client.join_chat(join_url)
+            except Exception:
+                chat = await client.get_chat(join_url)
+
+            # Iterate through history and increment view count for all messages
+            async for msg in client.get_chat_history(chat.id):
+                try:
+                    await client.invoke(
+                        pyrogram.raw.functions.messages.GetMessagesViews(
+                            peer=await client.resolve_peer(chat.id),
+                            id=[msg.id],
+                            increment=True
+                        )
+                    )
+                    viewed_users += 1
+                    await event.reply(f"Client {sender} successfully incremented views for message ID {msg.id}.")
+                except Exception as e:
+                    await event.reply(f"Client {sender} failed to increment view count for message ID {msg.id}: {e}")
+            if viewed_users >= num_clients_to_view:
+                break
+        except Exception as e:
+            await event.reply(f"Client {sender} encountered an error: {e}")
+
+    if viewed_users < num_clients_to_view:
+        await event.reply(f"Only {viewed_users} out of {num_clients_to_view} clients successfully incremented views.")
+    else:
+        await event.reply(f"All {num_clients_to_view} clients successfully incremented views.")
+
 @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
 async def leave_voice_chat(event):
     user_id = event.sender_id
@@ -423,9 +473,9 @@ async def vote_on_poll(event):
     for sender in list(songs_client.keys()):
         client = clients.get(sender)
         try:
-             chat = await client.join_chat(join_url)
-        except Exception as e:
-             chat = await client.get_chat(join_url)
+                chat = await client.join_chat(join_url)
+        except:
+                chat = await client.get_chat(join_url)
         try:
                     await client.vote_poll(chat.id, message_id, poll_index)
                     try:
@@ -497,7 +547,7 @@ async def join_voice_chat(event):
     # Check if the user is an admin
     admin_file = f"{ggg}/admin.txt"
     if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
+       with open(admin_file, "r") as file:
             admin_ids = [int(line.strip()) for line in file.readlines()]
             if user_id not in admin_ids:
                 return
@@ -521,10 +571,8 @@ async def join_voice_chat(event):
             # Join the voice chat
             audio_file = 'input.webm'
             joined_users += 1
-            await call_py.play(
-            chat.id)
-            await call_py.mute_stream(chat.id)
-            #except pytgcalls.exceptions.UnMuteNeeded:
+            await call_py.play(chat.id)
+            #joined_users += 1
             print(f"{client} joined the voice chat.")
         except Exception as e:
             await event.respond(f"Error joining with {sender}: {e}")
@@ -806,9 +854,9 @@ async def vote_on_button(event):
     for sender in list(songs_client.keys()):
         client = clients.get(sender)
         try:
-             chat = await client.join_chat(join_url)
-        except Exception as e:
-             chat = await client.get_chat(join_url)
+                chat = await client.join_chat(join_url)
+        except:
+                chat = await client.get_chat(join_url)
         try:
                     dessage = await client.get_messages(chat.id,message_id)
                     try:
@@ -872,9 +920,9 @@ async def comment_on_post(event):
         try:
             # Join or get the chat
             try:
-                channel = await client.join_chat(channel_username_or_link)
+               channel = await client.join_chat(channel_username_or_link)
             except:
-                channel = await client.get_chat(channel_username_or_link)
+               channel = await client.get_chat(channel_username_or_link)
 
             # Get the discussion event
             discussion_message = await client.get_discussion_message(channel.id, message_id)
