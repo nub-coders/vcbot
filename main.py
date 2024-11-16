@@ -394,9 +394,9 @@ async def increment_views(event):
                             increment=True
                         )
                     )
-                    viewed_users += 1
                 except Exception as e:
                     await event.reply(f"Client {sender} failed to increment view count for message ID {msg.id}: {e}")
+            viewed_users += 1
             if viewed_users >= num_clients_to_view:
                 break
         except Exception as e:

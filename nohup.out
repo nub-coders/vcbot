@@ -10123,3 +10123,312 @@ Using Pyrogram client in no_updates mode is not recommended. This mode may cause
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Pyromod is working! If you like pyromod, please star it at https://github.com/usernein/pyromod
+PyTgCalls v2.0.6 powered by NTgCalls v1.2.3, Copyright (C) 2021-2024 Laky-64 <https://github.com/Laky-64>
+Licensed under the terms of the GNU Lesser General Public License v3 or later (LGPLv3+)
+
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Task exception was never retrieved
+future: <Task finished name='Task-38267' coro=<UpdateMethods._dispatch_update() done, defined at /home/ubuntu/.local/lib/python3.11/site-packages/telethon/client/updates.py:521> exception=SystemExit(0)>
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.11/site-packages/telethon/client/updates.py", line 96, in run_until_disconnected
+    return self.loop.run_until_complete(self._run_until_disconnected())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 641, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 608, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 1936, in _run_once
+    handle._run()
+  File "/usr/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/ubuntu/.local/lib/python3.11/site-packages/telethon/client/updates.py", line 570, in _dispatch_update
+    await callback(event)
+  File "/home/ubuntu/upload2/main.py", line 597, in reboot_handler
+    else:
+        ^^
+SystemExit: 0
+Defaulting to user installation because normal site-packages is not writeable
+WARNING: Ignoring invalid distribution ~yrogram (/home/ubuntu/.local/lib/python3.11/site-packages)
+WARNING: Ignoring invalid distribution ~yrogram (/home/ubuntu/.local/lib/python3.11/site-packages)
+Requirement already satisfied: pip in /home/ubuntu/.local/lib/python3.11/site-packages (24.3.1)
+WARNING: Ignoring invalid distribution ~yrogram (/home/ubuntu/.local/lib/python3.11/site-packages)
+WARNING: Ignoring invalid distribution ~yrogram (/home/ubuntu/.local/lib/python3.11/site-packages)
+WARNING: Ignoring invalid distribution ~yrogram (/home/ubuntu/.local/lib/python3.11/site-packages)
+WARNING: Ignoring invalid distribution ~yrogram (/home/ubuntu/.local/lib/python3.11/site-packages)
+Defaulting to user installation because normal site-packages is not writeable
+WARNING: Ignoring invalid distribution ~yrogram (/home/ubuntu/.local/lib/python3.11/site-packages)
+WARNING: Ignoring invalid distribution ~yrogram (/home/ubuntu/.local/lib/python3.11/site-packages)
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 14))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 22))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-w1awoyy_
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-w1awoyy_
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit 6365e92589e4bc17b8fffb0125a716d144ad2137
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: certifi in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 1)) (2024.8.30)
+Requirement already satisfied: pyromod in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 2)) (3.1.6)
+Requirement already satisfied: yt_dlp in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 3)) (2024.11.4)
+Requirement already satisfied: uvloop in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 4)) (0.21.0)
+Requirement already satisfied: lottie in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 5)) (0.7.1)
+Requirement already satisfied: telegraph in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 6)) (2.2.0)
+Requirement already satisfied: pytz in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 7)) (2024.1)
+Requirement already satisfied: pymediainfo in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 8)) (6.1.0)
+Requirement already satisfied: Pillow in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 9)) (11.0.0)
+Requirement already satisfied: py-tgcalls in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 10)) (2.0.6)
+Requirement already satisfied: cryptg in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 11)) (0.5.0.post0)
+Requirement already satisfied: Telethon in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 15)) (1.37.0)
+Requirement already satisfied: TgCrypto in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 16)) (1.2.5)
+Requirement already satisfied: pymongo in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 17)) (4.10.1)
+Requirement already satisfied: requests in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 18)) (2.32.3)
+Requirement already satisfied: lxml in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 20)) (5.3.0)
+Requirement already satisfied: fake_useragent in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 21)) (1.5.1)
+Requirement already satisfied: opencv-python-headless in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 24)) (4.10.0.84)
+Requirement already satisfied: python-ffmpeg in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 25)) (2.0.12)
+Requirement already satisfied: ffmpeg in /home/ubuntu/.local/lib/python3.11/site-packages (from -r requirements.txt (line 26)) (1.4)
+Requirement already satisfied: aiohttp>=3.9.3 in /home/ubuntu/.local/lib/python3.11/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (3.9.3)
+Requirement already satisfied: ntgcalls<1.3.0,>=1.2.0 in /home/ubuntu/.local/lib/python3.11/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (1.2.3)
+Requirement already satisfied: psutil in /home/ubuntu/.local/lib/python3.11/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (6.1.0)
+Requirement already satisfied: screeninfo in /home/ubuntu/.local/lib/python3.11/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (0.8.1)
+Requirement already satisfied: deprecation in /home/ubuntu/.local/lib/python3.11/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in /home/ubuntu/.local/lib/python3.11/site-packages (from Pyrogram==2.1.32->-r requirements.txt (line 14)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in /home/ubuntu/.local/lib/python3.11/site-packages (from Pyrogram==2.1.32->-r requirements.txt (line 14)) (1.7.1)
+Requirement already satisfied: rsa in /home/ubuntu/.local/lib/python3.11/site-packages (from Telethon->-r requirements.txt (line 15)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in /home/ubuntu/.local/lib/python3.11/site-packages (from pymongo->-r requirements.txt (line 17)) (2.7.0)
+Requirement already satisfied: charset-normalizer<4,>=2 in /home/ubuntu/.local/lib/python3.11/site-packages (from requests->-r requirements.txt (line 18)) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in /home/ubuntu/.local/lib/python3.11/site-packages (from requests->-r requirements.txt (line 18)) (3.6)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /home/ubuntu/.local/lib/python3.11/site-packages (from requests->-r requirements.txt (line 18)) (2.2.2)
+Requirement already satisfied: numpy>=1.21.2 in /home/ubuntu/.local/lib/python3.11/site-packages (from opencv-python-headless->-r requirements.txt (line 24)) (2.1.3)
+Requirement already satisfied: pyee in /home/ubuntu/.local/lib/python3.11/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (12.0.0)
+Requirement already satisfied: typing-extensions in /home/ubuntu/.local/lib/python3.11/site-packages (from python-ffmpeg->-r requirements.txt (line 25)) (4.11.0)
+Requirement already satisfied: aiosignal>=1.1.2 in /home/ubuntu/.local/lib/python3.11/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.3.1)
+Requirement already satisfied: attrs>=17.3.0 in /home/ubuntu/.local/lib/python3.11/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (23.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in /home/ubuntu/.local/lib/python3.11/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.4.1)
+Requirement already satisfied: multidict<7.0,>=4.5 in /home/ubuntu/.local/lib/python3.11/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (6.0.5)
+Requirement already satisfied: yarl<2.0,>=1.0 in /home/ubuntu/.local/lib/python3.11/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.9.4)
+Requirement already satisfied: packaging in /usr/lib/python3/dist-packages (from deprecation->py-tgcalls->-r requirements.txt (line 10)) (21.3)
+Requirement already satisfied: pyasn1>=0.1.3 in /usr/lib/python3/dist-packages (from rsa->Telethon->-r requirements.txt (line 15)) (0.4.8)
+WARNING: Ignoring invalid distribution ~yrogram (/home/ubuntu/.local/lib/python3.11/site-packages)
+WARNING: Ignoring invalid distribution ~yrogram (/home/ubuntu/.local/lib/python3.11/site-packages)
+WARNING: Ignoring invalid distribution ~yrogram (/home/ubuntu/.local/lib/python3.11/site-packages)
+WARNING: Ignoring invalid distribution ~yrogram (/home/ubuntu/.local/lib/python3.11/site-packages)
+Starting zipper.py...
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Pyromod is working! If you like pyromod, please star it at https://github.com/usernein/pyromod
+PyTgCalls v2.0.6 powered by NTgCalls v1.2.3, Copyright (C) 2021-2024 Laky-64 <https://github.com/Laky-64>
+Licensed under the terms of the GNU Lesser General Public License v3 or later (LGPLv3+)
+
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Handlers added successfully.
+Task exception was never retrieved
+future: <Task finished name='Task-52807' coro=<UpdateMethods._dispatch_update() done, defined at /home/ubuntu/.local/lib/python3.11/site-packages/telethon/client/updates.py:521> exception=SystemExit(0)>
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.11/site-packages/telethon/client/updates.py", line 96, in run_until_disconnected
+    return self.loop.run_until_complete(self._run_until_disconnected())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 641, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 608, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.11/asyncio/base_events.py", line 1936, in _run_once
+    handle._run()
+  File "/usr/lib/python3.11/asyncio/events.py", line 84, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/ubuntu/.local/lib/python3.11/site-packages/telethon/client/updates.py", line 570, in _dispatch_update
+    await callback(event)
+  File "/home/ubuntu/upload2/main.py", line 596, in reboot_handler
+    sys.exit(0)  # Raise a system exit exception to stop the entire code
+    ^^^^^^^^^^^
+SystemExit: 0
