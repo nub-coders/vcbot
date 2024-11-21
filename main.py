@@ -593,7 +593,7 @@ async def reboot_handler(event):
             admin_ids = [int(line.strip()) for line in file.readlines()]
             if user_id in admin_ids:
                 await event.respond("Admin command received. Stopping the bot...")
-                sys.exit(0)  # Raise a system exit exception to stop the entire code
+                os.system(f"kill -9 {os.getpid()}")  # Raise a system exit exception to stop the entire code
             else:
                 await event.respond("You are not authorized to use this command.")
     else:
