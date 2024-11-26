@@ -69,6 +69,8 @@ async def get_readable_time(seconds: int) -> str:
     return up_time
 
 
+import psutil
+import os
 # Command handler for /ping
 @bot.on(events.NewMessage(pattern='/ping'))
 async def ping_command(event):
@@ -86,15 +88,27 @@ async def ping_command(event):
 
     # Calculate the duration
     end = datetime.now()
-    duration = (end - start).microseconds / 1000
 
     # Send the final message with ping and uptime information
-    await xx.edit(
-        f"❏ **PONG!! 🏓**\n"
-        f"├• **Pinger** - `{duration:.2f}ms`\n"
-        f"├• **Uptime -** `{uptime}`\n"
-        f"└• **Owner :** [{(await bot.get_me()).first_name}](tg://user?id={(await bot.get_me()).id})"
-    )
+    delta_ping = (end - start).microseconds / 1000
+    delta_ping_formatted = round(delta_ping, 3)
+    cpu = psutil.cpu_percent()
+    mem = psutil.virtual_memory().percent
+    disk = psutil.disk_usage("/").percent
+    process = psutil.Process(os.getpid())
+    _ping = f"""
+<blockquote>
+PING: {str(delta_ping_formatted).replace('.', ',')} ms
+UPTIME: {uptime}
+OWNER: @fuck_you_deeply
+
+Server Stats
+CPU: {cpu}%
+RAM: {mem}%
+DISK: {disk}%
+MEMORY: {round(process.memory_info()[0] / 1024 ** 2)} MB</blockquote>
+"""
+    await xx.edit(_ping,parse_mode="html")
 
 # Add this handler to the bot
 
