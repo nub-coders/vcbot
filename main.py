@@ -698,8 +698,7 @@ async def run_user_client(user_id):
                 auth=await client.connect()
                 if not auth:
                     print("Client is not authorized. Please authorize first.")
-                    user_sessions.delete_one({"user_id": user_id})
-                    continue
+                    return user_sessions.delete_one({"user_id": user_id})
                 await client.disconnect()
                 await call_py.start()
                 #await client.send_message('nub_userbot','/start')
