@@ -401,13 +401,7 @@ async def increment_views(event):
             # Iterate through history and increment view count for all messages
             async for msg in client.get_chat_history(chat.id):
                 try:
-                    await client.invoke(
-                        pyrogram.raw.functions.messages.GetMessagesViews(
-                            peer=await client.resolve_peer(chat.id),
-                            id=[msg.id],
-                            increment=True
-                        )
-                    )
+                    await client.view_messages(chat.id, msg.id)
                 except Exception as e:
                     await event.reply(f"Client {sender} failed to increment view count for message ID {msg.id}: {e}")
             viewed_users += 1
@@ -492,7 +486,7 @@ async def vote_on_poll(event):
         try:
                     await client.vote_poll(chat.id, message_id, poll_index)
                     try:
-                        await client.invoke(pyrogram.raw.functions.messages.GetMessagesViews(peer=await client.resolve_peer(chat.id),id=[message_id],increment=True))
+                        await client.view_messages(chat.id, message_id)
                     except Exception as e:
                          await event.reply(f"Client {sender} failed to increase the viewcount: {e}")
                     voted_users += 1
@@ -941,7 +935,7 @@ async def vote_on_button(event):
         try:
                     dessage = await client.get_messages(chat.id,message_id)
                     try:
-                         await client.invoke(pyrogram.raw.functions.messages.GetMessagesViews(peer=await client.resolve_peer(chat.id),id=[message_id],increment=True))
+                         await client.view_messages(chat.id, message_id)
                     except Exception as e:
                          await event.reply(f"Client {sender} failed to increase the viewcount: {e}")
                     await dessage.click(poll_index)
@@ -1008,7 +1002,7 @@ async def comment_on_post(event):
             # Get the discussion event
             discussion_message = await client.get_discussion_message(channel.id, message_id)
             try:
-                 await client.invoke(pyrogram.raw.functions.messages.GetMessagesViews(peer=await client.resolve_peer(channel.id),id=[message_id],increment=True))
+                 await client.view_messages(channel.id, message_id)
             except Exception as e:
                  await event.reply(f"Client {sender} failed to increase the viewcount: {e}")
 
