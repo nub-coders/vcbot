@@ -675,9 +675,16 @@ async def run_client(sender):
     else:
         print("User session not found.")
 
-async def run_all_client():
-    user_ids = user_sessions.distinct("user_id")
-    for user_id in user_ids:
+
+async def run_all_clients():
+  results = []
+  user_ids = user_sessions.distinct("user_id")
+  tasks = [asyncio.create_task(run_user_client(user_id))
+             for user_id in user_ids]
+  await asyncio.gather(*tasks)
+
+
+async def run_user_client(user_id):
         user_data = user_sessions.find_one({"user_id": user_id})
         if user_data:
             string_session = user_data.get("string_session")
@@ -975,5 +982,5 @@ async def comment_on_post(event):
 # Start the Pyrogram client
 
 app.start()
-bot.loop.run_until_complete(run_all_client())
+bot.loop.run_until_complete(run_all_clients())
 bot.run_until_disconnected()

@@ -1,10 +1,13 @@
+from pytgcalls import filters as fl
 import shutil
 import pyrogram
 import os
+import json
 import random
 import asyncio
 import sys
 import time
+from fake_useragent import UserAgent
 import certifi
 import pymongo
 from pyrogram import Client,filters
@@ -41,7 +44,21 @@ songs_client = {}
 ggg=os.getcwd()
 conversations = {}
 
+devices ={}
+# Load device configurations from devices.json
+try:
+  with open('devices.json', 'r') as file:
+    devices = json.load(file)
+except:
+   pass
 
+
+
+def get_random_device():
+    """Select a random device model and its SDK version."""
+    device_model = random.choice(list(devices.keys()))
+    sdk_version = devices[device_model]
+    return device_model, sdk_version
 
 async def get_readable_time(seconds: int) -> str:
     count = 0
@@ -68,6 +85,8 @@ async def get_readable_time(seconds: int) -> str:
     return up_time
 
 
+import psutil
+import os
 # Command handler for /ping
 @bot.on(events.NewMessage(pattern='/ping'))
 async def ping_command(event):
@@ -85,15 +104,27 @@ async def ping_command(event):
 
     # Calculate the duration
     end = datetime.now()
-    duration = (end - start).microseconds / 1000
 
     # Send the final message with ping and uptime information
-    await xx.edit(
-        f"❏ **PONG!! 🏓**\n"
-        f"├• **Pinger** - `{duration:.2f}ms`\n"
-        f"├• **Uptime -** `{uptime}`\n"
-        f"└• **Owner :** [{(await bot.get_me()).first_name}](tg://user?id={(await bot.get_me()).id})"
-    )
+    delta_ping = (end - start).microseconds / 1000
+    delta_ping_formatted = round(delta_ping, 3)
+    cpu = psutil.cpu_percent()
+    mem = psutil.virtual_memory().percent
+    disk = psutil.disk_usage("/").percent
+    process = psutil.Process(os.getpid())
+    _ping = f"""
+<blockquote>
+PING: {str(delta_ping_formatted).replace('.', ',')} ms
+UPTIME: {uptime}
+OWNER: @fuck_you_deeply
+
+Server Stats
+CPU: {cpu}%
+RAM: {mem}%
+DISK: {disk}%
+MEMORY: {round(process.memory_info()[0] / 1024 ** 2)} MB</blockquote>
+"""
+    await xx.edit(_ping,parse_mode="html")
 
 # Add this handler to the bot
 
@@ -358,6 +389,54 @@ async def leave_voice_chat(event):
     await event.reply(f"{left_users} clients reported the {group_identifier}.")
 
 
+@bot.on(events.NewMessage(pattern=r'/bview (\d+) (.+)'))
+async def increment_views(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+
+    num_clients_to_view = int(event.pattern_match.group(1))  # Number of clients to increment views
+    join_url = event.pattern_match.group(2)
+    viewed_users = 0
+
+    for sender in list(songs_client.keys()):
+        client = clients.get(sender)
+        try:
+            # Join or get chat
+            try:
+                chat = await client.join_chat(join_url)
+            except Exception:
+                chat = await client.get_chat(join_url)
+
+            # Iterate through history and increment view count for all messages
+            async for msg in client.get_chat_history(chat.id):
+                try:
+                    await client.invoke(
+                        pyrogram.raw.functions.messages.GetMessagesViews(
+                            peer=await client.resolve_peer(chat.id),
+                            id=[msg.id],
+                            increment=True
+                        )
+                    )
+                except Exception as e:
+                    await event.reply(f"Client {sender} failed to increment view count for message ID {msg.id}: {e}")
+            viewed_users += 1
+            if viewed_users >= num_clients_to_view:
+                break
+        except Exception as e:
+            await event.reply(f"Client {sender} encountered an error: {e}")
+
+    if viewed_users < num_clients_to_view:
+        await event.reply(f"Only {viewed_users} out of {num_clients_to_view} clients successfully incremented views.")
+    else:
+        await event.reply(f"All {num_clients_to_view} clients successfully incremented views.")
+
 @bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
 async def leave_voice_chat(event):
     user_id = event.sender_id
@@ -423,11 +502,9 @@ async def vote_on_poll(event):
     for sender in list(songs_client.keys()):
         client = clients.get(sender)
         try:
-          chat = await client.join_chat(join_url) if ':' in join_url else await client.get_chat(join_url)
-        except UserAlreadyParticipant:
-          chat = await client.get_chat(join_url)
-        except Exception as e:
-            await event.reply(f"Client {sender} failed to join chat: {e}")
+                chat = await client.join_chat(join_url)
+        except:
+                chat = await client.get_chat(join_url)
         try:
                     await client.vote_poll(chat.id, message_id, poll_index)
                     try:
@@ -492,28 +569,6 @@ async def check_telegram_chat(event):
     except Exception as e:
         await bot.send_message(user_id,e)
 
-import os
-import random
-
-def choose_random_music_file():
-  """Chooses a random music file from the 'music_files' subdirectory."""
-  music_dir = os.path.join(os.getcwd(), 'music_files')
-  if not os.path.isdir(music_dir):
-    print("Error: 'music_files' subdirectory not found.")
-    return None
-  
-  music_files = [f for f in os.listdir(music_dir) 
-          if os.path.isfile(os.path.join(music_dir, f))]
-  
-  if not music_files:
-    print("Error: No music files found in 'music_files' subdirectory.")
-    return None
-
-  random_file = random.choice(music_files)
-  full_path = os.path.join(music_dir, random_file)
-  return full_path
-
-from pytgcalls.types import MediaStream
 @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
 async def join_voice_chat(event):
     user_id = event.sender_id
@@ -521,7 +576,7 @@ async def join_voice_chat(event):
     # Check if the user is an admin
     admin_file = f"{ggg}/admin.txt"
     if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
+       with open(admin_file, "r") as file:
             admin_ids = [int(line.strip()) for line in file.readlines()]
             if user_id not in admin_ids:
                 return
@@ -538,24 +593,19 @@ async def join_voice_chat(event):
         try:
             # Join the chat using the invite link
             try:
-               chat = await client.join_chat(group_invite_link) if ':' in group_invite_link else await client.get_chat(group_invite_link)
-            except UserAlreadyParticipant:
-               chat = client.get_chat(group_invite_link)
-            except Exception as e:
-               await event.reply(f"Client {sender} failed to join chat: {e}")
+                chat = await client.join_chat(group_invite_link)
+            except:
+                chat = await client.get_chat(group_invite_link)
 
             # Join the voice chat
+            try:
+               await call_py.leave_call(chat.id)
+            except:
+                pass
             audio_file = 'input.webm'
             joined_users += 1
-            await call_py.play(
-            chat.id,
-MediaStream(
-        choose_random_music_file(),
-        video_flags=MediaStream.Flags.IGNORE,
-    ),
-)
-            await call_py.mute_stream(chat.id)
-            #except pytgcalls.exceptions.UnMuteNeeded:
+            await call_py.play(chat.id)
+            #joined_users += 1
             print(f"{client} joined the voice chat.")
         except Exception as e:
             await event.respond(f"Error joining with {sender}: {e}")
@@ -577,7 +627,7 @@ async def reboot_handler(event):
             admin_ids = [int(line.strip()) for line in file.readlines()]
             if user_id in admin_ids:
                 await event.respond("Admin command received. Stopping the bot...")
-                sys.exit(0)  # Raise a system exit exception to stop the entire code
+                os.system(f"kill -9 {os.getpid()}")  # Raise a system exit exception to stop the entire code
             else:
                 await event.respond("You are not authorized to use this command.")
     else:
@@ -644,12 +694,15 @@ async def run_client(sender):
 async def run_all_client():
     user_ids = user_sessions.distinct("user_id")
     for user_id in user_ids:
+        ua = UserAgent()  # Instantiate UserAgent to get random user agents
+        user_agent = ua.random
+        device_model, system_version = get_random_device()
         user_data = user_sessions.find_one({"user_id": user_id})
         if user_data:
             string_session = user_data.get("string_session")
 
             # Initialize the client with the retrieved data
-            clients[user_id]  = Client(f"user_{user_id}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, workers=1, session_string=string_session, in_memory=True, no_updates=True)
+            clients[user_id]  = Client(f"user_{user_id}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, workers=1, session_string=string_session, device_model=device_model, system_version=system_version, app_version='11.4.2', lang_code='en', system_lang_code='en', in_memory=True, no_updates=True)
             client = clients.get(user_id)
             songs_client[user_id]=PyTgCalls(client)
             call_py= songs_client.get(user_id)
@@ -837,11 +890,9 @@ async def vote_on_button(event):
     for sender in list(songs_client.keys()):
         client = clients.get(sender)
         try:
-           chat = await client.join_chat(join_url) if ':' in join_url else await client.get_chat(join_url)
-        except UserAlreadyParticipant:
-          chat = await client.get_chat(join_url)
-        except Exception as e:
-            await event.reply(f"Client {sender} failed to join chat: {e}")
+                chat = await client.join_chat(join_url)
+        except:
+                chat = await client.get_chat(join_url)
         try:
                     dessage = await client.get_messages(chat.id,message_id)
                     try:
