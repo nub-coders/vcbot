@@ -574,7 +574,7 @@ async def join_voice_chath(event):
     for sender in list(songs_client.keys()):
         call_py = songs_client.get(sender)
         client = clients.get(sender)
-        random_delay = randint(1, 300)
+        random_delay = random.randint(1, 300)
         await asyncio.sleep(delay=random_delay)
         try:
             # Join the chat using the invite link
