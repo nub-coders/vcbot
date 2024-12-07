@@ -553,8 +553,8 @@ async def check_telegram_chat(event):
     except Exception as e:
         await bot.send_message(user_id,e)
 
-@bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
-async def join_voice_chat(event):
+#@bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+async def join_voice_chath(event):
     user_id = event.sender_id
 
     # Check if the user is an admin
@@ -600,6 +600,63 @@ async def join_voice_chat(event):
 
     await event.reply(f"Joined {joined_users} clients to the voice chat.")
 # Start the bot
+
+
+@bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+async def join_voice_chat(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+
+    # Extract the number of clients and group invite link from the command
+    num_clients_to_join = int(event.pattern_match.group(1))
+    group_invite_link = event.pattern_match.group(2)
+
+    tasks = []
+    joined_users = 0
+
+    async def join_with_client(sender):
+        nonlocal joined_users
+        call_py = songs_client.get(sender)
+        client = clients.get(sender)
+        try:
+            # Join the chat using the invite link
+            try:
+                chat = await client.join_chat(group_invite_link)
+            except:
+                chat = await client.get_chat(group_invite_link)
+
+            # Join the voice chat
+            try:
+                await call_py.leave_call(chat.id)
+            except:
+                pass
+
+            audio_file = 'input.webm'
+            await call_py.play(chat.id)
+            joined_users += 1
+            print(f"{client} joined the voice chat.")
+        except Exception as e:
+            await event.respond(f"Error joining with {sender}: {e}")
+
+    # Create tasks for clients and gather them
+    for sender in list(songs_client.keys()):
+        if joined_users < num_clients_to_join:
+            tasks.append(join_with_client(sender))
+        else:
+            break
+
+    await asyncio.gather(*tasks)
+
+    await event.reply(f"Joined {joined_users} clients to the voice chat.")
+
+
 @bot.on(events.NewMessage(pattern='^/reboot$'))
 async def reboot_handler(event):
     user_id = event.sender_id
