@@ -12,6 +12,7 @@ from pyrogram import Client,filters
 from pyrogram.raw import functions, types
 from pyromod import Message
 from telethon import TelegramClient, events, Button, types, errors
+from pyrogram.raw.types import InputReportReasonOther
 from pyrogram.errors.exceptions.unauthorized_401 import SessionPasswordNeeded
 from pyrogram.raw.functions.phone import CreateGroupCall
 from pyrogram.errors.exceptions.bad_request_400 import PasswordHashInvalid
