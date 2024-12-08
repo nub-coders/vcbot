@@ -356,11 +356,14 @@ async def leave_voice_chat(event):
     for sender in list(songs_client.keys()):
         client = clients.get(sender)
         try:
-            peer=(await client.resolve_peer(group_identifier))
-            message = "This user is violating Telegram's Terms of Service."
+            peer = await client.resolve_peer(group_identifier)
+            message = "This person spreads fake news, misleads people, thereby inciting aggression " \
+                      "and calling for war between nations. It sends photos with violent threats to the life " \
+                      "Under international law, this is regarded as terrorism. " \
+                      "Therefore we ask You to block it as soon as possible!"
             # Leave the voice chat
-            reason = types.InputReportReasonChildAbuse()
-            result = await client.invoke(functions.account.ReportPeer(peer=peer, reason=reason, message=message))
+            report = functions.account.ReportPeer(peer=peer, reason=InputReportReasonOther(), message=message)
+            result = await client.invoke(report)
             left_users += 1
             print(f"{client} reported the {group_identifier}.")
         except Exception as e:
