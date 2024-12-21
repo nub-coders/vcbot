@@ -742,6 +742,7 @@ async def run_all_clients():
 
 async def run_user_client(user_id):
         user_data = user_sessions.find_one({"user_id": user_id})
+        await asyncio.sleep(delay=random.randint(5, 10))
         if user_data:
             string_session = user_data.get("string_session")
 
