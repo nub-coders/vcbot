@@ -598,7 +598,6 @@ async def join_voice_chath(event):
 # Start the bot
 
 
-@bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
 async def join_voice_chat(event):
     user_id = event.sender_id
 
@@ -614,15 +613,11 @@ async def join_voice_chat(event):
     num_clients_to_join = int(event.pattern_match.group(1))
     group_invite_link = event.pattern_match.group(2)
 
-    tasks = []
     joined_users = 0
 
-    async def join_with_client(sender):
-        nonlocal joined_users
+    for sender in list(songs_client.keys()):
         call_py = songs_client.get(sender)
         client = clients.get(sender)
-        random_delay = random.randint(1, 300)
-        await asyncio.sleep(delay=random_delay)
         try:
             # Join the chat using the invite link
             try:
@@ -632,30 +627,23 @@ async def join_voice_chat(event):
 
             # Join the voice chat
             try:
-                await call_py.leave_call(chat.id)
+               await call_py.leave_call(chat.id)
             except:
-                pass
-
-            audio_file = 'input.webm'
-            await call_py.play(chat.id)
-            await call_py.mute_stream(chat.id)
+               pass
             joined_users += 1
+            audio_file = 'input.webm'
+            await call_py.play(
+                chat.id)
             print(f"{client} joined the voice chat.")
         except Exception as e:
             await event.respond(f"Error joining with {sender}: {e}")
 
-    # Create tasks for clients and gather them
-    for sender in list(songs_client.keys()):
-        if joined_users < num_clients_to_join:
-            tasks.append(join_with_client(sender))
-        else:
+        # Break if we've joined the required number of clients
+        if joined_users >= num_clients_to_join:
             break
 
-    await asyncio.gather(*tasks)
-
     await event.reply(f"Joined {joined_users} clients to the voice chat.")
-
-
+# Start the bot
 @bot.on(events.NewMessage(pattern='^/reboot$'))
 async def reboot_handler(event):
     user_id = event.sender_id
