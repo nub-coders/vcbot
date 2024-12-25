@@ -403,7 +403,7 @@ async def increment_views(event):
                 chat = await client.get_chat(join_url)
 
             # Iterate through history and increment view count for all messages
-            async for msg in client.get_chat_history(chat.id):
+            async for msg in client.get_chat_history(chat.id, 20):
                 try:
                     await client.view_messages(chat.id, msg.id)
                 except Exception as e:
@@ -551,7 +551,6 @@ async def check_telegram_chat(event):
     except Exception as e:
         await bot.send_message(user_id,e)
 
-#@bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
 async def join_voice_chath(event):
     user_id = event.sender_id
 
@@ -597,7 +596,7 @@ async def join_voice_chath(event):
     await event.reply(f"Joined {joined_users} clients to the voice chat.")
 # Start the bot
 
-
+@bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
 async def join_voice_chat(event):
     user_id = event.sender_id
 
