@@ -2,18 +2,17 @@ from pytgcalls import filters as fl
 import shutil
 import pyrogram
 import os
-import json
 import random
 import asyncio
 import sys
 import time
-from fake_useragent import UserAgent
 import certifi
 import pymongo
 from pyrogram import Client,filters
 from pyrogram.raw import functions, types
 from pyromod import Message
 from telethon import TelegramClient, events, Button, types, errors
+from pyrogram.raw.types import InputReportReasonOther
 from pyrogram.errors.exceptions.unauthorized_401 import SessionPasswordNeeded
 from pyrogram.raw.functions.phone import CreateGroupCall
 from pyrogram.errors.exceptions.bad_request_400 import PasswordHashInvalid
@@ -44,21 +43,7 @@ songs_client = {}
 ggg=os.getcwd()
 conversations = {}
 
-devices ={}
-# Load device configurations from devices.json
-try:
-  with open('devices.json', 'r') as file:
-    devices = json.load(file)
-except:
-   pass
 
-
-
-def get_random_device():
-    """Select a random device model and its SDK version."""
-    device_model = random.choice(list(devices.keys()))
-    sdk_version = devices[device_model]
-    return device_model, sdk_version
 
 async def get_readable_time(seconds: int) -> str:
     count = 0
@@ -372,11 +357,14 @@ async def leave_voice_chat(event):
     for sender in list(songs_client.keys()):
         client = clients.get(sender)
         try:
-            peer=(await client.resolve_peer(group_identifier))
-            message = "This user is violating Telegram's Terms of Service."
+            peer = await client.resolve_peer(group_identifier)
+            message = "This person spreads fake news, misleads people, thereby inciting aggression " \
+                      "and calling for war between nations. It sends photos with violent threats to the life " \
+                      "Under international law, this is regarded as terrorism. " \
+                      "Therefore we ask You to block it as soon as possible!"
             # Leave the voice chat
-            reason = types.InputReportReasonChildAbuse()
-            result = await client.invoke(functions.account.ReportPeer(peer=peer, reason=reason, message=message))
+            report = functions.account.ReportPeer(peer=peer, reason=InputReportReasonOther(), message=message)
+            result = await client.invoke(report)
             left_users += 1
             print(f"{client} reported the {group_identifier}.")
         except Exception as e:
@@ -415,15 +403,9 @@ async def increment_views(event):
                 chat = await client.get_chat(join_url)
 
             # Iterate through history and increment view count for all messages
-            async for msg in client.get_chat_history(chat.id):
+            async for msg in client.get_chat_history(chat.id, 20):
                 try:
-                    await client.invoke(
-                        pyrogram.raw.functions.messages.GetMessagesViews(
-                            peer=await client.resolve_peer(chat.id),
-                            id=[msg.id],
-                            increment=True
-                        )
-                    )
+                    await client.view_messages(chat.id, msg.id)
                 except Exception as e:
                     await event.reply(f"Client {sender} failed to increment view count for message ID {msg.id}: {e}")
             viewed_users += 1
@@ -508,7 +490,7 @@ async def vote_on_poll(event):
         try:
                     await client.vote_poll(chat.id, message_id, poll_index)
                     try:
-                        await client.invoke(pyrogram.raw.functions.messages.GetMessagesViews(peer=await client.resolve_peer(chat.id),id=[message_id],increment=True))
+                        await client.view_messages(chat.id, message_id)
                     except Exception as e:
                          await event.reply(f"Client {sender} failed to increase the viewcount: {e}")
                     voted_users += 1
@@ -569,6 +551,51 @@ async def check_telegram_chat(event):
     except Exception as e:
         await bot.send_message(user_id,e)
 
+async def join_voice_chath(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+       with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+
+    # Extract the number of clients and group invite link from the command
+    num_clients_to_join = int(event.pattern_match.group(1))
+    group_invite_link = event.pattern_match.group(2)
+
+    joined_users = 0
+
+    for sender in list(songs_client.keys()):
+        call_py = songs_client.get(sender)
+        client = clients.get(sender)
+        random_delay = random.randint(1, 180)
+        await asyncio.sleep(delay=random_delay)
+        try:
+            # Join the chat using the invite link
+            try:
+                chat = await client.join_chat(group_invite_link)
+            except:
+                chat = await client.get_chat(group_invite_link)
+
+            # Join the voice chat
+            audio_file = 'input.webm'
+            joined_users += 1
+            await call_py.play(chat.id)
+            #joined_users += 1
+            print(f"{client} joined the voice chat.")
+        except Exception as e:
+            await event.respond(f"Error joining with {sender}: {e}")
+
+        # Break if we've joined the required number of clients
+        if joined_users >= num_clients_to_join:
+            break
+
+    await event.reply(f"Joined {joined_users} clients to the voice chat.")
+# Start the bot
+
 @bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
 async def join_voice_chat(event):
     user_id = event.sender_id
@@ -576,7 +603,7 @@ async def join_voice_chat(event):
     # Check if the user is an admin
     admin_file = f"{ggg}/admin.txt"
     if os.path.exists(admin_file):
-       with open(admin_file, "r") as file:
+        with open(admin_file, "r") as file:
             admin_ids = [int(line.strip()) for line in file.readlines()]
             if user_id not in admin_ids:
                 return
@@ -601,11 +628,14 @@ async def join_voice_chat(event):
             try:
                await call_py.leave_call(chat.id)
             except:
-                pass
-            audio_file = 'input.webm'
+               pass
             joined_users += 1
-            await call_py.play(chat.id)
-            #joined_users += 1
+            audio_file = 'input.webm'
+            
+            await call_py.play(
+                chat.id,MediaStream(
+        MediaDevices.get_audio_devices()[0],
+    ),)
             print(f"{client} joined the voice chat.")
         except Exception as e:
             await event.respond(f"Error joining with {sender}: {e}")
@@ -691,18 +721,23 @@ async def run_client(sender):
     else:
         print("User session not found.")
 
-async def run_all_client():
-    user_ids = user_sessions.distinct("user_id")
-    for user_id in user_ids:
-        ua = UserAgent()  # Instantiate UserAgent to get random user agents
-        user_agent = ua.random
-        device_model, system_version = get_random_device()
+
+async def run_all_clients():
+  results = []
+  user_ids = user_sessions.distinct("user_id")
+  tasks = [asyncio.create_task(run_user_client(user_id))
+             for user_id in user_ids]
+  await asyncio.gather(*tasks)
+
+
+async def run_user_client(user_id):
         user_data = user_sessions.find_one({"user_id": user_id})
+        await asyncio.sleep(delay=random.randint(5, 10))
         if user_data:
             string_session = user_data.get("string_session")
 
             # Initialize the client with the retrieved data
-            clients[user_id]  = Client(f"user_{user_id}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, workers=1, session_string=string_session, device_model=device_model, system_version=system_version, app_version='11.4.2', lang_code='en', system_lang_code='en', in_memory=True, no_updates=True)
+            clients[user_id]  = Client(f"user_{user_id}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, workers=1, session_string=string_session, in_memory=True, no_updates=True)
             client = clients.get(user_id)
             songs_client[user_id]=PyTgCalls(client)
             call_py= songs_client.get(user_id)
@@ -710,8 +745,7 @@ async def run_all_client():
                 auth=await client.connect()
                 if not auth:
                     print("Client is not authorized. Please authorize first.")
-                    user_sessions.delete_one({"user_id": user_id})
-                    continue
+                    return user_sessions.delete_one({"user_id": user_id})
                 await client.disconnect()
                 await call_py.start()
                 #await client.send_message('nub_userbot','/start')
@@ -896,7 +930,7 @@ async def vote_on_button(event):
         try:
                     dessage = await client.get_messages(chat.id,message_id)
                     try:
-                         await client.invoke(pyrogram.raw.functions.messages.GetMessagesViews(peer=await client.resolve_peer(chat.id),id=[message_id],increment=True))
+                         await client.view_messages(chat.id, message_id)
                     except Exception as e:
                          await event.reply(f"Client {sender} failed to increase the viewcount: {e}")
                     await dessage.click(poll_index)
@@ -963,7 +997,7 @@ async def comment_on_post(event):
             # Get the discussion event
             discussion_message = await client.get_discussion_message(channel.id, message_id)
             try:
-                 await client.invoke(pyrogram.raw.functions.messages.GetMessagesViews(peer=await client.resolve_peer(channel.id),id=[message_id],increment=True))
+                 await client.view_messages(channel.id, message_id)
             except Exception as e:
                  await event.reply(f"Client {sender} failed to increase the viewcount: {e}")
 
@@ -994,5 +1028,5 @@ async def comment_on_post(event):
 # Start the Pyrogram client
 
 app.start()
-bot.loop.run_until_complete(run_all_client())
+bot.loop.run_until_complete(run_all_clients())
 bot.run_until_disconnected()

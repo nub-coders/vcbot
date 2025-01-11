@@ -1021,7 +1021,51 @@ async def comment_on_post(event):
         await event.respond(f"Finished commenting with {commented_users} clients.")
 
 # Start the Telethon bot
+@bot.on(events.NewMessage(pattern='/react (\d+) (.+) (\d+) (.+)'))
+async def react_to_post(event):
+    user_id = event.sender_id
 
+    # Ensure the user is an admin
+    if not is_admin(user_id):
+        await event.respond("You are not authorized to perform this action.")
+        return
+
+    # Extract the channel link/username, message ID, and emoji from the command
+    num_clients_to_join = int(event.pattern_match.group(1))
+    channel_username_or_link = event.pattern_match.group(2)
+    message_id = int(event.pattern_match.group(3))
+    emoji = event.pattern_match.group(4)  # Emoji to react with
+
+    reacted_users = 0
+
+    for client_id in list(clients.keys()):
+        client = clients.get(client_id)
+
+        try:
+            # Join or get the chat
+            try:
+                channel = await client.join_chat(channel_username_or_link)
+            except:
+                channel = await client.get_chat(channel_username_or_link)
+
+            # Get the message
+            message = await client.get_messages(channel.id, message_ids=message_id)
+            
+            try:
+                await client.view_messages(channel.id, message_id)
+            except Exception as e:
+                await event.reply(f"Client {client_id} failed to increase the viewcount: {e}")
+
+            # React with emoji
+            await message.react(emoji=emoji)
+            
+            reacted_users += 1
+
+        except Exception as e:
+            await event.respond(f"Error reacting with {client_id}: {e}")
+            continue
+
+    await event.respond(f"Finished reacting with {reacted_users} clients.")
 # Start the Pyrogram client
 
 app.start()
