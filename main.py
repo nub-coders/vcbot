@@ -1044,9 +1044,9 @@ async def react_to_post(event):
         try:
             # Join or get the chat
             try:
-                channel = await client.join_chat(channel_username_or_link)
-            except:
                 channel = await client.get_chat(channel_username_or_link)
+            except:
+                channel = await client.join_chat(channel_username_or_link)
 
             # Get the message
             message = await client.get_messages(channel.id, message_ids=message_id)
