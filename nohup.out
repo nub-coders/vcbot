@@ -36452,3 +36452,4 @@ Handlers added successfully.
 <pyrogram.client.Client object at 0x73ffe17f1e70> joined the voice chat.
 <pyrogram.client.Client object at 0x73ffe17f3af0> joined the voice chat.
 <pyrogram.client.Client object at 0x73ffe17f24a0> joined the voice chat.
+Server closed the connection: [Errno 104] Connection reset by peer
