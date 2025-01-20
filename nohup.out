@@ -40929,3 +40929,7 @@ Using Pyrogram client in no_updates mode is not recommended. This mode may cause
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+[:hehe] Waiting for 4 seconds before continuing (required by "messages.SendMessage")
+[:hehe] Waiting for 4 seconds before continuing (required by "messages.SendMessage")
+[:hehe] Waiting for 3 seconds before continuing (required by "messages.SendMessage")
+[:hehe] Waiting for 3 seconds before continuing (required by "messages.SendMessage")
