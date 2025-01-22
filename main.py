@@ -398,10 +398,9 @@ async def increment_views(event):
         try:
             # Join or get chat
             try:
-                chat = await client.join_chat(join_url)
-            except Exception:
                 chat = await client.get_chat(join_url)
-
+            except:
+                continue
             # Iterate through history and increment view count for all messages
             async for msg in client.get_chat_history(chat.id, 20):
                 try:
