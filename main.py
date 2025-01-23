@@ -2,6 +2,7 @@ from pytgcalls import filters as fl
 import shutil
 import pyrogram
 import os
+import json
 import random
 import asyncio
 import sys
@@ -34,6 +35,15 @@ clients = {}  # Dictionary to store client objects
 import os
 StartTime = time.time()
 from config import *
+with open('devices.json', 'r') as file:
+    devices = json.load(file)
+
+def get_random_device():
+    """Select a random device model and its SDK version."""
+    device_model = random.choice(list(devices.keys()))
+    sdk_version = devices[device_model]
+    return device_model, sdk_version
+
 bot = TelegramClient(None, API_ID, API_HASH)
 bot.start(bot_token=BOT_TOKEN)
 from pyromod import Client as pccc
@@ -731,9 +741,9 @@ async def run_user_client(user_id):
         await asyncio.sleep(delay=random.randint(5, 10))
         if user_data:
             string_session = user_data.get("string_session")
-
+            device_model, system_version = get_random_device()
             # Initialize the client with the retrieved data
-            clients[user_id]  = Client(f"user_{user_id}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, workers=1, session_string=string_session, in_memory=True, no_updates=True)
+            clients[user_id]  = Client(f"user_{user_id}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, workers=1, session_string=string_session, in_memory=True, device_model=device_model, system_version=system_version, no_updates=True)
             client = clients.get(user_id)
             songs_client[user_id]=PyTgCalls(client)
             call_py= songs_client.get(user_id)
