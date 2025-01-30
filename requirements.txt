@@ -1,5 +1,5 @@
 certifi
-pyromod
+git+https://github.com/Ripeey/Conversation-Pyrogram
 yt_dlp
 uvloop
 lottie
