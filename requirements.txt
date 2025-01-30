@@ -11,7 +11,6 @@ py-tgcalls
 cryptg
 #pyrofork
 #https://devgagan.in/wp-content/uploads/2024/06/ggnpyro.zip
-#https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
 kurigram
 #pyrotgfork[fast]
 Telethon
