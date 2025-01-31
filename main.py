@@ -736,48 +736,63 @@ async def run_all_clients():
   await asyncio.gather(*tasks)
 
 
+import asyncio
+import random
+import os
+from pyrogram import Client
+from pyrogram.errors import (
+    SessionRevoked, UserDeactivatedBan, AuthKeyInvalid, AuthKeyUnregistered,
+    AuthTokenExpired, AuthKeyDuplicated, AccessTokenExpired, UserDeactivated
+)
+from pytgcalls import PyTgCalls
+
 async def run_user_client(user_id):
-        user_data = user_sessions.find_one({"user_id": user_id})
-        await asyncio.sleep(delay=random.randint(5, 10))
-        if user_data:
-            string_session = user_data.get("string_session")
-            device_model, system_version = get_random_device()
-            # Initialize the client with the retrieved data
-            clients[user_id]  = Client(f"user_{user_id}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, workers=1, session_string=string_session, in_memory=True, device_model=device_model, system_version=system_version, no_updates=True)
-            client = clients.get(user_id)
-            songs_client[user_id]=PyTgCalls(client)
-            call_py= songs_client.get(user_id)
-            try:
-                auth=await client.connect()
-                if not auth:
-                    print("Client is not authorized. Please authorize first.")
-                    return user_sessions.delete_one({"user_id": user_id})
-                await client.disconnect()
-                await call_py.start()
-                #await client.send_message('nub_userbot','/start')
-                print("Handlers added successfully.")
-                #try:
-                   #await client.join_chat("nub_coder_s")
-                   #await client.join_chat("nub_coders_updates")
+    user_data = user_sessions.find_one({"user_id": user_id})
+    await asyncio.sleep(delay=random.randint(5, 10))
+    if user_data:
+        string_session = user_data.get("string_session")
 
-                #except:
-                   #pass
-                # Add your additional logic here if needed
-            except Exception as e:
-                admin_file = f"{ggg}/admin.txt"
-                if os.path.exists(admin_file):
-                   with open(admin_file, "r") as file:
-                      admin_ids = [int(line.strip()) for line in file.readlines()]
-                      for admin_id  in admin_ids:
-                          try:
-                             await bot.send_message(admin_id,f"Error starting client for user {user_id}: {e}")
-                          except:
-                                pass
-                user_sessions.delete_one({"user_id": user_id})
-                songs_client.pop(user_id)
+        # Initialize the client with the retrieved data
+        clients[user_id] = Client(
+            f"user_{user_id}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32,
+            workers=1, session_string=string_session, in_memory=True, no_updates=True
+        )
+        client = clients.get(user_id)
+        songs_client[user_id] = PyTgCalls(client)
+        call_py = songs_client.get(user_id)
+        try:
+            auth = await client.connect()
+            if not auth:
+                print("Client is not authorized. Please authorize first.")
+                return user_sessions.delete_one({"user_id": user_id})
+            await client.disconnect()
+            await call_py.start()
+            print("Handlers added successfully.")
+        except (SessionRevoked, UserDeactivatedBan, AuthKeyInvalid, AuthKeyUnregistered,
+                AuthTokenExpired, AuthKeyDuplicated, AccessTokenExpired, UserDeactivated) as e:
+            # Inform admin about the specific exception
+            await inform_admin(user_id, e)
+            # Delete the user session
+            user_sessions.delete_one({"user_id": user_id})
+            print(f"Specific exception occurred: {e}. User session deleted.")
+        except Exception as e:
+            # Inform admin about any other exception
+            await inform_admin(user_id, e)
+            # Clean up
+            songs_client.pop(user_id)
 
 
-
+async def inform_admin(user_id, error):
+    """Helper function to inform the admin about an exception."""
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            for admin_id in admin_ids:
+                try:
+                    await bot.send_message(admin_id, f"Error starting client for user {user_id}: {error}")
+                except Exception as e:
+                    print(f"Failed to inform admin {admin_id}: {e}")
 # Dictionary to store comments with admin_id as the key
 
 
