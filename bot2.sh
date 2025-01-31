@@ -1,8 +1,5 @@
 #!/bin/bash
 
-pip3 install --upgrade pip
-pip3 install -r requirements.txt
-#!/bin/bash
 
 # Define an array of process names and their corresponding commands
 declare -A processes
@@ -17,8 +14,6 @@ while true; do
         pid="${pids[$process_name]}"
 
         if [[ -z "$pid" ]] || ! kill -0 "$pid" 2>/dev/null; then
-            pip3 install --upgrade pip
-            pip3 install -r requirements.txt
             echo "Starting $process_name..."
             eval "${processes[$process_name]}"
             # Store the PID of the newly started process
