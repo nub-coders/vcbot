@@ -60758,3 +60758,123 @@ Using Pyrogram client in no_updates mode is not recommended. This mode may cause
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
 Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: pip in /home/ubuntu/.local/lib/python3.10/site-packages (25.0)
+Defaulting to user installation because normal site-packages is not writeable
+Collecting git+https://github.com/Ripeey/Conversation-Pyrogram (from -r requirements.txt (line 2))
+  Cloning https://github.com/Ripeey/Conversation-Pyrogram to /tmp/pip-req-build-r33c7k52
+  Running command git clone --filter=blob:none --quiet https://github.com/Ripeey/Conversation-Pyrogram /tmp/pip-req-build-r33c7k52
+  Resolved https://github.com/Ripeey/Conversation-Pyrogram to commit a39cc9e0c1a689c9904dd5be5419246868daecfb
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip (from -r requirements.txt (line 14))
+  Using cached https://github.com/KurimuzonAkuma/pyrogram/archive/refs/heads/dev.zip
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting git+https://github.com/yt-dlp/yt-dlp.git (from -r requirements.txt (line 23))
+  Cloning https://github.com/yt-dlp/yt-dlp.git to /tmp/pip-req-build-mc6qbcvi
+  Running command git clone --filter=blob:none --quiet https://github.com/yt-dlp/yt-dlp.git /tmp/pip-req-build-mc6qbcvi
+  Resolved https://github.com/yt-dlp/yt-dlp.git to commit 03c3d705778c07739e0034b51490877cffdc0983
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: certifi in /usr/lib/python3/dist-packages (from -r requirements.txt (line 1)) (2020.6.20)
+Requirement already satisfied: yt_dlp in /home/ubuntu/.local/lib/python3.10/site-packages (from -r requirements.txt (line 3)) (2025.1.26)
+Requirement already satisfied: uvloop in /home/ubuntu/.local/lib/python3.10/site-packages (from -r requirements.txt (line 4)) (0.21.0)
+Requirement already satisfied: lottie in /home/ubuntu/.local/lib/python3.10/site-packages (from -r requirements.txt (line 5)) (0.7.1)
+Requirement already satisfied: telegraph in /home/ubuntu/.local/lib/python3.10/site-packages (from -r requirements.txt (line 6)) (2.2.0)
+Requirement already satisfied: pytz in /usr/lib/python3/dist-packages (from -r requirements.txt (line 7)) (2022.1)
+Requirement already satisfied: pymediainfo in /home/ubuntu/.local/lib/python3.10/site-packages (from -r requirements.txt (line 8)) (6.1.0)
+Requirement already satisfied: Pillow in /home/ubuntu/.local/lib/python3.10/site-packages (from -r requirements.txt (line 9)) (11.1.0)
+Requirement already satisfied: py-tgcalls in /home/ubuntu/.local/lib/python3.10/site-packages (from -r requirements.txt (line 10)) (2.0.6)
+Requirement already satisfied: cryptg in /home/ubuntu/.local/lib/python3.10/site-packages (from -r requirements.txt (line 11)) (0.5.0.post0)
+Requirement already satisfied: Telethon in /home/ubuntu/.local/lib/python3.10/site-packages (from -r requirements.txt (line 16)) (1.38.1)
+Requirement already satisfied: TgCrypto in /home/ubuntu/.local/lib/python3.10/site-packages (from -r requirements.txt (line 17)) (1.2.5)
+Requirement already satisfied: pymongo in /home/ubuntu/.local/lib/python3.10/site-packages (from -r requirements.txt (line 18)) (4.11)
+Requirement already satisfied: requests in /usr/lib/python3/dist-packages (from -r requirements.txt (line 19)) (2.25.1)
+Requirement already satisfied: lxml in /home/ubuntu/.local/lib/python3.10/site-packages (from -r requirements.txt (line 21)) (5.3.0)
+Requirement already satisfied: fake_useragent in /home/ubuntu/.local/lib/python3.10/site-packages (from -r requirements.txt (line 22)) (2.0.3)
+Requirement already satisfied: opencv-python-headless in /home/ubuntu/.local/lib/python3.10/site-packages (from -r requirements.txt (line 25)) (4.11.0.86)
+Requirement already satisfied: python-ffmpeg in /home/ubuntu/.local/lib/python3.10/site-packages (from -r requirements.txt (line 26)) (2.0.12)
+Requirement already satisfied: ffmpeg in /home/ubuntu/.local/lib/python3.10/site-packages (from -r requirements.txt (line 27)) (1.4)
+Requirement already satisfied: aiohttp>=3.9.3 in /home/ubuntu/.local/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (3.11.11)
+Requirement already satisfied: ntgcalls<1.3.0,>=1.2.0 in /home/ubuntu/.local/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (1.2.3)
+Requirement already satisfied: psutil in /home/ubuntu/.local/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (6.1.1)
+Requirement already satisfied: screeninfo in /home/ubuntu/.local/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (0.8.1)
+Requirement already satisfied: deprecation in /home/ubuntu/.local/lib/python3.10/site-packages (from py-tgcalls->-r requirements.txt (line 10)) (2.1.0)
+Requirement already satisfied: pyaes==1.6.1 in /home/ubuntu/.local/lib/python3.10/site-packages (from Kurigram==2.1.37->-r requirements.txt (line 14)) (1.6.1)
+Requirement already satisfied: pysocks==1.7.1 in /home/ubuntu/.local/lib/python3.10/site-packages (from Kurigram==2.1.37->-r requirements.txt (line 14)) (1.7.1)
+Requirement already satisfied: rsa in /home/ubuntu/.local/lib/python3.10/site-packages (from Telethon->-r requirements.txt (line 16)) (4.9)
+Requirement already satisfied: dnspython<3.0.0,>=1.16.0 in /home/ubuntu/.local/lib/python3.10/site-packages (from pymongo->-r requirements.txt (line 18)) (2.7.0)
+Requirement already satisfied: numpy>=1.21.2 in /home/ubuntu/.local/lib/python3.10/site-packages (from opencv-python-headless->-r requirements.txt (line 25)) (2.2.2)
+Requirement already satisfied: pyee in /home/ubuntu/.local/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 26)) (12.1.1)
+Requirement already satisfied: typing-extensions in /home/ubuntu/.local/lib/python3.10/site-packages (from python-ffmpeg->-r requirements.txt (line 26)) (4.12.2)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in /home/ubuntu/.local/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (2.4.4)
+Requirement already satisfied: aiosignal>=1.1.2 in /home/ubuntu/.local/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.3.2)
+Requirement already satisfied: async-timeout<6.0,>=4.0 in /home/ubuntu/.local/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (5.0.1)
+Requirement already satisfied: attrs>=17.3.0 in /usr/lib/python3/dist-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (21.2.0)
+Requirement already satisfied: frozenlist>=1.1.1 in /home/ubuntu/.local/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.5.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in /home/ubuntu/.local/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (6.1.0)
+Requirement already satisfied: propcache>=0.2.0 in /home/ubuntu/.local/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (0.2.1)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in /home/ubuntu/.local/lib/python3.10/site-packages (from aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (1.18.3)
+Requirement already satisfied: packaging in /usr/lib/python3/dist-packages (from deprecation->py-tgcalls->-r requirements.txt (line 10)) (21.3)
+Requirement already satisfied: pyasn1>=0.1.3 in /usr/lib/python3/dist-packages (from rsa->Telethon->-r requirements.txt (line 16)) (0.4.8)
+Requirement already satisfied: idna>=2.0 in /usr/lib/python3/dist-packages (from yarl<2.0,>=1.17.0->aiohttp>=3.9.3->py-tgcalls->-r requirements.txt (line 10)) (3.3)
+Starting zipper.py...
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
+Using Pyrogram client in no_updates mode is not recommended. This mode may cause unexpected behavior or limitations.
