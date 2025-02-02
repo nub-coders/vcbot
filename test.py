@@ -2,6 +2,7 @@ from pytgcalls import filters as fl
 import shutil
 import pyrogram
 import os
+import json
 import random
 import asyncio
 import sys
@@ -34,6 +35,15 @@ clients = {}  # Dictionary to store client objects
 import os
 StartTime = time.time()
 from config import *
+with open('devices.json', 'r') as file:
+    devices = json.load(file)
+
+def get_random_device():
+    """Select a random device model and its SDK version."""
+    device_model = random.choice(list(devices.keys()))
+    sdk_version = devices[device_model]
+    return device_model, sdk_version
+
 bot = TelegramClient(None, API_ID, API_HASH)
 bot.start(bot_token=BOT_TOKEN)
 from pyromod import Client as pccc
@@ -398,10 +408,9 @@ async def increment_views(event):
         try:
             # Join or get chat
             try:
-                chat = await client.join_chat(join_url)
-            except Exception:
                 chat = await client.get_chat(join_url)
-
+            except:
+                continue
             # Iterate through history and increment view count for all messages
             async for msg in client.get_chat_history(chat.id, 20):
                 try:
@@ -596,8 +605,8 @@ async def join_voice_chath(event):
     await event.reply(f"Joined {joined_users} clients to the voice chat.")
 # Start the bot
 
-@bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
-async def join_voice_chat(event):
+#@bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+async def jogin_voice_chat(event):
     user_id = event.sender_id
 
     # Check if the user is an admin
@@ -631,11 +640,87 @@ async def join_voice_chat(event):
                pass
             joined_users += 1
             audio_file = 'input.webm'
-            
             await call_py.play(
-                chat.id,MediaStream(
-        MediaDevices.get_audio_devices()[0],
-    ),)
+                chat.id)
+            print(f"{client} joined the voice chat.")
+        except Exception as e:
+            await event.respond(f"Error joining with {sender}: {e}")
+
+        # Break if we've joined the required number of clients
+        if joined_users >= num_clients_to_join:
+            break
+
+    await event.reply(f"Joined {joined_users} clients to the voice chat.")
+
+
+from ntgcalls import NTgCalls
+from pyrogram import Client, filters
+from pyrogram.raw import functions, types
+import os
+from ntgcalls import MediaDescription
+@bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+async def join_voice_chat(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+
+    # Extract the number of clients and group invite link from the command
+    num_clients_to_join = int(event.pattern_match.group(1))
+    group_invite_link = event.pattern_match.group(2)
+
+    joined_users = 0
+
+    for sender in list(songs_client.keys()):
+        call_py = songs_client.get(sender)
+        client = clients.get(sender)
+        try:
+            # Join the chat using the invite link
+            try:
+                chat = await client.join_chat(group_invite_link)
+            except:
+                chat = await client.get_chat(group_invite_link)
+
+            # Join the voice chat
+            ntg = NTgCalls()
+            params = await ntg.create_call(
+                chat.id,
+                MediaDescription(None)  # No audio or video
+            )
+            peer = await client.resolve_peer(chat.id)
+            full_chat = await client.invoke(
+                functions.channels.GetFullChannel(
+                    channel=peer
+                )
+            )
+            if not full_chat.full_chat.call:
+                await message.reply(f"No active group call in the chat!")
+                continue
+            call = full_chat.full_chat.call
+            input_call = types.InputGroupCall(
+                id=call.id,
+                access_hash=call.access_hash
+            )
+            
+            join_as = await client.resolve_peer(client.me.id)
+            
+            await client.invoke(
+                functions.phone.JoinGroupCall(
+                    call=input_call,
+                    join_as=join_as,
+                    params=params,
+                    muted=True,
+                    video_stopped=True                )            )
+
+            joined_users += 1
+            audio_file = 'input.webm'
+            await call_py.play(
+                chat.id)
             print(f"{client} joined the voice chat.")
         except Exception as e:
             await event.respond(f"Error joining with {sender}: {e}")
@@ -730,48 +815,63 @@ async def run_all_clients():
   await asyncio.gather(*tasks)
 
 
+import asyncio
+import random
+import os
+from pyrogram import Client
+from pyrogram.errors import (
+    SessionRevoked, UserDeactivatedBan, AuthKeyInvalid, AuthKeyUnregistered,
+    AuthTokenExpired, AuthKeyDuplicated, AccessTokenExpired, UserDeactivated
+)
+from pytgcalls import PyTgCalls
+
 async def run_user_client(user_id):
-        user_data = user_sessions.find_one({"user_id": user_id})
-        await asyncio.sleep(delay=random.randint(5, 10))
-        if user_data:
-            string_session = user_data.get("string_session")
+    user_data = user_sessions.find_one({"user_id": user_id})
+    await asyncio.sleep(delay=random.randint(5, 10))
+    if user_data:
+        string_session = user_data.get("string_session")
 
-            # Initialize the client with the retrieved data
-            clients[user_id]  = Client(f"user_{user_id}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, workers=1, session_string=string_session, in_memory=True, no_updates=True)
-            client = clients.get(user_id)
-            songs_client[user_id]=PyTgCalls(client)
-            call_py= songs_client.get(user_id)
-            try:
-                auth=await client.connect()
-                if not auth:
-                    print("Client is not authorized. Please authorize first.")
-                    return user_sessions.delete_one({"user_id": user_id})
-                await client.disconnect()
-                await call_py.start()
-                #await client.send_message('nub_userbot','/start')
-                print("Handlers added successfully.")
-                #try:
-                   #await client.join_chat("nub_coder_s")
-                   #await client.join_chat("nub_coders_updates")
-
-                #except:
-                   #pass
-                # Add your additional logic here if needed
-            except Exception as e:
-                admin_file = f"{ggg}/admin.txt"
-                if os.path.exists(admin_file):
-                   with open(admin_file, "r") as file:
-                      admin_ids = [int(line.strip()) for line in file.readlines()]
-                      for admin_id  in admin_ids:
-                          try:
-                             await bot.send_message(admin_id,f"Error starting client for user {user_id}: {e}")
-                          except:
-                                pass
-                user_sessions.delete_one({"user_id": user_id})
-                songs_client.pop(user_id)
+        # Initialize the client with the retrieved data
+        clients[user_id] = Client(
+            f"user_{user_id}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32,
+            workers=1, session_string=string_session, in_memory=True, no_updates=True
+        )
+        client = clients.get(user_id)
+        songs_client[user_id] = PyTgCalls(client)
+        call_py = songs_client.get(user_id)
+        try:
+            auth = await client.connect()
+            if not auth:
+                print("Client is not authorized. Please authorize first.")
+                return user_sessions.delete_one({"user_id": user_id})
+            await client.disconnect()
+            await call_py.start()
+            print("Handlers added successfully.")
+        except (SessionRevoked, UserDeactivatedBan, AuthKeyInvalid, AuthKeyUnregistered,
+                AuthTokenExpired, AuthKeyDuplicated, AccessTokenExpired, UserDeactivated) as e:
+            # Inform admin about the specific exception
+            await inform_admin(user_id, e)
+            # Delete the user session
+            user_sessions.delete_one({"user_id": user_id})
+            print(f"Specific exception occurred: {e}. User session deleted.")
+        except Exception as e:
+            # Inform admin about any other exception
+            await inform_admin(user_id, e)
+            # Clean up
+            songs_client.pop(user_id)
 
 
-
+async def inform_admin(user_id, error):
+    """Helper function to inform the admin about an exception."""
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            for admin_id in admin_ids:
+                try:
+                    await bot.send_message(admin_id, f"Error starting client for user {user_id}: {error}")
+                except Exception as e:
+                    print(f"Failed to inform admin {admin_id}: {e}")
 # Dictionary to store comments with admin_id as the key
 
 
@@ -1024,9 +1124,54 @@ async def comment_on_post(event):
         await event.respond(f"Finished commenting with {commented_users} clients.")
 
 # Start the Telethon bot
+@bot.on(events.NewMessage(pattern='/react (\d+) (.+) (\d+) (.+)'))
+async def react_to_post(event):
+    user_id = event.sender_id
 
+    # Ensure the user is an admin
+    if not is_admin(user_id):
+        await event.respond("You are not authorized to perform this action.")
+        return
+
+    # Extract the channel link/username, message ID, and emoji from the command
+    num_clients_to_join = int(event.pattern_match.group(1))
+    channel_username_or_link = event.pattern_match.group(2)
+    message_id = int(event.pattern_match.group(3))
+    emoji = event.pattern_match.group(4)  # Emoji to react with
+
+    reacted_users = 0
+
+    for client_id in list(clients.keys()):
+        client = clients.get(client_id)
+
+        try:
+            # Join or get the chat
+            try:
+                channel = await client.get_chat(channel_username_or_link)
+            except:
+                channel = await client.join_chat(channel_username_or_link)
+
+            # Get the message
+            message = await client.get_messages(channel.id, message_ids=message_id)
+            
+            try:
+                await client.view_messages(channel.id, message_id)
+            except Exception as e:
+                await event.reply(f"Client {client_id} failed to increase the viewcount: {e}")
+
+            # React with emoji
+            await message.react(emoji=emoji)
+            
+            reacted_users += 1
+
+        except Exception as e:
+            await event.respond(f"Error reacting with {client_id}: {e}")
+            continue
+
+    await event.respond(f"Finished reacting with {reacted_users} clients.")
 # Start the Pyrogram client
 
 app.start()
+print(app.me.username)
 bot.loop.run_until_complete(run_all_clients())
 bot.run_until_disconnected()
