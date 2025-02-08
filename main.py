@@ -883,7 +883,7 @@ async def add_comment_in_mode(client, message):
 # Handler to send all comments back to the admin
 # Handler to send all comments back to the admin
 @app.on_message(filters.command("comments"))
-async def send_all_comments(client: Client, message: Message):
+async def send_all_comments(client: Client, message):
     print('hdhd')
     user_id = message.from_user.id
 
