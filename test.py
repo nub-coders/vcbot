@@ -11,7 +11,6 @@ import certifi
 import pymongo
 from pyrogram import Client,filters
 from pyrogram.raw import functions, types
-from pyromod import Message
 from telethon import TelegramClient, events, Button, types, errors
 from pyrogram.raw.types import InputReportReasonOther
 from pyrogram.errors.exceptions.unauthorized_401 import SessionPasswordNeeded
@@ -46,7 +45,6 @@ def get_random_device():
 
 bot = TelegramClient(None, API_ID, API_HASH)
 bot.start(bot_token=BOT_TOKEN)
-from pyromod import Client as pccc
 app = pccc(":hehe",api_id=API_ID,api_hash=API_HASH,bot_token=BOT_TOKEN, in_memory=True)
 import pytgcalls
 songs_client = {}

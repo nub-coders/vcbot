@@ -19,7 +19,6 @@ from pyrogram.errors import FloodWait
 import asyncio
 import random
 import re
-from pyromod import listen
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from pyrogram.raw.types import MessageEntityTextUrl, MessageEntityMentionName
