@@ -1,0 +1,6 @@
+user*/
+downloads/*
+venv/*
+nohup.out
+__pycache__
+cache/*

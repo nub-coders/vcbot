@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+source venv/bin/activate
 # Define an array of process names and their corresponding commands
 declare -A processes
 processes["zipper.py"]="nohup python3 main.py &"
@@ -15,6 +15,7 @@ while true; do
 
         if [[ -z "$pid" ]] || ! kill -0 "$pid" 2>/dev/null; then
             echo "Starting $process_name..."
+            source venv/bin/activate
             eval "${processes[$process_name]}"
             # Store the PID of the newly started process
             pids["$process_name"]="$!"
