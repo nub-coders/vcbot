@@ -25,6 +25,7 @@ from pyrogram.errors.exceptions import UserDeactivatedBan, UserAlreadyParticipan
 from pyrogram.errors.exceptions import PeerIdInvalid
 from pyrogram.errors.exceptions import UserDeactivated
 from pytgcalls import idle, PyTgCalls
+from pytgcalls.exceptions import UnMuteNeeded
 from pytgcalls.types import MediaStream
 mongo_client = pymongo.MongoClient('mongodb+srv://brock:brock123@cluster0.clzne.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',tlsCAFile=certifi.where())
 db = mongo_client['voice']  #Replace 'your_database_name' with your actual database name
@@ -593,6 +594,8 @@ async def join_voice_chath(event):
             await call_py.play(chat.id)
             #joined_users += 1
             print(f"{client} joined the voice chat.")
+        except UnMuteNeeded:
+            pass
         except Exception as e:
             await event.respond(f"Error joining with {sender}: {e}")
 
@@ -727,6 +730,8 @@ async def run_client(sender):
 
 
 async def run_all_clients():
+  await app.start()
+  print(app.me.username)
   results = []
   user_ids = user_sessions.distinct("user_id")
   tasks = [asyncio.create_task(run_user_client(user_id))
@@ -1090,6 +1095,5 @@ async def react_to_post(event):
     await event.respond(f"Finished reacting with {reacted_users} clients.")
 # Start the Pyrogram client
 
-app.start()
 bot.loop.run_until_complete(run_all_clients())
 bot.run_until_disconnected()
