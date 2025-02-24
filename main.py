@@ -652,10 +652,7 @@ async def join_voice_chat(event):
                 chat = await client.get_chat(group_invite_link)
 
             # Join the voice chat
-            try:
-               await call_py.leave_call(chat.id)
-            except:
-               pass
+
             joined_users += 1
             audio_file = 'input.webm'
             await call_py.play(
