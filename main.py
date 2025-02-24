@@ -82,12 +82,19 @@ async def get_readable_time(seconds: int) -> str:
 import psutil
 import os
 # Command handler for /ping
+import time
+import psutil
+import os
+from datetime import datetime
+import resource
+from telethon import events
+
 @bot.on(events.NewMessage(pattern='/ping'))
 async def ping_command(event):
     # Calculate uptime
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
-
+    
     # Simulate progress bar
     xx = await event.reply("**0% ▒▒▒▒▒▒▒▒▒▒**")
     await xx.edit("**20% ██▒▒▒▒▒▒▒▒**")
@@ -95,17 +102,22 @@ async def ping_command(event):
     await xx.edit("**60% ██████▒▒▒▒**")
     await xx.edit("**80% ████████▒▒**")
     await xx.edit("**100% ██████████**")
-
+    
     # Calculate the duration
     end = datetime.now()
-
-    # Send the final message with ping and uptime information
+    
+    # Get system resources
     delta_ping = (end - start).microseconds / 1000
     delta_ping_formatted = round(delta_ping, 3)
     cpu = psutil.cpu_percent()
     mem = psutil.virtual_memory().percent
     disk = psutil.disk_usage("/").percent
     process = psutil.Process(os.getpid())
+    
+    # Get file descriptor limits
+    soft_limit, hard_limit = resource.getrlimit(resource.RLIMIT_NOFILE)
+    current_fds = len(process.open_files())
+    
     _ping = f"""
 <blockquote>
 PING: {str(delta_ping_formatted).replace('.', ',')} ms
@@ -116,9 +128,14 @@ Server Stats
 CPU: {cpu}%
 RAM: {mem}%
 DISK: {disk}%
-MEMORY: {round(process.memory_info()[0] / 1024 ** 2)} MB</blockquote>
+MEMORY: {round(process.memory_info()[0] / 1024 ** 2)} MB
+
+File Descriptors
+Current: {current_fds}
+Soft Limit: {soft_limit}
+Hard Limit: {hard_limit}</blockquote>
 """
-    await xx.edit(_ping,parse_mode="html")
+    await xx.edit(_ping, parse_mode="html")
 
 # Add this handler to the bot
 
