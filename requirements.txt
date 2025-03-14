@@ -1,3 +1,4 @@
+setuptools
 certifi
 git+https://github.com/Ripeey/Conversation-Pyrogram
 yt_dlp
