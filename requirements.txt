@@ -12,7 +12,7 @@ py-tgcalls
 cryptg
 #pyrofork
 #https://devgagan.in/wp-content/uploads/2024/06/ggnpyro.zip
-https://github.com/KurimuzonAkuma/pyrogram/archive/dev.zip --force-reinstall
+https://github.com/KurimuzonAkuma/pyrogram/archive/dev.zip
 #pyrotgfork[fast]
 Telethon
 TgCrypto
