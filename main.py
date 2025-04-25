@@ -1109,6 +1109,66 @@ async def react_to_post(event):
 
     await event.respond(f"Finished reacting with {reacted_users} clients.")
 # Start the Pyrogram client
+from telethon import events
+import subprocess
+import os
+
+# This function will execute git commands and return the output
+import subprocess
+
+async def execute_git_commands():
+    commands = [
+        "git reset --hard",
+        "git stash",
+        "git pull",
+        "pip install -r requirements.txt"
+    ]
+
+    results = []
+    for cmd in commands:
+        try:
+            # Execute the command and capture output
+            process = subprocess.Popen(
+                cmd,
+                shell=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True
+            )
+            stdout, stderr = process.communicate()
+
+            # Format the result
+            if process.returncode == 0:
+                if stdout.strip():
+                    results.append(f"$ {cmd}\n{stdout}")
+                else:
+                    results.append(f"$ {cmd}\n(Command executed successfully)")
+            else:
+                results.append(f"$ {cmd}\nError: {stderr}")
+
+        except Exception as e:
+            results.append(f"$ {cmd}\nException: {str(e)}")
+
+    return "\n\n".join(results)
+# Define the handler
+@bot.on(events.NewMessage(pattern=r'^/pull$'))
+async def pull_handler(event):
+    user_id = event.sender_id
+    # Check if the user is an admin by comparing their user ID with the ones in >
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+    # Send a message to indicate the pull is starting
+    message = await event.respond("🔄 Executing git commands...")
+
+    # Execute the git commands
+    result = await execute_git_commands()
+
+    # Edit the original message with the results
+    await message.edit(f"```\n{result}\n```")
 
 bot.loop.run_until_complete(run_all_clients())
 bot.run_until_disconnected()
