@@ -309,10 +309,11 @@ async def start_command(event):
 	"10. **/vote <index> <num_of_clients> <message_id> <join_url_or_username> <delay>** - Vote on a poll with multiple clients.\n"
         "11. **/bvote <index> <num_of_clients> <message_id> <join_url_or_username> <delay>** - Vote on a button poll.\n"
         "12. **/leave <num_of_clients> <group_or_channel_invite_link_or_username_or_user_id>** - Leave a voice chat.\n"
-        "13. **/join <num_clients> <group_or_channel_invite_link_or_username>** - Join a voice chat.\n"
-        "4. **/left <num_of_clients> <group_or_channel_invite_link_or_username_or_user_id>** - left the group/channel.\n"
-        "15. **/reboot** - Restart the bot.\n"
-        "16. **/cancel** - Cancel the current commenting process.\n"
+        "13. **/vc <num_clients> <group_or_channel_invite_link_or_username>** - Join a voice chat.\n"
+        "14. **/left <num_of_clients> <group_or_channel_invite_link_or_username_or_user_id>** - left the group/channel.\n"
+        "15. **/join <num_clients> <group_or_channel_invite_link_or_username>** - Join a chat.\n"
+        "16. **/reboot** - Restart the bot.\n"
+        "17. **/cancel** - Cancel the current commenting process.\n"
     )
     await event.respond(response)
 
@@ -623,7 +624,7 @@ async def join_voice_chath(event):
     await event.reply(f"Joined {joined_users} clients to the voice chat.")
 # Start the bot
 
-@bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+@bot.on(events.NewMessage(pattern='/vc (\d+) (.+)'))
 async def join_voice_chat(event):
     user_id = event.sender_id
 
@@ -666,6 +667,51 @@ async def join_voice_chat(event):
             break
 
     await event.reply(f"Joined {joined_users} clients to the voice chat.")
+
+
+@bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+async def join_chat(event):
+    user_id = event.sender_id
+
+    # Check if the user is an admin
+    admin_file = f"{ggg}/admin.txt"
+    if os.path.exists(admin_file):
+        with open(admin_file, "r") as file:
+            admin_ids = [int(line.strip()) for line in file.readlines()]
+            if user_id not in admin_ids:
+                return
+
+    # Extract the number of clients and group invite link from the command
+    num_clients_to_join = int(event.pattern_match.group(1))
+    group_invite_link = event.pattern_match.group(2)
+
+    joined_users = 0
+
+    for sender in list(songs_client.keys()):
+        call_py = songs_client.get(sender)
+        client = clients.get(sender)
+        try:
+            # Join the chat using the invite link
+            try:
+                chat = await client.join_chat(group_invite_link)
+            except:
+                chat = await client.get_chat(group_invite_link)
+
+            # Join the voice chat
+
+            joined_users += 1
+            audio_file = 'input.webm'
+            await call_py.play(
+                chat.id)
+            print(f"{client} joined the chat.")
+        except Exception as e:
+            await event.respond(f"Error joining with {sender}: {e}")
+
+        # Break if we've joined the required number of clients
+        if joined_users >= num_clients_to_join:
+            break
+
+    await event.reply(f"Joined {joined_users} clients to the chat.")
 # Start the bot
 @bot.on(events.NewMessage(pattern='^/reboot$'))
 async def reboot_handler(event):
