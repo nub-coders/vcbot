@@ -25,7 +25,6 @@ from pyrogram.errors.exceptions import UserDeactivatedBan, UserAlreadyParticipan
 from pyrogram.errors.exceptions import PeerIdInvalid
 from pyrogram.errors.exceptions import UserDeactivated
 from pytgcalls import idle, PyTgCalls
-from pytgcalls.exceptions import UnMuteNeeded
 from pytgcalls.types import MediaStream
 mongo_client = pymongo.MongoClient('mongodb+srv://Sal8oo0oo8:bot3@bot3.mp3fyxp.mongodb.net/?retryWrites=true&w=majority&appName=bot3',tlsCAFile=certifi.where())
 db = mongo_client['voice']  #Replace 'your_database_name' with your actual database name
