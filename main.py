@@ -780,7 +780,7 @@ async def run_client(sender):
         string_session = user_data.get("string_session")
 
         # Initialize the client with the retrieved data
-        clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, session_string=string_session, in_memory=True, no_updates=True)
+        clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, session_string=string_session, in_memory=True)
         client = clients.get(sender)
         songs_client[sender]=PyTgCalls(client)
         call_py= songs_client.get(sender)
