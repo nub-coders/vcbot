@@ -181,7 +181,7 @@ async def start(event):
                 await mess.delete()
                 phone_number = event.media.phone_number
                 try:
-                    clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, in_memory=True, no_updates=True)
+                    clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, in_memory=True)
                     client = clients.get(sender)
                     await client.connect()
                     sent_code = await client.send_code(phone_number)
@@ -818,7 +818,7 @@ async def run_user_client(user_id):
         # Initialize the client with the retrieved data
         clients[user_id] = Client(
             f"user_{user_id}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32,
-            workers=1, session_string=string_session, in_memory=True, no_updates=True
+            workers=1, session_string=string_session, in_memory=True
         )
         client = clients.get(user_id)
         songs_client[user_id] = PyTgCalls(client)
