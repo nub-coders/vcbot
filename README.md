@@ -1,9 +1,9 @@
-# Bot1 - Telegram Bot
+# Bot2 - Telegram Bot
 
 A powerful Telegram bot with voice chat capabilities, voting features, and multi-client management.
 
 ## Repository
-- **GitHub**: [github.com/nub-coders/bot1](https://github.com/nub-coders/bot1)
+- **GitHub**: [github.com/nub-coders/bot2](https://github.com/nub-coders/bot2)
 
 ## Features
 - Multi-client Telegram session management
