@@ -25,27 +25,27 @@ A powerful Telegram bot with voice chat capabilities, voting features, and multi
 ### Build and Run with Docker
 ```bash
 # Clone the repository
-git clone https://github.com/nub-coders/bot1.git
-cd bot1
+git clone https://github.com/nub-coders/bot3.git
+cd bot3
 
 # Build the Docker image
-docker build -t bot1 .
+docker build -t bot3 .
 
 # Run the container with specified resources
 docker run -d \
-  --name bot1 \
+  --name bot3 \
   --cpus="50" \
   --memory="50g" \
   --restart=always \
-  bot1
+  bot3
 ```
 
 ## Setup Without Docker
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/nub-coders/bot1.git
-cd bot1
+git clone https://github.com/nub-coders/bot3.git
+cd bot3
 ```
 
 ### 2. Install System Dependencies
