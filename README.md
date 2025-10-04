@@ -32,12 +32,7 @@ cd bot3
 docker build -t bot3 .
 
 # Run the container with specified resources
-docker run -d \
-  --name bot3 \
-  --cpus="50" \
-  --memory="50g" \
-  --restart=always \
-  bot3
+docker run -d  --name bot1   --cpus="50"   --memory="50g" --ulimit nofile=65535:65535  --restart=always  bot3
 ```
 
 ## Setup Without Docker
