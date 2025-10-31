@@ -35,7 +35,7 @@ docker compose build
 docker compose up -d
 
 # Or run just one service
-docker compose up -d bot3
+#docker compose up -d bot3
 
 # Check logs
 docker compose logs -f bot3
@@ -82,6 +82,14 @@ With Docker Compose, env files are already wired per service:
 - `.env.bot1` for `bot1`
 - `.env.bot2` for `bot2`
 - `.env.bot3` for `bot3`
+
+Optional: quick-load env vars from a file (Linux/macOS):
+```bash
+# Generic .env file in the project root
+export $(grep -v '^#' .env.bot1 | xargs)
+
+python3 main.py
+```
 
 ### 5. Set Up Admin Access
 Configure admin IDs in the `.env` file using the `ADMIN_IDS` variable (comma-separated list):
