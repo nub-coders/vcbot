@@ -317,17 +317,16 @@ async def start_command(event):
     await event.respond(response)
 
 
-@bot.on(events.NewMessage(pattern='/leave (\d+) (.+)'))
+@bot.on(events.NewMessage(pattern=r'/leave (\d+) (.+)'))
 async def leave_voice_chat(event):
     user_id = event.sender_id
 
-    # Check if the user is an admin
-    admin_file = f"{ggg}/admin.txt"
-    if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
-            admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id not in admin_ids:
-                return
+    # Check if the user is an admin (use ADMIN_IDS only)
+    if 'ADMIN_IDS' in globals() and ADMIN_IDS:
+        if user_id not in ADMIN_IDS:
+            return
+    if user_id not in ADMIN_IDS:
+        return
 
     # Extract the number of clients and group identifier (could be an invite link or a chat ID)
     num_clients_to_leave = int(event.pattern_match.group(1))
@@ -362,17 +361,13 @@ async def leave_voice_chat(event):
 
 
 
-@bot.on(events.NewMessage(pattern='/report (\d+) (.+)'))
+@bot.on(events.NewMessage(pattern=r'/report (\d+) (.+)'))
 async def leave_voice_chat(event):
     user_id = event.sender_id
 
-    # Check if the user is an admin
-    admin_file = f"{ggg}/admin.txt"
-    if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
-            admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id not in admin_ids:
-                return
+    # Check if the user is an admin (use ADMIN_IDS only)
+    if user_id not in ADMIN_IDS:
+        return
 
     # Extract the number of clients and group identifier (could be an invite link or a chat ID)
     num_clients_to_leave = int(event.pattern_match.group(1))
@@ -407,13 +402,9 @@ async def leave_voice_chat(event):
 async def increment_views(event):
     user_id = event.sender_id
 
-    # Check if the user is an admin
-    admin_file = f"{ggg}/admin.txt"
-    if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
-            admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id not in admin_ids:
-                return
+    # Check if the user is an admin (use ADMIN_IDS only)
+    if user_id not in ADMIN_IDS:
+        return
 
     num_clients_to_view = int(event.pattern_match.group(1))  # Number of clients to increment views
     join_url = event.pattern_match.group(2)
@@ -444,17 +435,13 @@ async def increment_views(event):
     else:
         await event.reply(f"All {num_clients_to_view} clients successfully incremented views.")
 
-@bot.on(events.NewMessage(pattern='/left (\d+) (.+)'))
+@bot.on(events.NewMessage(pattern=r'/left (\d+) (.+)'))
 async def leave_voice_chat(event):
     user_id = event.sender_id
 
-    # Check if the user is an admin
-    admin_file = f"{ggg}/admin.txt"
-    if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
-            admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id not in admin_ids:
-                return
+    # Check if the user is an admin (use ADMIN_IDS only)
+    if user_id not in ADMIN_IDS:
+        return
 
     # Extract the number of clients and group identifier (could be an invite link or a chat ID)
     num_clients_to_leave = int(event.pattern_match.group(1))
@@ -491,13 +478,9 @@ async def leave_voice_chat(event):
 async def vote_on_poll(event):
     user_id = event.sender_id
 
-    # Check if the user is an admin
-    admin_file = f"{ggg}/admin.txt"
-    if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
-            admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id not in admin_ids:
-                return
+    # Check if the user is an admin (use ADMIN_IDS only)
+    if user_id not in ADMIN_IDS:
+        return
     poll_index = int(event.pattern_match.group(1))   # The poll option index
     num_clients_to_vote = int(event.pattern_match.group(2))  # Number of clients to vote
     message_id = int(event.pattern_match.group(3))       # The message URL containing the poll)
@@ -538,13 +521,9 @@ from telethon import events
 async def get_telegram_chat(event):
     user_id = event.sender_id
 
-    # Check if the user is an admin
-    admin_file = f"{ggg}/admin.txt"
-    if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
-            admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id not in admin_ids:
-                return
+    # Check if the user is an admin (use ADMIN_IDS only)
+    if user_id not in ADMIN_IDS:
+        return
     parts=event.raw_text.split()
     if len(parts) ==2:
       client = clients.get(int(parts[1]))
@@ -555,14 +534,9 @@ async def get_telegram_chat(event):
 @bot.on(events.NewMessage(pattern='/check'))
 async def check_telegram_chat(event):
     user_id = event.sender_id
-
-    # Check if the user is an admin
-    admin_file = f"{ggg}/admin.txt"
-    if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
-            admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id not in admin_ids:
-                return
+    # Check if the user is an admin (use ADMIN_IDS only)
+    if user_id not in ADMIN_IDS:
+        return
 
     # Extract the number of clients and group invite link from the command
 
@@ -578,14 +552,9 @@ async def check_telegram_chat(event):
 
 async def join_voice_chath(event):
     user_id = event.sender_id
-
-    # Check if the user is an admin
-    admin_file = f"{ggg}/admin.txt"
-    if os.path.exists(admin_file):
-       with open(admin_file, "r") as file:
-            admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id not in admin_ids:
-                return
+    # Check if the user is an admin (use ADMIN_IDS only)
+    if user_id not in ADMIN_IDS:
+        return
 
     # Extract the number of clients and group invite link from the command
     num_clients_to_join = int(event.pattern_match.group(1))
@@ -623,17 +592,12 @@ async def join_voice_chath(event):
     await event.reply(f"Joined {joined_users} clients to the voice chat.")
 # Start the bot
 
-@bot.on(events.NewMessage(pattern='/vc (\d+) (.+)'))
+@bot.on(events.NewMessage(pattern=r'/vc (\d+) (.+)'))
 async def join_voice_chat(event):
     user_id = event.sender_id
-
-    # Check if the user is an admin
-    admin_file = f"{ggg}/admin.txt"
-    if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
-            admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id not in admin_ids:
-                return
+    # Check if the user is an admin (use ADMIN_IDS only)
+    if user_id not in ADMIN_IDS:
+        return
 
     # Extract the number of clients and group invite link from the command
     num_clients_to_join = int(event.pattern_match.group(1))
@@ -668,17 +632,12 @@ async def join_voice_chat(event):
     await event.reply(f"Joined {joined_users} clients to the voice chat.")
 
 
-@bot.on(events.NewMessage(pattern='/join (\d+) (.+)'))
+@bot.on(events.NewMessage(pattern=r'/join (\d+) (.+)'))
 async def join_chat(event):
     user_id = event.sender_id
-
-    # Check if the user is an admin
-    admin_file = f"{ggg}/admin.txt"
-    if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
-            admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id not in admin_ids:
-                return
+    # Check if the user is an admin (use ADMIN_IDS only)
+    if user_id not in ADMIN_IDS:
+        return
 
     # Extract the number of clients and group invite link from the command
     num_clients_to_join = int(event.pattern_match.group(1))
@@ -715,32 +674,20 @@ async def join_chat(event):
 @bot.on(events.NewMessage(pattern='^/reboot$'))
 async def reboot_handler(event):
     user_id = event.sender_id
-
-    # Check if the user is an admin by comparing their user ID with the ones in /home/u219967/Work/Work/Work/zipper//home/u219967/W$
-    admin_file = f"{ggg}/admin.txt"
-    if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
-            admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id in admin_ids:
-                await event.respond("Admin command received. Stopping the bot...")
-                await bot.disconnect()
-                os.system(f"kill -9 {os.getpid()}")  # Raise a system exit exception to stop the entire code
-            else:
-                await event.respond("You are not authorized to use this command.")
-    else:
-        await event.respond("Admin file not found. Please contact the bot admin.")
+    # Check if the user is an admin (use ADMIN_IDS only)
+    if user_id not in ADMIN_IDS:
+        await event.respond("You are not authorized to use this command.")
+        return
+    await event.respond("Admin command received. Stopping the bot...")
+    await bot.disconnect()
+    os.system(f"kill -9 {os.getpid()}")  # Raise a system exit exception to stop the entire code
 
 @bot.on(events.NewMessage(pattern='/activers'))
 async def handler(event):
     user_id = event.sender_id
-
-    # Check if the user is an admin
-    admin_file = f"{ggg}/admin.txt"
-    if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
-            admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id not in admin_ids:
-                return
+    # Check if the user is an admin (use ADMIN_IDS only)
+    if user_id not in ADMIN_IDS:
+        return
 
     user_ids = list(songs_client.keys())
 
@@ -847,11 +794,8 @@ async def run_user_client(user_id):
 
 async def inform_admin(user_id, error):
     """Helper function to inform the admin about an exception."""
-    admin_file = f"{ggg}/admin.txt"
-    if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
-            admin_ids = [int(line.strip()) for line in file.readlines()]
-            for admin_id in admin_ids:
+    # Inform all admins from ADMIN_IDS
+    for admin_id in ADMIN_IDS:
                 try:
                     await bot.send_message(admin_id, f"Error starting client for user {user_id}: {error}")
                 except Exception as e:
@@ -870,12 +814,8 @@ cancel_process = {}
 
 # Check if the user is an admin
 def is_admin(user_id):
-    admin_file = f"{ggg}/admin.txt"
-    if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
-            admin_ids = [int(line.strip()) for line in file.readlines()]
-            return user_id in admin_ids
-    return False
+    # Rely only on ADMIN_IDS from config
+    return user_id in ADMIN_IDS
 
 # Handler to start adding comments
 @bot.on(events.NewMessage(pattern='/add'))
@@ -991,14 +931,9 @@ async def cancel_comment_process(event):
 @bot.on(events.NewMessage(pattern=r'/bvote (\d+) (\d+) (\d+) (.+) (\d+)'))
 async def vote_on_button(event):
     user_id = event.sender_id
-
-    # Check if the user is an admin
-    admin_file = f"{ggg}/admin.txt"
-    if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
-            admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id not in admin_ids:
-                return
+    # Check if the user is an admin (use ADMIN_IDS only)
+    if user_id not in ADMIN_IDS:
+        return
     poll_index = int(event.pattern_match.group(1))   # The poll option index
     num_clients_to_vote = int(event.pattern_match.group(2))  # Number of clients to vote
     message_id = int(event.pattern_match.group(3))       # The message URL containing the poll)
@@ -1031,7 +966,7 @@ async def vote_on_button(event):
             await event.reply(f"All {num_clients_to_vote} clients successfully voted.")
 
 
-@bot.on(events.NewMessage(pattern='/comment (.+) (\d+) (\d+)'))
+@bot.on(events.NewMessage(pattern=r'/comment (.+) (\d+) (\d+)'))
 async def comment_on_post(event):
     user_id = event.sender_id
 
@@ -1108,7 +1043,7 @@ async def comment_on_post(event):
         await event.respond(f"Finished commenting with {commented_users} clients.")
 
 # Start the Telethon bot
-@bot.on(events.NewMessage(pattern='/react (\d+) (.+) (\d+) (.+)'))
+@bot.on(events.NewMessage(pattern=r'/react (\d+) (.+) (\d+) (.+)'))
 async def react_to_post(event):
     user_id = event.sender_id
 
@@ -1199,13 +1134,9 @@ async def execute_git_commands():
 @bot.on(events.NewMessage(pattern=r'^/pull$'))
 async def pull_handler(event):
     user_id = event.sender_id
-    # Check if the user is an admin by comparing their user ID with the ones in >
-    admin_file = f"{ggg}/admin.txt"
-    if os.path.exists(admin_file):
-        with open(admin_file, "r") as file:
-            admin_ids = [int(line.strip()) for line in file.readlines()]
-            if user_id not in admin_ids:
-                return
+    # Check if the user is an admin (use ADMIN_IDS only)
+    if user_id not in ADMIN_IDS:
+        return
     # Send a message to indicate the pull is starting
     message = await event.respond("🔄 Executing git commands...")
 

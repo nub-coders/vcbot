@@ -67,10 +67,9 @@ BOT_TOKEN = "your_bot_token"
 ```
 
 ### 5. Set Up Admin Access
-Create an `admin.txt` file and add your Telegram user ID (one per line):
+Configure admin IDs in the `.env` file using the `ADMIN_IDS` variable (comma-separated list):
 ```
-123456789
-987654321
+ADMIN_IDS=123456789,987654321
 ```
 
 ### 6. Run the Bot
@@ -85,8 +84,13 @@ python3 main.py
 - `API_HASH`: Your Telegram API Hash
 - `BOT_TOKEN`: Your Telegram Bot Token
 
-### Admin File
-The `admin.txt` file should contain Telegram user IDs (one per line) of users who can use admin commands.
+### Admin configuration
+Provide Telegram admin user IDs via the `ADMIN_IDS` environment variable in `.env` (CSV of integers). Example:
+
+```
+ADMIN_IDS=123456789,987654321
+```
+Your application reads `ADMIN_IDS` at startup and uses it to control access to admin commands.
 
 ## Available Commands
 
@@ -124,7 +128,7 @@ The Docker setup is configured with:
 1. **Session Errors**: Delete session files and re-login
 2. **MongoDB Connection**: Ensure MongoDB is accessible
 3. **API Limits**: Respect Telegram's rate limits
-4. **Permission Errors**: Check admin.txt file permissions
+4. **Permission Errors**: Ensure the `ADMIN_IDS` in your `.env` is correct and the bot's credentials are valid
 
 ### Logs
 ```bash

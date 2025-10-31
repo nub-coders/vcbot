@@ -28,3 +28,5 @@ opencv-python-headless
 python-ffmpeg
 ffmpeg
 uvloop
+
+python-dotenv
