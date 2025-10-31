@@ -59,12 +59,16 @@ pip3 install -r requirements.txt
 ```
 
 ### 4. Configure Environment
-Create a `config.py` file with your credentials:
-```python
-API_ID = "your_api_id"
-API_HASH = "your_api_hash"
-BOT_TOKEN = "your_bot_token"
+The bot reads credentials from environment variables or a local `.env` file (recommended for local development). Create a `.env` file in the project root with the following variables:
+
 ```
+API_ID=your_api_id
+API_HASH=your_api_hash
+BOT_TOKEN=your_bot_token
+ADMIN_IDS=123456789,987654321
+```
+
+Do not commit your `.env` to the repository. Use `.env.example` (not containing real secrets) to document required variables if you want to publish example config.
 
 ### 5. Set Up Admin Access
 Configure admin IDs in the `.env` file using the `ADMIN_IDS` variable (comma-separated list):

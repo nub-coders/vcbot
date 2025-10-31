@@ -33,7 +33,7 @@ from datetime import datetime
 clients = {}  # Dictionary to store client objects
 import os
 StartTime = time.time()
-# Load configuration from environment (was previously in config.py)
+# Load configuration from environment
 from pathlib import Path
 import os as _os
 try:
