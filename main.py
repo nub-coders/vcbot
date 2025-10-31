@@ -33,7 +33,37 @@ from datetime import datetime
 clients = {}  # Dictionary to store client objects
 import os
 StartTime = time.time()
-from config import *
+# Load configuration from environment (was previously in config.py)
+from pathlib import Path
+import os as _os
+try:
+    from dotenv import load_dotenv as _load_dotenv
+except Exception:
+    _load_dotenv = None
+
+_dotenv_path = Path(__file__).parent / '.env'
+if _load_dotenv:
+    _load_dotenv(dotenv_path=_dotenv_path)
+
+_api_id = _os.getenv('API_ID')
+API_ID = int(_api_id) if _api_id is not None else None
+API_HASH = _os.getenv('API_HASH')
+BOT_TOKEN = _os.getenv('BOT_TOKEN')
+
+if not API_ID or not API_HASH or not BOT_TOKEN:
+    raise RuntimeError(
+        'Missing required environment variables. Please set API_ID, API_HASH and BOT_TOKEN in environment or .env'
+    )
+
+# Optional ADMIN_IDS as CSV
+_admin_ids = _os.getenv('ADMIN_IDS', '')
+if _admin_ids:
+    try:
+        ADMIN_IDS = [int(x.strip()) for x in _admin_ids.split(',') if x.strip()]
+    except Exception:
+        raise RuntimeError('ADMIN_IDS must be a comma-separated list of integers')
+else:
+    ADMIN_IDS = []
 with open('devices.json', 'r') as file:
     devices = json.load(file)
 
