@@ -22,17 +22,23 @@ A powerful Telegram bot with voice chat capabilities, voting features, and multi
 
 ## Docker Setup (Recommended)
 
-### Build and Run with Docker
+### Quick start with Docker Compose
 ```bash
 # Clone the repository
 git clone https://github.com/nub-coders/bot3.git
 cd bot3
 
-# Build the Docker image
-docker build -t bot3 .
+# Build once
+docker compose build
 
-# Run the container with specified resources
-docker run -d  --name bot1   --cpus="50"   --memory="50g" --ulimit nofile=65535:65535  --restart=always  bot3
+# Run all three services (bot1, bot2, bot3)
+docker compose up -d
+
+# Or run just one service
+docker compose up -d bot3
+
+# Check logs
+docker compose logs -f bot3
 ```
 
 ## Setup Without Docker
@@ -59,16 +65,23 @@ pip3 install -r requirements.txt
 ```
 
 ### 4. Configure Environment
-The bot reads credentials from environment variables or a local `.env` file (recommended for local development). Create a `.env` file in the project root with the following variables:
+The app reads ONLY OS environment variables (no `.env` auto-loading). For local runs, export variables before starting:
 
-```
-API_ID=your_api_id
-API_HASH=your_api_hash
-BOT_TOKEN=your_bot_token
-ADMIN_IDS=123456789,987654321
+```bash
+export API_ID=your_api_id
+export API_HASH=your_api_hash
+export BOT_TOKEN=your_bot_token
+export MONGODB_URI=your_mongodb_uri
+export ADMIN_IDS=123456789,987654321   # optional, CSV of integers
+export OWNER=@your_username            # optional
+
+python3 main.py
 ```
 
-Do not commit your `.env` to the repository. Use `.env.example` (not containing real secrets) to document required variables if you want to publish example config.
+With Docker Compose, env files are already wired per service:
+- `.env.bot1` for `bot1`
+- `.env.bot2` for `bot2`
+- `.env.bot3` for `bot3`
 
 ### 5. Set Up Admin Access
 Configure admin IDs in the `.env` file using the `ADMIN_IDS` variable (comma-separated list):
@@ -77,24 +90,25 @@ ADMIN_IDS=123456789,987654321
 ```
 
 ### 6. Run the Bot
-```bash
-python3 main.py
-```
+See the Docker Compose section above, or run locally after exporting environment variables as shown.
 
 ## Configuration
 
 ### Environment Variables
-- `API_ID`: Your Telegram API ID
-- `API_HASH`: Your Telegram API Hash
-- `BOT_TOKEN`: Your Telegram Bot Token
+- `API_ID` (required): Your Telegram API ID (integer)
+- `API_HASH` (required): Your Telegram API Hash
+- `BOT_TOKEN` (required): Your Telegram Bot Token
+- `MONGODB_URI` (required): MongoDB connection string used for session storage
+- `ADMIN_IDS` (optional): CSV of Telegram user IDs with admin privileges
+- `OWNER` (optional): Owner label shown in `/ping` output (e.g., `@username`)
 
 ### Admin configuration
-Provide Telegram admin user IDs via the `ADMIN_IDS` environment variable in `.env` (CSV of integers). Example:
+Provide Telegram admin user IDs via the `ADMIN_IDS` environment variable (CSV of integers). Example:
 
 ```
 ADMIN_IDS=123456789,987654321
 ```
-Your application reads `ADMIN_IDS` at startup and uses it to control access to admin commands.
+The application reads `ADMIN_IDS` at startup and uses it to control access to admin commands.
 
 ## Available Commands
 
@@ -118,13 +132,16 @@ Your application reads `ADMIN_IDS` at startup and uses it to control access to a
 - `/reboot` - Restart the bot
 - `/pull` - Update from git repository
 
-## Docker Resource Limits
+## Docker services
 
-The Docker setup is configured with:
-- **CPU**: 50 vCPUs
-- **Memory**: 50GB RAM
-- **Restart Policy**: Always
-- **Container Name**: bot1
+Compose defines three services:
+- `bot1` uses `.env.bot1`
+- `bot2` uses `.env.bot2`
+- `bot3` uses `.env.bot3`
+
+Each service:
+- restarts: always
+- sets ulimit nofile to 65535
 
 ## Troubleshooting
 
@@ -137,7 +154,9 @@ The Docker setup is configured with:
 ### Logs
 ```bash
 # Docker logs
-docker logs bot1
+docker compose logs -f bot1
+docker compose logs -f bot2
+docker compose logs -f bot3
 
 # System logs (without Docker)
 tail -f /var/log/syslog
