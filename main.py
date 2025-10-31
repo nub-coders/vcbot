@@ -26,7 +26,10 @@ from pyrogram.errors.exceptions import PeerIdInvalid
 from pyrogram.errors.exceptions import UserDeactivated
 from pytgcalls import idle, PyTgCalls
 from pytgcalls.types import MediaStream
-mongo_client = pymongo.MongoClient('mongodb+srv://Sal8oo0oo8:bot3@bot3.mp3fyxp.mongodb.net/?retryWrites=true&w=majority&appName=bot3',tlsCAFile=certifi.where())
+MONGODB_URI = os.getenv('MONGODB_URI')
+if not MONGODB_URI:
+    raise RuntimeError('Missing required environment variable: MONGODB_URI')
+mongo_client = pymongo.MongoClient(MONGODB_URI, tlsCAFile=certifi.where())
 db = mongo_client['voice']  #Replace 'your_database_name' with your actual database name
 user_sessions = db['user_sessions']
 from datetime import datetime
@@ -61,14 +64,7 @@ if _admin_ids:
         raise RuntimeError('ADMIN_IDS must be a comma-separated list of integers')
 else:
     ADMIN_IDS = []
-with open('devices.json', 'r') as file:
-    devices = json.load(file)
-
-def get_random_device():
-    """Select a random device model and its SDK version."""
-    device_model = random.choice(list(devices.keys()))
-    sdk_version = devices[device_model]
-    return device_model, sdk_version
+# Removed devices.json usage and helper as it's no longer needed
 
 bot = TelegramClient(None, API_ID, API_HASH)
 bot.start(bot_token=BOT_TOKEN)
@@ -83,8 +79,23 @@ conversations = {}
 async def get_readable_time(seconds: int) -> str:
     count = 0
     up_time = ""
+    time_list = []
     time_suffix_list = ["s", "m", "h", "days"]
-    _ping = f"""
+
+    while count < 4:
+        count += 1
+        remainder, result = divmod(seconds, 60) if count < 3 else divmod(seconds, 24)
+        if seconds == 0 and remainder == 0:
+            break
+        time_list.append(int(result))
+        seconds = int(remainder)
+
+    for x in range(len(time_list)):
+        time_list[x] = str(time_list[x]) + time_suffix_list[x]
+    if len(time_list) == 4:
+        up_time += time_list.pop() + ", "
+
+    time_list.reverse()
     up_time += ":".join(time_list)
 
     return up_time
@@ -133,7 +144,7 @@ async def ping_command(event):
 <blockquote>
 PING: {str(delta_ping_formatted).replace('.', ',')} ms
 UPTIME: {uptime}
-OWNER: @fuck_you_deeply
+OWNER: {OWNER}
 
 Server Stats
 CPU: {cpu}%

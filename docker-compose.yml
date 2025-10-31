@@ -1,16 +1,14 @@
 
 
 services:
-  bot:
+  bot1:
     build: .
     image: bot3:latest
-    container_name: bot3
+    container_name: bot1
     env_file:
-      - .env
-    volumes:
-      - ./logs:/app/logs
-      - ./devices.json:/app/devices.json:ro
-    restart: unless-stopped
+      - .env.bot1
+    # no external volumes required
+  restart: always
     ulimits:
       nofile:
         soft: 65535
@@ -20,8 +18,39 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-    deploy:
-      resources:
-        limits:
-          cpus: '2.0'
-          memory: 2G
+
+  bot2:
+    build: .
+    image: bot3:latest
+    container_name: bot2
+    env_file:
+      - .env.bot2
+    # no external volumes required
+  restart: always
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  bot3:
+    build: .
+    image: bot3:latest
+    container_name: bot3
+    env_file:
+      - .env.bot3
+    # no external volumes required
+  restart: always
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
