@@ -33,34 +33,31 @@ from datetime import datetime
 clients = {}  # Dictionary to store client objects
 import os
 StartTime = time.time()
-# Load configuration from environment
-from pathlib import Path
-import os as _os
+# Load configuration from OS environment only (no .env/dotenv)
+# Required environment variables: API_ID (int), API_HASH, BOT_TOKEN
+_api_id = os.getenv('API_ID')
+if _api_id is None:
+    raise RuntimeError('Missing required environment variable: API_ID')
 try:
-    from dotenv import load_dotenv as _load_dotenv
-except Exception:
-    _load_dotenv = None
+    API_ID = int(_api_id)
+except ValueError:
+    raise RuntimeError('API_ID must be an integer')
 
-_dotenv_path = Path(__file__).parent / '.env'
-if _load_dotenv:
-    _load_dotenv(dotenv_path=_dotenv_path)
+API_HASH = os.getenv('API_HASH')
+BOT_TOKEN = os.getenv('BOT_TOKEN')
 
-_api_id = _os.getenv('API_ID')
-API_ID = int(_api_id) if _api_id is not None else None
-API_HASH = _os.getenv('API_HASH')
-BOT_TOKEN = _os.getenv('BOT_TOKEN')
+if API_HASH is None or BOT_TOKEN is None:
+    raise RuntimeError('Missing required environment variables: API_HASH and BOT_TOKEN')
 
-if not API_ID or not API_HASH or not BOT_TOKEN:
-    raise RuntimeError(
-        'Missing required environment variables. Please set API_ID, API_HASH and BOT_TOKEN in environment or .env'
-    )
+# Optional OWNER username or ID from environment
+OWNER = os.getenv('OWNER', '(not set)')
 
-# Optional ADMIN_IDS as CSV
-_admin_ids = _os.getenv('ADMIN_IDS', '')
+# Optional ADMIN_IDS as CSV from environment (e.g. "123,456")
+_admin_ids = os.getenv('ADMIN_IDS', '')
 if _admin_ids:
     try:
         ADMIN_IDS = [int(x.strip()) for x in _admin_ids.split(',') if x.strip()]
-    except Exception:
+    except ValueError:
         raise RuntimeError('ADMIN_IDS must be a comma-separated list of integers')
 else:
     ADMIN_IDS = []
@@ -86,23 +83,8 @@ conversations = {}
 async def get_readable_time(seconds: int) -> str:
     count = 0
     up_time = ""
-    time_list = []
     time_suffix_list = ["s", "m", "h", "days"]
-
-    while count < 4:
-        count += 1
-        remainder, result = divmod(seconds, 60) if count < 3 else divmod(seconds, 24)
-        if seconds == 0 and remainder == 0:
-            break
-        time_list.append(int(result))
-        seconds = int(remainder)
-
-    for x in range(len(time_list)):
-        time_list[x] = str(time_list[x]) + time_suffix_list[x]
-    if len(time_list) == 4:
-        up_time += time_list.pop() + ", "
-
-    time_list.reverse()
+    _ping = f"""
     up_time += ":".join(time_list)
 
     return up_time
