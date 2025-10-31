@@ -2,5 +2,8 @@ zipper/
 user*/
 downloads/
 venv/
-nohup*
-.env
+
+# Ignore logs and Python cache
+logs/
+__pycache__/
+*.pyc
