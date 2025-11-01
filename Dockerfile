@@ -1,5 +1,5 @@
-# Use the latest Python image
-FROM python:latest
+# Use Python 3.13.2
+FROM python:3.13.2
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
