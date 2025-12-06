@@ -1,16 +1,17 @@
-# Use Python 3.13.2
-FROM python:3.13.2
+# Use Python 3.13.2 slim for smaller image size
+FROM python:3.13.2-slim
 
 # Set environment variables
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
+# Install system dependencies in one layer
+RUN apt-get update && apt-get install -y --no-install-recommends \
     git \
     curl \
     wget \
-    apt-utils \
-    yt-dlp \
     build-essential \
     libmagic-dev \
     libssl-dev \
@@ -21,19 +22,27 @@ RUN apt-get update && apt-get install -y \
     libffi-dev \
     liblzma-dev \
     ffmpeg \
-    && rm -rf /var/lib/apt/lists/*
-
-# Upgrade pip
-RUN python -m pip install --upgrade pip
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
 
 # Set working directory
 WORKDIR /app
 
-# Copy local project files into container
+# Copy requirements first for better caching
+COPY requirements.txt .
+
+# Install Python packages
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copy project files
 COPY . .
 
-# Install required Python packages
-RUN pip install -r requirements.txt
+# Create non-root user for security
+RUN useradd -m -u 1000 botuser && \
+    chown -R botuser:botuser /app
+
+USER botuser
 
 # Start script
 CMD ["python", "main.py"]

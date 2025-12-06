@@ -1,41 +1,85 @@
-from pytgcalls import filters as fl
-import shutil
-import pyrogram
-import os
-import json
-import random
+# Standard library imports
 import asyncio
+import json
+import logging
+import os
+import random
+import shutil
+import subprocess
 import sys
 import time
+from datetime import datetime
+from typing import Dict, Optional
+
+# Third-party imports
 import certifi
+import psutil
 import pymongo
-from pyrogram import Client,filters
-from pyrogram.raw import functions, types
-from telethon import TelegramClient, events, Button, types, errors
-from pyrogram.raw.types import InputReportReasonOther
-from pyrogram.errors.exceptions.unauthorized_401 import SessionPasswordNeeded
-from pyrogram.raw.functions.phone import CreateGroupCall
-from pyrogram.errors.exceptions.bad_request_400 import PasswordHashInvalid
-from pyrogram.errors.exceptions.bad_request_400 import PhoneCodeInvalid
-from pyrogram.errors.exceptions import AuthKeyDuplicated
-from pyrogram.errors.exceptions import AuthKeyUnregistered
-from pyrogram.errors.exceptions import SessionRevoked,ChatForwardsRestricted
-from pyrogram.errors.exceptions import PeerFlood,UserRestricted,FileReferenceExpired
-from pyrogram.errors.exceptions import UserDeactivatedBan, UserAlreadyParticipant
-from pyrogram.errors.exceptions import PeerIdInvalid
-from pyrogram.errors.exceptions import UserDeactivated
-from pytgcalls import idle, PyTgCalls
+from pytgcalls import PyTgCalls, filters as fl
 from pytgcalls.types import MediaStream
+
+# Pyrogram imports
+from pyrogram import Client, filters
+from pyrogram.raw import functions, types
+from pyrogram.raw.types import InputReportReasonOther
+from pyrogram.errors import (
+    SessionPasswordNeeded, PasswordHashInvalid, PhoneCodeInvalid,
+    AuthKeyDuplicated, AuthKeyUnregistered, SessionRevoked,
+    ChatForwardsRestricted, PeerFlood, UserRestricted,
+    FileReferenceExpired, UserDeactivatedBan, UserAlreadyParticipant,
+    PeerIdInvalid, UserDeactivated, AuthKeyInvalid, AuthTokenExpired,
+    AccessTokenExpired
+)
+
+# Telethon imports
+from telethon import TelegramClient, events, Button, types, errors
+# MongoDB setup
 MONGODB_URI = os.getenv('MONGODB_URI')
 if not MONGODB_URI:
     raise RuntimeError('Missing required environment variable: MONGODB_URI')
-mongo_client = pymongo.MongoClient(MONGODB_URI, tlsCAFile=certifi.where())
-db = mongo_client['voice']  #Replace 'your_database_name' with your actual database name
+
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('bot.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+# MongoDB connection with connection pooling
+mongo_client = pymongo.MongoClient(
+    MONGODB_URI, 
+    tlsCAFile=certifi.where(),
+    maxPoolSize=50,
+    minPoolSize=10,
+    maxIdleTimeMS=45000,
+    serverSelectionTimeoutMS=5000
+)
+db = mongo_client['voice']
 user_sessions = db['user_sessions']
-from datetime import datetime
-clients = {}  # Dictionary to store client objects
-import os
+
+# Create index on user_id for faster queries
+try:
+    user_sessions.create_index("user_id", unique=True)
+    logger.info("Database index created successfully")
+except Exception as e:
+    logger.warning(f"Index creation failed or already exists: {e}")
+
+# Global state
 StartTime = time.time()
+clients: Dict[int, Client] = {}  # Dictionary to store client objects
+songs_client: Dict[int, PyTgCalls] = {}
+conversations: Dict[int, any] = {}
+admin_comments: Dict[int, list] = {}
+adding_mode: Dict[int, bool] = {}
+cancel_process: Dict[int, bool] = {}
+
+# Simple cache for user sessions (reduces DB queries)
+session_cache: Dict[int, Optional[str]] = {}
+CACHE_EXPIRY = 3600  # 1 hour
 # Load configuration from OS environment only (no .env/dotenv)
 # Required environment variables: API_ID (int), API_HASH, BOT_TOKEN
 _api_id = os.getenv('API_ID')
@@ -64,17 +108,41 @@ if _admin_ids:
         raise RuntimeError('ADMIN_IDS must be a comma-separated list of integers')
 else:
     ADMIN_IDS = []
-# Removed devices.json usage and helper as it's no longer needed
-
+# Initialize bot clients
 bot = TelegramClient(None, API_ID, API_HASH)
 bot.start(bot_token=BOT_TOKEN)
-app = Client(":hehe",api_id=API_ID,api_hash=API_HASH,bot_token=BOT_TOKEN, in_memory=True)
-import pytgcalls
-songs_client = {}
-ggg=os.getcwd()
-conversations = {}
+app = Client(":hehe", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN, in_memory=True)
 
+# ==================== Helper Functions ====================
 
+def is_admin(user_id: int) -> bool:
+    """Check if user is an admin"""
+    return user_id in ADMIN_IDS
+
+async def get_or_join_chat(client, identifier: str):
+    """Get chat or join if not already a member"""
+    try:
+        return await client.get_chat(identifier)
+    except Exception:
+        return await client.join_chat(identifier)
+
+async def safe_view_messages(client, chat_id: int, message_id: int, event=None):
+    """Safely increment view count for messages"""
+    try:
+        await client.view_messages(chat_id, message_id)
+    except Exception as e:
+        logger.warning(f"Failed to view message {message_id} in chat {chat_id}: {e}")
+        if event:
+            await event.reply(f"Failed to increment view count: {e}")
+
+async def inform_admin(user_id: int, error: Exception):
+    """Helper function to inform all admins about an exception"""
+    logger.error(f"Error with user {user_id}: {error}")
+    for admin_id in ADMIN_IDS:
+        try:
+            await bot.send_message(admin_id, f"Error starting client for user {user_id}: {error}")
+        except Exception as e:
+            logger.error(f"Failed to inform admin {admin_id}: {e}")
 
 async def get_readable_time(seconds: int) -> str:
     count = 0
@@ -100,16 +168,7 @@ async def get_readable_time(seconds: int) -> str:
 
     return up_time
 
-
-import psutil
-import os
-# Command handler for /ping
-import time
-import psutil
-import os
-from datetime import datetime
-import resource
-from telethon import events
+# ==================== Command Handlers ====================
 
 @bot.on(events.NewMessage(pattern='/ping'))
 async def ping_command(event):
@@ -342,157 +401,113 @@ async def start_command(event):
 
 @bot.on(events.NewMessage(pattern=r'/leave (\d+) (.+)'))
 async def leave_voice_chat(event):
-    user_id = event.sender_id
-
-    # Check if the user is an admin (use ADMIN_IDS only)
-    if 'ADMIN_IDS' in globals() and ADMIN_IDS:
-        if user_id not in ADMIN_IDS:
-            return
-    if user_id not in ADMIN_IDS:
+    if not is_admin(event.sender_id):
         return
-
-    # Extract the number of clients and group identifier (could be an invite link or a chat ID)
+    
     num_clients_to_leave = int(event.pattern_match.group(1))
     group_identifier = event.pattern_match.group(2)
-
     left_users = 0
 
     for sender in list(songs_client.keys()):
+        if left_users >= num_clients_to_leave:
+            break
+            
         call_py = songs_client.get(sender)
         client = clients.get(sender)
         try:
-            # Check if the group identifier is a number (chat ID)
-            if group_identifier.isdigit():
-                chat_id = int(group_identifier)
-            else:
-                # If not a number, assume it's an invite link or username and get chat details
-                chat = await client.get_chat(group_identifier)
-                chat_id = chat.id
-
-            # Leave the voice chat
+            chat_id = int(group_identifier) if group_identifier.isdigit() else (await get_or_join_chat(client, group_identifier)).id
             await call_py.leave_call(chat_id)
             left_users += 1
             print(f"{client} left the voice chat.")
         except Exception as e:
             print(e)
 
-        # Break if we've left the required number of clients
-        if left_users >= num_clients_to_leave:
-            break
-
     await event.reply(f"Left {left_users} clients from the voice chat.")
 
 
 
 @bot.on(events.NewMessage(pattern=r'/report (\d+) (.+)'))
-async def leave_voice_chat(event):
-    user_id = event.sender_id
-
-    # Check if the user is an admin (use ADMIN_IDS only)
-    if user_id not in ADMIN_IDS:
+async def report_peer(event):
+    if not is_admin(event.sender_id):
         return
-
-    # Extract the number of clients and group identifier (could be an invite link or a chat ID)
-    num_clients_to_leave = int(event.pattern_match.group(1))
+    
+    num_clients_to_report = int(event.pattern_match.group(1))
     group_identifier = event.pattern_match.group(2)
+    reported_users = 0
 
-    left_users = 0
+    message = (
+        "This person spreads fake news, misleads people, thereby inciting aggression "
+        "and calling for war between nations. It sends photos with violent threats to the life "
+        "Under international law, this is regarded as terrorism. "
+        "Therefore we ask You to block it as soon as possible!"
+    )
 
     for sender in list(songs_client.keys()):
+        if reported_users >= num_clients_to_report:
+            break
+            
         client = clients.get(sender)
         try:
             peer = await client.resolve_peer(group_identifier)
-            message = "This person spreads fake news, misleads people, thereby inciting aggression " \
-                      "and calling for war between nations. It sends photos with violent threats to the life " \
-                      "Under international law, this is regarded as terrorism. " \
-                      "Therefore we ask You to block it as soon as possible!"
-            # Leave the voice chat
             report = functions.account.ReportPeer(peer=peer, reason=InputReportReasonOther(), message=message)
-            result = await client.invoke(report)
-            left_users += 1
+            await client.invoke(report)
+            reported_users += 1
             print(f"{client} reported the {group_identifier}.")
         except Exception as e:
             print(e)
 
-        # Break if we've left the required number of clients
-        if left_users >= num_clients_to_leave:
-            break
-
-    await event.reply(f"{left_users} clients reported the {group_identifier}.")
+    await event.reply(f"{reported_users} clients reported the {group_identifier}.")
 
 
 @bot.on(events.NewMessage(pattern=r'/bview (\d+) (.+)'))
 async def increment_views(event):
-    user_id = event.sender_id
-
-    # Check if the user is an admin (use ADMIN_IDS only)
-    if user_id not in ADMIN_IDS:
+    if not is_admin(event.sender_id):
         return
 
-    num_clients_to_view = int(event.pattern_match.group(1))  # Number of clients to increment views
+    num_clients_to_view = int(event.pattern_match.group(1))
     join_url = event.pattern_match.group(2)
     viewed_users = 0
 
     for sender in list(songs_client.keys()):
+        if viewed_users >= num_clients_to_view:
+            break
+            
         client = clients.get(sender)
         try:
-            # Join or get chat
-            try:
-                chat = await client.get_chat(join_url)
-            except:
-                continue
-            # Iterate through history and increment view count for all messages
+            chat = await get_or_join_chat(client, join_url)
             async for msg in client.get_chat_history(chat.id, 20):
                 try:
                     await client.view_messages(chat.id, msg.id)
                 except Exception as e:
-                    await event.reply(f"Client {sender} failed to increment view count for message ID {msg.id}: {e}")
+                    await event.reply(f"Client {sender} failed to view message {msg.id}: {e}")
+                    break
             viewed_users += 1
-            if viewed_users >= num_clients_to_view:
-                break
         except Exception as e:
-            await event.reply(f"Client {sender} encountered an error: {e}")
+            await event.reply(f"Client {sender} error: {e}")
 
-    if viewed_users < num_clients_to_view:
-        await event.reply(f"Only {viewed_users} out of {num_clients_to_view} clients successfully incremented views.")
-    else:
-        await event.reply(f"All {num_clients_to_view} clients successfully incremented views.")
+    await event.reply(f"Incremented views with {viewed_users}/{num_clients_to_view} clients.")
 
 @bot.on(events.NewMessage(pattern=r'/left (\d+) (.+)'))
-async def leave_voice_chat(event):
-    user_id = event.sender_id
-
-    # Check if the user is an admin (use ADMIN_IDS only)
-    if user_id not in ADMIN_IDS:
+async def leave_chat_handler(event):
+    if not is_admin(event.sender_id):
         return
-
-    # Extract the number of clients and group identifier (could be an invite link or a chat ID)
+    
     num_clients_to_leave = int(event.pattern_match.group(1))
     group_identifier = event.pattern_match.group(2)
-
     left_users = 0
 
     for sender in list(songs_client.keys()):
+        if left_users >= num_clients_to_leave:
+            break
+            
         client = clients.get(sender)
         try:
-            # Check if the group identifier is a number (chat ID)
-            if group_identifier.isdigit():
-                chat_id = int(group_identifier)
-            else:
-                # If not a number, assume it's an invite link or username and get chat details
-                chat = await client.get_chat(group_identifier)
-                chat_id = chat.id
-
-            # Leave the voice chat
+            chat_id = int(group_identifier) if group_identifier.isdigit() else (await get_or_join_chat(client, group_identifier)).id
             await client.leave_chat(chat_id)
             left_users += 1
             print(f"{client} left the chat.")
         except Exception as e:
             print(e)
-
-        # Break if we've left the required number of clients
-        if left_users >= num_clients_to_leave:
-            break
 
     await event.reply(f"Left {left_users} clients from the chat.")
 
@@ -500,41 +515,35 @@ async def leave_voice_chat(event):
 @bot.on(events.NewMessage(pattern=r'/vote (\d) (\d+) (\d+) (.+) (\d+)'))
 async def vote_on_poll(event):
     user_id = event.sender_id
-
-    # Check if the user is an admin (use ADMIN_IDS only)
-    if user_id not in ADMIN_IDS:
+    if not is_admin(user_id):
         return
-    poll_index = int(event.pattern_match.group(1))   # The poll option index
-    num_clients_to_vote = int(event.pattern_match.group(2))  # Number of clients to vote
-    message_id = int(event.pattern_match.group(3))       # The message URL containing the poll)
-    join_url = event.pattern_match.group(4)          # The group/channel join URL
+    
+    poll_index = int(event.pattern_match.group(1))
+    num_clients_to_vote = int(event.pattern_match.group(2))
+    message_id = int(event.pattern_match.group(3))
+    join_url = event.pattern_match.group(4)
     sleep_time = int(event.pattern_match.group(5))
-    if poll_index < 0 or poll_index > 9:
-       return await event.reply("Invalid poll index. Please provide a number between 0 and 9.")
+    
+    if not (0 <= poll_index <= 9):
+        return await event.reply("Invalid poll index. Please provide a number between 0 and 9.")
+    
     voted_users = 0
     for sender in list(songs_client.keys()):
+        if voted_users >= num_clients_to_vote:
+            break
+            
         client = clients.get(sender)
         try:
-                chat = await client.join_chat(join_url)
-        except:
-                chat = await client.get_chat(join_url)
-        try:
-                    await client.vote_poll(chat.id, message_id, poll_index)
-                    try:
-                        await client.view_messages(chat.id, message_id)
-                    except Exception as e:
-                         await event.reply(f"Client {sender} failed to increase the viewcount: {e}")
-                    voted_users += 1
-                    await event.reply(f"Client {sender} successfully voted for option {poll_index + 1}.")
-                    await asyncio.sleep(sleep_time)
-                    if voted_users >= num_clients_to_vote:
-                        break
+            chat = await get_or_join_chat(client, join_url)
+            await client.vote_poll(chat.id, message_id, poll_index)
+            await safe_view_messages(client, chat.id, message_id, event)
+            voted_users += 1
+            await event.reply(f"Client {sender} successfully voted for option {poll_index + 1}.")
+            await asyncio.sleep(sleep_time)
         except Exception as e:
-                    await event.reply(f"Client {sender} failed to vote on the poll: {e}")
-    if voted_users < num_clients_to_vote:
-            await event.reply(f"Only {voted_users} out of {num_clients_to_vote} clients successfully voted.")
-    else:
-            await event.reply(f"All {num_clients_to_vote} clients successfully voted.")
+            await event.reply(f"Client {sender} failed to vote on the poll: {e}")
+    
+    await event.reply(f"Voted with {voted_users}/{num_clients_to_vote} clients.")
     
 
 from telethon import events
@@ -542,36 +551,31 @@ from telethon import events
 
 @bot.on(events.NewMessage(pattern='/get'))
 async def get_telegram_chat(event):
-    user_id = event.sender_id
-
-    # Check if the user is an admin (use ADMIN_IDS only)
-    if user_id not in ADMIN_IDS:
+    if not is_admin(event.sender_id):
         return
-    parts=event.raw_text.split()
-    if len(parts) ==2:
-      client = clients.get(int(parts[1]))
-      async for message in client.get_chat_history(777000,limit=5):
-       if not message.from_user.is_self and message.text:
-          await bot.send_message(user_id, message.text, parse_mode="html")
+    
+    parts = event.raw_text.split()
+    if len(parts) == 2:
+        client = clients.get(int(parts[1]))
+        if client:
+            async for message in client.get_chat_history(777000, limit=5):
+                if not message.from_user.is_self and message.text:
+                    await bot.send_message(event.sender_id, message.text, parse_mode="html")
 
 @bot.on(events.NewMessage(pattern='/check'))
 async def check_telegram_chat(event):
-    user_id = event.sender_id
-    # Check if the user is an admin (use ADMIN_IDS only)
-    if user_id not in ADMIN_IDS:
+    if not is_admin(event.sender_id):
         return
 
-    # Extract the number of clients and group invite link from the command
-
-    joined_users = 0
     try:
-     for sender in list(songs_client.keys()):
-        client = clients.get(sender)
-        async for message in client.get_chat_history(777000,limit=10):
-            if not message.from_user.is_self and message.media:
-               await bot.send_message(user_id,f"<blockquote>{client.me.first_name} {sender}</blockquote>having media",parse_mode="html")
+        for sender in list(songs_client.keys()):
+            client = clients.get(sender)
+            async for message in client.get_chat_history(777000, limit=10):
+                if not message.from_user.is_self and message.media:
+                    await bot.send_message(event.sender_id, f"<blockquote>{client.me.first_name} {sender}</blockquote> having media", parse_mode="html")
+                    break
     except Exception as e:
-        await bot.send_message(user_id,e)
+        await bot.send_message(event.sender_id, str(e))
 
 async def join_voice_chath(event):
     user_id = event.sender_id
@@ -617,131 +621,90 @@ async def join_voice_chath(event):
 
 @bot.on(events.NewMessage(pattern=r'/vc (\d+) (.+)'))
 async def join_voice_chat(event):
-    user_id = event.sender_id
-    # Check if the user is an admin (use ADMIN_IDS only)
-    if user_id not in ADMIN_IDS:
+    if not is_admin(event.sender_id):
         return
-
-    # Extract the number of clients and group invite link from the command
+    
     num_clients_to_join = int(event.pattern_match.group(1))
     group_invite_link = event.pattern_match.group(2)
-
     joined_users = 0
 
     for sender in list(songs_client.keys()):
+        if joined_users >= num_clients_to_join:
+            break
+            
         call_py = songs_client.get(sender)
         client = clients.get(sender)
         try:
-            # Join the chat using the invite link
-            try:
-                chat = await client.join_chat(group_invite_link)
-            except:
-                chat = await client.get_chat(group_invite_link)
-
-            # Join the voice chat
-
+            chat = await get_or_join_chat(client, group_invite_link)
+            await call_py.play(chat.id)
             joined_users += 1
-            audio_file = 'input.webm'
-            await call_py.play(
-                chat.id)
             print(f"{client} joined the voice chat.")
         except Exception as e:
             await event.respond(f"Error joining with {sender}: {e}")
-
-        # Break if we've joined the required number of clients
-        if joined_users >= num_clients_to_join:
-            break
 
     await event.reply(f"Joined {joined_users} clients to the voice chat.")
 
 
 @bot.on(events.NewMessage(pattern=r'/join (\d+) (.+)'))
 async def join_chat(event):
-    user_id = event.sender_id
-    # Check if the user is an admin (use ADMIN_IDS only)
-    if user_id not in ADMIN_IDS:
+    if not is_admin(event.sender_id):
         return
-
-    # Extract the number of clients and group invite link from the command
+    
     num_clients_to_join = int(event.pattern_match.group(1))
     group_invite_link = event.pattern_match.group(2)
-
     joined_users = 0
 
     for sender in list(songs_client.keys()):
-        call_py = songs_client.get(sender)
+        if joined_users >= num_clients_to_join:
+            break
+            
         client = clients.get(sender)
         try:
-            # Join the chat using the invite link
-            try:
-                chat = await client.join_chat(group_invite_link)
-            except:
-                chat = await client.get_chat(group_invite_link)
-
-            # Join the voice chat
-
+            chat = await get_or_join_chat(client, group_invite_link)
             joined_users += 1
-            audio_file = 'input.webm'
-            await call_py.play(
-                chat.id)
             print(f"{client} joined the chat.")
         except Exception as e:
             await event.respond(f"Error joining with {sender}: {e}")
-
-        # Break if we've joined the required number of clients
-        if joined_users >= num_clients_to_join:
-            break
 
     await event.reply(f"Joined {joined_users} clients to the chat.")
 # Start the bot
 @bot.on(events.NewMessage(pattern='^/reboot$'))
 async def reboot_handler(event):
-    user_id = event.sender_id
-    # Check if the user is an admin (use ADMIN_IDS only)
-    if user_id not in ADMIN_IDS:
+    if not is_admin(event.sender_id):
         await event.respond("You are not authorized to use this command.")
         return
+    
     await event.respond("Admin command received. Stopping the bot...")
     await bot.disconnect()
-    os.system(f"kill -9 {os.getpid()}")  # Raise a system exit exception to stop the entire code
+    os.system(f"kill -9 {os.getpid()}")
 
 @bot.on(events.NewMessage(pattern='/activers'))
 async def handler(event):
-    user_id = event.sender_id
-    # Check if the user is an admin (use ADMIN_IDS only)
-    if user_id not in ADMIN_IDS:
+    if not is_admin(event.sender_id):
         return
 
     user_ids = list(songs_client.keys())
-
-    # Count the active clients
     num_active_clients = len(user_ids)
-
-    # Build the message with mentions
-    message = f"Active client user IDs:\n"
+    message = "Active client user IDs:\n"
+    
     for client_id in user_ids:
-        # Get the user's first and last name using get_input_entity
         try:
             user = await bot.get_entity(client_id)
-            first_name = user.first_name
-            last_name = user.last_name if user.last_name else ''
-            full_name = f"{first_name} {last_name}".strip()
+            full_name = f"{user.first_name} {user.last_name or ''}".strip()
         except Exception as e:
             print(f"Error getting user details: {e}")
-            full_name = "Unknown"  # Handle errors by setting name to "Unknown"
-
+            full_name = "Unknown"
         message += f"[{full_name}](tg://user?id={client_id}) - {client_id}\n"
 
     message += f"\nNumber of active clients: {num_active_clients}"
 
+    # Send in chunks if too long
     max_length = 4000
     for i in range(0, len(message), max_length):
-        chunk = message[i:i + max_length]
-        await event.reply(chunk)
-    # Send the message
-                    # Store user's phone number
-# Define client outside of any function scope
-async def run_client(sender):
+        await event.reply(message[i:i + max_length])
+# ==================== Client Management ====================
+
+async def run_client(sender: int):
 
 
     # Check if the sender's session exists
@@ -760,139 +723,124 @@ async def run_client(sender):
 
 
 async def run_all_clients():
-  await app.start()
-  print(app.me.username)
-  results = []
-  user_ids = user_sessions.distinct("user_id")
-  tasks = [asyncio.create_task(run_user_client(user_id))
-             for user_id in user_ids]
-  await asyncio.gather(*tasks)
+    """Initialize and start all user clients from database"""
+    try:
+        await app.start()
+        logger.info(f"Bot started: {app.me.username}")
+        
+        # Get all user IDs from database
+        user_ids = user_sessions.distinct("user_id")
+        logger.info(f"Found {len(user_ids)} user sessions to initialize")
+        
+        # Create tasks for all user clients with better error handling
+        tasks = [asyncio.create_task(run_user_client(user_id)) for user_id in user_ids]
+        
+        # Gather all tasks and ignore individual failures
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+        
+        # Log any failures
+        failed = sum(1 for r in results if isinstance(r, Exception))
+        if failed:
+            logger.warning(f"{failed}/{len(tasks)} clients failed to start")
+        else:
+            logger.info(f"All {len(tasks)} clients started successfully")
+    except Exception as e:
+        logger.error(f"Error in run_all_clients: {e}", exc_info=True)
 
 
-import asyncio
-import random
-import os
-from pyrogram import Client
-from pyrogram.errors import (
-    SessionRevoked, UserDeactivatedBan, AuthKeyInvalid, AuthKeyUnregistered,
-    AuthTokenExpired, AuthKeyDuplicated, AccessTokenExpired, UserDeactivated
-)
-from pytgcalls import PyTgCalls
-
-async def run_user_client(user_id):
-    user_data = user_sessions.find_one({"user_id": user_id})
-    await asyncio.sleep(delay=random.randint(5, 10))
-    if user_data:
+async def run_user_client(user_id: int):
+    """Initialize and start a single user client"""
+    # Add random delay to avoid rate limits
+    await asyncio.sleep(random.randint(5, 10))
+    
+    try:
+        user_data = user_sessions.find_one({"user_id": user_id})
+        if not user_data:
+            logger.warning(f"No session data found for user {user_id}")
+            return
+        
         string_session = user_data.get("string_session")
+        if not string_session:
+            logger.warning(f"No session string for user {user_id}")
+            return
 
-        # Initialize the client with the retrieved data
+        # Initialize the client with optimized settings
         clients[user_id] = Client(
-            f"user_{user_id}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32,
-            workers=1, session_string=string_session, in_memory=True
+            f"user_{user_id}", 
+            api_id=API_ID, 
+            api_hash=API_HASH, 
+            sleep_threshold=32,
+            workers=1, 
+            session_string=string_session, 
+            in_memory=True
         )
-        client = clients.get(user_id)
+        client = clients[user_id]
         songs_client[user_id] = PyTgCalls(client)
-        call_py = songs_client.get(user_id)
-        try:
-            auth = await client.connect()
-            if not auth:
-                print("Client is not authorized. Please authorize first.")
-                return user_sessions.delete_one({"user_id": user_id})
-            await client.disconnect()
-            await call_py.start()
-            print("Handlers added successfully.")
-        except (SessionRevoked, UserDeactivatedBan, AuthKeyInvalid, AuthKeyUnregistered,
-                AuthTokenExpired, AuthKeyDuplicated, AccessTokenExpired, UserDeactivated) as e:
-            # Inform admin about the specific exception
-            await inform_admin(user_id, e)
-            # Delete the user session
+        call_py = songs_client[user_id]
+        
+        # Test connection
+        auth = await client.connect()
+        if not auth:
+            logger.error(f"Client {user_id} is not authorized")
             user_sessions.delete_one({"user_id": user_id})
-            print(f"Specific exception occurred: {e}. User session deleted.")
-        except Exception as e:
-            # Inform admin about any other exception
-            await inform_admin(user_id, e)
-            # Clean up
+            return
+        
+        await client.disconnect()
+        await call_py.start()
+        logger.info(f"Client {user_id} started successfully")
+        
+    except (SessionRevoked, UserDeactivatedBan, AuthKeyInvalid, AuthKeyUnregistered,
+            AuthTokenExpired, AuthKeyDuplicated, AccessTokenExpired, UserDeactivated) as e:
+        logger.error(f"Auth error for user {user_id}: {e}")
+        await inform_admin(user_id, e)
+        user_sessions.delete_one({"user_id": user_id})
+        if user_id in songs_client:
+            songs_client.pop(user_id)
+    except Exception as e:
+        logger.error(f"Error starting client {user_id}: {e}", exc_info=True)
+        await inform_admin(user_id, e)
+        if user_id in songs_client:
             songs_client.pop(user_id)
 
 
-async def inform_admin(user_id, error):
-    """Helper function to inform the admin about an exception."""
-    # Inform all admins from ADMIN_IDS
-    for admin_id in ADMIN_IDS:
-                try:
-                    await bot.send_message(admin_id, f"Error starting client for user {user_id}: {error}")
-                except Exception as e:
-                    print(f"Failed to inform admin {admin_id}: {e}")
-# Dictionary to store comments with admin_id as the key
+# ==================== Comment System ====================
 
-
-# Dictionary to store comments with admin_id as the key
-admin_comments = {}
-# Dictionary to track admins who are in "adding mode"
-adding_mode = {}
-# Dictionary to track the cancellation state
-cancel_process = {}
-
-# Your Telethon bot instance
-
-# Check if the user is an admin
-def is_admin(user_id):
-    # Rely only on ADMIN_IDS from config
-    return user_id in ADMIN_IDS
-
-# Handler to start adding comments
 @bot.on(events.NewMessage(pattern='/add'))
 async def start_adding_comments(event):
-    user_id = event.sender_id
-
-    # Ensure the user is an admin
-    if not is_admin(user_id):
+    if not is_admin(event.sender_id):
         await event.respond("You are not authorized to perform this action.")
         return
 
-    # Initialize or reset the admin's comment list
-    admin_comments[user_id] = []
-    adding_mode[user_id] = True
-
+    admin_comments[event.sender_id] = []
+    adding_mode[event.sender_id] = True
     await event.respond("You are now in 'add mode'. Send messages to add them as comments. Type /done when finished.")
 
-# Handler to stop adding comments
 @bot.on(events.NewMessage(pattern='/done'))
 async def stop_adding_comments(event):
-    user_id = event.sender_id
-
-    # Ensure the user is an admin
-    if not is_admin(user_id):
+    if not is_admin(event.sender_id):
         await event.respond("You are not authorized to perform this action.")
         return
 
-    # Stop adding mode
-    if user_id in adding_mode and adding_mode[user_id]:
-        adding_mode[user_id] = False
-        await event.respond(f"Added {len(admin_comments[user_id])} comments. You can now post them using /comment.")
+    if event.sender_id in adding_mode and adding_mode[event.sender_id]:
+        adding_mode[event.sender_id] = False
+        await event.respond(f"Added {len(admin_comments.get(event.sender_id, []))} comments. You can now post them using /comment.")
     else:
         await event.respond("You are not in 'add mode'. Start with /add.")
 
-# Handler to clear all comments for the admin
 @bot.on(events.NewMessage(pattern='/clear'))
 async def clear_comments(event):
-    user_id = event.sender_id
-
-    # Ensure the user is an admin
-    if not is_admin(user_id):
+    if not is_admin(event.sender_id):
         await event.respond("You are not authorized to perform this action.")
         return
 
-    # Clear the comments for the admin
-    admin_comments[user_id] = []
-    user_path='downloads'
+    admin_comments[event.sender_id] = []
+    user_path = 'downloads'
     if os.path.exists(user_path):
-        shutil.rmtree(user_path,ignore_errors=True)
+        shutil.rmtree(user_path, ignore_errors=True)
     await event.respond("All comments have been cleared.")
 
 # Handler to add comments while in "add mode"
-# Handler to add comments while in "add mode"
-@app.on_message(~filters.command("comments") & ~filters.command("done") & ~filters.command("clear") & ~filters.command("comment") & ~filters.command("add"))
+@app.on_message(~filters.command(["comments", "done", "clear", "comment", "add"]))
 async def add_comment_in_mode(client, message):
     user_id = message.from_user.id
     if user_id in adding_mode and adding_mode[user_id]:
@@ -903,29 +851,24 @@ async def add_comment_in_mode(client, message):
             admin_comments[user_id].append({"type": "sticker", "content": message.sticker.file_id})
             await message.reply("Sticker comment added.")
         elif message.animation or message.video:
-           file_path = await message.download()
-           admin_comments[user_id].append({"type": "gif", "content": file_path})
-           await message.reply("GIF comment added.")
+            file_path = await message.download()
+            admin_comments[user_id].append({"type": "gif", "content": file_path})
+            await message.reply("GIF comment added.")
         else:
             await message.reply("Unsupported message type.")
-# Handler to send all comments back to the admin
+
 # Handler to send all comments back to the admin
 @app.on_message(filters.command("comments"))
 async def send_all_comments(client: Client, message):
-    print('hdhd')
     user_id = message.from_user.id
-
-    # Ensure the user is an admin
     if not is_admin(user_id):
         await message.reply("You are not authorized to perform this action.")
         return
 
-    # Check if there are any comments to show
     if user_id not in admin_comments or not admin_comments[user_id]:
         await message.reply("No comments have been added.")
         return
 
-    # Send each comment back to the admin
     for comment in admin_comments[user_id]:
         if comment["type"] == "text":
             await message.reply(comment["content"])
@@ -933,60 +876,49 @@ async def send_all_comments(client: Client, message):
             await message.reply_sticker(comment["content"])
         elif comment["type"] == "gif":
             await message.reply_animation(comment["content"])
-# Handler to cancel the comment process
 @bot.on(events.NewMessage(pattern='/cancel'))
 async def cancel_comment_process(event):
-    user_id = event.sender_id
-
-    # Ensure the user is an admin
-    if not is_admin(user_id):
+    if not is_admin(event.sender_id):
         await event.respond("You are not authorized to perform this action.")
         return
 
-    # Set the cancellation flag to True
-    cancel_process[user_id] = True
-    user_path='downloads'
+    cancel_process[event.sender_id] = True
+    user_path = 'downloads'
     if os.path.exists(user_path):
-        shutil.rmtree(user_path,ignore_errors=True)
+        shutil.rmtree(user_path, ignore_errors=True)
     await event.respond("Commenting process has been canceled.")
 
 # Function to post comments (from Pyrogram/Telethon handler)
 @bot.on(events.NewMessage(pattern=r'/bvote (\d+) (\d+) (\d+) (.+) (\d+)'))
 async def vote_on_button(event):
     user_id = event.sender_id
-    # Check if the user is an admin (use ADMIN_IDS only)
-    if user_id not in ADMIN_IDS:
+    if not is_admin(user_id):
         return
-    poll_index = int(event.pattern_match.group(1))   # The poll option index
-    num_clients_to_vote = int(event.pattern_match.group(2))  # Number of clients to vote
-    message_id = int(event.pattern_match.group(3))       # The message URL containing the poll)
-    join_url = event.pattern_match.group(4)          # The group/channel join URL
+    
+    poll_index = int(event.pattern_match.group(1))
+    num_clients_to_vote = int(event.pattern_match.group(2))
+    message_id = int(event.pattern_match.group(3))
+    join_url = event.pattern_match.group(4)
     sleep_time = int(event.pattern_match.group(5))
+    
     voted_users = 0
     for sender in list(songs_client.keys()):
+        if voted_users >= num_clients_to_vote:
+            break
+            
         client = clients.get(sender)
         try:
-                chat = await client.join_chat(join_url)
-        except:
-                chat = await client.get_chat(join_url)
-        try:
-                    dessage = await client.get_messages(chat.id,message_id)
-                    try:
-                         await client.view_messages(chat.id, message_id)
-                    except Exception as e:
-                         await event.reply(f"Client {sender} failed to increase the viewcount: {e}")
-                    await dessage.click(poll_index)
-                    voted_users += 1
-                    await event.reply(f"Client {sender} successfully clickd for option {poll_index +1}.")
-                    await asyncio.sleep(sleep_time)
-                    if voted_users >= num_clients_to_vote:
-                        break
+            chat = await get_or_join_chat(client, join_url)
+            message = await client.get_messages(chat.id, message_id)
+            await safe_view_messages(client, chat.id, message_id, event)
+            await message.click(poll_index)
+            voted_users += 1
+            await event.reply(f"Client {sender} successfully clicked option {poll_index + 1}.")
+            await asyncio.sleep(sleep_time)
         except Exception as e:
-                    await event.reply(f"Client {sender} failed to vote on the poll: {e}")
-    if voted_users < num_clients_to_vote:
-            await event.reply(f"Only {voted_users} out of {num_clients_to_vote} clients successfully voted.")
-    else:
-            await event.reply(f"All {num_clients_to_vote} clients successfully voted.")
+            await event.reply(f"Client {sender} failed to vote: {e}")
+    
+    await event.reply(f"Voted with {voted_users}/{num_clients_to_vote} clients.")
 
 
 @bot.on(events.NewMessage(pattern=r'/comment (.+) (\d+) (\d+)'))
@@ -1065,61 +997,38 @@ async def comment_on_post(event):
     if not cancel_process.get(user_id, False):
         await event.respond(f"Finished commenting with {commented_users} clients.")
 
-# Start the Telethon bot
 @bot.on(events.NewMessage(pattern=r'/react (\d+) (.+) (\d+) (.+)'))
 async def react_to_post(event):
-    user_id = event.sender_id
-
-    # Ensure the user is an admin
-    if not is_admin(user_id):
+    if not is_admin(event.sender_id):
         await event.respond("You are not authorized to perform this action.")
         return
 
-    # Extract the channel link/username, message ID, and emoji from the command
     num_clients_to_join = int(event.pattern_match.group(1))
     channel_username_or_link = event.pattern_match.group(2)
     message_id = int(event.pattern_match.group(3))
-    emoji = event.pattern_match.group(4)  # Emoji to react with
-
+    emoji = event.pattern_match.group(4)
     reacted_users = 0
 
     for client_id in list(clients.keys()):
+        if reacted_users >= num_clients_to_join:
+            break
+            
         client = clients.get(client_id)
-
         try:
-            # Join or get the chat
-            try:
-                channel = await client.get_chat(channel_username_or_link)
-            except:
-                channel = await client.join_chat(channel_username_or_link)
-
-            # Get the message
+            channel = await get_or_join_chat(client, channel_username_or_link)
             message = await client.get_messages(channel.id, message_ids=message_id)
-            
-            try:
-                await client.view_messages(channel.id, message_id)
-            except Exception as e:
-                await event.reply(f"Client {client_id} failed to increase the viewcount: {e}")
-
-            # React with emoji
+            await safe_view_messages(client, channel.id, message_id, event)
             await message.react(emoji=emoji)
-            
             reacted_users += 1
-
         except Exception as e:
             await event.respond(f"Error reacting with {client_id}: {e}")
-            continue
 
     await event.respond(f"Finished reacting with {reacted_users} clients.")
-# Start the Pyrogram client
-from telethon import events
-import subprocess
-import os
 
-# This function will execute git commands and return the output
-import subprocess
+# ==================== System Management ====================
 
-async def execute_git_commands():
+async def execute_git_commands() -> str:
+    """Execute git update commands and return formatted output"""
     commands = [
         "git reset --hard",
         "git stash",
@@ -1130,44 +1039,43 @@ async def execute_git_commands():
     results = []
     for cmd in commands:
         try:
-            # Execute the command and capture output
             process = subprocess.Popen(
-                cmd,
-                shell=True,
+                cmd, shell=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 text=True
             )
             stdout, stderr = process.communicate()
 
-            # Format the result
             if process.returncode == 0:
-                if stdout.strip():
-                    results.append(f"$ {cmd}\n{stdout}")
-                else:
-                    results.append(f"$ {cmd}\n(Command executed successfully)")
+                output = stdout.strip() if stdout.strip() else "(Command executed successfully)"
+                results.append(f"$ {cmd}\n{output}")
             else:
                 results.append(f"$ {cmd}\nError: {stderr}")
-
         except Exception as e:
             results.append(f"$ {cmd}\nException: {str(e)}")
 
     return "\n\n".join(results)
-# Define the handler
 @bot.on(events.NewMessage(pattern=r'^/pull$'))
 async def pull_handler(event):
-    user_id = event.sender_id
-    # Check if the user is an admin (use ADMIN_IDS only)
-    if user_id not in ADMIN_IDS:
+    if not is_admin(event.sender_id):
         return
-    # Send a message to indicate the pull is starting
+    
     message = await event.respond("🔄 Executing git commands...")
-
-    # Execute the git commands
     result = await execute_git_commands()
-
-    # Edit the original message with the results
     await message.edit(f"```\n{result}\n```")
 
-bot.loop.run_until_complete(run_all_clients())
-bot.run_until_disconnected()
+# ==================== Main Execution ====================
+
+if __name__ == "__main__":
+    try:
+        logger.info("Starting bot...")
+        bot.loop.run_until_complete(run_all_clients())
+        logger.info("Bot is running...")
+        bot.run_until_disconnected()
+    except KeyboardInterrupt:
+        logger.info("Bot stopped by user")
+    except Exception as e:
+        logger.error(f"Fatal error: {e}", exc_info=True)
+    finally:
+        logger.info("Bot shutdown complete")
