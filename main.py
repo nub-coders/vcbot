@@ -4,6 +4,7 @@ import json
 import logging
 import os
 import random
+import resource
 import shutil
 import subprocess
 import sys
@@ -49,14 +50,16 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# MongoDB connection with connection pooling
+# MongoDB connection with optimized connection pooling
 mongo_client = pymongo.MongoClient(
     MONGODB_URI, 
     tlsCAFile=certifi.where(),
     maxPoolSize=50,
-    minPoolSize=10,
-    maxIdleTimeMS=45000,
-    serverSelectionTimeoutMS=5000
+    minPoolSize=5,  # Reduced minimum pool size
+    maxIdleTimeMS=30000,  # Close idle connections faster
+    serverSelectionTimeoutMS=5000,
+    connectTimeoutMS=10000,
+    retryWrites=True
 )
 db = mongo_client['voice']
 user_sessions = db['user_sessions']
@@ -78,7 +81,7 @@ adding_mode: Dict[int, bool] = {}
 cancel_process: Dict[int, bool] = {}
 
 # Simple cache for user sessions (reduces DB queries)
-session_cache: Dict[int, Optional[str]] = {}
+session_cache: Dict[int, tuple] = {}  # (user_data, timestamp)
 CACHE_EXPIRY = 3600  # 1 hour
 # Load configuration from OS environment only (no .env/dotenv)
 # Required environment variables: API_ID (int), API_HASH, BOT_TOKEN
@@ -118,6 +121,28 @@ app = Client(":hehe", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN, in_
 def is_admin(user_id: int) -> bool:
     """Check if user is an admin"""
     return user_id in ADMIN_IDS
+
+async def get_cached_user_session(user_id: int):
+    """Get user session with caching to reduce DB queries"""
+    current_time = time.time()
+    
+    # Check if in cache and not expired
+    if user_id in session_cache:
+        session_data, timestamp = session_cache[user_id]
+        if current_time - timestamp < CACHE_EXPIRY:
+            return session_data
+        else:
+            # Remove expired cache entry
+            del session_cache[user_id]
+    
+    # Query database
+    user_data = user_sessions.find_one({"user_id": user_id})
+    
+    # Cache the result
+    if user_data:
+        session_cache[user_id] = (user_data, current_time)
+    
+    return user_data
 
 async def get_or_join_chat(client, identifier: str):
     """Get chat or join if not already a member"""
@@ -176,28 +201,31 @@ async def ping_command(event):
     uptime = await get_readable_time((time.time() - StartTime))
     start = datetime.now()
     
-    # Simulate progress bar
+    # Simulate progress bar with fewer edits (reduce API calls)
     xx = await event.reply("**0% ▒▒▒▒▒▒▒▒▒▒**")
-    await xx.edit("**20% ██▒▒▒▒▒▒▒▒**")
-    await xx.edit("**40% ████▒▒▒▒▒▒**")
-    await xx.edit("**60% ██████▒▒▒▒**")
-    await xx.edit("**80% ████████▒▒**")
+    await xx.edit("**50% █████▒▒▒▒▒**")
     await xx.edit("**100% ██████████**")
     
     # Calculate the duration
     end = datetime.now()
     
-    # Get system resources
+    # Get system resources (use interval=0.1 for faster CPU sampling)
     delta_ping = (end - start).microseconds / 1000
     delta_ping_formatted = round(delta_ping, 3)
-    cpu = psutil.cpu_percent()
+    cpu = psutil.cpu_percent(interval=0.1)  # Reduce sample interval from blocking
     mem = psutil.virtual_memory().percent
     disk = psutil.disk_usage("/").percent
     process = psutil.Process(os.getpid())
     
-    # Get file descriptor limits
+    # Get file descriptor limits (avoid expensive open_files() call)
     soft_limit, hard_limit = resource.getrlimit(resource.RLIMIT_NOFILE)
-    current_fds = len(process.open_files())
+    try:
+        if os.path.exists(f'/proc/{os.getpid()}/fd'):
+            current_fds = len(os.listdir(f'/proc/{os.getpid()}/fd'))
+        else:
+            current_fds = "N/A"
+    except:
+        current_fds = "N/A"
     
     _ping = f"""
 <blockquote>
@@ -750,11 +778,11 @@ async def run_all_clients():
 
 async def run_user_client(user_id: int):
     """Initialize and start a single user client"""
-    # Add random delay to avoid rate limits
-    await asyncio.sleep(random.randint(5, 10))
+    # Add random delay to avoid rate limits (reduced from 5-10)
+    await asyncio.sleep(random.randint(1, 3))
     
     try:
-        user_data = user_sessions.find_one({"user_id": user_id})
+        user_data = await get_cached_user_session(user_id)
         if not user_data:
             logger.warning(f"No session data found for user {user_id}")
             return
@@ -770,7 +798,8 @@ async def run_user_client(user_id: int):
             api_id=API_ID, 
             api_hash=API_HASH, 
             sleep_threshold=32,
-            workers=1, 
+            workers=1,
+            max_concurrent_transmissions=1,
             session_string=string_session, 
             in_memory=True
         )
@@ -778,14 +807,14 @@ async def run_user_client(user_id: int):
         songs_client[user_id] = PyTgCalls(client)
         call_py = songs_client[user_id]
         
-        # Test connection
+        # Test connection (keep alive instead of disconnect/reconnect)
         auth = await client.connect()
         if not auth:
             logger.error(f"Client {user_id} is not authorized")
             user_sessions.delete_one({"user_id": user_id})
             return
         
-        await client.disconnect()
+        # Start call handler without reconnecting
         await call_py.start()
         logger.info(f"Client {user_id} started successfully")
         
