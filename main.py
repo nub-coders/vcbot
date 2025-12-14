@@ -146,10 +146,20 @@ async def get_cached_user_session(user_id: int):
 
 async def get_or_join_chat(client, identifier: str):
     """Get chat or join if not already a member"""
+    print(f"[get_or_join_chat] Attempting to get chat: {identifier}")
     try:
-        return await client.get_chat(identifier)
-    except Exception:
-        return await client.join_chat(identifier)
+        chat = await client.get_chat(identifier)
+        print(f"[get_or_join_chat] Successfully retrieved chat: {identifier}")
+        return chat
+    except Exception as e:
+        print(f"[get_or_join_chat] Failed to get chat {identifier}, attempting to join. Error: {e}")
+        try:
+            chat = await client.join_chat(identifier)
+            print(f"[get_or_join_chat] Successfully joined chat: {identifier}")
+            return chat
+        except Exception as join_error:
+            print(f"[get_or_join_chat] Failed to join chat {identifier}. Error: {join_error}")
+            raise
 
 async def safe_view_messages(client, chat_id: int, message_id: int, event=None):
     """Safely increment view count for messages"""
