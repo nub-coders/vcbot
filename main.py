@@ -1109,9 +1109,11 @@ async def pull_handler(event):
 if __name__ == "__main__":
     try:
         logger.info("Starting bot...")
-        bot.loop.run_until_complete(run_all_clients())
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(run_all_clients())
         logger.info("Bot is running...")
-        bot.run_until_disconnected()
+        # Use asyncio to keep running independently of bot connection state
+        loop.run_forever()
     except KeyboardInterrupt:
         logger.info("Bot stopped by user")
     except Exception as e:
