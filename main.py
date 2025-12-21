@@ -724,8 +724,7 @@ async def reboot_handler(client, message):
         return
     
     await message.reply("Admin command received. Stopping the bot...")
-    await bot.disconnect()
-    os.system(f"kill -9 {os.getpid()}")
+    sys.exit(0)
 
 @app.on_message(filters.command("activers"))
 async def handler(client, message):
