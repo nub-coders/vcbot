@@ -17,6 +17,11 @@ services:
         max-file: "3"
     networks:
       - web
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      - net.core.rmem_max=2500000
+      - net.core.wmem_max=2500000
 
   bot2:
     build: .
@@ -36,6 +41,11 @@ services:
         max-file: "3"
     networks:
       - web
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      - net.core.rmem_max=2500000
+      - net.core.wmem_max=2500000
 
   bot3:
     build: .
@@ -55,6 +65,11 @@ services:
         max-file: "3"
     networks:
       - web
+    cap_add:
+      - NET_ADMIN
+    sysctls:
+      - net.core.rmem_max=2500000
+      - net.core.wmem_max=2500000
 
 networks:
   web:
