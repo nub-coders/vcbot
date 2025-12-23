@@ -1,5 +1,6 @@
 # Standard library imports
 import asyncio
+import gc
 import json
 import logging
 import os
@@ -50,16 +51,19 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# MongoDB connection with optimized connection pooling
+# MongoDB connection with optimized connection pooling for long-running stability
 mongo_client = pymongo.MongoClient(
     MONGODB_URI, 
     tlsCAFile=certifi.where(),
-    maxPoolSize=50,
-    minPoolSize=5,  # Reduced minimum pool size
-    maxIdleTimeMS=30000,  # Close idle connections faster
+    maxPoolSize=20,
+    minPoolSize=2,
+    maxIdleTimeMS=45000,
     serverSelectionTimeoutMS=5000,
     connectTimeoutMS=10000,
-    retryWrites=True
+    socketTimeoutMS=30000,
+    retryWrites=True,
+    retryReads=True,
+    maxConnecting=2
 )
 db = mongo_client['voice']
 user_sessions = db['user_sessions']
@@ -83,6 +87,12 @@ cancel_process: Dict[int, bool] = {}
 # Simple cache for user sessions (reduces DB queries)
 session_cache: Dict[int, tuple] = {}  # (user_data, timestamp)
 CACHE_EXPIRY = 3600  # 1 hour
+
+# Memory management settings
+MEMORY_CLEANUP_INTERVAL = 1800  # 30 minutes
+CACHE_CLEANUP_INTERVAL = 3600  # 1 hour
+last_memory_cleanup = time.time()
+last_cache_cleanup = time.time()
 # Load configuration from OS environment only (no .env/dotenv)
 # Required environment variables: API_ID (int), API_HASH, BOT_TOKEN
 _api_id = os.getenv('API_ID')
@@ -120,10 +130,11 @@ app = Client(
     api_hash=API_HASH, 
     bot_token=BOT_TOKEN, 
     in_memory=True,
-    workers=1,
+    workers=2,
     workdir=".",
     sleep_threshold=60,
-    max_concurrent_transmissions=1
+    max_concurrent_transmissions=2,
+    takeout=False
 )
 
 # ==================== Helper Functions ====================
@@ -131,6 +142,30 @@ app = Client(
 def is_admin(user_id: int) -> bool:
     """Check if user is an admin"""
     return user_id in ADMIN_IDS
+
+async def cleanup_memory():
+    """Periodic memory cleanup to prevent leaks"""
+    global last_memory_cleanup
+    current_time = time.time()
+    
+    if current_time - last_memory_cleanup > MEMORY_CLEANUP_INTERVAL:
+        logger.info("Running memory cleanup...")
+        gc.collect()
+        last_memory_cleanup = current_time
+        logger.info("Memory cleanup completed")
+
+async def cleanup_cache():
+    """Cleanup expired cache entries"""
+    global last_cache_cleanup
+    current_time = time.time()
+    
+    if current_time - last_cache_cleanup > CACHE_CLEANUP_INTERVAL:
+        logger.info("Running cache cleanup...")
+        expired_keys = [k for k, (_, ts) in session_cache.items() if current_time - ts > CACHE_EXPIRY]
+        for key in expired_keys:
+            del session_cache[key]
+        last_cache_cleanup = current_time
+        logger.info(f"Cache cleanup completed, removed {len(expired_keys)} entries")
 
 async def get_cached_user_session(user_id: int):
     """Get user session with caching to reduce DB queries"""
@@ -145,8 +180,12 @@ async def get_cached_user_session(user_id: int):
             # Remove expired cache entry
             del session_cache[user_id]
     
-    # Query database
-    user_data = user_sessions.find_one({"user_id": user_id})
+    # Query database with timeout
+    try:
+        user_data = user_sessions.find_one({"user_id": user_id}, max_time_ms=5000)
+    except Exception as e:
+        logger.error(f"Database query timeout for user {user_id}: {e}")
+        return None
     
     # Cache the result
     if user_data:
@@ -155,18 +194,24 @@ async def get_cached_user_session(user_id: int):
     return user_data
 
 async def get_or_join_chat(client, identifier: str):
-    """Get chat or join if not already a member"""
+    """Get chat or join if not already a member with timeout"""
     print(f"[get_or_join_chat] Attempting to get chat: {identifier}")
     try:
-        chat = await client.get_chat(identifier)
+        chat = await asyncio.wait_for(client.get_chat(identifier), timeout=15)
         print(f"[get_or_join_chat] Successfully retrieved chat: {identifier}")
         return chat
+    except asyncio.TimeoutError:
+        print(f"[get_or_join_chat] Timeout getting chat {identifier}")
+        raise
     except Exception as e:
         print(f"[get_or_join_chat] Failed to get chat {identifier}, attempting to join. Error: {e}")
         try:
-            chat = await client.join_chat(identifier)
+            chat = await asyncio.wait_for(client.join_chat(identifier), timeout=15)
             print(f"[get_or_join_chat] Successfully joined chat: {identifier}")
             return chat
+        except asyncio.TimeoutError:
+            print(f"[get_or_join_chat] Timeout joining chat {identifier}")
+            raise
         except Exception as join_error:
             print(f"[get_or_join_chat] Failed to join chat {identifier}. Error: {join_error}")
             raise
@@ -582,6 +627,8 @@ async def vote_on_poll(client, message):
     if not is_admin(user_id):
         return
     
+    await cleanup_memory()
+    
     import re
     match = re.match(r'/vote (\d) (\d+) (\d+) (.+) (\d+)', message.text)
     poll_index = int(match.group(1))
@@ -756,6 +803,36 @@ async def run_client(sender: int):
         print("User session not found.")
 
 
+async def periodic_maintenance():
+    """Periodic maintenance tasks for long-running stability"""
+    while True:
+        try:
+            await asyncio.sleep(1800)  # 30 minutes
+            await cleanup_memory()
+            await cleanup_cache()
+            
+            # Check for dead clients and clean up
+            dead_clients = []
+            for user_id, client in list(clients.items()):
+                if not client.is_connected:
+                    dead_clients.append(user_id)
+                    logger.warning(f"Client {user_id} is disconnected")
+            
+            for user_id in dead_clients:
+                try:
+                    if user_id in songs_client:
+                        await songs_client[user_id].stop()
+                        del songs_client[user_id]
+                    if user_id in clients:
+                        await clients[user_id].stop()
+                        del clients[user_id]
+                    logger.info(f"Cleaned up dead client {user_id}")
+                except Exception as e:
+                    logger.error(f"Error cleaning up client {user_id}: {e}")
+            
+        except Exception as e:
+            logger.error(f"Error in periodic maintenance: {e}")
+
 async def run_all_clients():
     """Initialize and start all user clients from database"""
     try:
@@ -778,64 +855,98 @@ async def run_all_clients():
             logger.warning(f"{failed}/{len(tasks)} clients failed to start")
         else:
             logger.info(f"All {len(tasks)} clients started successfully")
+        
+        # Start periodic maintenance task
+        asyncio.create_task(periodic_maintenance())
+        logger.info("Periodic maintenance task started")
+        
     except Exception as e:
         logger.error(f"Error in run_all_clients: {e}", exc_info=True)
 
 
 async def run_user_client(user_id: int):
-    """Initialize and start a single user client"""
-    # Add random delay to avoid rate limits (reduced from 5-10)
-    await asyncio.sleep(random.randint(1, 3))
+    """Initialize and start a single user client with retry logic"""
+    # Add random delay to avoid rate limits
+    await asyncio.sleep(random.uniform(1, 3))
     
-    try:
-        user_data = await get_cached_user_session(user_id)
-        if not user_data:
-            logger.warning(f"No session data found for user {user_id}")
-            return
-        
-        string_session = user_data.get("string_session")
-        if not string_session:
-            logger.warning(f"No session string for user {user_id}")
-            return
+    max_retries = 3
+    retry_delay = 5
+    
+    for attempt in range(max_retries):
+        try:
+            user_data = await get_cached_user_session(user_id)
+            if not user_data:
+                logger.warning(f"No session data found for user {user_id}")
+                return
+            
+            string_session = user_data.get("string_session")
+            if not string_session:
+                logger.warning(f"No session string for user {user_id}")
+                return
 
-        # Initialize the client with optimized settings
-        clients[user_id] = Client(
-            f"user_{user_id}", 
-            api_id=API_ID, 
-            api_hash=API_HASH, 
-            sleep_threshold=60,
-            workers=1,
-            max_concurrent_transmissions=1,
-            session_string=string_session, 
-            in_memory=True
-        )
-        client = clients[user_id]
-        songs_client[user_id] = PyTgCalls(client)
-        call_py = songs_client[user_id]
-        
-        # Test connection (keep alive instead of disconnect/reconnect)
-        auth = await client.connect()
-        if not auth:
-            logger.error(f"Client {user_id} is not authorized")
-            user_sessions.delete_one({"user_id": user_id})
+            # Initialize the client with optimized settings
+            clients[user_id] = Client(
+                f"user_{user_id}", 
+                api_id=API_ID, 
+                api_hash=API_HASH, 
+                sleep_threshold=60,
+                workers=1,
+                max_concurrent_transmissions=1,
+                session_string=string_session, 
+                in_memory=True
+            )
+            client = clients[user_id]
+            songs_client[user_id] = PyTgCalls(client)
+            call_py = songs_client[user_id]
+            
+            # Test connection with timeout
+            try:
+                auth = await asyncio.wait_for(client.connect(), timeout=30)
+            except asyncio.TimeoutError:
+                logger.warning(f"Client {user_id} connection timeout on attempt {attempt + 1}")
+                if attempt < max_retries - 1:
+                    await asyncio.sleep(retry_delay)
+                    continue
+                raise
+            
+            if not auth:
+                logger.error(f"Client {user_id} is not authorized")
+                user_sessions.delete_one({"user_id": user_id})
+                return
+            
+            # Start call handler with timeout
+            try:
+                await asyncio.wait_for(call_py.start(), timeout=30)
+            except asyncio.TimeoutError:
+                logger.warning(f"Client {user_id} PyTgCalls start timeout on attempt {attempt + 1}")
+                if attempt < max_retries - 1:
+                    await asyncio.sleep(retry_delay)
+                    continue
+                raise
+            
+            logger.info(f"Client {user_id} started successfully")
             return
-        
-        # Start call handler without reconnecting
-        await call_py.start()
-        logger.info(f"Client {user_id} started successfully")
-        
-    except (SessionRevoked, UserDeactivatedBan, AuthKeyInvalid, AuthKeyUnregistered,
-            AuthTokenExpired, AuthKeyDuplicated, AccessTokenExpired, UserDeactivated) as e:
-        logger.error(f"Auth error for user {user_id}: {e}")
-        await inform_admin(user_id, e)
-        user_sessions.delete_one({"user_id": user_id})
-        if user_id in songs_client:
-            songs_client.pop(user_id)
-    except Exception as e:
-        logger.error(f"Error starting client {user_id}: {e}", exc_info=True)
-        await inform_admin(user_id, e)
-        if user_id in songs_client:
-            songs_client.pop(user_id)
+            
+        except (SessionRevoked, UserDeactivatedBan, AuthKeyInvalid, AuthKeyUnregistered,
+                AuthTokenExpired, AuthKeyDuplicated, AccessTokenExpired, UserDeactivated) as e:
+            logger.error(f"Auth error for user {user_id}: {e}")
+            await inform_admin(user_id, e)
+            user_sessions.delete_one({"user_id": user_id})
+            if user_id in clients:
+                clients.pop(user_id)
+            if user_id in songs_client:
+                songs_client.pop(user_id)
+            return
+        except Exception as e:
+            logger.error(f"Error starting client {user_id} (attempt {attempt + 1}): {e}")
+            if attempt < max_retries - 1:
+                await asyncio.sleep(retry_delay)
+            else:
+                await inform_admin(user_id, e)
+                if user_id in clients:
+                    clients.pop(user_id)
+                if user_id in songs_client:
+                    songs_client.pop(user_id)
 
 
 # ==================== Comment System ====================
@@ -967,6 +1078,8 @@ async def comment_on_post(client, message):
         await message.reply("You are not authorized to perform this action.")
         return
 
+    await cleanup_memory()
+    
     import re
     match = re.match(r'/comment (.+) (\d+) (\d+)', message.text)
     # Extract the channel link/username and message ID from the command
