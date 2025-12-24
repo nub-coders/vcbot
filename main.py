@@ -1,5 +1,6 @@
 # Standard library imports
 import asyncio
+import gc
 import json
 import logging
 import os
@@ -50,16 +51,19 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# MongoDB connection with optimized connection pooling
+# MongoDB connection with optimized connection pooling for long-running stability
 mongo_client = pymongo.MongoClient(
     MONGODB_URI, 
     tlsCAFile=certifi.where(),
-    maxPoolSize=50,
-    minPoolSize=5,  # Reduced minimum pool size
-    maxIdleTimeMS=30000,  # Close idle connections faster
+    maxPoolSize=20,
+    minPoolSize=2,
+    maxIdleTimeMS=45000,
     serverSelectionTimeoutMS=5000,
     connectTimeoutMS=10000,
-    retryWrites=True
+    socketTimeoutMS=30000,
+    retryWrites=True,
+    retryReads=True,
+    maxConnecting=2
 )
 db = mongo_client['voice']
 user_sessions = db['user_sessions']
@@ -73,8 +77,6 @@ except Exception as e:
 
 # Global state
 StartTime = time.time()
-last_call_activity_time = time.time()
-vc_command_admin: Optional[int] = None  # Store admin who used /vc command
 clients: Dict[int, Client] = {}  # Dictionary to store client objects
 songs_client: Dict[int, PyTgCalls] = {}
 conversations: Dict[int, any] = {}
@@ -85,6 +87,12 @@ cancel_process: Dict[int, bool] = {}
 # Simple cache for user sessions (reduces DB queries)
 session_cache: Dict[int, tuple] = {}  # (user_data, timestamp)
 CACHE_EXPIRY = 3600  # 1 hour
+
+# Memory management settings
+MEMORY_CLEANUP_INTERVAL = 1800  # 30 minutes
+CACHE_CLEANUP_INTERVAL = 3600  # 1 hour
+last_memory_cleanup = time.time()
+last_cache_cleanup = time.time()
 # Load configuration from OS environment only (no .env/dotenv)
 # Required environment variables: API_ID (int), API_HASH, BOT_TOKEN
 _api_id = os.getenv('API_ID')
@@ -114,15 +122,50 @@ if _admin_ids:
 else:
     ADMIN_IDS = []
 # Initialize bot clients
-bot = TelegramClient(None, API_ID, API_HASH, device_model="Desktop", system_version="Windows 10", app_version="3.4.3 x64", lang_code="en", system_lang_code="en-US")
+bot = TelegramClient(None, API_ID, API_HASH)
 bot.start(bot_token=BOT_TOKEN)
-app = Client(":hehe", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN, in_memory=True, device_model="Desktop", system_version="Windows 10", app_version="3.4.3 x64", lang_code="en", lang_pack="tdesktop")
+app = Client(
+    ":hehe", 
+    api_id=API_ID, 
+    api_hash=API_HASH, 
+    bot_token=BOT_TOKEN, 
+    in_memory=True,
+    workers=2,
+    workdir=".",
+    sleep_threshold=60,
+    max_concurrent_transmissions=2,
+    takeout=False
+)
 
 # ==================== Helper Functions ====================
 
 def is_admin(user_id: int) -> bool:
     """Check if user is an admin"""
     return user_id in ADMIN_IDS
+
+async def cleanup_memory():
+    """Periodic memory cleanup to prevent leaks"""
+    global last_memory_cleanup
+    current_time = time.time()
+    
+    if current_time - last_memory_cleanup > MEMORY_CLEANUP_INTERVAL:
+        logger.info("Running memory cleanup...")
+        gc.collect()
+        last_memory_cleanup = current_time
+        logger.info("Memory cleanup completed")
+
+async def cleanup_cache():
+    """Cleanup expired cache entries"""
+    global last_cache_cleanup
+    current_time = time.time()
+    
+    if current_time - last_cache_cleanup > CACHE_CLEANUP_INTERVAL:
+        logger.info("Running cache cleanup...")
+        expired_keys = [k for k, (_, ts) in session_cache.items() if current_time - ts > CACHE_EXPIRY]
+        for key in expired_keys:
+            del session_cache[key]
+        last_cache_cleanup = current_time
+        logger.info(f"Cache cleanup completed, removed {len(expired_keys)} entries")
 
 async def get_cached_user_session(user_id: int):
     """Get user session with caching to reduce DB queries"""
@@ -137,8 +180,12 @@ async def get_cached_user_session(user_id: int):
             # Remove expired cache entry
             del session_cache[user_id]
     
-    # Query database
-    user_data = user_sessions.find_one({"user_id": user_id})
+    # Query database with timeout
+    try:
+        user_data = user_sessions.find_one({"user_id": user_id}, max_time_ms=5000)
+    except Exception as e:
+        logger.error(f"Database query timeout for user {user_id}: {e}")
+        return None
     
     # Cache the result
     if user_data:
@@ -147,26 +194,27 @@ async def get_cached_user_session(user_id: int):
     return user_data
 
 async def get_or_join_chat(client, identifier: str):
-    """Join chat or get if already a member"""
-    print(f"[get_or_join_chat] Attempting to join chat: {identifier}")
+    """Get chat or join if not already a member with timeout"""
+    print(f"[get_or_join_chat] Attempting to get chat: {identifier}")
     try:
-        if identifier.lstrip('-').isdigit():
-
-            identifier = int(identifier)
-
-        chat = await client.join_chat(identifier)
-        print(f"[get_or_join_chat] Successfully joined chat: {identifier}")
+        chat = await asyncio.wait_for(client.get_chat(identifier), timeout=15)
+        print(f"[get_or_join_chat] Successfully retrieved chat: {identifier}")
         return chat
+    except asyncio.TimeoutError:
+        print(f"[get_or_join_chat] Timeout getting chat {identifier}")
+        raise
     except Exception as e:
-        print(f"[get_or_join_chat] Failed to join chat {identifier}, attempting to get. Error: {e}")
+        print(f"[get_or_join_chat] Failed to get chat {identifier}, attempting to join. Error: {e}")
         try:
-            chat = await client.get_chat(identifier)
-            print(f"[get_or_join_chat] Successfully retrieved chat: {identifier}")
+            chat = await asyncio.wait_for(client.join_chat(identifier), timeout=15)
+            print(f"[get_or_join_chat] Successfully joined chat: {identifier}")
             return chat
-        except Exception as get_error:
-            print(f"[get_or_join_chat] Failed to get chat {identifier}. Error: {get_error}")
+        except asyncio.TimeoutError:
+            print(f"[get_or_join_chat] Timeout joining chat {identifier}")
             raise
-
+        except Exception as join_error:
+            print(f"[get_or_join_chat] Failed to join chat {identifier}. Error: {join_error}")
+            raise
 
 async def safe_view_messages(client, chat_id: int, message_id: int, event=None):
     """Safely increment view count for messages"""
@@ -308,7 +356,15 @@ async def start(event):
                 await mess.delete()
                 phone_number = event.media.phone_number
                 try:
-                    clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, in_memory=True, device_model="Desktop", system_version="Windows 10", app_version="3.4.3 x64", lang_code="en", lang_pack="tdesktop")
+                    clients[sender] = Client(
+                        f"user_{sender}", 
+                        api_id=API_ID, 
+                        api_hash=API_HASH, 
+                        in_memory=True,
+                        workers=1,
+                        sleep_threshold=60,
+                        max_concurrent_transmissions=1
+                    )
                     client = clients.get(sender)
                     await client.connect()
                     sent_code = await client.send_code(phone_number)
@@ -446,7 +502,6 @@ async def start_command(client, message):
 
 @app.on_message(filters.command("leave") & filters.regex(r'/leave (\d+) (.+)'))
 async def leave_voice_chat(client, message):
-    global last_call_activity_time
     if not is_admin(message.from_user.id):
         return
     
@@ -466,7 +521,6 @@ async def leave_voice_chat(client, message):
             chat_id = int(group_identifier) if group_identifier.isdigit() else (await get_or_join_chat(user_client, group_identifier)).id
             await call_py.leave_call(chat_id)
             left_users += 1
-            last_call_activity_time = time.time()
             print(f"{user_client} left the voice chat.")
         except Exception as e:
             print(e)
@@ -573,6 +627,8 @@ async def vote_on_poll(client, message):
     if not is_admin(user_id):
         return
     
+    await cleanup_memory()
+    
     import re
     match = re.match(r'/vote (\d) (\d+) (\d+) (.+) (\d+)', message.text)
     poll_index = int(match.group(1))
@@ -631,56 +687,10 @@ async def check_telegram_chat(client, message):
     except Exception as e:
         await app.send_message(message.from_user.id, str(e))
 
-async def join_voice_chath(event):
-    user_id = event.sender_id
-    # Check if the user is an admin (use ADMIN_IDS only)
-    if user_id not in ADMIN_IDS:
-        return
-
-    # Extract the number of clients and group invite link from the command
-    num_clients_to_join = int(event.pattern_match.group(1))
-    group_invite_link = event.pattern_match.group(2)
-
-    joined_users = 0
-
-    for sender in list(songs_client.keys()):
-        call_py = songs_client.get(sender)
-        client = clients.get(sender)
-        random_delay = random.randint(1, 180)
-        await asyncio.sleep(delay=random_delay)
-        try:
-            # Join the chat using the invite link
-            try:
-                chat = await client.join_chat(group_invite_link)
-            except:
-                chat = await client.get_chat(group_invite_link)
-
-            # Join the voice chat
-            audio_file = 'input.webm'
-            joined_users += 1
-            await call_py.play(chat.id)
-            #joined_users += 1
-            print(f"{client} joined the voice chat.")
-        except UnMuteNeeded:
-            pass
-        except Exception as e:
-            await event.respond(f"Error joining with {sender}: {e}")
-
-        # Break if we've joined the required number of clients
-        if joined_users >= num_clients_to_join:
-            break
-
-    await event.reply(f"Joined {joined_users} clients to the voice chat.")
-# Start the bot
-
 @app.on_message(filters.command("vc") & filters.regex(r'/vc (\d+) (.+)'))
 async def join_voice_chat(client, message):
-    global last_call_activity_time, vc_command_admin
     if not is_admin(message.from_user.id):
         return
-    
-    # Store the admin who used the /vc command
-    vc_command_admin = message.from_user.id
     
     import re
     match = re.match(r'/vc (\d+) (.+)', message.text)
@@ -697,8 +707,8 @@ async def join_voice_chat(client, message):
         try:
             chat = await get_or_join_chat(user_client, group_invite_link)
             await call_py.play(chat.id)
+            await call_py.mute(chat.id)
             joined_users += 1
-            last_call_activity_time = time.time()
             print(f"{user_client} joined the voice chat.")
         except Exception as e:
             await message.reply(f"Error joining with {sender}: {e}")
@@ -738,7 +748,7 @@ async def reboot_handler(client, message):
         return
     
     await message.reply("Admin command received. Stopping the bot...")
-    os.system(f"kill -9 {os.getpid()}")
+    sys.exit(0)
 
 @app.on_message(filters.command("activers"))
 async def handler(client, message):
@@ -775,7 +785,16 @@ async def run_client(sender: int):
         string_session = user_data.get("string_session")
 
         # Initialize the client with the retrieved data
-        clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, session_string=string_session, in_memory=True, device_model="Desktop", system_version="Windows 10", app_version="3.4.3 x64", lang_code="en", lang_pack="tdesktop")
+        clients[sender] = Client(
+            f"user_{sender}", 
+            api_id=API_ID, 
+            api_hash=API_HASH, 
+            sleep_threshold=60, 
+            session_string=string_session, 
+            in_memory=True,
+            workers=1,
+            max_concurrent_transmissions=1
+        )
         client = clients.get(sender)
         songs_client[sender]=PyTgCalls(client)
         call_py= songs_client.get(sender)
@@ -783,6 +802,36 @@ async def run_client(sender: int):
     else:
         print("User session not found.")
 
+
+async def periodic_maintenance():
+    """Periodic maintenance tasks for long-running stability"""
+    while True:
+        try:
+            await asyncio.sleep(1800)  # 30 minutes
+            await cleanup_memory()
+            await cleanup_cache()
+            
+            # Check for dead clients and clean up
+            dead_clients = []
+            for user_id, client in list(clients.items()):
+                if not client.is_connected:
+                    dead_clients.append(user_id)
+                    logger.warning(f"Client {user_id} is disconnected")
+            
+            for user_id in dead_clients:
+                try:
+                    if user_id in songs_client:
+                        await songs_client[user_id].stop()
+                        del songs_client[user_id]
+                    if user_id in clients:
+                        await clients[user_id].stop()
+                        del clients[user_id]
+                    logger.info(f"Cleaned up dead client {user_id}")
+                except Exception as e:
+                    logger.error(f"Error cleaning up client {user_id}: {e}")
+            
+        except Exception as e:
+            logger.error(f"Error in periodic maintenance: {e}")
 
 async def run_all_clients():
     """Initialize and start all user clients from database"""
@@ -806,69 +855,98 @@ async def run_all_clients():
             logger.warning(f"{failed}/{len(tasks)} clients failed to start")
         else:
             logger.info(f"All {len(tasks)} clients started successfully")
+        
+        # Start periodic maintenance task
+        asyncio.create_task(periodic_maintenance())
+        logger.info("Periodic maintenance task started")
+        
     except Exception as e:
         logger.error(f"Error in run_all_clients: {e}", exc_info=True)
 
 
 async def run_user_client(user_id: int):
-    """Initialize and start a single user client"""
-    # Add random delay to avoid rate limits (reduced from 5-10)
-    await asyncio.sleep(random.randint(1, 3))
+    """Initialize and start a single user client with retry logic"""
+    # Add random delay to avoid rate limits
+    await asyncio.sleep(random.uniform(1, 3))
     
-    try:
-        user_data = await get_cached_user_session(user_id)
-        if not user_data:
-            logger.warning(f"No session data found for user {user_id}")
-            return
-        
-        string_session = user_data.get("string_session")
-        if not string_session:
-            logger.warning(f"No session string for user {user_id}")
-            return
+    max_retries = 3
+    retry_delay = 5
+    
+    for attempt in range(max_retries):
+        try:
+            user_data = await get_cached_user_session(user_id)
+            if not user_data:
+                logger.warning(f"No session data found for user {user_id}")
+                return
+            
+            string_session = user_data.get("string_session")
+            if not string_session:
+                logger.warning(f"No session string for user {user_id}")
+                return
 
-        # Initialize the client with optimized settings
-        clients[user_id] = Client(
-            f"user_{user_id}", 
-            api_id=API_ID, 
-            api_hash=API_HASH, 
-            sleep_threshold=32,
-            workers=1,
-            max_concurrent_transmissions=1,
-            session_string=string_session, 
-            in_memory=True,
-            device_model="Desktop",
-            system_version="Windows 10",
-            app_version="3.4.3 x64",
-            lang_code="en",
-            lang_pack="tdesktop"
-        )
-        client = clients[user_id]
-        songs_client[user_id] = PyTgCalls(client)
-        call_py = songs_client[user_id]
-        
-        # Test connection (keep alive instead of disconnect/reconnect)
-        auth = await client.connect()
-        if not auth:
-            logger.error(f"Client {user_id} is not authorized")
-            user_sessions.delete_one({"user_id": user_id})
+            # Initialize the client with optimized settings
+            clients[user_id] = Client(
+                f"user_{user_id}", 
+                api_id=API_ID, 
+                api_hash=API_HASH, 
+                sleep_threshold=60,
+                workers=1,
+                max_concurrent_transmissions=1,
+                session_string=string_session, 
+                in_memory=True
+            )
+            client = clients[user_id]
+            songs_client[user_id] = PyTgCalls(client)
+            call_py = songs_client[user_id]
+            
+            # Test connection with timeout
+            try:
+                auth = await asyncio.wait_for(client.connect(), timeout=30)
+            except asyncio.TimeoutError:
+                logger.warning(f"Client {user_id} connection timeout on attempt {attempt + 1}")
+                if attempt < max_retries - 1:
+                    await asyncio.sleep(retry_delay)
+                    continue
+                raise
+            
+            if not auth:
+                logger.error(f"Client {user_id} is not authorized")
+                user_sessions.delete_one({"user_id": user_id})
+                return
+            
+            # Start call handler with timeout
+            try:
+                await asyncio.wait_for(call_py.start(), timeout=30)
+            except asyncio.TimeoutError:
+                logger.warning(f"Client {user_id} PyTgCalls start timeout on attempt {attempt + 1}")
+                if attempt < max_retries - 1:
+                    await asyncio.sleep(retry_delay)
+                    continue
+                raise
+            
+            logger.info(f"Client {user_id} started successfully")
             return
-        
-        # Start call handler without reconnecting
-        await call_py.start()
-        logger.info(f"Client {user_id} started successfully")
-        
-    except (SessionRevoked, UserDeactivatedBan, AuthKeyInvalid, AuthKeyUnregistered,
-            AuthTokenExpired, AuthKeyDuplicated, AccessTokenExpired, UserDeactivated) as e:
-        logger.error(f"Auth error for user {user_id}: {e}")
-        await inform_admin(user_id, e)
-        user_sessions.delete_one({"user_id": user_id})
-        if user_id in songs_client:
-            songs_client.pop(user_id)
-    except Exception as e:
-        logger.error(f"Error starting client {user_id}: {e}", exc_info=True)
-        await inform_admin(user_id, e)
-        if user_id in songs_client:
-            songs_client.pop(user_id)
+            
+        except (SessionRevoked, UserDeactivatedBan, AuthKeyInvalid, AuthKeyUnregistered,
+                AuthTokenExpired, AuthKeyDuplicated, AccessTokenExpired, UserDeactivated) as e:
+            logger.error(f"Auth error for user {user_id}: {e}")
+            await inform_admin(user_id, e)
+            user_sessions.delete_one({"user_id": user_id})
+            if user_id in clients:
+                clients.pop(user_id)
+            if user_id in songs_client:
+                songs_client.pop(user_id)
+            return
+        except Exception as e:
+            logger.error(f"Error starting client {user_id} (attempt {attempt + 1}): {e}")
+            if attempt < max_retries - 1:
+                await asyncio.sleep(retry_delay)
+            else:
+                await inform_admin(user_id, e)
+                if user_id in clients:
+                    clients.pop(user_id)
+                if user_id in songs_client:
+                    songs_client.pop(user_id)
 
 
 # ==================== Comment System ====================
@@ -1000,6 +1078,8 @@ async def comment_on_post(client, message):
         await message.reply("You are not authorized to perform this action.")
         return
 
+    await cleanup_memory()
+    
     import re
     match = re.match(r'/comment (.+) (\d+) (\d+)', message.text)
     # Extract the channel link/username and message ID from the command
@@ -1099,93 +1179,6 @@ async def react_to_post(client, message):
 
     await message.reply(f"Finished reacting with {reacted_users} clients.")
 
-# ==================== Inactivity Monitor ====================
-
-async def ask_admin_confirmation(admin_id: int) -> bool:
-    """Ask admin for confirmation to prevent shutdown"""
-    try:
-        async with bot.conversation(admin_id, timeout=180) as conv:
-            # Send message with single button
-            buttons = [[Button.inline("✅ Keep Bot Running", b"keep_running")]]
-            await conv.send_message(
-                "⚠️ **Inactivity Alert**\n\n"
-                "No voice call activity detected for 60+ minutes.\n"
-                "The bot will shutdown automatically in 3 minutes unless you click the button below.\n\n"
-                "Click to prevent shutdown:",
-                buttons=buttons
-            )
-            
-            # Wait for button click (will timeout after 3 minutes)
-            response = await conv.wait_event(events.CallbackQuery(from_users=admin_id))
-            
-            if response.data == b"keep_running":
-                await response.edit("✅ Bot will continue running. Inactivity timer has been reset.")
-                return True
-    except asyncio.TimeoutError:
-        logger.info(f"Admin {admin_id} did not respond to shutdown confirmation. Proceeding with shutdown.")
-        return False
-    except Exception as e:
-        logger.error(f"Error asking confirmation from admin {admin_id}: {e}")
-        return False
-    
-    return False
-
-async def check_call_inactivity():
-    """Monitor voice call activity and exit if no calls for 60 minutes"""
-    global last_call_activity_time, vc_command_admin
-    INACTIVITY_TIMEOUT = 3600  # 60 minutes in seconds
-    CHECK_INTERVAL = 300  # Check every 5 minutes
-    
-    while True:
-        await asyncio.sleep(CHECK_INTERVAL)
-        
-        # Check if any client is currently in a call
-        active_calls = 0
-        for sender, call_py in songs_client.items():
-            try:
-                if hasattr(call_py, 'calls') and call_py.calls:
-                    active_calls += len(call_py.calls)
-            except Exception as e:
-                logger.debug(f"Error checking calls for client {sender}: {e}")
-        
-        # Update last activity time if there are active calls
-        if active_calls > 0:
-            last_call_activity_time = time.time()
-            logger.info(f"Active calls detected: {active_calls}")
-        else:
-            # Check if inactivity timeout exceeded
-            inactive_duration = time.time() - last_call_activity_time
-            logger.info(f"No active calls. Inactive for {inactive_duration/60:.1f} minutes")
-            
-            if inactive_duration > INACTIVITY_TIMEOUT:
-                # If no admin used the /vc command, skip confirmation and continue
-                if vc_command_admin is None:
-                    logger.info("No admin used /vc command. Skipping confirmation and continuing...")
-                    last_call_activity_time = time.time()
-                    continue
-                
-                logger.warning(f"No voice call activity for {inactive_duration/60:.1f} minutes. Asking for confirmation...")
-                
-                # Ask only the admin who used /vc command for confirmation
-                should_continue = False
-                try:
-                    should_continue = await ask_admin_confirmation(vc_command_admin)
-                    if should_continue:
-                        # Reset the timer if admin wants to keep running
-                        last_call_activity_time = time.time()
-                        logger.info(f"Admin {vc_command_admin} chose to keep the bot running. Timer reset.")
-                except Exception as e:
-                    logger.error(f"Failed to get confirmation from admin {vc_command_admin}: {e}")
-                
-                # If admin did not respond, shutdown
-                if not should_continue:
-                    logger.warning("No response from admin. Shutting down due to inactivity...")
-                    try:
-                        await bot.send_message(vc_command_admin, "⚠️ Bot has been shut down due to 60+ minutes of call inactivity.")
-                    except:
-                        pass
-                    os._exit(0)
-
 # ==================== System Management ====================
 
 async def execute_git_commands() -> str:
@@ -1235,8 +1228,6 @@ if __name__ == "__main__":
         loop = asyncio.get_event_loop()
         loop.run_until_complete(run_all_clients())
         logger.info("Bot is running...")
-        # Start inactivity monitor
-        loop.create_task(check_call_inactivity())
         # Use asyncio to keep running independently of bot connection state
         loop.run_forever()
     except KeyboardInterrupt:

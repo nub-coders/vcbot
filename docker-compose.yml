@@ -17,6 +17,7 @@ services:
         max-file: "3"
     networks:
       - web
+    privileged: true
 
   bot2:
     build: .
@@ -36,6 +37,7 @@ services:
         max-file: "3"
     networks:
       - web
+    privileged: true
 
   bot3:
     build: .
@@ -55,6 +57,7 @@ services:
         max-file: "3"
     networks:
       - web
+    privileged: true
 
 networks:
   web:
