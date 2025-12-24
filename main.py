@@ -73,6 +73,8 @@ except Exception as e:
 
 # Global state
 StartTime = time.time()
+last_call_activity_time = time.time()
+vc_command_admin: Optional[int] = None  # Store admin who used /vc command
 clients: Dict[int, Client] = {}  # Dictionary to store client objects
 songs_client: Dict[int, PyTgCalls] = {}
 conversations: Dict[int, any] = {}
@@ -112,9 +114,9 @@ if _admin_ids:
 else:
     ADMIN_IDS = []
 # Initialize bot clients
-bot = TelegramClient(None, API_ID, API_HASH)
+bot = TelegramClient(None, API_ID, API_HASH, device_model="Desktop", system_version="Windows 10", app_version="3.4.3 x64", lang_code="en", system_lang_code="en-US")
 bot.start(bot_token=BOT_TOKEN)
-app = Client(":hehe", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN, in_memory=True)
+app = Client(":hehe", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN, in_memory=True, device_model="Desktop", system_version="Windows 10", app_version="3.4.3 x64", lang_code="en", lang_pack="tdesktop")
 
 # ==================== Helper Functions ====================
 
@@ -145,21 +147,26 @@ async def get_cached_user_session(user_id: int):
     return user_data
 
 async def get_or_join_chat(client, identifier: str):
-    """Get chat or join if not already a member"""
-    print(f"[get_or_join_chat] Attempting to get chat: {identifier}")
+    """Join chat or get if already a member"""
+    print(f"[get_or_join_chat] Attempting to join chat: {identifier}")
     try:
-        chat = await client.get_chat(identifier)
-        print(f"[get_or_join_chat] Successfully retrieved chat: {identifier}")
+        if identifier.lstrip('-').isdigit():
+
+            identifier = int(identifier)
+
+        chat = await client.join_chat(identifier)
+        print(f"[get_or_join_chat] Successfully joined chat: {identifier}")
         return chat
     except Exception as e:
-        print(f"[get_or_join_chat] Failed to get chat {identifier}, attempting to join. Error: {e}")
+        print(f"[get_or_join_chat] Failed to join chat {identifier}, attempting to get. Error: {e}")
         try:
-            chat = await client.join_chat(identifier)
-            print(f"[get_or_join_chat] Successfully joined chat: {identifier}")
+            chat = await client.get_chat(identifier)
+            print(f"[get_or_join_chat] Successfully retrieved chat: {identifier}")
             return chat
-        except Exception as join_error:
-            print(f"[get_or_join_chat] Failed to join chat {identifier}. Error: {join_error}")
+        except Exception as get_error:
+            print(f"[get_or_join_chat] Failed to get chat {identifier}. Error: {get_error}")
             raise
+
 
 async def safe_view_messages(client, chat_id: int, message_id: int, event=None):
     """Safely increment view count for messages"""
@@ -301,7 +308,7 @@ async def start(event):
                 await mess.delete()
                 phone_number = event.media.phone_number
                 try:
-                    clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, in_memory=True)
+                    clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, in_memory=True, device_model="Desktop", system_version="Windows 10", app_version="3.4.3 x64", lang_code="en", lang_pack="tdesktop")
                     client = clients.get(sender)
                     await client.connect()
                     sent_code = await client.send_code(phone_number)
@@ -439,6 +446,7 @@ async def start_command(client, message):
 
 @app.on_message(filters.command("leave") & filters.regex(r'/leave (\d+) (.+)'))
 async def leave_voice_chat(client, message):
+    global last_call_activity_time
     if not is_admin(message.from_user.id):
         return
     
@@ -458,6 +466,7 @@ async def leave_voice_chat(client, message):
             chat_id = int(group_identifier) if group_identifier.isdigit() else (await get_or_join_chat(user_client, group_identifier)).id
             await call_py.leave_call(chat_id)
             left_users += 1
+            last_call_activity_time = time.time()
             print(f"{user_client} left the voice chat.")
         except Exception as e:
             print(e)
@@ -666,8 +675,12 @@ async def join_voice_chath(event):
 
 @app.on_message(filters.command("vc") & filters.regex(r'/vc (\d+) (.+)'))
 async def join_voice_chat(client, message):
+    global last_call_activity_time, vc_command_admin
     if not is_admin(message.from_user.id):
         return
+    
+    # Store the admin who used the /vc command
+    vc_command_admin = message.from_user.id
     
     import re
     match = re.match(r'/vc (\d+) (.+)', message.text)
@@ -685,6 +698,7 @@ async def join_voice_chat(client, message):
             chat = await get_or_join_chat(user_client, group_invite_link)
             await call_py.play(chat.id)
             joined_users += 1
+            last_call_activity_time = time.time()
             print(f"{user_client} joined the voice chat.")
         except Exception as e:
             await message.reply(f"Error joining with {sender}: {e}")
@@ -724,7 +738,6 @@ async def reboot_handler(client, message):
         return
     
     await message.reply("Admin command received. Stopping the bot...")
-    await bot.disconnect()
     os.system(f"kill -9 {os.getpid()}")
 
 @app.on_message(filters.command("activers"))
@@ -762,7 +775,7 @@ async def run_client(sender: int):
         string_session = user_data.get("string_session")
 
         # Initialize the client with the retrieved data
-        clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, session_string=string_session, in_memory=True)
+        clients[sender] = Client(f"user_{sender}", api_id=API_ID, api_hash=API_HASH, sleep_threshold=32, session_string=string_session, in_memory=True, device_model="Desktop", system_version="Windows 10", app_version="3.4.3 x64", lang_code="en", lang_pack="tdesktop")
         client = clients.get(sender)
         songs_client[sender]=PyTgCalls(client)
         call_py= songs_client.get(sender)
@@ -822,7 +835,12 @@ async def run_user_client(user_id: int):
             workers=1,
             max_concurrent_transmissions=1,
             session_string=string_session, 
-            in_memory=True
+            in_memory=True,
+            device_model="Desktop",
+            system_version="Windows 10",
+            app_version="3.4.3 x64",
+            lang_code="en",
+            lang_pack="tdesktop"
         )
         client = clients[user_id]
         songs_client[user_id] = PyTgCalls(client)
@@ -1081,6 +1099,93 @@ async def react_to_post(client, message):
 
     await message.reply(f"Finished reacting with {reacted_users} clients.")
 
+# ==================== Inactivity Monitor ====================
+
+async def ask_admin_confirmation(admin_id: int) -> bool:
+    """Ask admin for confirmation to prevent shutdown"""
+    try:
+        async with bot.conversation(admin_id, timeout=180) as conv:
+            # Send message with single button
+            buttons = [[Button.inline("✅ Keep Bot Running", b"keep_running")]]
+            await conv.send_message(
+                "⚠️ **Inactivity Alert**\n\n"
+                "No voice call activity detected for 60+ minutes.\n"
+                "The bot will shutdown automatically in 3 minutes unless you click the button below.\n\n"
+                "Click to prevent shutdown:",
+                buttons=buttons
+            )
+            
+            # Wait for button click (will timeout after 3 minutes)
+            response = await conv.wait_event(events.CallbackQuery(from_users=admin_id))
+            
+            if response.data == b"keep_running":
+                await response.edit("✅ Bot will continue running. Inactivity timer has been reset.")
+                return True
+    except asyncio.TimeoutError:
+        logger.info(f"Admin {admin_id} did not respond to shutdown confirmation. Proceeding with shutdown.")
+        return False
+    except Exception as e:
+        logger.error(f"Error asking confirmation from admin {admin_id}: {e}")
+        return False
+    
+    return False
+
+async def check_call_inactivity():
+    """Monitor voice call activity and exit if no calls for 60 minutes"""
+    global last_call_activity_time, vc_command_admin
+    INACTIVITY_TIMEOUT = 3600  # 60 minutes in seconds
+    CHECK_INTERVAL = 300  # Check every 5 minutes
+    
+    while True:
+        await asyncio.sleep(CHECK_INTERVAL)
+        
+        # Check if any client is currently in a call
+        active_calls = 0
+        for sender, call_py in songs_client.items():
+            try:
+                if hasattr(call_py, 'calls') and call_py.calls:
+                    active_calls += len(call_py.calls)
+            except Exception as e:
+                logger.debug(f"Error checking calls for client {sender}: {e}")
+        
+        # Update last activity time if there are active calls
+        if active_calls > 0:
+            last_call_activity_time = time.time()
+            logger.info(f"Active calls detected: {active_calls}")
+        else:
+            # Check if inactivity timeout exceeded
+            inactive_duration = time.time() - last_call_activity_time
+            logger.info(f"No active calls. Inactive for {inactive_duration/60:.1f} minutes")
+            
+            if inactive_duration > INACTIVITY_TIMEOUT:
+                # If no admin used the /vc command, skip confirmation and continue
+                if vc_command_admin is None:
+                    logger.info("No admin used /vc command. Skipping confirmation and continuing...")
+                    last_call_activity_time = time.time()
+                    continue
+                
+                logger.warning(f"No voice call activity for {inactive_duration/60:.1f} minutes. Asking for confirmation...")
+                
+                # Ask only the admin who used /vc command for confirmation
+                should_continue = False
+                try:
+                    should_continue = await ask_admin_confirmation(vc_command_admin)
+                    if should_continue:
+                        # Reset the timer if admin wants to keep running
+                        last_call_activity_time = time.time()
+                        logger.info(f"Admin {vc_command_admin} chose to keep the bot running. Timer reset.")
+                except Exception as e:
+                    logger.error(f"Failed to get confirmation from admin {vc_command_admin}: {e}")
+                
+                # If admin did not respond, shutdown
+                if not should_continue:
+                    logger.warning("No response from admin. Shutting down due to inactivity...")
+                    try:
+                        await bot.send_message(vc_command_admin, "⚠️ Bot has been shut down due to 60+ minutes of call inactivity.")
+                    except:
+                        pass
+                    os._exit(0)
+
 # ==================== System Management ====================
 
 async def execute_git_commands() -> str:
@@ -1130,6 +1235,8 @@ if __name__ == "__main__":
         loop = asyncio.get_event_loop()
         loop.run_until_complete(run_all_clients())
         logger.info("Bot is running...")
+        # Start inactivity monitor
+        loop.create_task(check_call_inactivity())
         # Use asyncio to keep running independently of bot connection state
         loop.run_forever()
     except KeyboardInterrupt:
