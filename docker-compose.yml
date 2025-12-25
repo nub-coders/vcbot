@@ -6,6 +6,8 @@ services:
     env_file:
       - .env.bot1
     restart: always
+    cpus: 8
+    mem_limit: 24g
     ulimits:
       nofile:
         soft: 65535
@@ -26,6 +28,8 @@ services:
     env_file:
       - .env.bot2
     restart: always
+    cpus: 8
+    mem_limit: 24g
     ulimits:
       nofile:
         soft: 65535
@@ -46,6 +50,8 @@ services:
     env_file:
       - .env.bot3
     restart: always
+    cpus: 8
+    mem_limit: 24g
     ulimits:
       nofile:
         soft: 65535
