@@ -16,16 +16,6 @@ RUN apt-get update && \
     git \
     curl \
     wget \
-    build-essential \
-    libmagic-dev \
-    libssl-dev \
-    zlib1g-dev \
-    libbz2-dev \
-    libreadline-dev \
-    libsqlite3-dev \
-    libffi-dev \
-    liblzma-dev \
-    ffmpeg \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
