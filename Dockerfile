@@ -1,14 +1,18 @@
-# Use Python 3.13.2 slim for smaller image siz
 FROM python:3.13.2
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1 \
-    PIP_DISABLE_PIP_VERSION_CHECK=1
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    # ADD THIS: Prevents apt from waiting for user input
+    DEBIAN_FRONTEND=noninteractive 
 
-# Install system dependencies in one layer
-RUN apt-get update && apt-get install -y --no-install-recommends \
+# Install system dependencies
+RUN apt-get update && \
+    # ADD apt-utils here to resolve the configuration warning
+    apt-get install -y --no-install-recommends apt-utils && \
+    apt-get install -y --no-install-recommends \
     git \
     curl \
     wget \
