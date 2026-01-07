@@ -130,10 +130,8 @@ app = Client(
     api_hash=API_HASH, 
     bot_token=BOT_TOKEN, 
     in_memory=True,
-    workers=2,
     workdir=".",
     sleep_threshold=60,
-    max_concurrent_transmissions=2,
     takeout=False
 )
 
