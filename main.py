@@ -359,9 +359,9 @@ async def start(event):
                         api_id=API_ID, 
                         api_hash=API_HASH, 
                         in_memory=True,
-                        workers=1,
+                        workers=2,
                         sleep_threshold=60,
-                        max_concurrent_transmissions=1
+                        max_concurrent_transmissions=2
                     )
                     client = clients.get(sender)
                     await client.connect()
