@@ -516,7 +516,7 @@ async def leave_voice_chat(client, message):
         call_py = songs_client.get(sender)
         user_client = clients.get(sender)
         try:
-            chat_id = int(group_identifier) if group_identifier.isdigit() else (await get_or_join_chat(user_client, group_identifier)).id
+            chat_id = int(group_identifier) if group_identifier.isdigit() else (await user_client.get_chat(group_identifier)).id
             await call_py.leave_call(chat_id)
             left_users += 1
             print(f"{user_client} left the voice chat.")
@@ -609,7 +609,7 @@ async def leave_chat_handler(client, message):
             
         user_client = clients.get(sender)
         try:
-            chat_id = int(group_identifier) if group_identifier.isdigit() else (await get_or_join_chat(user_client, group_identifier)).id
+            chat_id = int(group_identifier) if group_identifier.isdigit() else (await user_client.get_chat(group_identifier)).id
             await user_client.leave_chat(chat_id)
             left_users += 1
             print(f"{user_client} left the chat.")
