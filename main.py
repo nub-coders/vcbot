@@ -731,7 +731,7 @@ async def join_chat(client, message):
             
         user_client = clients.get(sender)
         try:
-            chat = await get_or_join_chat(user_client, group_invite_link)
+            chat = await user_client.join_chat(group_invite_link)
             joined_users += 1
             print(f"{user_client} joined the chat.")
         except Exception as e:
