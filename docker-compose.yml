@@ -6,7 +6,6 @@ services:
     env_file:
       - .env.bot1
     restart: always
-    cpus: 8
     mem_limit: 24g
     ulimits:
       nofile:
@@ -17,8 +16,6 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-    networks:
-      - web
     privileged: true
 
   bot2:
@@ -28,7 +25,6 @@ services:
     env_file:
       - .env.bot2
     restart: always
-    cpus: 8
     mem_limit: 24g
     ulimits:
       nofile:
@@ -39,8 +35,6 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-    networks:
-      - web
     privileged: true
 
   bot3:
@@ -50,7 +44,6 @@ services:
     env_file:
       - .env.bot3
     restart: always
-    cpus: 8
     mem_limit: 24g
     ulimits:
       nofile:
@@ -61,10 +54,4 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-    networks:
-      - web
     privileged: true
-
-networks:
-  web:
-    external: true
