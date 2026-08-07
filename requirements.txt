@@ -5,10 +5,9 @@ setuptools
 uvloop
 
 # Telegram clients
-Telethon
-TgCrypto
-py-tgcalls
 kurigram
+py-tgcalls
+TgCrypto
 git+https://github.com/Ripeey/Conversation-Pyrogram
 
 # Database

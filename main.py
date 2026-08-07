@@ -22,6 +22,8 @@ from pytgcalls.types import MediaStream
 
 # Pyrogram imports
 from pyrogram import Client, filters
+from pyrogram.handlers import MessageHandler
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.raw import functions, types
 from pyrogram.raw.types import InputReportReasonOther
 from pyrogram.errors import (
@@ -33,8 +35,6 @@ from pyrogram.errors import (
     AccessTokenExpired
 )
 
-# Telethon imports
-from telethon import TelegramClient, events, Button, types, errors
 # MongoDB setup
 MONGODB_URI = os.getenv('MONGODB_URI')
 if not MONGODB_URI:
@@ -79,10 +79,12 @@ except Exception as e:
 StartTime = time.time()
 clients: Dict[int, Client] = {}  # Dictionary to store client objects
 songs_client: Dict[int, PyTgCalls] = {}
-conversations: Dict[int, any] = {}
 admin_comments: Dict[int, list] = {}
-adding_mode: Dict[int, bool] = {}
 cancel_process: Dict[int, bool] = {}
+add_handlers: Dict[int, MessageHandler] = {}  # active /add capture handlers per admin
+ADD_IDLE_TIMEOUT = 2  # seconds of inactivity before the /add status message is sent
+login_states: Dict[int, dict] = {}   # tracks per-user /login flow (step + client)
+logout_pending: Dict[int, bool] = {}  # users awaiting LOGOUT confirmation
 
 # Simple cache for user sessions (reduces DB queries)
 session_cache: Dict[int, tuple] = {}  # (user_data, timestamp)
@@ -122,13 +124,11 @@ if _admin_ids:
 else:
     ADMIN_IDS = []
 # Initialize bot clients
-bot = TelegramClient(None, API_ID, API_HASH)
-bot.start(bot_token=BOT_TOKEN)
 app = Client(
-    ":hehe", 
-    api_id=API_ID, 
-    api_hash=API_HASH, 
-    bot_token=BOT_TOKEN, 
+    ":hehe",
+    api_id=API_ID,
+    api_hash=API_HASH,
+    bot_token=BOT_TOKEN,
     in_memory=True,
     workdir=".",
     sleep_threshold=60,
@@ -221,14 +221,14 @@ async def safe_view_messages(client, chat_id: int, message_id: int, event=None):
     except Exception as e:
         logger.warning(f"Failed to view message {message_id} in chat {chat_id}: {e}")
         if event:
-            await event.reply(f"Failed to increment view count: {e}")
+            await event.reply(f"⚠️ Failed to increment view count: {e}")
 
 async def inform_admin(user_id: int, error: Exception):
     """Helper function to inform all admins about an exception"""
     logger.error(f"Error with user {user_id}: {error}")
     for admin_id in ADMIN_IDS:
         try:
-            await bot.send_message(admin_id, f"Error starting client for user {user_id}: {error}")
+            await app.send_message(admin_id, f"⚠️ Error starting client for user `{user_id}`: {error}")
         except Exception as e:
             logger.error(f"Failed to inform admin {admin_id}: {e}")
 
@@ -290,224 +290,257 @@ async def ping_command(client, message):
     except:
         current_fds = "N/A"
     
-    _ping = f"""
-<blockquote>
-PING: {str(delta_ping_formatted).replace('.', ',')} ms
-UPTIME: {uptime}
-OWNER: {OWNER}
+    _ping = f"""<blockquote><b>🏓 PING:</b> {str(delta_ping_formatted).replace('.', ',')} ms
+<b>⏱ UPTIME:</b> {uptime}
+<b>👑 OWNER:</b> {OWNER}
 
-Server Stats
-CPU: {cpu}%
-RAM: {mem}%
-DISK: {disk}%
-MEMORY: {round(process.memory_info()[0] / 1024 ** 2)} MB
+<b>📊 Server Stats:</b>
+🚀 <b>CPU:</b> {cpu}%
+🧹 <b>RAM:</b> {mem}%
+💾 <b>DISK:</b> {disk}%
+🧠 <b>MEMORY:</b> {round(process.memory_info()[0] / 1024 ** 2)} MB
 
-File Descriptors
-Current: {current_fds}
-Soft Limit: {soft_limit}
-Hard Limit: {hard_limit}</blockquote>
-"""
+<b>📁 File Descriptors:</b>
+🔹 <b>Current:</b> {current_fds}
+🔹 <b>Soft Limit:</b> {soft_limit}
+🔹 <b>Hard Limit:</b> {hard_limit}</blockquote>"""
     await xx.edit(_ping)
 
-# Add this handler to the bot
+# ==================== Login / Logout Flow ====================
 
-@bot.on(events.NewMessage(
-    incoming=True,
-    outgoing=False,
-    func=lambda x: x.is_private, pattern="/login"))
-async def start(event):
-    client = None
-    sender = event.sender_id
+LOGIN_SUCCESS_TEXT = (
+    "✅ **Login Successful!**\n\nYou now have full access to the bot's features.\n\n"
+    "📋 **Rules & Guidelines:**\n"
+    "• 🛑 **No Spamming:** Do not send spam or mass requests. Account restrictions may occur.\n"
+    "• 🚫 **Copyright Respect:** Do not distribute copyrighted material.\n"
+    "• ⚠️ **User Responsibility:** You are responsible for all actions taken via your session.\n\n"
+    "By continuing to use this bot, you agree to these terms."
+)
+
+
+@app.on_message(filters.command("login") & filters.private)
+async def login_command(client, message):
+    sender = message.from_user.id
 
     # Check if user already exists
     existing_user = user_sessions.find_one({"user_id": sender})
     if existing_user:
-        await event.respond("😊 You're already logged in! If you want to log out, just use /logout. Have a great time! 🌟\nWe believe, you actually don't need this option")
-        return
+        return await message.reply(
+            "ℹ️ **You are already logged in!**\n\nIf you wish to log out, use the /logout command."
+        )
+
+    login_states[sender] = {"step": "phone"}
+    await message.reply(
+        "📱 **Login Request**\n\nPlease send your **phone number** (with country code) to proceed with verification.\n\n"
+        "*Example:* `+11234567890`"
+    )
+
+
+async def _handle_login_phone(message):
+    sender = message.from_user.id
+    state = login_states[sender]
+
+    phone_number = (message.text or "").strip()
+    if not phone_number:
+        return await message.reply("⚠️ Please send your phone number with country code (e.g. `+11234567890`).")
+    if not phone_number.startswith("+"):
+        phone_number = "+" + phone_number
 
     try:
-        async with bot.conversation(sender, timeout=300) as don:
-            conversations[sender] = don
-            conv = conversations[sender]
-            '''event = await conv.wait_event(events.NewMessage(from_users=sender, func=lambda x: x.is_private, outgoing=False))
-            if event.raw_text.startswith('/'):
-                return
-            API_ID = event.text.strip()
-            await event.respond("📲 Awesome! Now, could you please share your **api_hash**? We're almost there! 🚀")
+        clients[sender] = Client(
+            f"user_{sender}",
+            api_id=API_ID,
+            api_hash=API_HASH,
+            in_memory=True,
+            workers=2,
+            sleep_threshold=60,
+            max_concurrent_transmissions=2,
+        )
+        client = clients[sender]
+        await client.connect()
+        sent_code = await client.send_code(phone_number)
+        print(f"Code sent to {phone_number}.")
 
-            event = await conv.wait_event(events.NewMessage(from_users=sender, func=lambda x: x.is_private, outgoing=False))
-            if not event.raw_text:
-                return
-            if event.raw_text.startswith('/'):
-                return
-            API_HASH = event.text.strip()'''
-
-            # Ask user to share phone number using a button
-            button = Button.request_phone(text="📞 Share phone number")
-            mess = await event.respond("📞 We're so close! Please share your **phone number** by clicking the button below. We're here to help! 💬", buttons=button)
-
-            event = await conv.wait_event(events.NewMessage(from_users=sender, func=lambda x: x.is_private, outgoing=False))
-            if event.raw_text.startswith('/'):
-                await mess.delete()
-                return
-            if isinstance(event.media, types.MessageMediaContact):
-                await mess.delete()
-                phone_number = event.media.phone_number
-                try:
-                    clients[sender] = Client(
-                        f"user_{sender}", 
-                        api_id=API_ID, 
-                        api_hash=API_HASH, 
-                        in_memory=True,
-                        workers=2,
-                        sleep_threshold=60,
-                        max_concurrent_transmissions=2
-                    )
-                    client = clients.get(sender)
-                    await client.connect()
-                    sent_code = await client.send_code(phone_number)
-                    phone_code_hash = sent_code.phone_code_hash
-                    print(f"Code sent to {phone_number}.")
-
-                    await event.respond("🔢 Please enter the **code** in spaces like this example below:\n3 6 6 4 7\n\nDue to Telegram's anti-forward login, you need to provide the code in spaces. We're almost there! 🌈")
-                    for i in range(5):
-                        event = await conv.wait_event(events.NewMessage(from_users=sender, func=lambda x: x.is_private, outgoing=False))
-                        if event.raw_text.startswith('/'):
-                            return
-                        text = event.text
-                        code = text.replace(' ', "")
-
-                        try:
-                            await client.sign_in(phone_number, phone_code_hash, code)
-                            await event.respond(
-                                "🎉 Woohoo! Login successful! You now have access to all the amazing features. Enjoy! 🌟\n\n"
-                                "🚨 **Important Rules and Guidelines** 🚨\n\n"
-                                "1. ❌ **No Spamming**: Please do not use the bot to send spam messages. This can lead to your account being restricted or banned.\n"
-                                "2. 📵 **Respect Copyrights**: Do not use this bot to download or distribute copyrighted materials. Doing so is against the law and can result in serious consequences.\n"
-                                "3. ⚠️ **Your Responsibility**: If anything happens to your account as a result of misuse, this bot is not responsible. Use it wisely and responsibly.\n\n"
-                                "By using this bot, you agree to these terms. Let's keep things fun and safe! 😊"
-                            )
-                            string_session = await client.export_session_string()
-                            user_sessions.update_one(
-                                {"user_id": sender},
-                                {"$set": {"string_session": string_session}},
-                                upsert=True
-                            )
-                            await client.disconnect()
-                            return await run_client(sender)
-                        except PhoneCodeInvalid:
-                            await event.respond("❌ Oh no! That OTP was incorrect. Please try sending again the right OTP. You've got this! 💪")
-                            continue
-                        except SessionPasswordNeeded:
-                            await event.respond("🔐 We need your **2FA password** to proceed. Please enter your 2FA password. We're almost there! 💫")
-                            for i in range(5):
-                                event = await conv.wait_event(events.NewMessage(from_users=sender, func=lambda x: x.is_private, outgoing=False))
-                                if event.raw_text.startswith('/'):
-                                    return
-                                password = event.text.strip()
-                                try:
-                                    await client.check_password(password)
-                                    await event.respond(
-                                        "🎉 Yay! Login successful! You can now explore all the features. Have fun! 🎈\n\n"
-                                        "🚨 **Important Rules and Guidelines** 🚨\n\n"
-                                        "1. ❌ **No Spamming**: Please do not use the bot to send spam messages. This can lead to your account being restricted or banned.\n"
-                                        "2. 📵 **Respect Copyrights**: Do not use this bot to download or distribute copyrighted materials. Doing so is against the law and can result in serious consequences.\n"
-                                        "3. ⚠️ **Your Responsibility**: If anything happens to your account as a result of misuse, this bot is not responsible. Use it wisely and responsibly.\n\n"
-                                        "By using this bot, you agree to these terms. Let's keep things fun and safe! 😊"
-                                    )
-                                    string_session = await client.export_session_string()
-                                    user_sessions.update_one(
-                                        {"user_id": sender},
-                                        {"$set": {"string_session": string_session}},
-                                        upsert=True
-                                    )
-                                    await client.disconnect()
-                                    return await run_client(sender)
-                                except PasswordHashInvalid as e:
-                                    await event.respond("❌ Incorrect 2FA password. Please try sending right password again. We believe in you! 🌟")
-                                    continue
-                                except Exception as e:
-                                    return await event.respond(f"⚠️ Something went wrong during login: {e}. Please try again. We're here to help! 🛠️")
-                            return event.respond("❌ Incorrect 2FA password. Please try again later with /login. Don't give up! 💪")
-                except Exception as e:
-                    await event.respond(f"⚠️ Error sending code: {e}. Please try again. We're here for you! 🤗")
+        state.update({
+            "step": "code",
+            "phone_number": phone_number,
+            "phone_code_hash": sent_code.phone_code_hash,
+        })
+        await message.reply(
+            "🔢 **Enter Login Code**\n\nPlease send the verification code with spaces between each digit.\n\n"
+            "*Example:* `1 2 3 4 5`\n\n"
+            "*(This format is required due to Telegram's security restrictions.)*",
+        )
     except Exception as e:
-        print(e)
+        login_states.pop(sender, None)
+        try:
+            c = clients.pop(sender, None)
+            if c:
+                await c.disconnect()
+        except Exception:
+            pass
+        await message.reply(
+            f"⚠️ **Error Sending Code:** {e}\n\nPlease try again later using /login.",
+        )
 
-from telethon import events
 
-@bot.on(events.NewMessage(
-    incoming=True,
-    outgoing=False,func=lambda x: x.is_private,pattern="/logout"))
-async def logout(event):
-    sender = event.sender_id
+async def _finalize_login(message, client, sender):
+    await message.reply(LOGIN_SUCCESS_TEXT)
+    string_session = await client.export_session_string()
+    user_sessions.update_one(
+        {"user_id": sender},
+        {"$set": {"string_session": string_session}},
+        upsert=True,
+    )
+    await client.disconnect()
+    login_states.pop(sender, None)
+    clients.pop(sender, None)
+    await run_client(sender)
+
+
+async def _handle_login_code(message):
+    sender = message.from_user.id
+    state = login_states[sender]
     client = clients.get(sender)
+    code = (message.text or "").replace(" ", "")
 
-    # Check if user exists
+    try:
+        await client.sign_in(state["phone_number"], state["phone_code_hash"], code)
+        await _finalize_login(message, client, sender)
+    except PhoneCodeInvalid:
+        await message.reply("❌ **Incorrect Code:** The verification code you entered is invalid. Please try again.")
+    except SessionPasswordNeeded:
+        state["step"] = "password"
+        await message.reply(
+            "🔐 **2FA Password Required:**\n\nYour account is protected with Two-Step Verification. "
+            "Please enter your 2FA password:"
+        )
+    except Exception as e:
+        login_states.pop(sender, None)
+        try:
+            c = clients.pop(sender, None)
+            if c:
+                await c.disconnect()
+        except Exception:
+            pass
+        await message.reply(f"⚠️ **Login Error:** {e}\n\nPlease try again using /login.")
+
+
+async def _handle_login_password(message):
+    sender = message.from_user.id
+    client = clients.get(sender)
+    password = (message.text or "").strip()
+
+    try:
+        await client.check_password(password)
+        await _finalize_login(message, client, sender)
+    except PasswordHashInvalid:
+        await message.reply("❌ **Incorrect Password:** The 2FA password you entered is incorrect. Please try again.")
+    except Exception as e:
+        login_states.pop(sender, None)
+        try:
+            c = clients.pop(sender, None)
+            if c:
+                await c.disconnect()
+        except Exception:
+            pass
+        await message.reply(f"⚠️ **Login Error:** {e}\n\nPlease try again using /login.")
+
+
+@app.on_message(filters.command("logout") & filters.private)
+async def logout_command(client, message):
+    sender = message.from_user.id
+
     user_data = user_sessions.find_one({"user_id": sender})
     if user_data:
-        string_session = user_data.get("string_session")
-        # Ask for confirmation
-        await event.respond("We hate to see you go! Are you sure you want to logout? If yes, type '`LOGOUT`' and send.")
-
-        @bot.on(events.NewMessage(from_users=sender, outgoing=False))
-        async def handle_confirmation(message):
-            if message.raw_text.startswith('/'):
-                return
-            if message.raw_text.strip().upper() == 'LOGOUT':
-                # Remove session from MongoDB
-                user_sessions.delete_one({"user_id": sender})
-                await event.respond("You've been logged out successfully! We always welcome you back anytime.")
-                bot.remove_event_handler(handle_confirmation)
-                if os.path.exists(f"user{sender}.session"):
-                    os.remove(f"user{sender}.session")
-                    await event.respond("Your session file has been deleted. We hope to see you again soon!")
-                await client.log_out()
-            else:
-                await event.respond("Logout cancelled. We're glad you're staying with us!")
-                bot.remove_event_handler(handle_confirmation)
+        logout_pending[sender] = True
+        await message.reply(
+            "⚠️ **Logout Confirmation**\n\nAre you sure you want to log out? Reply with `LOGOUT` to confirm."
+        )
     else:
-        await event.respond("Your session was not found in the database. Please use /login to log in.")
+        await message.reply(
+            "⚠️ **No Active Session:** No login session was found for your account. Use /login to log in."
+        )
+
+
+async def _handle_logout_confirmation(message):
+    sender = message.from_user.id
+    text = (message.text or "").strip().upper()
+
+    if text == "LOGOUT":
+        logout_pending.pop(sender, None)
+        user_sessions.delete_one({"user_id": sender})
+        await message.reply("✅ **Logged Out:** Your session has been removed successfully.")
+
+        # Stop any running voice-chat / user client for this user
+        try:
+            if sender in songs_client:
+                await songs_client[sender].stop()
+                songs_client.pop(sender, None)
+        except Exception as e:
+            logger.warning(f"Failed to stop PyTgCalls for {sender}: {e}")
+
+        client = clients.pop(sender, None)
+        if client:
+            try:
+                await client.log_out()
+            except Exception as e:
+                logger.warning(f"Failed to log out client {sender}: {e}")
+
+        if os.path.exists(f"user{sender}.session"):
+            os.remove(f"user{sender}.session")
+            await message.reply("🗑️ Local session file cleaned up successfully.")
+    else:
+        logout_pending.pop(sender, None)
+        await message.reply("❌ **Logout Cancelled:** You remain logged in.")
 
 @app.on_message(filters.command("start"))
 async def start_command(client, message):
     user_id = message.from_user.id
     response = (
-        "Welcome! Here are the commands you can use:\n\n"
-        "1. **/login** - Log in to the bot as a client.\n"
-        "   Usage: `/login`\n\n"
-        "2. **/logout** - Log out from the bot.\n"
-        "   Usage: `/logout`\n\n"
-        "3. **/activers** - Show the list of active clients in the bot.\n"
-        "   Usage: `/activers`\n\n"
-        "4. **/add** - Start adding comments.\n"
-        "5. **/done** - Stop adding comments.\n"
-        "6. **/clear** - Clear all comments.\n"
-        "7. **/comments** - Show all added comments.\n"
-        "8. **/comment <channel> <message_id> <delay>** - Post comments to a channel.\n"
-        "9. **/ping** - Check the bot's ping and uptime.\n"
-        "10. **/vote <index> <num_of_clients> <message_id> <join_url_or_username> <delay>** - Vote on a poll with multiple clients.\n"
-        "11. **/bvote <index> <num_of_clients> <message_id> <join_url_or_username> <delay>** - Vote on a button poll.\n"
-        "12. **/leave <num_of_clients> <group_or_channel_invite_link_or_username_or_user_id>** - Leave a voice chat.\n"
-        "13. **/vc <num_clients> <group_or_channel_invite_link_or_username>** - Join a voice chat.\n"
-        "14. **/left <num_of_clients> <group_or_channel_invite_link_or_username_or_user_id>** - left the group/channel.\n"
-        "15. **/join <num_clients> <group_or_channel_invite_link_or_username>** - Join a chat.\n"
-        "16. **/reboot** - Restart the bot.\n"
-        "17. **/cancel** - Cancel the current commenting process.\n"
+        "🤖 **Available Commands**\n\n"
+        "🔑 **Authentication & System:**\n"
+        "• `/login` - Log in your client account\n"
+        "• `/logout` - Log out your client account\n"
+        "• `/ping` - Check bot latency and server stats\n"
+        "• `/activers` - View all active user clients\n"
+        "• `/reboot` - Restart the bot system\n"
+        "• `/pull` - Pull updates from repository\n\n"
+        "💬 **Chat & Voice Chat Management:**\n"
+        "• `/join [count] [chat]` - Join a chat with multiple clients\n"
+        "• `/left [count] [chat]` - Leave a chat with multiple clients\n"
+        "• `/vc [count] [chat]` - Join a voice chat with clients\n"
+        "• `/leave [count] [chat]` - Leave a voice chat with clients\n\n"
+        "💬 **Comment System:**\n"
+        "• `/add` - Reply to a message to save it as a comment\n"
+        "• `/comments` - View all added comments\n"
+        "• `/clear` - Clear all pending comments\n"
+        "• `/comment [chat] [msg_id] [delay]` - Post comments to a post\n"
+        "• `/cancel` - Cancel active commenting process\n\n"
+        "📊 **Poll & Interaction:**\n"
+        "• `/vote [option] [count] [msg_id] [chat] [delay]` - Vote in a poll\n"
+        "• `/bvote [option] [count] [msg_id] [chat] [delay]` - Click inline poll button\n"
+        "• `/react [count] [chat] [msg_id] [emoji]` - React to a message\n"
+        "• `/report [count] [target]` - Report a user/channel"
     )
     await message.reply(response)
 
 
-@app.on_message(filters.command("leave") & filters.regex(r'/leave (\d+) (.+)'))
+@app.on_message(filters.command("leave"))
 async def leave_voice_chat(client, message):
     if not is_admin(message.from_user.id):
-        return
+        return await message.reply("⛔ **Unauthorized:** You do not have permission to perform this action.")
     
     import re
-    match = re.match(r'/leave (\d+) (.+)', message.text)
+    match = re.match(r'/leave(?:@\w+)?\s+(\d+)\s+(\S+)', message.text)
+    if not match:
+        return await message.reply("⚠️ **Incorrect Usage!**\n\n📌 **Usage:** `/leave [count] [chat]`\n*Example:* `/leave 5 @groupusername`")
+    
     num_clients_to_leave = int(match.group(1))
     group_identifier = match.group(2)
     left_users = 0
+
+    await message.reply(f"🚀 **Starting Task:** Leaving voice chat with up to {num_clients_to_leave} client(s)...")
 
     for sender in list(songs_client.keys()):
         if left_users >= num_clients_to_leave:
@@ -523,17 +556,20 @@ async def leave_voice_chat(client, message):
         except Exception as e:
             print(e)
 
-    await message.reply(f"Left {left_users} clients from the voice chat.")
+    await message.reply(f"🔊 Successfully left {left_users} client(s) from the voice chat.")
 
 
 
-@app.on_message(filters.command("report") & filters.regex(r'/report (\d+) (.+)'))
+@app.on_message(filters.command("report"))
 async def report_peer(client, message):
     if not is_admin(message.from_user.id):
-        return
+        return await message.reply("⛔ **Unauthorized:** You do not have permission to perform this action.")
     
     import re
-    match = re.match(r'/report (\d+) (.+)', message.text)
+    match = re.match(r'/report(?:@\w+)?\s+(\d+)\s+(\S+)', message.text)
+    if not match:
+        return await message.reply("⚠️ **Incorrect Usage!**\n\n📌 **Usage:** `/report [count] [target]`\n*Example:* `/report 5 @username`")
+    
     num_clients_to_report = int(match.group(1))
     group_identifier = match.group(2)
     reported_users = 0
@@ -544,6 +580,8 @@ async def report_peer(client, message):
         "Under international law, this is regarded as terrorism. "
         "Therefore we ask You to block it as soon as possible!"
     )
+
+    await message.reply(f"🚀 **Starting Task:** Reporting target `{group_identifier}` with up to {num_clients_to_report} client(s)...")
 
     for sender in list(songs_client.keys()):
         if reported_users >= num_clients_to_report:
@@ -559,19 +597,24 @@ async def report_peer(client, message):
         except Exception as e:
             print(e)
 
-    await message.reply(f"{reported_users} clients reported the {group_identifier}.")
+    await message.reply(f"🚩 Reported target successfully with {reported_users} client(s).")
 
 
-@app.on_message(filters.command("bview") & filters.regex(r'/bview (\d+) (.+)'))
+@app.on_message(filters.command("bview"))
 async def increment_views(client, message):
     if not is_admin(message.from_user.id):
-        return
+        return await message.reply("⛔ **Unauthorized:** You do not have permission to perform this action.")
 
     import re
-    match = re.match(r'/bview (\d+) (.+)', message.text)
+    match = re.match(r'/bview(?:@\w+)?\s+(\d+)\s+(\S+)', message.text)
+    if not match:
+        return await message.reply("⚠️ **Incorrect Usage!**\n\n📌 **Usage:** `/bview [count] [join_url]`\n*Example:* `/bview 5 https://t.me/channel`")
+
     num_clients_to_view = int(match.group(1))
     join_url = match.group(2)
     viewed_users = 0
+
+    await message.reply(f"🚀 **Starting Task:** Incrementing views with up to {num_clients_to_view} client(s)...")
 
     for sender in list(songs_client.keys()):
         if viewed_users >= num_clients_to_view:
@@ -584,24 +627,29 @@ async def increment_views(client, message):
                 try:
                     await user_client.view_messages(chat.id, msg.id)
                 except Exception as e:
-                    await message.reply(f"Client {sender} failed to view message {msg.id}: {e}")
+                    await message.reply(f"⚠️ Client `{sender}` failed to view message `{msg.id}`: {e}")
                     break
             viewed_users += 1
         except Exception as e:
-            await message.reply(f"Client {sender} error: {e}")
+            await message.reply(f"⚠️ Client `{sender}` error: {e}")
 
-    await message.reply(f"Incremented views with {viewed_users}/{num_clients_to_view} clients.")
+    await message.reply(f"👁️ Successfully incremented views with {viewed_users}/{num_clients_to_view} client(s).")
 
-@app.on_message(filters.command("left") & filters.regex(r'/left (\d+) (.+)'))
+@app.on_message(filters.command("left"))
 async def leave_chat_handler(client, message):
     if not is_admin(message.from_user.id):
-        return
+        return await message.reply("⛔ **Unauthorized:** You do not have permission to perform this action.")
     
     import re
-    match = re.match(r'/left (\d+) (.+)', message.text)
+    match = re.match(r'/left(?:@\w+)?\s+(\d+)\s+(\S+)', message.text)
+    if not match:
+        return await message.reply("⚠️ **Incorrect Usage!**\n\n📌 **Usage:** `/left [count] [chat]`\n*Example:* `/left 5 @groupusername`")
+
     num_clients_to_leave = int(match.group(1))
     group_identifier = match.group(2)
     left_users = 0
+
+    await message.reply(f"🚀 **Starting Task:** Leaving chat with up to {num_clients_to_leave} client(s)...")
 
     for sender in list(songs_client.keys()):
         if left_users >= num_clients_to_leave:
@@ -616,19 +664,22 @@ async def leave_chat_handler(client, message):
         except Exception as e:
             print(e)
 
-    await message.reply(f"Left {left_users} clients from the chat.")
+    await message.reply(f"🚪 Successfully left {left_users} client(s) from the chat.")
 
 
-@app.on_message(filters.command("vote") & filters.regex(r'/vote (\d) (\d+) (\d+) (.+) (\d+)'))
+@app.on_message(filters.command("vote"))
 async def vote_on_poll(client, message):
     user_id = message.from_user.id
     if not is_admin(user_id):
-        return
+        return await message.reply("⛔ **Unauthorized:** You do not have permission to perform this action.")
     
     await cleanup_memory()
     
     import re
-    match = re.match(r'/vote (\d) (\d+) (\d+) (.+) (\d+)', message.text)
+    match = re.match(r'/vote(?:@\w+)?\s+(\d+)\s+(\d+)\s+(\d+)\s+(\S+)\s+(\d+)', message.text)
+    if not match:
+        return await message.reply("⚠️ **Incorrect Usage!**\n\n📌 **Usage:** `/vote [option] [count] [msg_id] [chat] [delay]`\n*Example:* `/vote 0 5 123 @chat 2`")
+
     poll_index = int(match.group(1))
     num_clients_to_vote = int(match.group(2))
     message_id = int(match.group(3))
@@ -636,8 +687,10 @@ async def vote_on_poll(client, message):
     sleep_time = int(match.group(5))
     
     if not (0 <= poll_index <= 9):
-        return await message.reply("Invalid poll index. Please provide a number between 0 and 9.")
+        return await message.reply("⚠️ **Invalid Option Index:** Please provide a number between 0 and 9.")
     
+    await message.reply(f"🚀 **Starting Task:** Voting option {poll_index + 1} with up to {num_clients_to_vote} client(s)...")
+
     voted_users = 0
     for sender in list(songs_client.keys()):
         if voted_users >= num_clients_to_vote:
@@ -649,52 +702,61 @@ async def vote_on_poll(client, message):
             await user_client.vote_poll(chat.id, message_id, poll_index)
             await safe_view_messages(user_client, chat.id, message_id, message)
             voted_users += 1
-            await message.reply(f"Client {sender} successfully voted for option {poll_index + 1}.")
+            await message.reply(f"✅ Client `{sender}` voted for option {poll_index + 1}.")
             await asyncio.sleep(sleep_time)
         except Exception as e:
-            await message.reply(f"Client {sender} failed to vote on the poll: {e}")
+            await message.reply(f"⚠️ Client `{sender}` failed to vote: {e}")
     
-    await message.reply(f"Voted with {voted_users}/{num_clients_to_vote} clients.")
+    await message.reply(f"🗳️ Voting completed: {voted_users}/{num_clients_to_vote} client(s) voted.")
     
 
 @app.on_message(filters.command("get"))
 async def get_telegram_chat(client, message):
     if not is_admin(message.from_user.id):
-        return
+        return await message.reply("⛔ **Unauthorized:** You do not have permission to perform this action.")
     
-    parts = message.text.split()
-    if len(parts) == 2:
-        user_client = clients.get(int(parts[1]))
-        if user_client:
-            async for msg in user_client.get_chat_history(777000, limit=5):
-                if not msg.from_user.is_self and msg.text:
-                    await app.send_message(message.from_user.id, msg.text)
+    import re
+    match = re.match(r'/get(?:@\w+)?\s+(\d+)', message.text)
+    if not match:
+        return await message.reply("⚠️ **Incorrect Usage!**\n\n📌 **Usage:** `/get [client_user_id]`\n*Example:* `/get 12345678`")
+
+    target_id = int(match.group(1))
+    user_client = clients.get(target_id)
+    if user_client:
+        async for msg in user_client.get_chat_history(777000, limit=5):
+            if not msg.from_user.is_self and msg.text:
+                await app.send_message(message.from_user.id, msg.text)
 
 @app.on_message(filters.command("check"))
 async def check_telegram_chat(client, message):
     if not is_admin(message.from_user.id):
-        return
+        return await message.reply("⛔ **Unauthorized:** You do not have permission to perform this action.")
 
     try:
         for sender in list(songs_client.keys()):
             user_client = clients.get(sender)
             async for msg in user_client.get_chat_history(777000, limit=10):
                 if not msg.from_user.is_self and msg.media:
-                    await app.send_message(message.from_user.id, f"<blockquote>{user_client.me.first_name} {sender}</blockquote> having media")
+                    await app.send_message(message.from_user.id, f"<blockquote>{user_client.me.first_name} ({sender})</blockquote> has media")
                     break
     except Exception as e:
         await app.send_message(message.from_user.id, str(e))
 
-@app.on_message(filters.command("vc") & filters.regex(r'/vc (\d+) (.+)'))
+@app.on_message(filters.command("vc"))
 async def join_voice_chat(client, message):
     if not is_admin(message.from_user.id):
-        return
+        return await message.reply("⛔ **Unauthorized:** You do not have permission to perform this action.")
     
     import re
-    match = re.match(r'/vc (\d+) (.+)', message.text)
+    match = re.match(r'/vc(?:@\w+)?\s+(\d+)\s+(\S+)', message.text)
+    if not match:
+        return await message.reply("⚠️ **Incorrect Usage!**\n\n📌 **Usage:** `/vc [count] [chat]`\n*Example:* `/vc 5 @groupusername`")
+
     num_clients_to_join = int(match.group(1))
     group_invite_link = match.group(2)
     joined_users = 0
+
+    await message.reply(f"🚀 **Starting Task:** Joining voice chat with up to {num_clients_to_join} client(s)...")
 
     for sender in list(songs_client.keys()):
         if joined_users >= num_clients_to_join:
@@ -709,21 +771,26 @@ async def join_voice_chat(client, message):
             joined_users += 1
             print(f"{user_client} joined the voice chat.")
         except Exception as e:
-            await message.reply(f"Error joining with {sender}: {e}")
+            await message.reply(f"⚠️ Error joining voice chat with client `{sender}`: {e}")
 
-    await message.reply(f"Joined {joined_users} clients to the voice chat.")
+    await message.reply(f"🔊 Successfully joined {joined_users} client(s) to the voice chat.")
 
 
-@app.on_message(filters.command("join") & filters.regex(r'/join (\d+) (.+)'))
+@app.on_message(filters.command("join"))
 async def join_chat(client, message):
     if not is_admin(message.from_user.id):
-        return
+        return await message.reply("⛔ **Unauthorized:** You do not have permission to perform this action.")
     
     import re
-    match = re.match(r'/join (\d+) (.+)', message.text)
+    match = re.match(r'/join(?:@\w+)?\s+(\d+)\s+(\S+)', message.text)
+    if not match:
+        return await message.reply("⚠️ **Incorrect Usage!**\n\n📌 **Usage:** `/join [count] [chat]`\n*Example:* `/join 5 @groupusername`")
+
     num_clients_to_join = int(match.group(1))
     group_invite_link = match.group(2)
     joined_users = 0
+
+    await message.reply(f"🚀 **Starting Task:** Joining chat with up to {num_clients_to_join} client(s)...")
 
     for sender in list(songs_client.keys()):
         if joined_users >= num_clients_to_join:
@@ -735,17 +802,17 @@ async def join_chat(client, message):
             joined_users += 1
             print(f"{user_client} joined the chat.")
         except Exception as e:
-            await message.reply(f"Error joining with {sender}: {e}")
+            await message.reply(f"⚠️ Error joining chat with client `{sender}`: {e}")
 
-    await message.reply(f"Joined {joined_users} clients to the chat.")
+    await message.reply(f"📥 Successfully joined {joined_users} client(s) to the chat.")
 
 @app.on_message(filters.command("reboot"))
 async def reboot_handler(client, message):
     if not is_admin(message.from_user.id):
-        await message.reply("You are not authorized to use this command.")
+        await message.reply("⛔ **Unauthorized:** You do not have permission to use this command.")
         return
     
-    await message.reply("Admin command received. Stopping the bot...")
+    await message.reply("🔄 **Rebooting:** Admin command received. Shutting down bot processes...")
     sys.exit(0)
 
 @app.on_message(filters.command("activers"))
@@ -755,7 +822,7 @@ async def handler(client, message):
 
     user_ids = list(songs_client.keys())
     num_active_clients = len(user_ids)
-    response = "Active client user IDs:\n"
+    response = "👥 **Active Clients List:**\n\n"
     
     for client_id in user_ids:
         try:
@@ -766,7 +833,7 @@ async def handler(client, message):
             full_name = "Unknown"
         response += f"[{full_name}](tg://user?id={client_id}) - {client_id}\n"
 
-    response += f"\nNumber of active clients: {num_active_clients}"
+    response += f"\n📊 **Total Active Clients:** {num_active_clients}"
 
     # Send in chunks if too long
     max_length = 4000
@@ -950,67 +1017,108 @@ async def run_user_client(user_id: int):
 # ==================== Comment System ====================
 
 @app.on_message(filters.command("add"))
-async def start_adding_comments(client, message):
-    if not is_admin(message.from_user.id):
-        await message.reply("You are not authorized to perform this action.")
+async def add_comment(client, message):
+    """Start capturing comments: /add, then send text/stickers/GIFs. Auto-stops after inactivity."""
+    user_id = message.from_user.id
+    if not is_admin(user_id):
+        await message.reply("⛔ **Unauthorized:** You do not have permission to perform this action.")
         return
 
-    admin_comments[message.from_user.id] = []
-    adding_mode[message.from_user.id] = True
-    await message.reply("You are now in 'add mode'. Send messages to add them as comments. Type /done when finished.")
-
-@app.on_message(filters.command("done"))
-async def stop_adding_comments(client, message):
-    if not is_admin(message.from_user.id):
-        await message.reply("You are not authorized to perform this action.")
+    if user_id in add_handlers:
+        await message.reply("🔄 **Already capturing.** Keep sending — I'll stop after a short pause.")
         return
 
-    if message.from_user.id in adding_mode and adding_mode[message.from_user.id]:
-        adding_mode[message.from_user.id] = False
-        await message.reply(f"Added {len(admin_comments.get(message.from_user.id, []))} comments. You can now post them using /comment.")
-    else:
-        await message.reply("You are not in 'add mode'. Start with /add.")
+    admin_comments.setdefault(user_id, [])
+    state = {"t": None, "status": None}  # idle-timer task + last status message
+
+    async def _announce_after_idle():
+        try:
+            await asyncio.sleep(ADD_IDLE_TIMEOUT)
+        except asyncio.CancelledError:
+            return
+        total = len(admin_comments.get(user_id, []))
+        # remove the previous status message so only the latest one stays
+        if state["status"] is not None:
+            try:
+                await state["status"].delete()
+            except Exception:
+                pass
+        state["status"] = await client.send_message(
+            user_id,
+            f"✅ **Added {total} to the comments.**\nClick **Done** to finish capturing.",
+            reply_markup=InlineKeyboardMarkup([[
+                InlineKeyboardButton("✅ Done", callback_data=f"add_done:{user_id}")
+            ]]),
+        )
+
+    async def _capture_comment(c: Client, m):
+        if m.from_user is None or m.from_user.id != user_id:
+            return
+        if m.text and m.text.startswith("/"):
+            return  # commands still work normally
+        if m.text:
+            admin_comments[user_id].append({"type": "text", "content": m.text})
+        elif m.sticker:
+            admin_comments[user_id].append({"type": "sticker", "content": m.sticker.file_id})
+        elif m.animation or m.video:
+            try:
+                file_path = await m.download()
+            except Exception:
+                return
+            admin_comments[user_id].append({"type": "gif", "content": file_path})
+        else:
+            return
+        # (re)start the inactivity timer on every captured message
+        if state["t"]:
+            state["t"].cancel()
+        state["t"] = asyncio.create_task(_announce_after_idle())
+
+    handler = MessageHandler(_capture_comment)
+    app.add_handler(handler)
+    add_handlers[user_id] = handler
+    await message.reply(
+        "💬 **Capturing comments.**\n"
+        "Send any text, sticker, or GIF — each is saved as a comment.\n"
+        "After a short pause I'll show the count with a **Done** button."
+    )
+
+@app.on_callback_query(filters.regex(r"^add_done:"))
+async def add_done_callback(client, callback_query):
+    user_id = callback_query.from_user.id
+    handler = add_handlers.pop(user_id, None)
+    if handler is None:
+        await callback_query.answer("No active capture.", show_alert=False)
+        return
+    app.remove_handler(handler)
+    total = len(admin_comments.get(user_id, []))
+    await callback_query.answer("Capture stopped.")
+    await callback_query.message.edit_text(
+        f"⏹️ **Capture stopped.** {total} comment(s) saved.\n"
+        "Use /comment to post them, /clear to wipe them."
+    )
 
 @app.on_message(filters.command("clear"))
 async def clear_comments(client, message):
     if not is_admin(message.from_user.id):
-        await message.reply("You are not authorized to perform this action.")
+        await message.reply("⛔ **Unauthorized:** You do not have permission to perform this action.")
         return
 
     admin_comments[message.from_user.id] = []
     user_path = 'downloads'
     if os.path.exists(user_path):
         shutil.rmtree(user_path, ignore_errors=True)
-    await message.reply("All comments have been cleared.")
-
-# Handler to add comments while in "add mode"
-@app.on_message(~filters.command(["comments", "done", "clear", "comment", "add"]))
-async def add_comment_in_mode(client, message):
-    user_id = message.from_user.id
-    if user_id in adding_mode and adding_mode[user_id]:
-        if message.text:
-            admin_comments[user_id].append({"type": "text", "content": message.text})
-            await message.reply(f"Text comment added: {message.text}")
-        elif message.sticker:
-            admin_comments[user_id].append({"type": "sticker", "content": message.sticker.file_id})
-            await message.reply("Sticker comment added.")
-        elif message.animation or message.video:
-            file_path = await message.download()
-            admin_comments[user_id].append({"type": "gif", "content": file_path})
-            await message.reply("GIF comment added.")
-        else:
-            await message.reply("Unsupported message type.")
+    await message.reply("🧹 All pending comments have been cleared.")
 
 # Handler to send all comments back to the admin
 @app.on_message(filters.command("comments"))
 async def send_all_comments(client: Client, message):
     user_id = message.from_user.id
     if not is_admin(user_id):
-        await message.reply("You are not authorized to perform this action.")
+        await message.reply("⛔ **Unauthorized:** You do not have permission to perform this action.")
         return
 
     if user_id not in admin_comments or not admin_comments[user_id]:
-        await message.reply("No comments have been added.")
+        await message.reply("ℹ️ No comments have been added yet.")
         return
 
     for comment in admin_comments[user_id]:
@@ -1023,30 +1131,35 @@ async def send_all_comments(client: Client, message):
 @app.on_message(filters.command("cancel"))
 async def cancel_comment_process(client, message):
     if not is_admin(message.from_user.id):
-        await message.reply("You are not authorized to perform this action.")
+        await message.reply("⛔ **Unauthorized:** You do not have permission to perform this action.")
         return
 
     cancel_process[message.from_user.id] = True
     user_path = 'downloads'
     if os.path.exists(user_path):
         shutil.rmtree(user_path, ignore_errors=True)
-    await message.reply("Commenting process has been canceled.")
+    await message.reply("🚫 Commenting process has been canceled.")
 
 # Function to post comments (from Pyrogram handler)
-@app.on_message(filters.command("bvote") & filters.regex(r'/bvote (\d+) (\d+) (\d+) (.+) (\d+)'))
+@app.on_message(filters.command("bvote"))
 async def vote_on_button(client, message):
     user_id = message.from_user.id
     if not is_admin(user_id):
-        return
+        return await message.reply("⛔ **Unauthorized:** You do not have permission to perform this action.")
     
     import re
-    match = re.match(r'/bvote (\d+) (\d+) (\d+) (.+) (\d+)', message.text)
+    match = re.match(r'/bvote(?:@\w+)?\s+(\d+)\s+(\d+)\s+(\d+)\s+(\S+)\s+(\d+)', message.text)
+    if not match:
+        return await message.reply("⚠️ **Incorrect Usage!**\n\n📌 **Usage:** `/bvote [option] [count] [msg_id] [chat] [delay]`\n*Example:* `/bvote 0 5 123 @chat 2`")
+
     poll_index = int(match.group(1))
     num_clients_to_vote = int(match.group(2))
     message_id = int(match.group(3))
     join_url = match.group(4)
     sleep_time = int(match.group(5))
     
+    await message.reply(f"🚀 **Starting Task:** Clicking button option {poll_index + 1} with up to {num_clients_to_vote} client(s)...")
+
     voted_users = 0
     for sender in list(songs_client.keys()):
         if voted_users >= num_clients_to_vote:
@@ -1059,34 +1172,37 @@ async def vote_on_button(client, message):
             await safe_view_messages(user_client, chat.id, message_id, message)
             await msg.click(poll_index)
             voted_users += 1
-            await message.reply(f"Client {sender} successfully clicked option {poll_index + 1}.")
+            await message.reply(f"✅ Client `{sender}` clicked option {poll_index + 1}.")
             await asyncio.sleep(sleep_time)
         except Exception as e:
-            await message.reply(f"Client {sender} failed to vote: {e}")
+            await message.reply(f"⚠️ Client `{sender}` failed to click button: {e}")
     
-    await message.reply(f"Voted with {voted_users}/{num_clients_to_vote} clients.")
+    await message.reply(f"🔘 Button vote completed: {voted_users}/{num_clients_to_vote} client(s) clicked.")
 
 
-@app.on_message(filters.command("comment") & filters.regex(r'/comment (.+) (\d+) (\d+)'))
+@app.on_message(filters.command("comment"))
 async def comment_on_post(client, message):
     user_id = message.from_user.id
 
     # Ensure the user is an admin
     if not is_admin(user_id):
-        await message.reply("You are not authorized to perform this action.")
+        await message.reply("⛔ **Unauthorized:** You do not have permission to perform this action.")
         return
 
     await cleanup_memory()
     
     import re
-    match = re.match(r'/comment (.+) (\d+) (\d+)', message.text)
+    match = re.match(r'/comment(?:@\w+)?\s+(\S+)\s+(\d+)\s+(\d+)', message.text)
+    if not match:
+        return await message.reply("⚠️ **Incorrect Usage!**\n\n📌 **Usage:** `/comment [chat] [msg_id] [delay]`\n*Example:* `/comment @channel 123 2`")
+
     # Extract the channel link/username and message ID from the command
     channel_username_or_link = match.group(1)
     message_id = int(match.group(2))
     sleep_time = int(match.group(3))
     # Check if the admin has any comments
     if user_id not in admin_comments or not admin_comments[user_id]:
-        await message.reply("No comments have been added. Use /add to add comments.")
+        await message.reply("ℹ️ No comments added. Use /add to add comments first.")
         return
 
     commented_users = 0
@@ -1094,16 +1210,18 @@ async def comment_on_post(client, message):
 
     # Ensure there are enough clients to handle all comments
     if len(available_clients) < len(admin_comments[user_id]):
-        await message.reply("Not enough clients to comment. Exiting.")
+        await message.reply("⚠️ **Insufficient Clients:** Not enough active clients available for all comments.")
         return
 
     # Reset cancel flag for the current process
     cancel_process[user_id] = False
 
+    await message.reply(f"🚀 **Starting Task:** Posting {len(admin_comments[user_id])} comment(s)...")
+
     for comment in admin_comments[user_id]:
         # If cancel is triggered, break out of the loop
         if cancel_process.get(user_id, False):
-            await message.reply("Commenting process was canceled.")
+            await message.reply("🚫 Commenting process was canceled.")
             break
 
         # Randomly select a client from available_clients and remove it from the list
@@ -1123,7 +1241,7 @@ async def comment_on_post(client, message):
             try:
                  await user_client.view_messages(channel.id, message_id)
             except Exception as e:
-                 await message.reply(f"Client {sender} failed to increase the viewcount: {e}")
+                 await message.reply(f"⚠️ Client `{sender}` failed to increase view count: {e}")
 
             # Comment by replying to the discussion message
             if comment['type'] == 'text':
@@ -1135,31 +1253,36 @@ async def comment_on_post(client, message):
                 os.remove(comment['content'])
             commented_users += 1
             await asyncio.sleep(sleep_time)  # delay
-            await message.reply(f"Successfully commented '{comment}' on {channel.title}")
+            await message.reply(f"💬 Client `{sender}` successfully posted comment on **{channel.title}**.")
 
         except Exception as e:
-            await message.reply(f"Error commenting with {sender}: {e}")
+            await message.reply(f"⚠️ Error commenting with client `{sender}`: {e}")
             continue
 
     # Clean up the comments after posting
     admin_comments[user_id] = []
 
     if not cancel_process.get(user_id, False):
-        await message.reply(f"Finished commenting with {commented_users} clients.")
+        await message.reply(f"✅ Finished posting comments with {commented_users} client(s).")
 
-@app.on_message(filters.command("react") & filters.regex(r'/react (\d+) (.+) (\d+) (.+)'))
+@app.on_message(filters.command("react"))
 async def react_to_post(client, message):
     if not is_admin(message.from_user.id):
-        await message.reply("You are not authorized to perform this action.")
+        await message.reply("⛔ **Unauthorized:** You do not have permission to perform this action.")
         return
 
     import re
-    match = re.match(r'/react (\d+) (.+) (\d+) (.+)', message.text)
+    match = re.match(r'/react(?:@\w+)?\s+(\d+)\s+(\S+)\s+(\d+)\s+(\S+)', message.text)
+    if not match:
+        return await message.reply("⚠️ **Incorrect Usage!**\n\n📌 **Usage:** `/react [count] [chat] [msg_id] [emoji]`\n*Example:* `/react 5 @channel 123 👍`")
+
     num_clients_to_join = int(match.group(1))
     channel_username_or_link = match.group(2)
     message_id = int(match.group(3))
     emoji = match.group(4)
     reacted_users = 0
+
+    await message.reply(f"🚀 **Starting Task:** Reacting to post with up to {num_clients_to_join} client(s)...")
 
     for client_id in list(clients.keys()):
         if reacted_users >= num_clients_to_join:
@@ -1173,9 +1296,9 @@ async def react_to_post(client, message):
             await msg.react(emoji=emoji)
             reacted_users += 1
         except Exception as e:
-            await message.reply(f"Error reacting with {client_id}: {e}")
+            await message.reply(f"⚠️ Error reacting with client `{client_id}`: {e}")
 
-    await message.reply(f"Finished reacting with {reacted_users} clients.")
+    await message.reply(f"😍 Reaction task completed: {reacted_users} client(s) reacted.")
 
 # ==================== System Management ====================
 
@@ -1214,9 +1337,47 @@ async def pull_handler(client, message):
     if not is_admin(message.from_user.id):
         return
     
-    msg = await message.reply("🔄 Executing git commands...")
+    msg = await message.reply("🔄 Executing git repository updates...")
     result = await execute_git_commands()
     await msg.edit(f"```\n{result}\n```")
+
+# Handle continuation of the /login flow (contact / code / 2FA password) and the
+# /logout confirmation. Runs in group -1 (before the comment-mode handler in group
+# 0) and stops propagation once it consumes an input, so the two flows never clash.
+@app.on_message(filters.private, group=-1)
+async def login_state_dispatcher(client, message):
+    sender = message.from_user.id
+    state = login_states.get(sender)
+    is_command = bool(message.text) and message.text.startswith("/")
+
+    if state:
+        # A command mid-flow (e.g. /cancel, /ping) abandons login and runs normally.
+        if is_command:
+            login_states.pop(sender, None)
+            c = clients.pop(sender, None)
+            if c:
+                try:
+                    await c.disconnect()
+                except Exception:
+                    pass
+            return
+        step = state.get("step")
+        if step == "phone":
+            await _handle_login_phone(message)
+        elif step == "code":
+            await _handle_login_code(message)
+        elif step == "password":
+            await _handle_login_password(message)
+        else:
+            login_states.pop(sender, None)
+        message.stop_propagation()
+
+    elif logout_pending.get(sender):
+        if is_command:
+            logout_pending.pop(sender, None)
+            return
+        await _handle_logout_confirmation(message)
+        message.stop_propagation()
 
 # ==================== Main Execution ====================
 
